@@ -1,28 +1,32 @@
-select * from customers;
+SELECT * FROM customers;
 
-select "CompanyName","ContactName" from customers;
+SELECT "CompanyName","ContactName" from customers;
 
 SELECT * FROM Customers WHERE "Country"='Germany' ;
 
 SELECT * FROM Customers WHERE "Country"='Germany' and "City" = 'Berlin';
 
-select  distinct "City" from customers;
+SELECT  distinct "City" from customers;
 
 SELECT * FROM Customers order by "ContactName" ASC;
 
+-------------------------------------------
+
 SELECT * FROM Customers    WHERE "Country" LIKE '%land%';
-
-SELECT * FROM Products       WHERE "UnitPrice" BETWEEN 10 AND 20;
-
-
-SELECT * FROM Products       WHERE "ProductName" BETWEEN 'C' AND 'M';
-
 
 SELECT * FROM Customers where "Country" Like '_ermany';
 
+-------------------------------------------
+
+SELECT * FROM Products       WHERE "UnitPrice" BETWEEN 10 AND 20;
+
+SELECT * FROM Products       WHERE "ProductName" BETWEEN 'C' AND 'M';
+
+-------------------------------------------
+
 SELECT "CompanyName" as "Musteriler" from Customers;
 
-select "UnitPrice", "UnitPrice"*1.18 as "KDV Eklenmis Tutar"  from products;
+SELECT "UnitPrice", "UnitPrice"*1.18 as "KDVliTutar"  from products;
 
 SELECT "OrderID" as "SiparisNo", "ShipPostalCode"||','||"ShipAddress" as "GonderiAdresi" FROM "orders"   
 WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996'; 
@@ -67,13 +71,6 @@ SELECT   "public"."orders"."OrderID" as "Siparis No",
 FROM     "orders"
 RIGHT OUTER JOIN "employees" on "orders"."EmployeeID" = "employees"."EmployeeID" ;
 
----------------------------
-
-select * from payment
-union all 
-select * from payment_p2007_04
-
--------------------
 
 
 
