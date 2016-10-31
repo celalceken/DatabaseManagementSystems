@@ -71,6 +71,7 @@ SELECT   "public"."orders"."OrderID" as "Siparis No",
 FROM     "orders"
 RIGHT OUTER JOIN "employees" on "orders"."EmployeeID" = "employees"."EmployeeID" ;
 
+select "CompanyName","ContactName" INTO "MusteriYedek02" from customers;
 
 
 
