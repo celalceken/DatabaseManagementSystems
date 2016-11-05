@@ -10,11 +10,20 @@ SELECT  distinct "City" from customers;
 
 SELECT * FROM Customers order by "ContactName" ASC;
 
+
+SELECT * FROM Customers ORDER BY "ContactName" DESC-- DESC, "CompanyName";
+
+
+SELECT * FROM Customers ORDER BY "Country","ContactName"
+
 -------------------------------------------
 
 SELECT * FROM Customers    WHERE "Country" LIKE '%land%';
 
 SELECT * FROM Customers where "Country" Like '_ermany';
+
+SELECT * FROM Customers    WHERE "City" LIKE 'L_ndon';
+
 
 -------------------------------------------
 
