@@ -1,99 +1,118 @@
-SELECT * FROM customers;
-
-SELECT "CompanyName","ContactName" from customers;
-
-SELECT * FROM Customers WHERE "Country"='Germany' ;
-
-SELECT * FROM Customers WHERE "Country"='Germany' and "City" = 'Berlin';
-
-SELECT  distinct "City" from customers;
-
-SELECT * FROM Customers order by "ContactName" ASC;
 
 
-SELECT * FROM Customers ORDER BY "ContactName" DESC-- DESC, "CompanyName";
+SELECT * FROM "customers";
 
+SELECT "CompanyName", "ContactName" FROM "customers";
 
-SELECT * FROM Customers ORDER BY "Country","ContactName"
+SELECT * FROM "customers" WHERE "Country" = 'Germany';
 
--------------------------------------------
+SELECT * FROM "customers" WHERE "Country"='Germany' and "City" = 'Berlin';
 
-SELECT * FROM Customers    WHERE "Country" LIKE '%land%';
+SELECT DISTINCT "City" from "customers";
 
-SELECT * FROM Customers where "Country" Like '_ermany';
+SELECT * FROM "customers" ORDER BY "ContactName" ASC;
 
-SELECT * FROM Customers    WHERE "City" LIKE 'L_ndon';
+SELECT * FROM "customers" ORDER BY "ContactName" DESC;
+
+SELECT * FROM "customers" ORDER BY "ContactName" DESC, "CompanyName";
+
+SELECT * FROM "customers" ORDER BY "Country", "ContactName";
 
 
 -------------------------------------------
 
-SELECT * FROM Products       WHERE "UnitPrice" BETWEEN 10 AND 20;
 
-SELECT * FROM Products       WHERE "ProductName" BETWEEN 'C' AND 'M';
+SELECT * FROM "customers" WHERE "Country" LIKE '%land%';
+
+SELECT * FROM "customers" WHERE "Country" Like '_ermany';
+
+SELECT * FROM "customers" WHERE "City" LIKE 'L_ndon';
+
 
 -------------------------------------------
 
-SELECT "CompanyName" as "Musteriler" from Customers;
 
-SELECT "UnitPrice", "UnitPrice"*1.18 as "KDVliTutar"  from products;
+SELECT * FROM "products" WHERE "UnitPrice" BETWEEN 10 AND 20;
 
-SELECT "OrderID" as "SiparisNo", "ShipPostalCode"||','||"ShipAddress" as "GonderiAdresi" FROM "orders"   
-WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996'; 
- 
+SELECT * FROM "products" WHERE "ProductName" BETWEEN 'C' AND 'M';
+
+
+-------------------------------------------
+
+
+SELECT "CompanyName" AS "Musteriler" FROM "customers";
+
+SELECT "UnitPrice", "UnitPrice" * 1.18 AS "KDVliTutar" FROM "products";
+
+SELECT
+"OrderID" AS "SiparisNo",
+"ShipPostalCode" || ',' || "ShipAddress" AS "GonderiAdresi"
+FROM "orders"
+WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
+
+
 --------------------------------------
 
-SELECT   "public"."orders"."OrderID" as "Siparis No",
-         "public"."customers"."CompanyName" as "Şirket",
-         "public"."orders"."OrderDate" as "Sipariş Tarihi"
-FROM     "orders" 
-INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
-SELECT   "public"."orders"."OrderID" as "Siparis No",
-         "public"."customers"."CompanyName" as "Şirket",
-         "public"."orders"."OrderDate" as "Sipariş Tarihi"
-FROM     "orders",  "customers"
-where "orders"."CustomerID" = "customers"."CustomerID" 
-order by "customers"."CompanyName" DESC;
 
+SELECT
+  "orders"."OrderID" AS "Siparis No",
+  "customers"."CompanyName" AS "Şirket",
+  "orders"."OrderDate" AS "Sipariş Tarihi"
+FROM "orders"
+INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
-SELECT   "public"."orders"."OrderID",
-         "public"."orders"."OrderDate",
-         "public"."customers"."CompanyName",
-         "public"."employees"."FirstName",
-         "public"."employees"."LastName"
-FROM     "orders" 
-INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
-INNER JOIN "employees"  ON "orders"."EmployeeID" = "employees"."EmployeeID" 
+SELECT
+  "orders"."OrderID" AS "Siparis No",
+  "customers"."CompanyName" AS "Şirket",
+  "orders"."OrderDate" AS "Sipariş Tarihi"
+FROM "orders", "customers"
+WHERE "orders"."CustomerID" = "customers"."CustomerID"
+ORDER BY "customers"."CompanyName" DESC;
 
+SELECT
+  "orders"."OrderID",
+  "orders"."OrderDate",
+  "customers"."CompanyName",
+  "employees"."FirstName",
+  "employees"."LastName"
+FROM "orders"
+INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
+INNER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID";
 
-
-SELECT   "public"."orders"."OrderID",
-         "public"."products"."ProductName"
-FROM     "order_details" 
-INNER JOIN "orders"  ON "order_details"."OrderID" = "orders"."OrderID" 
-INNER JOIN "products"  ON "order_details"."ProductID" = "products"."ProductID”
+SELECT
+  "orders"."OrderID",
+  "products"."ProductName"
+FROM "order_details"
+INNER JOIN "orders" ON "order_details"."OrderID" = "orders"."OrderID"
+INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
 
 
 -----------------------------
 
-SELECT   "public"."orders"."OrderID" as "Siparis No",
-         "public"."customers"."CompanyName" as "Şirket",
-         "public"."orders"."OrderDate" as "Sipariş Tarihi"
-FROM     "customers"
-LEFT OUTER JOIN "orders" on "orders"."CustomerID" = "customers"."CustomerID" ;
 
----------------
+SELECT
+  "orders"."OrderID" as "Siparis No",
+  "customers"."CompanyName" as "Şirket",
+  "orders"."OrderDate" as "Sipariş Tarihi"
+FROM "customers"
+LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" ;
 
-SELECT   "public"."orders"."OrderID" as "Siparis No",
-         "public"."employees"."FirstName" as "Satış Temsilcisi Ad",
-		 "public"."employees"."LastName" as "Satış Temsilcisi Soyad",
-         "public"."orders"."OrderDate" as "Sipariş Tarihi"
-FROM     "orders"
+
+-----------------------------
+
+
+SELECT
+  "orders"."OrderID" as "Siparis No",
+  "employees"."FirstName" as "Satış Temsilcisi Ad",
+	"employees"."LastName" as "Satış Temsilcisi Soyad",
+  "orders"."OrderDate" as "Sipariş Tarihi"
+FROM "orders"
 RIGHT OUTER JOIN "employees" on "orders"."EmployeeID" = "employees"."EmployeeID" ;
 
--------------------
+
+-----------------------------
 
 
-select "CompanyName","ContactName" INTO "MusteriYedek02" from customers;
+SELECT "CompanyName", "ContactName" INTO "MusteriYedek" FROM "customers";
 
-
-
+INSERT INTO "MusteriYedek" SELECT "CompanyName", "ContactName" FROM "customers";
