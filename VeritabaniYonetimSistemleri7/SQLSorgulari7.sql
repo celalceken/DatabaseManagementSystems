@@ -67,7 +67,7 @@ VALUES
 CREATE SEQUENCE "sayac";
 
 CREATE TABLE "Urunler" (
-	"urunNo" INTEGER NEXTVAL('sayac'),
+	"urunNo" INTEGER DEFAULT NEXTVAL('sayac'),
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2017-01-01',
