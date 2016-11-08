@@ -82,7 +82,7 @@ CREATE TABLE "Urunler" (
 -------------------------------
 
 
---RESTRICT varsayılan ayar
+--NO ACTION varsayılan ayar
 
 ALTER TABLE "orders"
 ADD CONSTRAINT "lnk_employees_orders" FOREIGN KEY ("EmployeeID")
