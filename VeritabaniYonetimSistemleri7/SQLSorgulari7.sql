@@ -10,11 +10,14 @@ TEMPLATE=template0;
 
 -------------------------------
 
+-- Şema Oluşturma Örneği
+
 CREATE SCHEMA sema1;
 
 
 -------------------------------
 
+-- Otomatik Artım Örneği - SERIAL Kullanımı
 
 CREATE TABLE "sema1"."Urunler" (
 	"urunNo" SERIAL,
@@ -28,7 +31,7 @@ CREATE TABLE "sema1"."Urunler" (
 	CONSTRAINT "urunlerCheck" CHECK(miktari >= 0)
 );
 
-INSERT INTO "sema1"."Urunler"
+INSERT INTO "sema1"."Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 ('ELO004', 'TV', '13', '24.10.2016', 5);
@@ -36,6 +39,7 @@ VALUES
 
 -------------------------------
 
+-- Otomatik Artım Örneği - SEQUENCE Kullanımı 1
 
 CREATE TABLE "Urunler" (
 	"urunNo" INTEGER,
@@ -51,8 +55,6 @@ CREATE TABLE "Urunler" (
 
 CREATE SEQUENCE "sayac";
 
-SELECT NEXTVAL('sayac');
-
 ALTER SEQUENCE "sayac" OWNED BY "Urunler"."urunNo";
 
 INSERT INTO "sema1"."Urunler"
@@ -61,8 +63,14 @@ VALUES
 (NEXTVAL('sayac'), 'ELO004', 'TV', '13', '24.10.2016', 5);
 
 
+-- SEQUENCE nesnesinin bir sonraki değerini NEXTVAL kullanarak elde edebiliriz.
+
+SELECT NEXTVAL('sayac');
+
+
 -------------------------------
 
+-- Otomatik Artım Örneği - SEQUENCE Kullanımı 1
 
 CREATE SEQUENCE "sayac";
 
