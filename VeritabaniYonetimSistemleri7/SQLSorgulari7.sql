@@ -154,6 +154,16 @@ SELECT "CategoryID", SUM("UnitPrice") AS "Toplam B. Fiyat"
 FROM "products"
 GROUP BY "CategoryID"
 
+
+SELECT   "public"."customers"."CompanyName", count("public"."orders"."OrderID"), sum("public"."products"."UnitPrice")         
+FROM     "orders" 
+INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
+INNER JOIN "order_details"  ON "order_details"."OrderID" = "orders"."OrderID" 
+INNER JOIN "products"  ON "order_details"."ProductID" = "products"."ProductID" 
+GROUP BY "CompanyName"
+ORDER BY 1;
+
+
 SELECT "CategoryID", COUNT("CategoryID") AS "Ürün Sayısı"
 FROM "products"
 GROUP BY "CategoryID"
@@ -174,3 +184,6 @@ FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
 GROUP BY "CompanyName"
 ORDER BY "CompanyName";
+
+
+
