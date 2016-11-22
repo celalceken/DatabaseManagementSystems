@@ -18,11 +18,11 @@ ALTER TABLE "personel"."SatisTemsilcisi"
 
 
 SELECT * FROM "personel"."Personel"
-INNER JOIN "personel"."SatisTemsilcisi" 
+INNER JOIN "personel"."SatisTemsilcisi"
 ON "personel"."Personel"."personelNo" = "personel"."SatisTemsilcisi"."personelNo"
 
 
-SELECT "adi", "soyadi" FROM "personel"."Personel" 
+SELECT "adi", "soyadi" FROM "personel"."Personel"
 WHERE "personelTipi"='S';
 
 
@@ -32,14 +32,14 @@ WHERE "personelTipi"='S';
 -- Görünüm / View Örneği
 
 
-CREATE OR REPLACE VIEW "public"."OrderCustomerEmployee" AS  
+CREATE OR REPLACE VIEW "public"."OrderCustomerEmployee" AS
 SELECT "orders"."OrderID",
     "orders"."OrderDate",
     "customers"."CompanyName",
     "customers"."ContactName",
     "employees"."FirstName",
     "employees"."LastName"
-FROM "orders" 
+FROM "orders"
 INNER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
@@ -57,12 +57,12 @@ ALTER TABLE "employees"
 	ON UPDATE CASCADE;
 
 
-SELECT "public"."employees"."FirstName",
-    "public"."employees"."LastName",
-    "Yonetici"."FirstName",
-    "Yonetici"."LastName"
-FROM "employees" 
-INNER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "employees"."ReportsTo"
+SELECT "Calisan"."FirstName" AS "Calisan Ilk Isim",
+	    "Calisan"."LastName" AS "Calisan Soy Isim",
+	    "Yonetici"."FirstName" AS "Yonetici Ilk Isim",
+	    "Yonetici"."LastName" AS "Yonetici Soy Isim"
+FROM "employees" AS "Calisan"
+INNER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "Calisan"."ReportsTo";
 
 
 ------------------------------
@@ -90,9 +90,9 @@ SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Bilgisayar Y Z';
 SELECT DISTINCT "public"."customers"."CustomerID",
     "public"."customers"."CompanyName",
     "public"."customers"."ContactName"
-FROM "orders" 
-INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
-INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID" 
+FROM "orders"
+INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
+INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID"
 WHERE "order_details"."ProductID" =
     (SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Y Z Bilgisayar')
 ORDER BY "public"."customers"."CustomerID";
@@ -105,9 +105,9 @@ SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%';
 SELECT DISTINCT "public"."customers"."CustomerID",
     "public"."customers"."CompanyName",
     "public"."customers"."ContactName"
-FROM "orders" 
-INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
-INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID" 
+FROM "orders"
+INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
+INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID"
 WHERE "order_details"."ProductID" IN
     (SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%');
 
@@ -116,44 +116,44 @@ WHERE "order_details"."ProductID" IN
 
 
 SELECT * FROM  "products"
-WHERE "UnitPrice" = ANY 
+WHERE "UnitPrice" = ANY
 (
-    SELECT "UnitPrice" 
+    SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products" 
+    LEFT OUTER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
 
 
 SELECT * FROM  "products"
-WHERE "UnitPrice" IN 
+WHERE "UnitPrice" IN
 (
-    SELECT "UnitPrice" 
+    SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products" 
+    LEFT OUTER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
 
 
 SELECT * FROM  "products"
-WHERE "UnitPrice" < ANY 
+WHERE "UnitPrice" < ANY
 (
-    SELECT "UnitPrice" 
+    SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products" 
+    LEFT OUTER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
 
 
 SELECT * FROM  "products"
-WHERE "UnitPrice" < ALL 
+WHERE "UnitPrice" < ALL
 (
-    SELECT "UnitPrice" 
+    SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products" 
+    LEFT OUTER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
@@ -162,7 +162,7 @@ WHERE "UnitPrice" < ALL
 -- Örnek
 
 
-SELECT "SupplierID", SUM("UnitsInStock") AS "Stoktaki Toplam Ürün Sayısı" 
+SELECT "SupplierID", SUM("UnitsInStock") AS "Stoktaki Toplam Ürün Sayısı"
 FROM  "products"
 GROUP BY "SupplierID"
 HAVING SUM("UnitsInStock") < (SELECT AVG("UnitsInStock") FROM "products");
@@ -183,18 +183,18 @@ HAVING SUM("Quantity") > (SELECT MAX("Quantity") FROM "order_details");
 -- Örnek
 
 
-SELECT 
-    "ProductName", 
-    "UnitsInStock", 
-    (SELECT MAX("UnitsInStock") FROM "products") AS "En Büyük Değer" 
+SELECT
+    "ProductName",
+    "UnitsInStock",
+    (SELECT MAX("UnitsInStock") FROM "products") AS "En Büyük Değer"
 FROM "products";
 
 
-SELECT 
-    "SupplierID", 
+SELECT
+    "SupplierID",
     COUNT("UnitsInStock") AS "Toplam",
-    SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "Standart Sapma" 
-FROM "products" 
+    SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "Standart Sapma"
+FROM "products"
 GROUP BY "SupplierID"
 
 
@@ -202,14 +202,14 @@ GROUP BY "SupplierID"
 
 
 SELECT "ProductName", "UnitPrice" FROM "products" AS "urunler1"
-WHERE "urunler1"."UnitPrice" > 
+WHERE "urunler1"."UnitPrice" >
 (
-SELECT AVG("UnitPrice") FROM "products" AS "urunler2" 
+SELECT AVG("UnitPrice") FROM "products" AS "urunler2"
 WHERE "urunler1"."SupplierID" = "urunler2"."SupplierID"
 );
 
 
-SELECT "CustomerID", "CompanyName", "ContactName" 
+SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
