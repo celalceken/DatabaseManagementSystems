@@ -95,7 +95,7 @@ FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
 INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID"
 WHERE "order_details"."ProductID" =
-    (SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Y Z Bilgisayar')
+    (SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Bilgisayar Y Z')
 ORDER BY "public"."customers"."CustomerID";
 
 
@@ -171,6 +171,7 @@ WHERE "UnitPrice" < ALL
 
 -- Örnek
 
+SELECT AVG("UnitsInStock") FROM "products";
 
 SELECT "SupplierID", SUM("UnitsInStock") AS "Stoktaki Toplam Ürün Sayısı"
 FROM  "products"
