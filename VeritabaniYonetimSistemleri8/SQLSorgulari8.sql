@@ -100,6 +100,15 @@ ORDER BY "public"."customers"."CustomerID";
 
 -- Örnek
 
+SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18
+
+SELECT * FROM "suppliers"
+WHERE "SupplierID" IN
+    (SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18);
+
+
+-- Örnek
+
 SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%';
 
 SELECT DISTINCT "public"."customers"."CustomerID",
