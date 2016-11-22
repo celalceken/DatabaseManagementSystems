@@ -2,6 +2,7 @@
 
 -- Kalıtım Örneği
 
+-- Test
 
 ALTER TABLE "personel"."Danisman"
 	ADD CONSTRAINT "DanismanPersonel" FOREIGN KEY ("personelNo")
