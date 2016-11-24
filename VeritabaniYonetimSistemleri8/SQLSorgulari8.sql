@@ -2,7 +2,6 @@
 
 -- Kalıtım Örneği
 
--- Test
 
 ALTER TABLE "personel"."Danisman"
 	ADD CONSTRAINT "DanismanPersonel" FOREIGN KEY ("personelNo")
@@ -224,3 +223,31 @@ SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
+
+
+-- Örnek
+
+
+SELECT "CustomerID" FROM "customers"
+UNION
+SELECT "CustomerID" FROM "orders"
+ORDER BY "CustomerID";
+
+
+SELECT "CustomerID" FROM "customers"
+UNION ALL
+SELECT "CustomerID" FROM "orders"
+ORDER BY "CustomerID";
+
+
+SELECT "CompanyName", "Country" FROM "customers"
+UNION ALL
+SELECT "CompanyName", "Country" FROM "suppliers"
+ORDER BY 2;
+
+
+SELECT "CompanyName", "Country" FROM "customers"
+EXCEPT
+SELECT "CompanyName", "Country" FROM "suppliers"
+ORDER BY 2;
+
