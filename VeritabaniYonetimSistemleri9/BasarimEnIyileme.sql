@@ -193,3 +193,95 @@ WHERE ("UnitPrice", "UnitsInStock") <
 
 ----------------------------------
 
+-- UNION ve UNION ALL
+
+EXPLAIN ANALYSE
+SELECT "rental_id" FROM "rental"
+UNION
+SELECT "rental_id" FROM "payment";
+
+-- 22:23:50 Query time: 21 millisecond(s), Number of cursor's records: 7
+
+
+EXPLAIN ANALYSE
+SELECT "rental_id" FROM "rental"
+UNION ALL
+SELECT "rental_id" FROM "payment";
+
+-- 22:23:53 Query time: 11 millisecond(s), Number of cursor's records: 5
+
+----------------------------------
+
+-- WHERE
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" WHERE "amount" != 11.99;
+
+-- 22:38:13 Query time: 6 millisecond(s), Number of cursor's records: 5
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" WHERE "amount" < 11.99;
+
+-- 22:38:13 Query time: 6 millisecond(s), Number of cursor's records: 5
+
+
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "film" WHERE SUBSTR("title", 2, 2) = 'la';
+
+--22:44:30 Query time: 2 millisecond(s), Number of affected records: 15
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "film" WHERE "title" LIKE '_la%';
+
+-- 22:44:25 Query time: 1 millisecond(s), Number of affected records: 15
+
+
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" 
+WHERE "amount" - 1 = '1.99';
+
+-- 22:50:54 Query time: 6 millisecond(s), Number of cursor's records: 5
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" 
+WHERE "amount" = '2.99';
+
+-- 22:50:56 Query time: 5 millisecond(s), Number of cursor's records: 5
+
+
+----------------------------------
+
+-- VACUUM
+
+VACUUM; -- Seçili veri tabanındaki tüm tabloları vakumla.
+VACUUM FULL; -- Daha fazla yer aç. Daha uzun sürer.
+VACUUM customer; -- customer tablosunu vakumla.
+
+-- Threshold değerini %20 aştıktan sonra otomatik vakum işlemi yap.
+-- Varsayılan 0.2
+ALTER TABLE table_name  
+SET (autovacuum_vacuum_scale_factor = 0.3);
+
+
+-- Threshold değeri 5000 kayıt olsun.
+-- Varsayılan 50 kayıt.
+ALTER TABLE table_name  
+SET (autovacuum_vacuum_threshold = 5000);
+
+
+
+SELECT "relname", "last_vacuum", "last_autovacuum", "last_analyze", "last_autoanalyze”
+FROM "pg_stat_all_tables”
+WHERE "schemaname" = 'public';
+
+
+
+
+
