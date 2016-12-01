@@ -251,3 +251,55 @@ EXCEPT
 SELECT "CompanyName", "Country" FROM "suppliers"
 ORDER BY 2;
 
+------İşlem (Transaction)-----
+
+-- İşlem (transaction) veri tabanı yönetim sistemlerinin önemli özelliklerinden birisi.
+-- ACID ile belirtilen ozellikleri destekler
+
+--ACID:  
+--Atomicity: İşlem(transaction) kapsamındaki alt işlemlerin tamamı bir bütün olarak ele alınır. Ya alt işlemlerin tamamı 
+--başarılı olarak çalıştırılır, ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski kararlı haline 
+--döndürülür. 
+--Consistency: Herhangi bir kısıt ihlal edilirse roll back işlemiyle veritabanı eski kararlı haline döndürülür.
+--Isolation: İşlemler birbirlerini (ortak kaynak kullanımı durumunda) etkilemezler. Kullanılan ortak kaynak işlem tarafından, 
+--işlem tamamlanana kadar, kilitlenir.
+--Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmış olan işlem sistem çalışmaya başladıktan sonra 
+--mutlaka tamamlanır.
+
+----------------------------------------------------
+BEGIN; --İşleme (Transaction) başla.
+
+INSERT INTO "order_details" ("OrderID", "ProductID", "UnitPrice", "Quantity", "Discount")
+VALUES (10248, 11, 20, 2, 0);
+
+-- Yukarıdaki sorguda hata mevcutsa ilerlenilmez.
+-- Aşağıdaki sorguda hata mevcutsa bu noktadan geri sarılır (rollback).
+-- Yani yukarıdaki sorguda yapılan işlemler geri alınır.
+
+Update "products" 
+SET "UnitsInStock" = "UnitsInStock" + 2
+WHERE "ProductID" = 11;
+
+-- Her iki sorguda hatasız bir şekilde icra edilirse her ikisini de işlet ve veri tabanının durumunu güncelle.
+
+COMMIT; --İşlemi (transaction) tamamla.
+
+----------------------------------------------------
+BEGIN;
+UPDATE Hesap SET bakiye = bakiye - 100.00
+    WHERE adi = 'Ahmet';
+
+--SAVEPOINT my_savepoint;
+
+UPDATE Hesap SET bakiye = bakiye + 100.00
+    WHERE adi = 'Mehmet';
+
+-- oops ... forget that and use Wally's account
+--ROLLBACK TO my_savepoint;
+--UPDATE Hesap SET bakiye = bakiye + 100.00
+    --WHERE adi = 'Ayşe';
+COMMIT;
+
+
+
+
