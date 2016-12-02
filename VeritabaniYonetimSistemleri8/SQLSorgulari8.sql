@@ -2,6 +2,26 @@
 
 -- Kalıtım Örneği
 
+CREATE SCHEMA "Personel";
+
+CREATE TABLE "Personel"."Personel" ( 
+	"personelNo" serial,
+	"adi" Character Varying( 40 ) NOT NULL,
+	"soyadi" Character Varying( 40 ) NOT NULL,
+	"personelTipi" Character( 1 ) NOT NULL,
+	CONSTRAINT "personelPK" PRIMARY KEY ( "personelNo" ) );
+	
+CREATE TABLE "Personel"."Danisman" ( 
+	"personelNo" INT,
+	"sirket" Character Varying( 40 ) NOT NULL,
+	CONSTRAINT "danismanPK" PRIMARY KEY ( "personelNo" ) );
+	
+
+CREATE TABLE "Personel"."SatisTemsilcisi" ( 
+	"personelNo" INT,
+	"bolge" Character Varying( 40 ) NOT NULL,
+	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ( "personelNo" ) );
+	
 
 ALTER TABLE "personel"."Danisman"
 	ADD CONSTRAINT "DanismanPersonel" FOREIGN KEY ("personelNo")
@@ -294,7 +314,7 @@ UPDATE Hesap SET bakiye = bakiye - 100.00
 UPDATE Hesap SET bakiye = bakiye + 100.00
     WHERE adi = 'Mehmet';
 
--- oops ... forget that and use Wally's account
+-- parayı Mehmete değil Ayşeye gönder
 --ROLLBACK TO my_savepoint;
 --UPDATE Hesap SET bakiye = bakiye + 100.00
     --WHERE adi = 'Ayşe';
