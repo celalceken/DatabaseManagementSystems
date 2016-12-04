@@ -258,10 +258,11 @@ WHERE "amount" = '2.99';
 
 ----------------------------------
 
--- VACUUM
+-- VACUUM (silme ve update işlemlerinden sonra kayıtlar, Vacuum işlemine kadar, fiziksel olarak silinmezler)
+-- VACUUM ve ANALYSE işlemini, veritabanı kullanımının az olduğu zamanlarda, günde bir kez uygulamak sorgu  hızını artırır...
 
 VACUUM; -- Seçili veri tabanındaki tüm tabloları vakumla.
-VACUUM FULL; -- Daha fazla yer aç. Daha uzun sürer.
+VACUUM FULL; -- Daha fazla yer aç. Daha uzun sürer. (tabloları kilitleyerek yeni kopyasını oluşturur ve daha sonra eski tabloyu siler)
 VACUUM customer; -- customer tablosunu vakumla.
 
 -- Threshold değerini %20 aştıktan sonra otomatik vakum işlemi yap.
@@ -275,6 +276,11 @@ SET (autovacuum_vacuum_scale_factor = 0.3);
 ALTER TABLE table_name  
 SET (autovacuum_vacuum_threshold = 5000);
 
+--ANALYSE  (tablonun içeriği ile ilgili istatistikleri pg_statistic sistem katalogunda saklar. Daha sonrasında bu bilgi, sorgu planlayıcısının  
+-- (query planner) sorguları en etkin şekilde nasıl çalıştıracağının belirlenmesi işleminde kullanılır.)
+
+ANALYSE ; -- Seçili veritabanındaki tüm tablolara uygulanır.
+ANALYSE payment; -- payment tablosuna uygulanır.
 
 
 SELECT "relname", "last_vacuum", "last_autovacuum", "last_analyze", "last_autoanalyze”
