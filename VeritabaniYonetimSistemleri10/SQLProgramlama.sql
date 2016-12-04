@@ -1,5 +1,5 @@
 
--------Örnekler Pagila Örnek Veri Tabanını Kullanmaktadır-------
+-------Pagila Örnek Veri Tabanını Kullanmaktadır-------
 
 ----Fonksiyon (Saklı Yordam) Tanımlama--------------
 
