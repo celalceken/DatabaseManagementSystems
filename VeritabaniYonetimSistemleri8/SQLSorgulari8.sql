@@ -2,6 +2,13 @@
 
 -- Kalıtım Örneği
 
+CREATE DATABASE "AlisVerisUygulamasi"
+ENCODING='UTF-8'
+LC_COLLATE='tr_TR.UTF-8'
+LC_CTYPE='tr_TR.UTF-8'
+OWNER postgres
+TEMPLATE=template0;
+
 CREATE SCHEMA "Personel";
 
 CREATE TABLE "Personel"."Personel" ( 
@@ -23,26 +30,26 @@ CREATE TABLE "Personel"."SatisTemsilcisi" (
 	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ( "personelNo" ) );
 	
 
-ALTER TABLE "personel"."Danisman"
+ALTER TABLE "Personel"."Danisman"
 	ADD CONSTRAINT "DanismanPersonel" FOREIGN KEY ("personelNo")
-	REFERENCES "personel"."Personel" ("personelNo")
+	REFERENCES "Personel"."Personel" ("personelNo")
 	ON DELETE CASCADE
 	ON UPDATE CASCADE;
 
 
-ALTER TABLE "personel"."SatisTemsilcisi"
+ALTER TABLE "Personel"."SatisTemsilcisi"
 	ADD CONSTRAINT "SatisTemsilcisiPersonel" FOREIGN KEY ("personelNo")
-	REFERENCES "personel"."Personel" ("personelNo")
+	REFERENCES "Personel"."Personel" ("personelNo")
 	ON DELETE CASCADE
 	ON UPDATE CASCADE;
 
 
-SELECT * FROM "personel"."Personel"
-INNER JOIN "personel"."SatisTemsilcisi"
-ON "personel"."Personel"."personelNo" = "personel"."SatisTemsilcisi"."personelNo"
+SELECT * FROM "Personel"."Personel"
+INNER JOIN "Personel"."SatisTemsilcisi"
+ON "Personel"."Personel"."personelNo" = "Personel"."SatisTemsilcisi"."personelNo"
 
 
-SELECT "adi", "soyadi" FROM "personel"."Personel"
+SELECT "adi", "soyadi" FROM "Personel"."Personel"
 WHERE "personelTipi"='S';
 
 
@@ -52,7 +59,7 @@ WHERE "personelTipi"='S';
 -- Görünüm / View Örneği
 
 
-CREATE OR REPLACE VIEW "public"."OrderCustomerEmployee" AS
+CREATE OR REPLACE VIEW "public"."SiparisMusteriSatisTemsilcisi" AS
 SELECT "orders"."OrderID",
     "orders"."OrderDate",
     "customers"."CompanyName",
@@ -64,6 +71,7 @@ INNER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
 
+SELECT * FROM "SiparisMusteriSatisTemsilcisi"
 ------------------------------
 
 
@@ -83,6 +91,15 @@ SELECT "Calisan"."FirstName" AS "Calisan Ilk Isim",
 	    "Yonetici"."LastName" AS "Yonetici Soy Isim"
 FROM "employees" AS "Calisan"
 INNER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "Calisan"."ReportsTo";
+
+
+
+SELECT "Calisan"."FirstName" AS "Calisan Ilk Isim",
+	    "Calisan"."LastName" AS "Calisan Soy Isim",
+	    "Yonetici"."FirstName" AS "Yonetici Ilk Isim",
+	    "Yonetici"."LastName" AS "Yonetici Soy Isim"
+FROM "employees" AS "Calisan"
+LEFT OUTER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "Calisan"."ReportsTo";
 
 
 ------------------------------
