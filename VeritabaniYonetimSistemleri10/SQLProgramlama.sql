@@ -13,17 +13,17 @@ BEGIN
     sonuc := '';
     IF tekrarSayisi > 0 THEN
         FOR i IN 1 .. tekrarSayisi LOOP
-            sonuc := sonuc || i || '.' || SUBSTRING(mesaj FROM 1 FOR altKarakterSayisi) || E'\r\n'; 
+            sonuc := sonuc || i || '.' || SUBSTRING(mesaj FROM 1 FOR altKarakterSayisi) || E'\r\n';
             -- E: string içerisindeki (E)scape karakterleri için...
         END LOOP;
     END IF;
     RETURN sonuc;
 END;
 $$ -- Fonksiyon govdesi sonu
-LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER ; 
+LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER ;
 --immutable: aynı girişler için aynı çıkışları üretecek
 --SECURITY DEFINER: fonksiyonu oluşturanın yetkileriyle çalıştırılsın.
-  
+
 
 SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10) --fonksiyonun cagrilmasi
 
@@ -32,8 +32,8 @@ SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10) --fonksiyonun cagrilmasi
 
 
 CREATE OR REPLACE FUNCTION kayitDolanimi()
-RETURNS TEXT AS  
-$$ 
+RETURNS TEXT AS
+$$
 DECLARE
     musteriler  customer%ROWTYPE; --customer."CustomerID"%TYPE
     sonuc TEXT;
@@ -44,7 +44,7 @@ BEGIN
     END LOOP;
     RETURN sonuc;
 END;
-$$ 
+$$
 LANGUAGE 'plpgsql';
 
 SELECT  kayitDolanimi() --fonksiyonun cagrilmasi
@@ -59,7 +59,7 @@ BEGIN
     RETURN QUERY SELECT "staff_id","first_name","last_name" FROM staff
                  WHERE "staff_id"=personelNo;
 END;
-$$ 
+$$
 LANGUAGE plpgsql;
 
 Select * from personelAra(1);
@@ -74,7 +74,7 @@ AS $$
 BEGIN
     sayiCM=2.54*sayiINCH;
 END;
-$$ 
+$$
 LANGUAGE plpgsql;
 
 
@@ -88,16 +88,16 @@ CREATE OR REPLACE FUNCTION public.odemetoplami(personelno integer)
  LANGUAGE plpgsql
 AS $$
 DECLARE
-    
+
     sonuc TEXT;
     personel record;
     miktar NUMERIC;
 
 BEGIN
     personel=personelAra(personelNo);
-    FOR miktar IN SELECT SUM(amount) from payment where staff_id=personelNo LOOP 
+    FOR miktar IN SELECT SUM(amount) from payment where staff_id=personelNo LOOP
     END LOOP;
-    
+
     return personel."numara"||E'\t'||personel."adi"||E'\t'||miktar;
 END;
 $$
@@ -108,35 +108,38 @@ select odemeToplami(2)
 
 ----- Cursor Kullanımı-----
 
-CREATE OR REPLACE FUNCTION filmAra(p_year INTEGER, filmAdi TEXT)RETURNS text AS 
+CREATE OR REPLACE FUNCTION "filmAra"(yapimYili INTEGER, filmAdi TEXT)
+RETURNS text AS
 $$
 DECLARE
-titles TEXT DEFAULT '';
-rec_film   RECORD;
-cur_films CURSOR(p_year INTEGER) FOR SELECT * FROM film WHERE release_year = p_year;
+    filmAdlari TEXT DEFAULT '';
+    film RECORD;
+    filmImleci CURSOR(yapimYili INTEGER) FOR SELECT * FROM film WHERE release_year = yapimYili;
 BEGIN
-   OPEN cur_films(p_year);  -- Open the cursor
+   OPEN filmImleci(yapimYili);
    LOOP
-      FETCH cur_films INTO rec_film; -- fetch row into the film
-      EXIT WHEN NOT FOUND;     -- exit when no more row to fetch
-      IF rec_film.title LIKE filmAdi||'%' THEN     -- build the output
-         titles := titles || ',' || rec_film.title || ':' || rec_film.release_year;
+      FETCH filmImleci INTO film;
+      EXIT WHEN NOT FOUND;
+      IF film.title LIKE filmAdi || '%' THEN
+         filmAdlari := filmAdlari || ',' || film.title || ':' || film.release_year;
       END IF;
    END LOOP;
-   CLOSE cur_films;    -- Close the cursor
-   RETURN titles;
+   CLOSE filmImleci;
+
+   RETURN filmAdlari;
 END; $$
-LANGUAGE plpgsql;
+LANGUAGE 'plpgsql';
+
 ----------
 SELECT * from filmAra(2006,'T');
 
 
 
-------Trigger  ------------ 
+------Trigger  ------------
 
 --NorthWind veritabanındaki ürünlerin birim fiyat değişimlerini izlemek için kullanılır...
 
-CREATE TABLE "public"."UrunDegisikligiIzle" ( 
+CREATE TABLE "public"."UrunDegisikligiIzle" (
 	"kayitNo" serial,
 	"urunNo" SmallInt NOT NULL,
 	"eskiBirimFiyat" Real NOT NULL,
@@ -151,10 +154,10 @@ BEGIN
 		INSERT INTO "UrunDegisikligiIzle"("urunNo","eskiBirimFiyat","yeniBirimFiyat","degisiklikTarihi")
 		VALUES(OLD."ProductID",OLD."UnitPrice",NEW."UnitPrice",CURRENT_TIMESTAMP::TIMESTAMP);
 	END IF;
- 
+
 	RETURN NEW;
 END;
-$$ 
+$$
 LANGUAGE plpgsql;
 
 CREATE  TRIGGER urunBirimFiyatDegistiginde
