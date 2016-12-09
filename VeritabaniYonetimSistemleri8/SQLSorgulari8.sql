@@ -314,7 +314,7 @@ VALUES (10248, 11, 20, 2, 0);
 -- Yani yukarıdaki sorguda yapılan işlemler geri alınır.
 
 Update "products" 
-SET "UnitsInStock" = "UnitsInStock" + 2
+SET "UnitsInStock" = "UnitsInStock" - 2
 WHERE "ProductID" = 11;
 
 -- Her iki sorguda hatasız bir şekilde icra edilirse her ikisini de işlet ve veri tabanının durumunu güncelle.
