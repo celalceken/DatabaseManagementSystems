@@ -272,34 +272,38 @@ DROP ROLE "rol1";
 
 
 
--------Yetkilendirme Ornegi1 (Northwind icin) ----------
+-------Yetkilendirme Örneği1 (Northwind Veri Tabanı) ----------
 
-create role rol4;
+CREATE ROLE "rol1";
 
-SET SESSION AUTHORIZATION rol4;
+SET SESSION AUTHORIZATION "rol1";
+
+SELECT * FROM "customers"; 
+--Kernel error: ERROR:  permission denied for relation customer
+
+-- rol1 yetkilendirme haklarina sahip olmadigi icin hata oluşur.
+GRANT SELECT ON "customers" TO "rol1"; 
+
+-- Yetkilendirme yapabilmek için oturum yetkilendirmesini "postgres" kullanıcısı şeklinde ayarla.
+SET SESSION AUTHORIZATION "postgres";
+
+GRANT SELECT ON "customers" TO "rol1";
+
+SET SESSION AUTHORIZATION "rol1";
+
+-- Sorgu çalışır.
+SELECT * FROM "customers";
 
 
-select * from public."customers"; --Kernel error: ERROR:  permission denied for relation customer
 
-GRANT SELECT ON public."customers" TO rol4; -- rol4 un yetkilendirme haklari olmadigi icin hata...
+-- Dil Desteği Ekleme
 
-
-SET SESSION AUTHORIZATION postgres;-- Yetkilendirme yapmak için
-
-GRANT SELECT ON public."customers" TO rol4;
-
-SET SESSION AUTHORIZATION rol4;
-
-select * from public."customers"; -- Sorgu calisir...
+-- Linux
+-- plperl diliyle program yazabilmek için plperl dil desteğini ekleme.
+-- BilgisayarAdi@KullaniciAdi:~$ sudo apt-get install postgresql-plperl-9.5 
 
 
-
--- Dil desteği ekleme
-
--- Linux 
--- wsan@wsan:~$ sudo apt-get install postgresql-plperl-9.5 -- plperl diliyle program yazabilmek için.
-
--- Stack Builder uygulaması mevcutsa aracılığı ile de EDB Language Pack yüklenerek ek dil paketleri eklenebilir.
+-- Application Stack Builder uygulaması mevcutsa bu uygulama aracılığı ile de EDB Language Pack yüklenerek ek dil paketleri eklenebilir.
 
 -- Dil paketi yüklendikten sonra dilin oluşturulması gerekir.
 CREATE LANGUAGE "plperl";
@@ -309,50 +313,18 @@ SELECT * FROM "pg_language";
 
 
 
+-- Şifreleme
 
+-- Kullanici şifreleri ve gizli bilgiler açık olarak saklanmamalidir.
 
-SET SESSION AUTHORIZATION "postgres";
-
-CREATE FUNCTION perl_max (INT, INT) RETURNS INTEGER 
-AS
-$$
-    if ($_[0] > $_[1]) { return $_[0]; }
-    return $_[1];
-$$
-LANGUAGE "plperl";
-
-SET SESSION AUTHORIZATION "kullanici1";
-
--- Tablolardan farklı olarak herhangi bir kullanıcı tüm fonksiyonlara erişme yetkisine sahiptir.
--- Bu nedenle aşağıdaki sorgu çalışır.
-SELECT perl_max(6,1) 
-
-
-SET SESSION AUTHORIZATION "postgres";
-CREATE or replace FUNCTION "directoryListing"(out RESULT TEXT) 
-AS
-$$
-    $a = `ls -l /home 2>/dev/null`;
-    $message = "\nHere is the directory listing\n".$a;
-    return $message;
-$$
-LANGUAGE "plperl";
-
-SET SESSION AUTHORIZATION "kullanici1";
-select "directoryListing"();
-
-
-SET SESSION AUTHORIZATION "postgres";
-REVOKE ALL ON FUNCTION "directoryListing"() FROM "kullanici1"; -- PUBLIC;
-SET SESSION AUTHORIZATION "kullanici1";
-SELECT "directoryListing"() 
--- 00:52:28 Kernel error: ERROR:  permission denied for function directorylisting
-
-
--------------Kullanici Sifreleri/Gizli Bilgiler Acik Olarak Saklanmamalidir.-----------
-
+-- Linux
 -->sudo apt-get install postgresql-contrib
-create extension pgcrypto;
-SELECT encode(digest('sifrem', 'sha512'), 'hex');
 
-SELECT 'md5'|| md5('sifrem');
+-- Kripto eklentisini oluştur.
+CREATE EXTENSION "pgcrypto";
+
+-- "sifrem" şifresini sha512 algoritması ile kodla.
+SELECT ENCODE(DIGEST('sifrem', 'sha512'), 'hex');
+
+-- "sifrem" şifresini md5 algoritması ile kodla ve sonucu "md5" ifadesi ile birleştir.
+SELECT 'md5'|| MD5('sifrem');
