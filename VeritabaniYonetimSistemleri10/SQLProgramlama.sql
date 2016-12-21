@@ -99,11 +99,11 @@ BEGIN
     END LOOP;
 
     return personel."numara"||E'\t'||personel."adi"||E'\t'||miktar;
-END;
-$$
+END
+$$;
 
 
-select odemeToplami(2)
+select odemeToplami(2);
 
 
 ----- Cursor Kullanımı-----
