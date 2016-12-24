@@ -295,21 +295,34 @@ SET SESSION AUTHORIZATION "rol1";
 SELECT * FROM "customers";
 
 
+------Fonksiyonlar ve Yetkilendirme--------
 
--- Dil Desteği Ekleme
+CREATE or REPLACE FUNCTION inch2cm(sayiInch real, OUT sayiCM REAL)
+AS $$
+BEGIN
+    sayiCM=2.54*sayiINCH;
+END;
+$$
+LANGUAGE plpgsql;
 
--- Linux
--- plperl diliyle program yazabilmek için plperl dil desteğini ekleme.
--- BilgisayarAdi@KullaniciAdi:~$ sudo apt-get install postgresql-plperl-9.5 
+SET SESSION AUTHORIZATION "rol15";
 
+SELECT * FROM inch2cm(2); -- 
 
--- Application Stack Builder uygulaması mevcutsa bu uygulama aracılığı ile de EDB Language Pack yüklenerek ek dil paketleri eklenebilir.
+SET SESSION AUTHORIZATION "postgres";
 
--- Dil paketi yüklendikten sonra dilin oluşturulması gerekir.
-CREATE LANGUAGE "plperl";
+REVOKE ALL ON FUNCTION "inch2cm"(REAL, OUT REAL) FROM "rol15"; --
 
--- Ekli dilleri göster.
-SELECT * FROM "pg_language";
+SELECT * FROM inch2cm(2);-- calisir. Fonksiyonlar public grubu icin varsayilan olarak calistirilirlar.
+
+SET SESSION AUTHORIZATION "postgres";
+
+REVOKE ALL ON FUNCTION "inch2cm"(REAL, OUT REAL) FROM "public"; --
+
+SET SESSION AUTHORIZATION "rol15";
+
+SELECT * FROM inch2cm(2); -- calismayacaktir.
+
 
 
 
