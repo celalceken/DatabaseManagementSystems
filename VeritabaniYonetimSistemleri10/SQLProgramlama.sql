@@ -28,6 +28,37 @@ LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER ;
 SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10) --fonksiyonun cagrilmasi
 
 
+-------Dil Desteği Ekleme-------------
+
+
+-- Linux
+-- plperl diliyle program yazabilmek için plperl dil desteğini ekleme.
+-- BilgisayarAdi@KullaniciAdi:~$ sudo apt-get install postgresql-plperl-9.5 
+
+
+-- Application Stack Builder uygulaması mevcutsa bu uygulama aracılığı ile de EDB Language Pack yüklenerek ek dil paketleri eklenebilir.
+
+-- Dil paketi yüklendikten sonra dilin oluşturulması gerekir.
+CREATE LANGUAGE "plperl";
+
+-- Ekli dilleri göster.
+SELECT * FROM "pg_language";
+
+
+CREATE FUNCTION kucukOlaniDondur (INT, INT) 
+RETURNS INTEGER AS
+$$
+    if ($_[0] > $_[1]) 
+    { 
+		return $_[1]; 
+    }
+    return $_[0];
+$$
+LANGUAGE "plperl";
+
+
+
+
 -----Select Sorgusu Sonucu Üzerinde Dolanım----------
 
 
@@ -107,6 +138,11 @@ select odemeToplami(2);
 
 
 ----- Cursor Kullanımı-----
+
+ -- Sorgu sonuçlarının(resultset) toplu olarak gelmesi yerine veri tbanı sunucudan 
+-- satır satır getirilmesini sağlar (LIMIT - OFFSET yapısı da benzer işi yapıyordu...).
+-- Yük dengeleme, uygulama sunucusunun belleğinin verimli kullanımı v.s.
+
 
 CREATE OR REPLACE FUNCTION "filmAra"(yapimYili INTEGER, filmAdi TEXT)
 RETURNS text AS
