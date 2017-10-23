@@ -52,6 +52,12 @@ SELECT * FROM "products" WHERE "UnitPrice" BETWEEN 10 AND 20;
 
 SELECT * FROM "products" WHERE "ProductName" BETWEEN 'C' AND 'M';
 
+select * from "customers" where "public"."customers"."Country" IN ('Japan','Türkiye');
+
+
+
+
+
 
 -------------------------------------------
 
@@ -68,6 +74,26 @@ WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
 
 
 --------------------------------------
+
+SELECT   "public"."orders"."OrderID",
+         "public"."customers"."CompanyName",
+         "public"."customers"."ContactName",
+         "public"."orders"."OrderDate"
+FROM     "orders" 
+INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
+
+
+
+SELECT   "public"."orders"."OrderID",
+         "public"."customers"."CompanyName",
+         "public"."customers"."ContactName",
+         "public"."orders"."OrderDate"
+FROM     "orders" 
+INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID"
+
+where "OrderID"=10248
+
+
 
 
 SELECT
@@ -138,7 +164,7 @@ SELECT "CompanyName", "ContactName" INTO "MusteriYedek" FROM "customers";
 --INSERT komutu tabloya yeni kayıt eklemek için kullanılır. 
 --Ekleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
-INSERT INTO Customers ("CustomerName", "ContactName","Address", "City", "PostalCode", "Country")
+INSERT INTO "customers" ("CustomerName", "ContactName","Address", "City", "PostalCode", "Country")
 VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');
 
 --Yalnızca bazı sütunlara veri eklememizde mümkündür. Veri eklenmeyen sütunlar null (boş)
