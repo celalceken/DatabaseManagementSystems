@@ -52,7 +52,7 @@ SELECT * FROM "products" WHERE "UnitPrice" BETWEEN 10 AND 20;
 
 SELECT * FROM "products" WHERE "ProductName" BETWEEN 'C' AND 'M';
 
-select * from "customers" where "public"."customers"."Country" IN ('Japan','Türkiye');
+SELECT * FROM "customers" WHERE "public"."customers"."Country" IN ('Japan','Türkiye');
 
 
 
@@ -91,7 +91,7 @@ SELECT   "public"."orders"."OrderID",
 FROM     "orders" 
 INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID"
 
-where "OrderID"=10248
+WHERE "public"."customers"."Country" LIKE 'A%';
 
 
 
@@ -103,13 +103,15 @@ SELECT
 FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
+
 SELECT
   "orders"."OrderID" AS "Siparis No",
   "customers"."CompanyName" AS "Şirket",
   "orders"."OrderDate" AS "Sipariş Tarihi"
 FROM "orders", "customers"
 WHERE "orders"."CustomerID" = "customers"."CustomerID"
-ORDER BY "customers"."CompanyName" DESC;
+ORDER BY "customers"."CompanyName" DESC; --Bu kullanim da "inner join" gibidir 
+
 
 SELECT
   "orders"."OrderID",
@@ -133,9 +135,9 @@ INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
 
 
 SELECT
-  "orders"."OrderID" as "Siparis No",
-  "customers"."CompanyName" as "Şirket",
-  "orders"."OrderDate" as "Sipariş Tarihi"
+  "orders"."OrderID" AS "Siparis No",
+  "customers"."CompanyName" AS "Şirket",
+  "orders"."OrderDate" AS "Sipariş Tarihi"
 FROM "customers"
 LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" ;
 
@@ -144,12 +146,12 @@ LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" ;
 
 
 SELECT
-  "orders"."OrderID" as "Siparis No",
-  "employees"."FirstName" as "Satış Temsilcisi Ad",
-	"employees"."LastName" as "Satış Temsilcisi Soyad",
-  "orders"."OrderDate" as "Sipariş Tarihi"
+  "orders"."OrderID" AS "Siparis No",
+  "employees"."FirstName" AS "Satış Temsilcisi Ad",
+	"employees"."LastName" AS "Satış Temsilcisi Soyad",
+  "orders"."OrderDate" AS "Sipariş Tarihi"
 FROM "orders"
-RIGHT OUTER JOIN "employees" on "orders"."EmployeeID" = "employees"."EmployeeID" ;
+RIGHT OUTER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID" ;
 
 
 -----------------------------
@@ -201,7 +203,7 @@ WHERE CustomerName='Alfreds Futterkiste' AND ContactName='Maria Anders';
 
 --Tabloyu silmeden tablodaki bütün satırları silmek mümkündür. Aşağıdaki komut tablodaki
 bütün kayıtları silmeye yarar.
-DELETE FROM table_name;
+DELETE FROM "TabloAdi";
 
 
 
