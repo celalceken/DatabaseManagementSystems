@@ -22,8 +22,21 @@ SELECT "CompanyName", "ContactName" FROM "customers";
 
 SELECT * FROM "customers" WHERE "Country" = 'Germany';
 
-SELECT * FROM "customers" WHERE "Country"='Germany' and "City" = 'Berlin';
+SELECT * FROM "customers" WHERE "Country" != 'Germany';
 
+SELECT * FROM "customers" WHERE "Country"='Germany' AND "City" = 'Berlin';
+
+SELECT * FROM "customers" WHERE "Country" = 'Germany' OR "Country" = 'Japan';
+
+SELECT * FROM "order_details" WHERE "UnitPrice" = '14';
+
+SELECT * FROM "order_details" WHERE "UnitPrice" < 14;
+
+SELECT * FROM "order_details" WHERE "UnitPrice" <= 14;
+
+SELECT * FROM "order_details" WHERE "UnitPrice" >= 14;
+
+SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
 
 
 -- DISTINCT --
@@ -53,6 +66,8 @@ SELECT * FROM "customers" ORDER BY "Country", "ContactName";
 -- LIKE --
 
 SELECT * FROM "customers" WHERE "Country" LIKE '%land%';
+
+SELECT * FROM "customers" WHERE "Country" LIKE '%land_';
 
 SELECT * FROM "customers" WHERE "Country" LIKE '_ermany';
 
@@ -190,8 +205,8 @@ SELECT "CompanyName", "ContactName" INTO "MusteriYedek" FROM "customers";
 -- INSERT komutu tabloya yeni kayıt eklemek için kullanılır. 
 -- Ekleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
-INSERT INTO "customers" ("CustomerName", "ContactName","Address", "City", "PostalCode", "Country")
-VALUES ('Cardinal','Tom B. Erichsen','Skagen 21','Stavanger','4006','Norway');
+INSERT INTO "customers" ("CustomerID", "CompanyName", "ContactName","Address", "City", "PostalCode", "Country")
+VALUES ('ZZA', 'Zafer', 'Ayşe', 'Serdivan', 'Sakarya', '54400', 'Türkiye');
 
 
 
