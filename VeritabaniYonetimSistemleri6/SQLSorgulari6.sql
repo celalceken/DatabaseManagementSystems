@@ -205,7 +205,8 @@ SELECT "CompanyName", "ContactName" INTO "MusteriYedek" FROM "customers";
 -- INSERT komutu tabloya yeni kayıt eklemek için kullanılır. 
 -- Ekleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
-INSERT INTO "customers" ("CustomerID", "CompanyName", "ContactName","Address", "City", "PostalCode", "Country")
+INSERT INTO "customers" 
+("CustomerID", "CompanyName", "ContactName","Address", "City", "PostalCode", "Country")
 VALUES ('ZZA', 'Zafer', 'Ayşe', 'Serdivan', 'Sakarya', '54400', 'Türkiye');
 
 
