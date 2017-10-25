@@ -24,11 +24,11 @@ SELECT * FROM "customers" WHERE "Country" = 'Argentina';
 
 SELECT * FROM "customers" WHERE "Country" != 'Brazil';
 
-SELECT * FROM "customers" WHERE "Country"='Brazil' AND "City" = 'Sao Palo';
+SELECT * FROM "customers" WHERE "Country"='Argentina' AND "City" = 'Buenos Aires';
 
 SELECT * FROM "customers" WHERE "Country" = 'Türkiye' OR "Country" = 'Japan';
 
-SELECT * FROM "order_details" WHERE "UnitPrice" = '14';
+SELECT * FROM "order_details" WHERE "UnitPrice" = 14;
 
 SELECT * FROM "order_details" WHERE "UnitPrice" < 14;
 
@@ -65,14 +65,13 @@ SELECT * FROM "customers" ORDER BY "Country", "ContactName";
 
 -- LIKE --
 
-SELECT * FROM "customers" WHERE "Country" LIKE '%land%';
+SELECT * FROM "customers" WHERE "Country" LIKE '%pa%';
 
-SELECT * FROM "customers" WHERE "Country" LIKE '%land_';
+SELECT * FROM "customers" WHERE "Country" LIKE '_razil';
 
-SELECT * FROM "customers" WHERE "Country" LIKE '_ermany';
+SELECT * FROM "customers" WHERE "City" LIKE 'Sao _aulo';
 
-SELECT * FROM "customers" WHERE "City" LIKE 'L_ndon';
-
+SELECT * FROM "customers" WHERE "Country" LIKE '%pa_';
 
 
 -- BETWEEN --
@@ -85,7 +84,8 @@ SELECT * FROM "products" WHERE "ProductName" BETWEEN 'C' AND 'M';
 
 -- IN --
 
-SELECT * FROM "customers" WHERE "public"."customers"."Country" IN ('Japan','Türkiye');
+SELECT * FROM "customers" 
+WHERE "public"."customers"."Country" IN ('Türkiye', 'Kuzey Kıbrıs Türk Cumhuriyeti');
 
 
 
@@ -96,9 +96,8 @@ SELECT "CompanyName" AS "Musteriler" FROM "customers";
 
 SELECT "UnitPrice", "UnitPrice" * 1.18 AS "KDVliTutar" FROM "products";
 
-SELECT
-    "OrderID" AS "SiparisNo",
-    "ShipPostalCode" || ',' || "ShipAddress" AS "GonderiAdresi"
+SELECT "OrderID" AS "Sipariş No",
+       "ShipPostalCode" || ',' || "ShipAddress" AS "Gonderi Adresi"
 FROM "orders"
 WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
 
@@ -106,27 +105,29 @@ WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
 
 -- İÇ BİRLEŞTİRME - INNER JOIN --
 
-SELECT  "public"."orders"."OrderID",
-        "public"."customers"."CompanyName",
-        "public"."customers"."ContactName",
-        "public"."orders"."OrderDate"
+SELECT 
+  "public"."orders"."OrderID",
+  "public"."customers"."CompanyName",
+  "public"."customers"."ContactName",
+  "public"."orders"."OrderDate"
 FROM "orders" 
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
 
 
 
-SELECT   "public"."orders"."OrderID",
-         "public"."customers"."CompanyName",
-         "public"."customers"."ContactName",
-         "public"."orders"."OrderDate"
-FROM     "orders" 
+SELECT 
+  "public"."orders"."OrderID",
+  "public"."customers"."CompanyName",
+  "public"."customers"."ContactName",
+  "public"."orders"."OrderDate"
+FROM "orders" 
 INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID"
 WHERE "public"."customers"."Country" LIKE 'A%';
 
 
 
-SELECT
-  "orders"."OrderID" AS "Siparis No",
+SELECT 
+  "orders"."OrderID" AS "Sipariş No",
   "customers"."CompanyName" AS "Şirket",
   "orders"."OrderDate" AS "Sipariş Tarihi"
 FROM "orders"
@@ -135,8 +136,8 @@ INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
 
 -- Aşağıdaki kullanım biçimi de INNER JOIN gibidir.
-SELECT
-  "orders"."OrderID" AS "Siparis No",
+SELECT 
+  "orders"."OrderID" AS "Sipariş No",
   "customers"."CompanyName" AS "Şirket",
   "orders"."OrderDate" AS "Sipariş Tarihi"
 FROM "orders", "customers"
@@ -145,7 +146,7 @@ ORDER BY "customers"."CompanyName" DESC;
 
 
 
-SELECT
+SELECT 
   "orders"."OrderID",
   "orders"."OrderDate",
   "customers"."CompanyName",
@@ -170,7 +171,7 @@ INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
 -- SOL DIŞ BİRLEŞTİRME - LEFT OUTER JOIN --
 
 SELECT
-  "orders"."OrderID" AS "Siparis No",
+  "orders"."OrderID" AS "Sipariş No",
   "customers"."CompanyName" AS "Şirket",
   "orders"."OrderDate" AS "Sipariş Tarihi"
 FROM "customers"
@@ -182,9 +183,9 @@ LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" ;
 -- SAĞ DIŞ BİRLEŞTİRME - RIGHT OUTER JOIN --
 
 SELECT
-  "orders"."OrderID" AS "Siparis No",
+  "orders"."OrderID" AS "Sipariş No",
   "employees"."FirstName" AS "Satış Temsilcisi Ad",
-	"employees"."LastName" AS "Satış Temsilcisi Soyad",
+  "employees"."LastName" AS "Satış Temsilcisi Soyad",
   "orders"."OrderDate" AS "Sipariş Tarihi"
 FROM "orders"
 RIGHT OUTER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID" ;
@@ -192,7 +193,7 @@ RIGHT OUTER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID"
 
 
 
--- SELECT ... INTO ifadesi --
+-- SELECT ... INTO --
 -- Bir tablodan alınan verileri, yeni bir tabloya kopyalamak için kullanılır. 
 -- Yeni tablonun mevcut olmaması gerekir.
 
@@ -204,18 +205,12 @@ SELECT "CompanyName", "ContactName" INTO "MusteriYedek" FROM "customers";
 -- INSERT --
 -- INSERT komutu tabloya yeni kayıt eklemek için kullanılır. 
 -- Ekleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
+-- Yalnızca bazı sütunlara veri eklememiz mümkündür. Veri eklenmeyen 
+-- sütunlar NULL (boş) gözükecektir.
 
 INSERT INTO "customers" 
 ("CustomerID", "CompanyName", "ContactName","Address", "City", "PostalCode", "Country")
 VALUES ('ZZA', 'Zafer', 'Ayşe', 'Serdivan', 'Sakarya', '54400', 'Türkiye');
-
-
-
--- Yalnızca bazı sütunlara veri eklememiz de mümkündür. Veri eklenmeyen sütunlar
--- NULL (boş) gözükecektir.
-
-INSERT INTO Customers ("CustomerName ", " City ", " Country ")
-VALUES ('Cardinal','Stavanger','Norway');
 
 
 
@@ -230,8 +225,8 @@ INSERT INTO "MusteriYedek" SELECT "CompanyName", "ContactName" FROM "customers";
 -- UPDATE komutu tablodaki kayıt(lar)ın değiştirilmesini sağlar.
 -- Güncelleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
-UPDATE "customers" SET "ContactName" = 'Alfred Schmidt', "City" = 'Hamburg' 
-WHERE "CompanyName" = 'Alfreds Futterkiste';
+UPDATE "customers" SET "ContactName" = 'Mario Pontes', "City" = 'Rio de Janeiro' 
+WHERE "CompanyName" = 'Familia Arquibaldo';
 --WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
 
 
@@ -241,7 +236,7 @@ WHERE "CompanyName" = 'Alfreds Futterkiste';
 -- Silme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
 DELETE FROM "customers" 
-WHERE "CompanyName" = 'Alfreds Futterkiste' AND "ContactName" = 'Alfred Schmidt';
+WHERE "CompanyName" = 'LINO-Delicateses' AND "ContactName" = 'Felipe Izquierdo';
 
 
 
