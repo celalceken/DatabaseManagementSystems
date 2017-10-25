@@ -20,13 +20,13 @@ SELECT "CompanyName", "ContactName" FROM "customers";
 -- WHERE --
 -- İstenilen koşula uyan kayıtların listelenmesi için WHERE komutu kullanılır.
 
-SELECT * FROM "customers" WHERE "Country" = 'Germany';
+SELECT * FROM "customers" WHERE "Country" = 'Argentina';
 
-SELECT * FROM "customers" WHERE "Country" != 'Germany';
+SELECT * FROM "customers" WHERE "Country" != 'Brazil';
 
-SELECT * FROM "customers" WHERE "Country"='Germany' AND "City" = 'Berlin';
+SELECT * FROM "customers" WHERE "Country"='Brazil' AND "City" = 'Sao Palo';
 
-SELECT * FROM "customers" WHERE "Country" = 'Germany' OR "Country" = 'Japan';
+SELECT * FROM "customers" WHERE "Country" = 'Türkiye' OR "Country" = 'Japan';
 
 SELECT * FROM "order_details" WHERE "UnitPrice" = '14';
 
@@ -229,9 +229,9 @@ INSERT INTO "MusteriYedek" SELECT "CompanyName", "ContactName" FROM "customers";
 -- UPDATE komutu tablodaki kayıt(lar)ın değiştirilmesini sağlar.
 -- Güncelleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
-UPDATE Customers
-SET ContactName='Alfred Schmidt', City='Hamburg'
-WHERE CustomerName='Alfreds Futterkiste';  --WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
+UPDATE "customers" SET "ContactName" = 'Alfred Schmidt', "City" = 'Hamburg' 
+WHERE "CompanyName" = 'Alfreds Futterkiste';
+--WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
 
 
 
@@ -239,8 +239,8 @@ WHERE CustomerName='Alfreds Futterkiste';  --WHERE ifadesi kullanılmazsa tüm s
 -- DELETE ifadesi tablodaki kayıt veya kayıtların silinmesini sağlar.
 -- Silme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
-DELETE FROM Customers
-WHERE CustomerName='Alfreds Futterkiste' AND ContactName='Maria Anders';
+DELETE FROM "customers" 
+WHERE "CompanyName" = 'Alfreds Futterkiste' AND "ContactName" = 'Alfred Schmidt';
 
 
 
