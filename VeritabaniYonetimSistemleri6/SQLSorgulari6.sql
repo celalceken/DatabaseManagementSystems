@@ -122,7 +122,8 @@ SELECT
   "public"."orders"."OrderDate"
 FROM "orders" 
 INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID"
-WHERE "public"."customers"."Country" LIKE 'A%';
+WHERE "public"."customers"."Country" LIKE 'A%'
+ORDER BY "public"."customers"."CompanyName" DESC;
 
 
 
