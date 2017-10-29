@@ -1,16 +1,27 @@
 
+-- *** Temel SQL *** --
+-- SQL DDL Komutları --
+
+-- CREATE --
+-- Nesne (veritabanı, tablo, view, fonksiyon v.s.) oluşturmak için kullanılır
+
+
+-- CREATE DATABASE --
+
+
 
 CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
-LC_COLLATE='tr_TR.UTF-8'
-LC_CTYPE='tr_TR.UTF-8'
+LC_COLLATE='tr_TR.UTF-8'-- Bu özellik sonradan değiştirilemez (arama, sıralama işlemleri için)
+LC_CTYPE='tr_TR.UTF-8'	-- Bu özellik sonradan değiştirilemez (aksan)
 OWNER postgres
-TEMPLATE=template0;
+TEMPLATE=template0;		--
 
 
--------------------------------
-
--- Şema Oluşturma Örneği
+-- CREATE SCHEMA --
+-- Veritabanını mantıksal olarak bölümlere ayırmak için kullanılır. Sabit disklerdeki klasör yapısına benzetilebilir.
+-- Bu sayede; veritabanının kolay yönetimi, çok sayıda kişinin aynı projede çalışabilmesi (isim uzayı) ve güvenlik kolaaylaşır.
+ 
 
 CREATE SCHEMA sema1;
 
