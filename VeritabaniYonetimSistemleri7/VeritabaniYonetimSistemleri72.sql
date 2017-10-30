@@ -41,6 +41,18 @@ CREATE TABLE "sema1"."Urunler" (
 );
 
 
+
+-- DROP TABLE
+
+DROP TABLE "Urunler";
+
+
+
+-- DROP DATABASE
+
+DROP DATABASE "AlisVerisUygulamasi";
+
+
  
 -- Otomatik artım örneği - SERIAL kullanımı.
 
@@ -278,9 +290,9 @@ CREATE TABLE "Siparisler" (
 	"siparisNo" SERIAL,
 	"urunNo" CHAR(6) NOT NULL,
 	"adet" SMALLINT NOT NULL,
-	CONSTRAINT "siparisPK" PRIMARY KEY("siparisNo"),
-	CONSTRAINT "siparisCheck" CHECK("miktari" > 0),
-	CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo")
+	CONSTRAINT "siparislerPK" PRIMARY KEY("siparisNo"),
+	CONSTRAINT "siparislerCheck" CHECK("miktari" > 0),
+	CONSTRAINT "siparislerFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo")
 );
 
 -- Bu ifade yukarıdaki ile aynıdır. ON DELETE ve ON UPDATE durumunda ne 
@@ -290,13 +302,13 @@ CREATE TABLE "Siparisler" (
 	"siparisNo" SERIAL,
 	"urunNo" INTEGER NOT NULL,
 	"adet" SMALLINT NOT NULL,
-	CONSTRAINT "siparisPK" PRIMARY KEY("siparisNo"),
-	CONSTRAINT "siparisCheck" CHECK("adet" > 0),
-	CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo") ON DELETE NO ACTION ON UPDATE NO ACTION
+	CONSTRAINT "siparislerPK" PRIMARY KEY("siparisNo"),
+	CONSTRAINT "siparislerCheck" CHECK("adet" > 0),
+	CONSTRAINT "siparislerFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 
--- Üç davranış şekli: NO ACTION (varsayılan), RESTRICT, CASCADE
+-- Üç davranış şekli vardır: NO ACTION (varsayılan), RESTRICT, CASCADE
 
 ALTER TABLE "Siparisler" DROP CONSTRAINT "siparisFK";
 
@@ -320,8 +332,8 @@ ON UPDATE CASCADE;
 
 
 
--------------------------------
 
+-- INDEX
 
 CREATE TABLE "Musteriler" (
 	"musteriNo" SERIAL NOT NULL,
@@ -330,16 +342,20 @@ CREATE TABLE "Musteriler" (
 	CONSTRAINT "musteriNoPK" PRIMARY KEY ("musteriNo")
 );
 
-CREATE INDEX "indexAdi" ON "Musteriler" ("adi");
+CREATE INDEX "musterilerAdiIndex" ON "Musteriler" ("adi");
 
-CREATE INDEX "indexSoyadi" ON "Musteriler" USING btree ("soyadi");
+CREATE INDEX "musterilerSoadiIndex" ON "Musteriler" USING btree ("soyadi");
+
+DROP INDEX "musterilerAdiIndex";
 
 
--------------------------------
 
 
-ALTER TABLE "SiparisDetay"
-ADD CONSTRAINT "UrunSiparisUnique" UNIQUE ("urunNo", "siparisNo");
+
+
+
+
+
 
 
 -------------------------------
