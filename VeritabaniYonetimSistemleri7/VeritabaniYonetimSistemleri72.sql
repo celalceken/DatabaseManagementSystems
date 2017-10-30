@@ -7,8 +7,7 @@
 
 
 -- CREATE DATABASE --
-
-
+-- Veritabanı oluşturmak için kullanılır.
 
 CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
@@ -19,16 +18,31 @@ TEMPLATE=template0;		--
 
 
 -- CREATE SCHEMA --
--- Veritabanını mantıksal olarak bölümlere ayırmak için kullanılır. Sabit disklerdeki klasör yapısına benzetilebilir.
--- Bu sayede; veritabanının kolay yönetimi, çok sayıda kişinin aynı projede çalışabilmesi (isim uzayı) ve güvenlik kolaaylaşır.
+-- Veritabanını mantıksal olarak bölümlere ayırmak için kullanılır. 
+-- Sabit disklerdeki klasör yapısına benzetilebilir. Bu sayede veritabanı
+-- daha kolay yönetilir. Çok sayıda kişinin aynı projede çalışabilmesi 
+-- (isim uzayı) ve güvenlik kolaaylaşır.
  
-
 CREATE SCHEMA sema1;
 
 
--------------------------------
+-- CREATE TABLE --
+-- Tablo oluşturmak için kullanılır.
 
--- Otomatik Artım Örneği - SERIAL Kullanımı
+CREATE TABLE "sema1"."Urunler" (
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+
+ 
+-- Otomatik artım örneği - SERIAL kullanımı.
 
 CREATE TABLE "sema1"."Urunler" (
 	"urunNo" SERIAL,
@@ -39,18 +53,17 @@ CREATE TABLE "sema1"."Urunler" (
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
-	CONSTRAINT "urunlerCheck" CHECK(miktari >= 0)
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
 
 INSERT INTO "sema1"."Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'TV', '13', '24.10.2016', 5);
+('ELO004', 'TV', '13', '2017-10-30', 5);
 
 
--------------------------------
 
--- Otomatik Artım Örneği - SEQUENCE Kullanımı 1
+-- Otomatik artım örneği - SEQUENCE Kullanımı 1
 
 CREATE TABLE "Urunler" (
 	"urunNo" INTEGER,
@@ -61,7 +74,7 @@ CREATE TABLE "Urunler" (
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
-	CONSTRAINT "urunlerCheck" CHECK(miktari >= 0)
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
 
 CREATE SEQUENCE "sayac";
@@ -71,7 +84,8 @@ ALTER SEQUENCE "sayac" OWNED BY "Urunler"."urunNo";
 INSERT INTO "sema1"."Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-(NEXTVAL('sayac'), 'ELO004', 'TV', '13', '24.10.2016', 5);
+(NEXTVAL('sayac'), 'ELO004', 'TV', '13', '2017-10-30', 5);
+
 
 
 -- SEQUENCE nesnesinin bir sonraki değerini NEXTVAL kullanarak elde edebiliriz.
@@ -79,9 +93,9 @@ VALUES
 SELECT NEXTVAL('sayac');
 
 
--------------------------------
 
--- Otomatik Artım Örneği - SEQUENCE Kullanımı 1
+-- Otomatik artım örneği - SEQUENCE Kullanımı 2
+-- Tablol oluşturulurken de SEQUENCE kullanabiliriz.
 
 CREATE SEQUENCE "sayac";
 
@@ -94,32 +108,216 @@ CREATE TABLE "Urunler" (
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
-	CONSTRAINT "urunlerCheck" CHECK(miktari >= 0)
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
 
 
--------------------------------
+
+-- SQL Kısıtları (CONSTRAINTS)
+-- Veri bütünlüğünün korunmasına yardımcı olur.
+
+-- NOT NULL: Tanımlandığı alan boş olamaz. Veri girilmek zorunda.
+-- DEFAULT: Tanımlandığı alana değer girilmemesi durumunda varsayılan bir
+-- değerin atanmasını sağlar.
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+ALTER TABLE "Urunler" ALTER "uretimTarihi" DROP DEFAULT;
+
+ALTER TABLE "Urunler" ALTER "uretimTarihi" SET DEFAULT '2017-01-01';
+
+ALTER TABLE "Urunler" ALTER "kodu" DROP NOT NULL;
+
+ALTER TABLE "Urunler" ALTER "kodu" SET NOT NULL;
 
 
---NO ACTION varsayılan ayar
 
-ALTER TABLE "orders"
-ADD CONSTRAINT "lnk_employees_orders" FOREIGN KEY ("EmployeeID")
-REFERENCES "employees"("EmployeeID")
+-- UNIQUE: Tanımlandığı alandaki verilerin tekil (benzersiz, eşsiz)
+-- olmasını sağlar.
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+ALTER TABLE "Urunler" DROP CONSTRAINT "urunlerUnique";
+
+ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerUnique" UNIQUE ("kodu");
+
+
+
+-- İki alanlı UNIQUE örneği 
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu", "adi"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+ALTER TABLE "Urunler" DROP CONSTRAINT "urunlerUnique";
+
+ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerUnique" UNIQUE ("kodu", "adi");
+
+INSERT INTO "Urunler"
+("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('ELO004', 'TV', '13', '2016-10-24', 5);
+
+INSERT INTO "Urunler"
+("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('ELO004', 'Bilgisayar', '13', '2016-04-05', 5);
+
+INSERT INTO "Urunler"
+("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('ELO004', 'Bilgisayar', '13', '2017-10-20', 5);
+
+
+
+-- CHECK: Tanımlandığı alandaki değer aralığını sınırlamada kullanılır.
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+ALTER TABLE "Urunler" DROP CONSTRAINT "urunlerCheck";
+
+ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerCheck" CHECK ("miktari" >= 0);
+
+INSERT INTO "Urunler"
+("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('ELO004', 'Bilgisayar', '13', '2016-04-05', -3);
+
+
+
+-- PRIMARY KEY
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo")
+);
+
+
+ALTER TABLE "Urunler" DROP CONSTRAINT "urunlerPK";
+
+ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo");
+
+
+
+-- İki alanlı birincil anahtar örneği.
+
+CREATE TABLE "Urunler1" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu")
+);
+
+ALTER TABLE "Urunler1" DROP CONSTRAINT "urunlerPK1";
+
+ALTER TABLE "Urunler1" ADD CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu");
+
+
+
+-- FOREIGN KEY
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+CREATE TABLE "Siparisler" (
+	"siparisNo" SERIAL,
+	"urunNo" CHAR(6) NOT NULL,
+	"adet" SMALLINT NOT NULL,
+	CONSTRAINT "siparisPK" PRIMARY KEY("siparisNo"),
+	CONSTRAINT "siparisCheck" CHECK("miktari" > 0),
+	CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo")
+);
+
+-- Bu ifade yukarıdaki ile aynıdır. ON DELETE ve ON UPDATE durumunda ne 
+-- yapılacağı belirtilmediğinde varsayılan olarak NO ACTION olur.
+
+CREATE TABLE "Siparisler" (
+	"siparisNo" SERIAL,
+	"urunNo" INTEGER NOT NULL,
+	"adet" SMALLINT NOT NULL,
+	CONSTRAINT "siparisPK" PRIMARY KEY("siparisNo"),
+	CONSTRAINT "siparisCheck" CHECK("adet" > 0),
+	CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo") ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
+-- Üç davranış şekli: NO ACTION (varsayılan), RESTRICT, CASCADE
+
+ALTER TABLE "Siparisler" DROP CONSTRAINT "siparisFK";
+
+ALTER TABLE "Siparisler"
+ADD CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") 
+REFERENCES "Urunler"("urunNo")
+ON DELETE NO ACTION
+ON UPDATE NO ACTION;
+
+ALTER TABLE "Siparisler"
+ADD CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") 
+REFERENCES "Urunler"("urunNo")
 ON DELETE RESTRICT
 ON UPDATE RESTRICT;
 
-ALTER TABLE "orders"
-ADD CONSTRAINT "lnk_employees_orders" FOREIGN KEY ("EmployeeID")
-REFERENCES "employees"("EmployeeID")
+ALTER TABLE "Siparisler"
+ADD CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") 
+REFERENCES "Urunler"("urunNo")
 ON DELETE CASCADE
 ON UPDATE CASCADE;
 
-ALTER TABLE "orders"
-ADD CONSTRAINT "lnk_employees_orders" FOREIGN KEY ("EmployeeID")
-REFERENCES "employees" ("EmployeeID")
-ON DELETE NO ACTION
-ON UPDATE NO ACTION;
 
 
 -------------------------------
