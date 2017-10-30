@@ -1,9 +1,19 @@
 
+
 -- *** Temel SQL *** --
 -- SQL DDL Komutları --
 
+
+
+-- Veri Tipleri
+-- PostgreSQL'deki veri tipleri aşağıdaki sayfadan erişilebilir.
+-- https://www.postgresql.org/docs/9.6/static/datatype.html
+
+
+
 -- CREATE --
--- Nesne (veritabanı, tablo, view, fonksiyon v.s.) oluşturmak için kullanılır
+-- Nesne (veritabanı, tablo, view, fonksiyon vb.) oluşturmak için kullanılır
+
 
 
 -- CREATE DATABASE --
@@ -17,6 +27,7 @@ OWNER postgres
 TEMPLATE=template0;		--
 
 
+
 -- CREATE SCHEMA --
 -- Veritabanını mantıksal olarak bölümlere ayırmak için kullanılır. 
 -- Sabit disklerdeki klasör yapısına benzetilebilir. Bu sayede veritabanı
@@ -24,6 +35,7 @@ TEMPLATE=template0;		--
 -- (isim uzayı) ve güvenlik kolaaylaşır.
  
 CREATE SCHEMA sema1;
+
 
 
 -- CREATE TABLE --
@@ -54,6 +66,38 @@ DROP DATABASE "AlisVerisUygulamasi";
 
 
  
+-- TRUNCATE TABLE
+-- Bir tablonun içindeki tüm verileri silmek için kullanılır.
+
+TRUNCATE TABLE "Urunler";
+
+
+
+-- ALTER TABLE
+-- Tablonun yapısını düzenlemek için kullanılır.
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+ALTER TABLE "Urunler" ADD COLUMN "uretimYeri" VARCHAR(30);
+
+ALTER TABLE "Urunler" DROP COLUMN "uretimYeri";
+
+ALTER TABLE "Urunler" ADD "uretimYeri" VARCHAR(30);
+
+ALTER TABLE "Urunler" ALTER COLUMN "uretimYeri" TYPE CHAR(20);
+
+
+
 -- Otomatik artım örneği - SERIAL kullanımı.
 
 CREATE TABLE "sema1"."Urunler" (
@@ -101,6 +145,8 @@ VALUES
 
 
 -- SEQUENCE nesnesinin bir sonraki değerini NEXTVAL kullanarak elde edebiliriz.
+-- SEQUENCE işleme fonksiyonlarını aşağıdaki bağlantıdan öğrenebiliriz.
+-- https://www.postgresql.org/docs/9.6/static/functions-sequence.html
 
 SELECT NEXTVAL('sayac');
 
@@ -350,65 +396,149 @@ DROP INDEX "musterilerAdiIndex";
 
 
 
+-- NULL ve NULL olmayan içeriğe sahip alanların sorgulanması.
+
+INSERT INTO "Urunler" 
+("kodu", "adi", "uretimTarihi", "miktari")
+VALUES
+('ELO006', 'TV', '2017-10-30', 5);
+
+SELECT * FROM "Urunler" WHERE "birimFiyati" IS NULL;
+
+SELECT * FROM "Urunler" WHERE "birimFiyati" IS NOT NULL;
 
 
 
 
+-- SQL Fonksiyonları
 
 
 
+-- Çoklu Satır Fonksiyonları
 
--------------------------------
+
+
+-- AVG - Ortalama --
 
 
 SELECT SUM("UnitPrice") / COUNT("ProductID") FROM "products";
 
 SELECT AVG("UnitPrice") FROM "products";
 
-SELECT * FROM "products" ORDER BY "ProductID" DESC LIMIT 4
 
 
---------
+-- COUNT -- Satır sayısı --
+-- Sorgu sonucunda oluşan sonuç kümesindeki satır sayısını döndürür.
+-- Yalnızca bir sütun için uygulanırsa o sütundaki NULL olmayan kayıtların
+-- sayısı bulunur.
+
+SELECT COUNT("Region")
+FROM "customers"
+WHERE "Country" = 'Mexico';
+
+SELECT COUNT(*)
+FROM "customers"
+WHERE "Country" = 'Mexico';
+
+-- Tablodaki tüm kayıtların sayısı
+SELECT COUNT(*)
+FROM "customers"
+
+SELECT COUNT("CustomerID") AS "Müşteri Sayısı"
+FROM "customers";
+
+SELECT COUNT("CustomerID") AS "Müşteri Sayısı"
+FROM "customers"
+WHERE "Country" = 'Türkiye';
 
 
-SELECT "CategoryID", COUNT("CategoryID") AS "Ürün Sayısı"
+
+-- LIMIT
+
+SELECT * FROM "products" ORDER BY "ProductID" ASC LIMIT 4
+
+SELECT * FROM "products" ORDER BY "ProductID" DESC LIMIT 5
+
+
+
+-- MAX
+-- Seçilen sütundaki en büyük değere ulaşmak için kullanılır.
+
+SELECT MAX("UnitPrice") FROM "products";
+
+SELECT MAX("UnitPrice") AS "En Yüksek Fiyat" FROM "products";
+
+
+
+-- MIN
+-- Seçilen sütundaki en küçük değere ulaşmak için kullanılır.
+
+SELECT MIN("UnitPrice") FROM "products";
+
+SELECT MIN("UnitPrice") AS "En Düşük Fiyat" FROM "products";
+
+
+
+-- SUM
+-- Seçilen sütundaki değerlerin toplamına ulaşmak için kullanılır.
+
+SELECT SUM("UnitPrice") FROM "products";
+
+SELECT SUM("UnitPrice") AS "Toplam" FROM "products";
+
+
+
+-- GROUP BY
+-- Sorgu sonucunu belirtilen alan(lar)a göre gruplar.
+-- Seçilecek alan, gruplama yapılan alan (SupplierID) ya da çoklu satır fonksiyonları (count) olmalı 
+-- Gruplanan alanla ilgili koşul yazılabilmesi için Having kullanılması gereklidir.
+
+-- Aşağıdaki sorgu Ürünleri tedarikçilerine göre gruplar ve her tedarikçinin sağladığı ürünlerin 
+-- sayısını hesaplayarak tedarikçi bilgisi ile birlikte döndürür.
+
+SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
 FROM "products"
-GROUP BY "CategoryID"
+GROUP BY "SupplierID"
 
-SELECT "CategoryID", SUM("UnitPrice") AS "Toplam B. Fiyat"
+
+SELECT "SupplierID", SUM("UnitsInStock") AS "Stok Sayısı"
 FROM "products"
-GROUP BY "CategoryID"
+GROUP BY "SupplierID"
 
 
-SELECT   "public"."customers"."CompanyName", count("public"."orders"."OrderID"), sum("public"."products"."UnitPrice")         
-FROM     "orders" 
-INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
-INNER JOIN "order_details"  ON "order_details"."OrderID" = "orders"."OrderID" 
-INNER JOIN "products"  ON "order_details"."ProductID" = "products"."ProductID" 
+SELECT "customers"."CompanyName", COUNT("orders"."OrderID"), SUM("products"."UnitPrice")
+FROM "orders" 
+INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
+INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID" 
+LEFT OUTER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID" 
 GROUP BY "CompanyName"
 ORDER BY 1;
 
 
-SELECT "CategoryID", COUNT("CategoryID") AS "Ürün Sayısı"
+-- HAVING
+-- Gruplandırılmış veriler üzerinde filtreleme yapma işlemi için kullanılır.
+-- HAVING ile yazılan koşullar gruplama fonksiyonları ile veya gruplama 
+-- yapılan alan üzerinden yapılır.
+
+SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
 FROM "products"
-GROUP BY "CategoryID"
-HAVING COUNT("CategoryID") > 7;
+GROUP BY "SupplierID"
+HAVING COUNT("SupplierID") > 2;
 
-SELECT "CategoryID", COUNT("CategoryID") AS "Ürün Sayısı"
+SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
 FROM "products"
-GROUP BY "CategoryID"
-HAVING "CategoryID"=2;
-
-SELECT "Country", COUNT("CustomerID") AS "Müşteri Sayısı"
-FROM "customers"
-GROUP BY "Country"
-HAVING COUNT("CustomerID") > 5;
-
-SELECT "customers"."CompanyName", COUNT("OrderID")
-FROM "orders"
-INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
-GROUP BY "CompanyName"
-ORDER BY "CompanyName";
+GROUP BY "SupplierID"
+HAVING "SupplierID" = 2;
 
 
+-- Çoklu satır fonksiyonları ile WHERE kullanılmaz.
+-- Aşadğıdaki iki sorgu yanlıştır.
 
+SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
+FROM "products"
+WHERE COUNT("SupplierID") > 2;
+
+SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
+FROM "products"
+GROUP BY "SupplierID"
+WHERE COUNT("SupplierID") > 2;
