@@ -11,8 +11,10 @@
 
 
 
+
 -- CREATE --
--- Nesne (veritabanı, tablo, view, fonksiyon vb.) oluşturmak için kullanılır
+-- Nesne (veritabanı, şema, tablo, view, fonksiyon vb.) oluşturmak için kullanılır
+
 
 
 
@@ -24,7 +26,8 @@ ENCODING='UTF-8'
 LC_COLLATE='tr_TR.UTF-8'-- Bu özellik sonradan değiştirilemez (arama, sıralama işlemleri için)
 LC_CTYPE='tr_TR.UTF-8'	-- Bu özellik sonradan değiştirilemez (aksan)
 OWNER postgres
-TEMPLATE=template0;		--
+TEMPLATE=template0;
+
 
 
 
@@ -34,7 +37,8 @@ TEMPLATE=template0;		--
 -- daha kolay yönetilir. Çok sayıda kişinin aynı projede çalışabilmesi 
 -- (isim uzayı) ve güvenlik kolaaylaşır.
  
-CREATE SCHEMA sema1;
+CREATE SCHEMA "sema1";
+
 
 
 
@@ -55,19 +59,25 @@ CREATE TABLE "sema1"."Urunler" (
 
 
 
+
 -- DROP TABLE
 
 DROP TABLE "Urunler";
 
 
 
+
+-- DROP SCHEMA
+
 DROP SCHEMA "sema1";
+
 
 
 
 -- DROP DATABASE
 
 DROP DATABASE "AlisVerisUygulamasi";
+
 
 
  
@@ -85,8 +95,18 @@ CREATE TABLE "Urunler" (
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
 
+INSERT INTO "sema1"."Urunler" 
+("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('ELO001', 'TV', '13', '2017-10-30', 5);
+
+INSERT INTO "sema1"."Urunler" 
+("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('ELO002', 'TV', '13', '2017-10-30', 5);
 
 TRUNCATE TABLE "Urunler";
+
 
 
 
@@ -115,6 +135,7 @@ ALTER TABLE "Urunler" ALTER COLUMN "uretimYeri" TYPE CHAR(20);
 
 
 
+
 -- Otomatik artım örneği - SERIAL kullanımı.
 
 CREATE TABLE "sema1"."Urunler" (
@@ -133,6 +154,7 @@ INSERT INTO "sema1"."Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 ('ELO004', 'TV', '13', '2017-10-30', 5);
+
 
 
 
@@ -170,6 +192,7 @@ SELECT NEXTVAL('sayac');
 SELECT CURRVAL('sayac');
 
 
+
 -- Otomatik artım örneği - SEQUENCE Kullanımı 2
 -- Tablol oluşturulurken de SEQUENCE kullanabiliriz.
 
@@ -187,12 +210,12 @@ CREATE TABLE "Urunler" (
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
 
-INSERT INTO "Urunler2"
+INSERT INTO "Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 (NEXTVAL('sayac1'), 'ELO004', 'TV', '13', '2017-10-30', 5);
 
-INSERT INTO "Urunler2"
+INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 ('ELO004', 'TV', '13', '2017-10-30', 5);
@@ -203,8 +226,41 @@ VALUES
 -- SQL Kısıtları (CONSTRAINTS)
 -- Veri bütünlüğünün korunmasına yardımcı olur.
 
--- NOT NULL: Tanımlandığı alan boş olamaz. Veri girilmek zorunda.
--- DEFAULT: Tanımlandığı alana değer girilmemesi durumunda varsayılan bir
+
+
+
+-- NOT NULL --
+-- Tanımlandığı alan boş olamaz. Veri girilmek zorunda.
+
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
+
+-- "kodu" alanına veri girilmediği zaman hata alırız.
+
+INSERT INTO "Urunler"
+("adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('TV', '13', '2017-10-30', 5);
+
+ALTER TABLE "Urunler" ALTER COLUMN "kodu" DROP NOT NULL;
+
+ALTER TABLE "Urunler" ALTER "kodu" SET NOT NULL;
+
+
+
+
+-- DEFAULT --
+-- Tanımlandığı alana değer girilmemesi durumunda varsayılan bir
 -- değerin atanmasını sağlar.
 
 CREATE TABLE "Urunler" (
@@ -219,18 +275,20 @@ CREATE TABLE "Urunler" (
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
 
+INSERT INTO "Urunler"
+("kodu", "adi", "birimFiyati", "miktari")
+VALUES
+('ELO004', 'TV', '13', 5);
+
 ALTER TABLE "Urunler" ALTER "uretimTarihi" DROP DEFAULT;
 
 ALTER TABLE "Urunler" ALTER COLUMN "uretimTarihi" SET DEFAULT '2017-01-01';
 
-ALTER TABLE "Urunler" ALTER COLUMN "kodu" DROP NOT NULL;
-
-ALTER TABLE "Urunler" ALTER "kodu" SET NOT NULL;
 
 
 
--- UNIQUE: Tanımlandığı alandaki verilerin tekil (benzersiz, eşsiz)
--- olmasını sağlar.
+-- UNIQUE --
+-- Tanımlandığı alandaki verilerin eşsiz (tekil, benzersiz) olmasını sağlar.
 
 CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
@@ -250,7 +308,7 @@ ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerUnique" UNIQUE ("kodu");
 
 
 
--- İki alanlı UNIQUE örneği 
+-- İki alanlı UNIQUE örneği
 
 CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
@@ -279,7 +337,10 @@ VALUES
 ('ELO005', 'Bilgisayar', '13', '2017-10-20', 5);
 
 
--- CHECK: Tanımlandığı alandaki değer aralığını sınırlamada kullanılır.
+
+
+-- CHECK --
+-- Tanımlandığı alandaki değer aralığını sınırlamada kullanılır.
 
 CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
@@ -304,7 +365,8 @@ VALUES
 
 
 
--- PRIMARY KEY
+
+-- PRIMARY KEY --
 
 CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
@@ -341,68 +403,74 @@ ALTER TABLE "Urunler1" ADD CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu")
 
 
 
--- FOREIGN KEY
+
+-- FOREIGN KEY --
+
+CREATE TABLE "UrunTipleri" (
+    "tipNo" SERIAL,
+    "adi" VARCHAR(30) NOT NULL,
+	CONSTRAINT "urunTipiPK" PRIMARY KEY("tipNumarasi")
+);
 
 CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
+	"urunTipi" INTEGER NOT NULL, 
 	"uretimTarihi" DATE DEFAULT '2017-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+	CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") REFERENCES "UrunTipleri"("tipNo")	
 );
 
-CREATE TABLE "Siparisler" (
-	"siparisNo" SERIAL,
-	"urunNo" INTEGER NOT NULL,
-	"adet" SMALLINT NOT NULL,
-	CONSTRAINT "siparislerPK" PRIMARY KEY("siparisNo"),
-	CONSTRAINT "siparislerCheck" CHECK("adet" > 0),
-	CONSTRAINT "siparislerFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo")
-);
 
 -- Bu ifade yukarıdaki ile aynıdır. ON DELETE ve ON UPDATE durumunda ne 
 -- yapılacağı belirtilmediğinde varsayılan olarak NO ACTION olur.
 
-CREATE TABLE "Siparisler" (
-	"siparisNo" SERIAL,
-	"urunNo" INTEGER NOT NULL,
-	"adet" SMALLINT NOT NULL,
-	CONSTRAINT "siparislerPK" PRIMARY KEY("siparisNo"),
-	CONSTRAINT "siparislerCheck" CHECK("adet" > 0),
-	CONSTRAINT "siparislerFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo") ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"urunTipi" INTEGER NOT NULL, 
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+	CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") REFERENCES "UrunTipleri"("tipNo") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 
 -- Üç davranış şekli vardır: NO ACTION (varsayılan), RESTRICT, CASCADE
 
-ALTER TABLE "Siparisler" DROP CONSTRAINT "siparisFK";
+ALTER TABLE "Urunler" DROP CONSTRAINT "urunlerFK";
 
-ALTER TABLE "Siparisler"
-ADD CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") 
-REFERENCES "Urunler"("urunNo")
+ALTER TABLE "Urunler"
+ADD CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") 
+REFERENCES "UrunTipleri"("tipNo")
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
-ALTER TABLE "Siparisler"
-ADD CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") 
-REFERENCES "Urunler"("urunNo")
+ALTER TABLE "Urunler"
+ADD CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") 
+REFERENCES "UrunTipleri"("tipNo")
 ON DELETE RESTRICT
 ON UPDATE RESTRICT;
 
-ALTER TABLE "Siparisler"
-ADD CONSTRAINT "siparisFK" FOREIGN KEY ("urunNo") 
-REFERENCES "Urunler"("urunNo")
+ALTER TABLE "Urunler"
+ADD CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") 
+REFERENCES "UrunTipleri"("tipNo")
 ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 
 
 
--- INDEX
+-- INDEX --
 
 CREATE TABLE "Musteriler" (
 	"musteriNo" SERIAL NOT NULL,
@@ -416,6 +484,7 @@ CREATE INDEX "musterilerAdiIndex" ON "Musteriler" ("adi");
 CREATE INDEX "musterilerSoadiIndex" ON "Musteriler" USING btree ("soyadi");
 
 DROP INDEX "musterilerAdiIndex";
+
 
 
 
@@ -433,11 +502,11 @@ SELECT * FROM "Urunler" WHERE "birimFiyati" IS NOT NULL;
 
 
 
--- SQL Fonksiyonları
+-- SQL Fonksiyonları --
 
 
 
--- Çoklu Satır Fonksiyonları
+-- Çoklu Satır Fonksiyonları --
 
 
 
@@ -476,11 +545,13 @@ WHERE "Country" = 'Türkiye';
 
 
 
+
 -- LIMIT
 
 SELECT * FROM "products" ORDER BY "ProductID" ASC LIMIT 4
 
 SELECT * FROM "products" ORDER BY "ProductID" DESC LIMIT 5
+
 
 
 
@@ -493,12 +564,14 @@ SELECT MAX("UnitPrice") AS "En Yüksek Fiyat" FROM "products";
 
 
 
+
 -- MIN
 -- Seçilen sütundaki en küçük değere ulaşmak için kullanılır.
 
 SELECT MIN("UnitPrice") FROM "products";
 
 SELECT MIN("UnitPrice") AS "En Düşük Fiyat" FROM "products";
+
 
 
 
@@ -511,13 +584,18 @@ SELECT SUM("UnitPrice") AS "Toplam" FROM "products";
 
 
 
+
 -- GROUP BY
 -- Sorgu sonucunu belirtilen alan(lar)a göre gruplar.
--- Seçilecek alan, gruplama yapılan alan (SupplierID) ya da çoklu satır fonksiyonları (count) olmalı 
--- Gruplanan alanla ilgili koşul yazılabilmesi için Having kullanılması gereklidir.
+-- Seçilecek alan, gruplama yapılan alan (SupplierID) ya da çoklu satır 
+-- fonksiyonları (COUNT) olmalı 
+-- Gruplanan alanla ilgili koşul yazılabilmesi için HAVING ifadesinin
+-- kullanılması gereklidir.
 
--- Aşağıdaki sorgu Ürünleri tedarikçilerine göre gruplar ve her tedarikçinin sağladığı ürünlerin 
--- sayısını hesaplayarak tedarikçi bilgisi ile birlikte döndürür.
+
+-- Aşağıdaki sorgu, ü̈rünleri tedarikçilerine göre gruplar ve her 
+-- tedarikçinin sağladığı ürünlerin sayısını hesaplayarak tedarikçi 
+-- bilgisi ile birlikte döndürür.
 
 SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
 FROM "products"
@@ -536,6 +614,7 @@ INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID"
 LEFT OUTER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID" 
 GROUP BY "CompanyName"
 ORDER BY 1;
+
 
 
 -- HAVING
