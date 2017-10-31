@@ -42,6 +42,7 @@ CREATE SCHEMA sema1;
 -- Tablo oluşturmak için kullanılır.
 
 CREATE TABLE "sema1"."Urunler" (
+    "urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2017-01-01',
@@ -60,6 +61,10 @@ DROP TABLE "Urunler";
 
 
 
+DROP SCHEMA "sema1";
+
+
+
 -- DROP DATABASE
 
 DROP DATABASE "AlisVerisUygulamasi";
@@ -68,6 +73,18 @@ DROP DATABASE "AlisVerisUygulamasi";
  
 -- TRUNCATE TABLE
 -- Bir tablonun içindeki tüm verileri silmek için kullanılır.
+CREATE TABLE "Urunler" (
+	"urunNo" SERIAL,
+	"kodu" CHAR(6) NOT NULL,
+	"adi" VARCHAR(40) NOT NULL,
+	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"birimFiyati" MONEY,
+	"miktari" SMALLINT DEFAULT '0',
+	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+);
+
 
 TRUNCATE TABLE "Urunler";
 
@@ -118,6 +135,12 @@ VALUES
 ('ELO004', 'TV', '13', '2017-10-30', 5);
 
 
+-- Yanlış örnek
+
+INSERT INTO "Urunler" 
+VALUES
+('ELO006', 'Bilgisayar', '13', '2017-10-30', 5);
+
 
 -- Otomatik artım örneği - SEQUENCE Kullanımı 1
 
@@ -150,6 +173,7 @@ VALUES
 
 SELECT NEXTVAL('sayac');
 
+SELECT CURRVAL('sayac');
 
 
 -- Otomatik artım örneği - SEQUENCE Kullanımı 2
@@ -168,6 +192,17 @@ CREATE TABLE "Urunler" (
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
+
+INSERT INTO "Urunler2"
+("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+(NEXTVAL('sayac1'), 'ELO004', 'TV', '13', '2017-10-30', 5);
+
+INSERT INTO "Urunler2"
+("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
+VALUES
+('ELO004', 'TV', '13', '2017-10-30', 5);
+
 
 
 
@@ -192,9 +227,9 @@ CREATE TABLE "Urunler" (
 
 ALTER TABLE "Urunler" ALTER "uretimTarihi" DROP DEFAULT;
 
-ALTER TABLE "Urunler" ALTER "uretimTarihi" SET DEFAULT '2017-01-01';
+ALTER TABLE "Urunler" ALTER COLUMN "uretimTarihi" SET DEFAULT '2017-01-01';
 
-ALTER TABLE "Urunler" ALTER "kodu" DROP NOT NULL;
+ALTER TABLE "Urunler" ALTER COLUMN "kodu" DROP NOT NULL;
 
 ALTER TABLE "Urunler" ALTER "kodu" SET NOT NULL;
 
@@ -247,13 +282,7 @@ VALUES
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'Bilgisayar', '13', '2016-04-05', 5);
-
-INSERT INTO "Urunler"
-("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
-VALUES
-('ELO004', 'Bilgisayar', '13', '2017-10-20', 5);
-
+('ELO005', 'Bilgisayar', '13', '2017-10-20', 5);
 
 
 -- CHECK: Tanımlandığı alandaki değer aralığını sınırlamada kullanılır.
@@ -334,10 +363,10 @@ CREATE TABLE "Urunler" (
 
 CREATE TABLE "Siparisler" (
 	"siparisNo" SERIAL,
-	"urunNo" CHAR(6) NOT NULL,
+	"urunNo" INTEGER NOT NULL,
 	"adet" SMALLINT NOT NULL,
 	CONSTRAINT "siparislerPK" PRIMARY KEY("siparisNo"),
-	CONSTRAINT "siparislerCheck" CHECK("miktari" > 0),
+	CONSTRAINT "siparislerCheck" CHECK("adet" > 0),
 	CONSTRAINT "siparislerFK" FOREIGN KEY ("urunNo") REFERENCES "Urunler"("urunNo")
 );
 
