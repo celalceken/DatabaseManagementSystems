@@ -144,7 +144,7 @@ VALUES
 
 -- Otomatik artım örneği - SEQUENCE Kullanımı 1
 
-CREATE TABLE "Urunler" (
+CREATE TABLE "sema1"."Urunler" (
 	"urunNo" INTEGER,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
@@ -163,7 +163,7 @@ ALTER SEQUENCE "sayac" OWNED BY "Urunler"."urunNo";
 INSERT INTO "sema1"."Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-(NEXTVAL('sayac'), 'ELO004', 'TV', '13', '2017-10-30', 5);
+(NEXTVAL('"public"."sayac"'), 'ELO004', 'TV', '13', '2017-10-30', 5);
 
 
 
