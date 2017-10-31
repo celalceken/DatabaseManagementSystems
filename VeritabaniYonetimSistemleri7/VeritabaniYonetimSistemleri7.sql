@@ -135,12 +135,6 @@ VALUES
 ('ELO004', 'TV', '13', '2017-10-30', 5);
 
 
--- Yanlış örnek
-
-INSERT INTO "Urunler" 
-VALUES
-('ELO006', 'Bilgisayar', '13', '2017-10-30', 5);
-
 
 -- Otomatik artım örneği - SEQUENCE Kullanımı 1
 
