@@ -1,7 +1,7 @@
 
 
 -- *** Temel SQL *** --
--- SQL DDL Komutları --
+-- SQL DDL (Veri Tanımlama Dili / Data Definition Language) Komutları --
 
 
 
