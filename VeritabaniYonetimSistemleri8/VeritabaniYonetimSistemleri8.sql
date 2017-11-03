@@ -1,115 +1,6 @@
-
-
--- Kalıtım Örneği
-
-CREATE DATABASE "AlisVerisUygulamasi"
-ENCODING='UTF-8'
-LC_COLLATE='tr_TR.UTF-8'
-LC_CTYPE='tr_TR.UTF-8'
-OWNER postgres
-TEMPLATE=template0;
-
-CREATE SCHEMA "Personel";
-
-CREATE TABLE "Personel"."Personel" ( 
-	"personelNo" serial,
-	"adi" Character Varying( 40 ) NOT NULL,
-	"soyadi" Character Varying( 40 ) NOT NULL,
-	"personelTipi" Character( 1 ) NOT NULL,
-	CONSTRAINT "personelPK" PRIMARY KEY ( "personelNo" ) );
-	
-CREATE TABLE "Personel"."Danisman" ( 
-	"personelNo" INT,
-	"sirket" Character Varying( 40 ) NOT NULL,
-	CONSTRAINT "danismanPK" PRIMARY KEY ( "personelNo" ) );
-	
-
-CREATE TABLE "Personel"."SatisTemsilcisi" ( 
-	"personelNo" INT,
-	"bolge" Character Varying( 40 ) NOT NULL,
-	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ( "personelNo" ) );
-	
-
-ALTER TABLE "Personel"."Danisman"
-	ADD CONSTRAINT "DanismanPersonel" FOREIGN KEY ("personelNo")
-	REFERENCES "Personel"."Personel" ("personelNo")
-	ON DELETE CASCADE
-	ON UPDATE CASCADE;
-
-
-ALTER TABLE "Personel"."SatisTemsilcisi"
-	ADD CONSTRAINT "SatisTemsilcisiPersonel" FOREIGN KEY ("personelNo")
-	REFERENCES "Personel"."Personel" ("personelNo")
-	ON DELETE CASCADE
-	ON UPDATE CASCADE;
-
-
-SELECT * FROM "Personel"."Personel"
-INNER JOIN "Personel"."SatisTemsilcisi"
-ON "Personel"."Personel"."personelNo" = "Personel"."SatisTemsilcisi"."personelNo"
-
-
-SELECT "adi", "soyadi" FROM "Personel"."Personel"
-WHERE "personelTipi"='S';
-
-
-------------------------------
-
-
--- Görünüm / View Örneği
-
-
-CREATE OR REPLACE VIEW "public"."SiparisMusteriSatisTemsilcisi" AS
-SELECT "orders"."OrderID",
-    "orders"."OrderDate",
-    "customers"."CompanyName",
-    "customers"."ContactName",
-    "employees"."FirstName",
-    "employees"."LastName"
-FROM "orders"
-INNER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID"
-INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
-
-
-SELECT * FROM "SiparisMusteriSatisTemsilcisi"
-------------------------------
-
-
--- Özyineli Birleştirme / Tekli İlişki Örneği
-
-
-ALTER TABLE "employees"
-	ADD CONSTRAINT "lnk_employees_employees" FOREIGN KEY ("ReportsTo")
-	REFERENCES "employees" ("EmployeeID")
-	ON DELETE CASCADE
-	ON UPDATE CASCADE;
-
-
-SELECT "Calisan"."FirstName" AS "Calisan Ilk Isim",
-	    "Calisan"."LastName" AS "Calisan Soy Isim",
-	    "Yonetici"."FirstName" AS "Yonetici Ilk Isim",
-	    "Yonetici"."LastName" AS "Yonetici Soy Isim"
-FROM "employees" AS "Calisan"
-INNER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "Calisan"."ReportsTo";
-
-
-
-SELECT "Calisan"."FirstName" AS "Calisan Ilk Isim",
-	    "Calisan"."LastName" AS "Calisan Soy Isim",
-	    "Yonetici"."FirstName" AS "Yonetici Ilk Isim",
-	    "Yonetici"."LastName" AS "Yonetici Soy Isim"
-FROM "employees" AS "Calisan"
-LEFT OUTER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "Calisan"."ReportsTo";
-
-
-------------------------------
-
+-- *** İleri SQL *** --
 
 -- Alt Sorgu Örnekleri
-
-
--- Örnek
-
 
 SELECT AVG("UnitPrice") FROM "products";
 
@@ -245,7 +136,7 @@ FROM "products"
 GROUP BY "SupplierID"
 
 
--- Örnek
+-- İlintili Sorgu
 
 
 SELECT "ProductName", "UnitPrice" FROM "products" AS "urunler1"
