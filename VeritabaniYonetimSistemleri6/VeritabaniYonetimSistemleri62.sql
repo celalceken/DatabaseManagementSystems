@@ -88,6 +88,18 @@ SELECT * FROM "customers"
 WHERE "public"."customers"."Country" IN ('Türkiye', 'Kuzey Kıbrıs Türk Cumhuriyeti');
 
 
+-- NULL ve NULL olmayan içeriğe sahip alanların sorgulanması.
+
+INSERT INTO "Urunler" 
+("kodu", "adi", "uretimTarihi", "miktari")
+VALUES
+('ELO006', 'TV', '2017-10-30', 5);
+
+SELECT * FROM "Urunler" WHERE "birimFiyati" IS NULL;
+
+SELECT * FROM "Urunler" WHERE "birimFiyati" IS NOT NULL;
+
+
 
 -- AS --
 -- AS ifadesi ile alanlara takma isim verilir.
