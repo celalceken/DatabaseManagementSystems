@@ -75,7 +75,7 @@ WHERE "personelTipi"='S';
 
 ------------------------------
 
--- Özyineli Birleştirme / Tekli İlişki Örneği
+-- Özyineli Birleştirme / Tekli Bağıntı Örneği
 
 
 ALTER TABLE "employees"
