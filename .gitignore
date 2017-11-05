@@ -1,6 +1,5 @@
 *.dropbox
 *.png
-*.pdf
 *.ppt
 *.gif
 *.js
@@ -18,9 +17,9 @@
 *.json
 *.xml
 *.html
+*.info
 *Resimler*
 *.ini
 *Yetkilendirmeler*
 *jsapi*
 *PostgreSQLjson*
-VeritabaniYonetimSistemleri4/.~lock.VeritabaniYonetimSistemleri4.ppt#
