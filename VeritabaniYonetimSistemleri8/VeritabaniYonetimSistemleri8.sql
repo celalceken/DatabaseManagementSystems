@@ -1,19 +1,26 @@
+
+
 -- *** İleri SQL *** --
+
+
+
 
 -- Alt Sorgu Örnekleri
 
-SELECT AVG("UnitPrice") FROM "products";
 
+
+-- WHERE ifadesi içerisinde alt sorgu
+
+
+SELECT AVG("UnitPrice") FROM "products";
 
 SELECT "ProductID", "UnitPrice" FROM "products"
 WHERE "UnitPrice" < (SELECT AVG("UnitPrice") FROM "products");
 
 
--- Örnek
 
 
 SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Bilgisayar Y Z';
-
 
 SELECT DISTINCT "public"."customers"."CustomerID",
     "public"."customers"."CompanyName",
@@ -26,7 +33,9 @@ WHERE "order_details"."ProductID" =
 ORDER BY "public"."customers"."CustomerID";
 
 
--- Örnek
+
+-- IN ifadesi ve alt sorgu
+
 
 SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18
 
@@ -35,7 +44,6 @@ WHERE "SupplierID" IN
     (SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18);
 
 
--- Örnek
 
 SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%';
 
@@ -49,7 +57,9 @@ WHERE "order_details"."ProductID" IN
     (SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%');
 
 
--- Örnek
+
+
+-- ANY ve ALL ifadeleri ve alt sorgu
 
 
 SELECT * FROM  "products"
@@ -96,7 +106,10 @@ WHERE "UnitPrice" < ALL
 );
 
 
--- Örnek
+
+
+-- HAVING ifadesi içerisinde alt sorgu
+
 
 SELECT AVG("UnitsInStock") FROM "products";
 
@@ -106,11 +119,9 @@ GROUP BY "SupplierID"
 HAVING SUM("UnitsInStock") < (SELECT AVG("UnitsInStock") FROM "products");
 
 
--- Örnek
 
 
 SELECT MAX("Quantity") FROM "order_details";
-
 
 SELECT "ProductID", SUM("Quantity")
 FROM "order_details"
@@ -118,8 +129,8 @@ GROUP BY "ProductID"
 HAVING SUM("Quantity") > (SELECT MAX("Quantity") FROM "order_details");
 
 
--- Örnek
 
+-- SELECT ve alt sorgu
 
 SELECT
     "ProductName",
@@ -136,14 +147,15 @@ FROM "products"
 GROUP BY "SupplierID"
 
 
+
 -- İlintili Sorgu
 
 
 SELECT "ProductName", "UnitPrice" FROM "products" AS "urunler1"
 WHERE "urunler1"."UnitPrice" >
 (
-SELECT AVG("UnitPrice") FROM "products" AS "urunler2"
-WHERE "urunler1"."SupplierID" = "urunler2"."SupplierID"
+  SELECT AVG("UnitPrice") FROM "products" AS "urunler2"
+  WHERE "urunler1"."SupplierID" = "urunler2"."SupplierID"
 );
 
 
@@ -153,8 +165,8 @@ WHERE EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
 
 
--- Örnek
 
+-- UNION ve UNION ALL örnekleri
 
 SELECT "CustomerID" FROM "customers"
 UNION
@@ -174,27 +186,32 @@ SELECT "CompanyName", "Country" FROM "suppliers"
 ORDER BY 2;
 
 
+
+-- EXCEPT örneği
+
 SELECT "CompanyName", "Country" FROM "customers"
 EXCEPT
 SELECT "CompanyName", "Country" FROM "suppliers"
 ORDER BY 2;
 
-------İşlem (Transaction)-----
+
+
+-- İşlem/Hareket (Transaction)
 
 -- İşlem (transaction) veri tabanı yönetim sistemlerinin önemli özelliklerinden birisi.
 -- ACID ile belirtilen ozellikleri destekler
 
---ACID:  
---Atomicity: İşlem(transaction) kapsamındaki alt işlemlerin tamamı bir bütün olarak ele alınır. Ya alt işlemlerin tamamı 
---başarılı olarak çalıştırılır, ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski kararlı haline 
---döndürülür. 
---Consistency: Herhangi bir kısıt ihlal edilirse roll back işlemiyle veritabanı eski kararlı haline döndürülür.
---Isolation: İşlemler birbirlerini (ortak kaynak kullanımı durumunda) etkilemezler. Kullanılan ortak kaynak işlem tarafından, 
---işlem tamamlanana kadar, kilitlenir.
---Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmış olan işlem sistem çalışmaya başladıktan sonra 
---mutlaka tamamlanır.
+-- ACID:  
+-- Atomicity: İşlem(transaction) kapsamındaki alt işlemlerin tamamı bir bütün olarak ele alınır. Ya alt işlemlerin tamamı 
+-- başarılı olarak çalıştırılır, ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski kararlı haline 
+-- döndürülür. 
+-- Consistency: Herhangi bir kısıt ihlal edilirse roll back işlemiyle veritabanı eski kararlı haline döndürülür.
+-- Isolation: İşlemler birbirlerini (ortak kaynak kullanımı durumunda) etkilemezler. Kullanılan ortak kaynak işlem tarafından, 
+-- işlem tamamlanana kadar, kilitlenir.
+-- Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmış olan işlem sistem çalışmaya başladıktan sonra 
+-- mutlaka tamamlanır.
 
-----------------------------------------------------
+
 BEGIN; --İşleme (Transaction) başla.
 
 INSERT INTO "order_details" ("OrderID", "ProductID", "UnitPrice", "Quantity", "Discount")
@@ -212,7 +229,8 @@ WHERE "ProductID" = 11;
 
 COMMIT; --İşlemi (transaction) tamamla.
 
-----------------------------------------------------
+
+
 BEGIN;
 UPDATE Hesap SET bakiye = bakiye - 100.00
     WHERE adi = 'Ahmet';
