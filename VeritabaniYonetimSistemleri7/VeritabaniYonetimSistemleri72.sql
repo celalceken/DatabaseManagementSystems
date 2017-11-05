@@ -53,6 +53,7 @@ CREATE TABLE "Personel"."SatisTemsilcisi" (
 );
 	
 
+-- Temel tablo ile çocuk tablo arasında bağıntı kurulumu. "CASCADE" kullanımının en uygun olduğu yer
 ALTER TABLE "Personel"."Danisman"
 	ADD CONSTRAINT "DanismanPersonel" FOREIGN KEY ("personelNo")
 	REFERENCES "Personel"."Personel" ("personelNo")
@@ -60,6 +61,7 @@ ALTER TABLE "Personel"."Danisman"
 	ON UPDATE CASCADE;
 
 
+-- Temel tablo ile çocuk tablo arasında bağıntı kurulumu. "CASCADE" kullanımının en uygun olduğu yer
 ALTER TABLE "Personel"."SatisTemsilcisi"
 	ADD CONSTRAINT "SatisTemsilcisiPersonel" FOREIGN KEY ("personelNo")
 	REFERENCES "Personel"."Personel" ("personelNo")
@@ -67,11 +69,13 @@ ALTER TABLE "Personel"."SatisTemsilcisi"
 	ON UPDATE CASCADE;
 
 
+-- Kalıtım kullanıldığında verilerin alınması
 SELECT * FROM "Personel"."Personel"
 INNER JOIN "Personel"."SatisTemsilcisi"
 ON "Personel"."Personel"."personelNo" = "Personel"."SatisTemsilcisi"."personelNo"
 
 
+-- Sorguların hızlandırılması için temel tabloya eklenen alan
 SELECT "adi", "soyadi" FROM "Personel"."Personel"
 WHERE "personelTipi"='S';
 
@@ -119,6 +123,7 @@ SELECT "Calisan"."adi" AS "Çalışan Adi",
 	"Yonetici"."soyadi" AS "Yönetici Soyadi"
 FROM "Personel" AS "Calisan"
 LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."muduru";
+-- Yoneticisi olmayan çalışanlar da listelenir.
 
 
 
