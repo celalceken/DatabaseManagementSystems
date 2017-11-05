@@ -1,7 +1,8 @@
 
-
 -- *** Temel SQL *** --
 -- SQL DDL (Veri Tanımlama Dili / Data Definition Language) Komutları --
+
+
 
 -- INDEX --
 
@@ -14,7 +15,7 @@ CREATE TABLE "Musteriler" (
 
 CREATE INDEX "musterilerAdiIndex" ON "Musteriler" ("adi");
 
-CREATE INDEX "musterilerSoadiIndex" ON "Musteriler" USING btree ("soyadi");
+CREATE INDEX "musterilerSoyadiIndex" ON "Musteriler" USING btree ("soyadi");
 
 DROP INDEX "musterilerAdiIndex";
 
@@ -32,22 +33,24 @@ TEMPLATE=template0;
 CREATE SCHEMA "Personel";
 
 CREATE TABLE "Personel"."Personel" ( 
-	"personelNo" serial,
-	"adi" Character Varying( 40 ) NOT NULL,
-	"soyadi" Character Varying( 40 ) NOT NULL,
-	"personelTipi" Character( 1 ) NOT NULL,
-	CONSTRAINT "personelPK" PRIMARY KEY ( "personelNo" ) );
+	"personelNo" SERIAL,
+	"adi" Character Varying(40) NOT NULL,
+	"soyadi" Character Varying(40) NOT NULL,
+	"personelTipi" Character(1) NOT NULL,
+	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo")
+);
 	
 CREATE TABLE "Personel"."Danisman" ( 
 	"personelNo" INT,
-	"sirket" Character Varying( 40 ) NOT NULL,
-	CONSTRAINT "danismanPK" PRIMARY KEY ( "personelNo" ) );
-	
+	"sirket" Character Varying(40) NOT NULL,
+	CONSTRAINT "danismanPK" PRIMARY KEY ("personelNo")
+);
 
 CREATE TABLE "Personel"."SatisTemsilcisi" ( 
 	"personelNo" INT,
-	"bolge" Character Varying( 40 ) NOT NULL,
-	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ( "personelNo" ) );
+	"bolge" Character Varying(40) NOT NULL,
+	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ("personelNo")
+);
 	
 
 ALTER TABLE "Personel"."Danisman"
@@ -73,36 +76,50 @@ SELECT "adi", "soyadi" FROM "Personel"."Personel"
 WHERE "personelTipi"='S';
 
 
-------------------------------
+
 
 -- Özyineli Birleştirme / Tekli Bağıntı Örneği
 
 
-ALTER TABLE "employees"
-	ADD CONSTRAINT "lnk_employees_employees" FOREIGN KEY ("ReportsTo")
-	REFERENCES "employees" ("EmployeeID")
-	ON DELETE CASCADE
-	ON UPDATE CASCADE;
+CREATE TABLE "Personel" ( 
+	"personelNo" SERIAL,
+	"adi" Character Varying(40) NOT NULL,
+	"soyadi" Character Varying(40) NOT NULL,
+	"muduru" INTEGER,
+	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo"),
+	CONSTRAINT "personelFK" FOREIGN KEY ("muduru") REFERENCES "Personel" ("personelNo") ON DELETE CASCADE ON UPDATE CASCADE
+);
 
+INSERT INTO "Personel"
+("adi", "soyadi")
+VALUES ('Ahmet', 'Şahin');
 
-SELECT "Calisan"."FirstName" AS "Calisan Ilk Isim",
-	    "Calisan"."LastName" AS "Calisan Soy Isim",
-	    "Yonetici"."FirstName" AS "Yonetici Ilk Isim",
-	    "Yonetici"."LastName" AS "Yonetici Soy Isim"
-FROM "employees" AS "Calisan"
-INNER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "Calisan"."ReportsTo";
+INSERT INTO "Personel"
+("adi", "soyadi")
+VALUES ('Ayşe', 'Kartal');
 
+INSERT INTO "Personel"
+("adi", "soyadi", "muduru")
+VALUES ('Mustafa', 'Çelik', '1');
 
+INSERT INTO "Personel"
+("adi", "soyadi", "muduru")
+VALUES ('Fatma', 'Demir', '2');
 
-SELECT "Calisan"."FirstName" AS "Calisan Ilk Isim",
-	    "Calisan"."LastName" AS "Calisan Soy Isim",
-	    "Yonetici"."FirstName" AS "Yonetici Ilk Isim",
-	    "Yonetici"."LastName" AS "Yonetici Soy Isim"
-FROM "employees" AS "Calisan"
-LEFT OUTER JOIN "employees" AS "Yonetici" ON "Yonetici"."EmployeeID" = "Calisan"."ReportsTo";
+SELECT "Calisan"."adi" AS "Çalışan Adi",
+    "Calisan"."soyadi" AS "Çalışan Soyadı",
+	"Yonetici"."adi" AS "Yönetici Adi",
+	"Yonetici"."soyadi" AS "Yönetici Soyadi"
+FROM "Personel" AS "Calisan"
+INNER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."muduru";
 
+SELECT "Calisan"."adi" AS "Çalışan Adi",
+    "Calisan"."soyadi" AS "Çalışan Soyadı",
+	"Yonetici"."adi" AS "Yönetici Adi",
+	"Yonetici"."soyadi" AS "Yönetici Soyadi"
+FROM "Personel" AS "Calisan"
+LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."muduru";
 
-------------------------------
 
 
 
@@ -122,7 +139,7 @@ INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
 
 SELECT * FROM "SiparisMusteriSatisTemsilcisi"
-------------------------------
+
 
 
 
@@ -212,7 +229,7 @@ SELECT SUM("UnitPrice") AS "Toplam" FROM "products";
 -- GROUP BY
 -- Sorgu sonucunu belirtilen alan(lar)a göre gruplar.
 -- Seçilecek alan, gruplama yapılan alan (SupplierID) ya da çoklu satır 
--- fonksiyonları (COUNT) olmalı 
+-- fonksiyonları (COUNT) olmalı.
 -- Gruplanan alanla ilgili koşul yazılabilmesi için HAVING ifadesinin
 -- kullanılması gereklidir.
 
