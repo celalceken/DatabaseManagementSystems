@@ -34,21 +34,21 @@ CREATE SCHEMA "Personel";
 
 CREATE TABLE "Personel"."Personel" ( 
 	"personelNo" SERIAL,
-	"adi" Character Varying(40) NOT NULL,
-	"soyadi" Character Varying(40) NOT NULL,
-	"personelTipi" Character(1) NOT NULL,
+	"adi" CHARACTER VARYING(40) NOT NULL,
+	"soyadi" CHARACTER VARYING(40) NOT NULL,
+	"personelTipi" CHARACTER(1) NOT NULL,
 	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo")
 );
 	
 CREATE TABLE "Personel"."Danisman" ( 
 	"personelNo" INT,
-	"sirket" Character Varying(40) NOT NULL,
+	"sirket" CHARACTER VARYING(40) NOT NULL,
 	CONSTRAINT "danismanPK" PRIMARY KEY ("personelNo")
 );
 
 CREATE TABLE "Personel"."SatisTemsilcisi" ( 
 	"personelNo" INT,
-	"bolge" Character Varying(40) NOT NULL,
+	"bolge" CHARACTER VARYING(40) NOT NULL,
 	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ("personelNo")
 );
 	
@@ -83,8 +83,8 @@ WHERE "personelTipi"='S';
 
 CREATE TABLE "Personel" ( 
 	"personelNo" SERIAL,
-	"adi" Character Varying(40) NOT NULL,
-	"soyadi" Character Varying(40) NOT NULL,
+	"adi" CHARACTER VARYING(40) NOT NULL,
+	"soyadi" CHARACTER VARYING(40) NOT NULL,
 	"muduru" INTEGER,
 	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo"),
 	CONSTRAINT "personelFK" FOREIGN KEY ("muduru") REFERENCES "Personel" ("personelNo") ON DELETE CASCADE ON UPDATE CASCADE
