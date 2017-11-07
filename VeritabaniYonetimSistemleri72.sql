@@ -280,7 +280,7 @@ HAVING "SupplierID" = 2;
 
 
 -- Çoklu satır fonksiyonları ile WHERE kullanılmaz.
--- Aşadğıdaki iki sorgu yanlıştır.
+-- Aşağıdaki iki sorgu yanlıştır.
 
 SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
 FROM "products"
