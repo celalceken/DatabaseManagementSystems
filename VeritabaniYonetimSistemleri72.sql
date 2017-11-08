@@ -89,9 +89,9 @@ CREATE TABLE "Personel" (
 	"personelNo" SERIAL,
 	"adi" CHARACTER VARYING(40) NOT NULL,
 	"soyadi" CHARACTER VARYING(40) NOT NULL,
-	"muduru" INTEGER,
+	"yoneticisi" INTEGER,
 	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo"),
-	CONSTRAINT "personelFK" FOREIGN KEY ("muduru") REFERENCES "Personel" ("personelNo") ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT "personelFK" FOREIGN KEY ("yoneticisi") REFERENCES "Personel" ("personelNo")
 );
 
 INSERT INTO "Personel"
@@ -103,11 +103,11 @@ INSERT INTO "Personel"
 VALUES ('Ayşe', 'Kartal');
 
 INSERT INTO "Personel"
-("adi", "soyadi", "muduru")
+("adi", "soyadi", "yoneticisi")
 VALUES ('Mustafa', 'Çelik', '1');
 
 INSERT INTO "Personel"
-("adi", "soyadi", "muduru")
+("adi", "soyadi", "yoneticisi")
 VALUES ('Fatma', 'Demir', '2');
 
 SELECT "Calisan"."adi" AS "Çalışan Adi",
@@ -115,14 +115,14 @@ SELECT "Calisan"."adi" AS "Çalışan Adi",
 	"Yonetici"."adi" AS "Yönetici Adi",
 	"Yonetici"."soyadi" AS "Yönetici Soyadi"
 FROM "Personel" AS "Calisan"
-INNER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."muduru";
+INNER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."yoneticisi";
 
 SELECT "Calisan"."adi" AS "Çalışan Adi",
     "Calisan"."soyadi" AS "Çalışan Soyadı",
 	"Yonetici"."adi" AS "Yönetici Adi",
 	"Yonetici"."soyadi" AS "Yönetici Soyadi"
 FROM "Personel" AS "Calisan"
-LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."muduru";
+LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."yoneticisi";
 -- Yoneticisi olmayan çalışanlar da listelenir.
 
 
@@ -182,10 +182,10 @@ WHERE "Country" = 'Mexico';
 SELECT COUNT(*)
 FROM "customers"
 
-SELECT COUNT("CustomerID") AS "Müşteri Sayısı"
+SELECT COUNT("CustomerID") AS "musteriSayisi"
 FROM "customers";
 
-SELECT COUNT("CustomerID") AS "Müşteri Sayısı"
+SELECT COUNT("CustomerID") AS "musteriSayisi"
 FROM "customers"
 WHERE "Country" = 'Türkiye';
 
@@ -206,7 +206,7 @@ SELECT * FROM "products" ORDER BY "ProductID" DESC LIMIT 5
 
 SELECT MAX("UnitPrice") FROM "products";
 
-SELECT MAX("UnitPrice") AS "En Yüksek Fiyat" FROM "products";
+SELECT MAX("UnitPrice") AS "enYuksekFiyat" FROM "products";
 
 
 
@@ -216,7 +216,7 @@ SELECT MAX("UnitPrice") AS "En Yüksek Fiyat" FROM "products";
 
 SELECT MIN("UnitPrice") FROM "products";
 
-SELECT MIN("UnitPrice") AS "En Düşük Fiyat" FROM "products";
+SELECT MIN("UnitPrice") AS "enDusukFiyat" FROM "products";
 
 
 
@@ -226,16 +226,16 @@ SELECT MIN("UnitPrice") AS "En Düşük Fiyat" FROM "products";
 
 SELECT SUM("UnitPrice") FROM "products";
 
-SELECT SUM("UnitPrice") AS "Toplam" FROM "products";
+SELECT SUM("UnitPrice") AS "toplam" FROM "products";
 
 
 
 
 -- GROUP BY
 -- Sorgu sonucunu belirtilen alan(lar)a göre gruplar.
--- Seçilecek alan, gruplama yapılan alan (SupplierID) ya da çoklu satır 
+-- Seçilecek alan, gruplama yapılan alan ya da çoklu satır 
 -- fonksiyonları (COUNT) olmalı.
--- Gruplanan alanla ilgili koşul yazılabilmesi için HAVING ifadesinin
+-- Gruplama işleminden sonra koşul yazılabilmesi için HAVING ifadesinin
 -- kullanılması gereklidir.
 
 
@@ -243,12 +243,12 @@ SELECT SUM("UnitPrice") AS "Toplam" FROM "products";
 -- tedarikçinin sağladığı ürünlerin sayısını hesaplayarak tedarikçi 
 -- bilgisi ile birlikte döndürür.
 
-SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
+SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
 FROM "products"
 GROUP BY "SupplierID"
 
 
-SELECT "SupplierID", SUM("UnitsInStock") AS "Stok Sayısı"
+SELECT "SupplierID", SUM("UnitsInStock") AS "stokSayisi"
 FROM "products"
 GROUP BY "SupplierID"
 
@@ -268,12 +268,12 @@ ORDER BY 1;
 -- HAVING ile yazılan koşullar gruplama fonksiyonları ile veya gruplama 
 -- yapılan alan üzerinden yapılır.
 
-SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
+SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
 FROM "products"
 GROUP BY "SupplierID"
 HAVING COUNT("SupplierID") > 2;
 
-SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
+SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
 FROM "products"
 GROUP BY "SupplierID"
 HAVING "SupplierID" = 2;
@@ -282,11 +282,11 @@ HAVING "SupplierID" = 2;
 -- Çoklu satır fonksiyonları ile WHERE kullanılmaz.
 -- Aşağıdaki iki sorgu yanlıştır.
 
-SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
+SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
 FROM "products"
 WHERE COUNT("SupplierID") > 2;
 
-SELECT "SupplierID", COUNT("SupplierID") AS "Ürün Sayısı"
+SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
 FROM "products"
 GROUP BY "SupplierID"
 WHERE COUNT("SupplierID") > 2;
