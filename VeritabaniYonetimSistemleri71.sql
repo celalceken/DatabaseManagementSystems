@@ -4,14 +4,6 @@
 -- SQL DDL (Veri Tanımlama Dili / Data Definition Language) Komutları --
 
 
-
--- Veri Tipleri
--- PostgreSQL'deki veri tipleri aşağıdaki sayfadan erişilebilir.
--- https://www.postgresql.org/docs/9.6/static/datatype.html
-
-
-
-
 -- CREATE --
 -- Nesne (veritabanı, şema, tablo, view, fonksiyon vb.) oluşturmak için kullanılır
 
@@ -44,6 +36,16 @@ CREATE SCHEMA "sema1";
 
 -- CREATE TABLE --
 -- Tablo oluşturmak için kullanılır.
+
+-- Veri Tipleri
+-- Uygun veri tipinin seçilmesi durumunda; 
+--   hız artar, kaynaklar etkin kullanılır,
+--   veriler tutarlı olarak saklanır (doğrulama) ve 
+--   bazı saldırılara karşı önlem alınmış olur.
+-- PostgreSQL'deki veri tipleri aşağıdaki sayfadan erişilebilir.
+-- https://www.postgresql.org/docs/9.6/static/datatype.html
+
+
 
 CREATE TABLE "sema1"."Urunler" (
     "urunNo" SERIAL,
