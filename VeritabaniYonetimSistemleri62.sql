@@ -230,7 +230,7 @@ VALUES ('ZZA', 'Zafer', 'Ayşe', 'Serdivan', 'Sakarya', '54400', 'Türkiye');
 -- INSERT INTO ... SELECT --
 -- Bir tablodan alınan verileri, varolan bir tabloya kopyalamak için kullanılır.
 
-INSERT INTO "MusteriYedek" SELECT "CompanyName", "ContactName" FROM "customers"; 
+INSERT INTO "MusteriYedek" SELECT "CompanyName", "ContactName" FROM "customers";
 
 
 
