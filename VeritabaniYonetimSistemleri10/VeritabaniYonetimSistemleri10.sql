@@ -2,14 +2,20 @@
 
 -- *** İleri SQL *** --
 
-
-
-
 -- Alt Sorgu Örnekleri
 
+-- Burada verilen örnekler NorthWind veritabanının 
+--	http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS101.png 
+--	verilen alt şemasıyla ilgilidir.
 
+-- WHERE ifadesi içerisinde alt sorgu (Tek Değer Döndüren) Kullanımı
 
--- WHERE ifadesi içerisinde alt sorgu
+--	WHERE ifadesinde yalnızca =, !=, <, > gibi operatörler kullanılıyor ise alt sorgular sonucunda tek alan ve tek satır dönmeli  ve tipi uygun olmalı. 
+--	Aksi halde hata verir.
+
+--	Gruplama işleminden geriye tek değer döndürüldüğü için alt sorgu içerisinde gruplama fonksiyonu kullanılabilir.
+
+--	Alt sorgudaki koşul içerisinde birincil anahtar kullanılarak alt sorgudan tek değer döndürülmesi garanti edilebilir.
 
 
 SELECT AVG("UnitPrice") FROM "products";
@@ -34,7 +40,12 @@ ORDER BY "public"."customers"."CustomerID";
 
 
 
--- IN ifadesi ve alt sorgu
+-- WHERE ile Alt Sorgu (Çok Değer Döndüren) Kullanımı
+
+--	Alt sorgudan çok değer dönmesi durumunda IN, ANY ve ALL ifadeleri kullanılmalıdır.
+
+
+-- 	IN ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesi içerisinde olup olmadığını araştırmak için kullanılır.
 
 
 SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18
@@ -57,10 +68,31 @@ WHERE "order_details"."ProductID" IN
     (SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%');
 
 
+UPDATE "orders"
+SET "ShipCountry" = 'Mexico'
+WHERE "CustomerID" IN
+(SELECT "CustomerID" FROM "customers" WHERE "Country" = 'Mexico')
 
 
--- ANY ve ALL ifadeleri ve alt sorgu
+DELETE FROM "products"
+WHERE "SupplierID" IN
+(SELECT "SupplierID" FROM "suppliers" WHERE "Country" = 'USA');
 
+
+
+--	ANY ile  alt sorgu
+
+
+--	Üç türü mevcuttur.
+--	= ANY
+--	> ANY
+--	< ANY
+
+--	= ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarından her hangi birisine eşit olup olmadığını araştırmak için kullanılır.
+
+--	> ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının her hangi birisinden büyük olup olmadığını araştırmak için kullanılır.
+
+--	< ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının her hangi birisinden küçük olup olmadığını araştırmak için kullanılır.
 
 SELECT * FROM  "products"
 WHERE "UnitPrice" = ANY
@@ -94,6 +126,31 @@ WHERE "UnitPrice" < ANY
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
 
+SELECT * FROM  "products"
+WHERE "UnitPrice" > ANY 
+(
+    SELECT "UnitPrice" 
+    FROM "suppliers"
+    LEFT OUTER JOIN "products" 
+    ON "suppliers"."SupplierID" = "products"."SupplierID"
+    WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
+)
+
+
+
+--	ALL ile  alt sorgu
+
+
+--	İki türü mevcuttur.
+--	> ALL
+--	< ALL
+
+--	> ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının tamamından büyük olup olmadığını araştırmak için kullanılır.
+
+--	< ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının tamamından küçük olup olmadığını araştırmak için kullanılır.
+
+
+
 
 SELECT * FROM  "products"
 WHERE "UnitPrice" < ALL
@@ -105,6 +162,16 @@ WHERE "UnitPrice" < ALL
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
 
+
+SELECT * FROM  "products"
+WHERE "UnitPrice" > ALL 
+(
+    SELECT "UnitPrice" 
+    FROM "suppliers"
+    LEFT OUTER JOIN "products" 
+    ON "suppliers"."SupplierID" = "products"."SupplierID"
+    WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
+)
 
 
 
@@ -130,7 +197,9 @@ HAVING SUM("Quantity") > (SELECT MAX("Quantity") FROM "order_details");
 
 
 
--- SELECT ve alt sorgu
+-- Satır İçi (Inline) Alt Sorgu Kullanımı
+
+--	Alt sorgular sonucunda tek alan ve tek satır dönmeli. Aksi halde hata verir.
 
 SELECT
     "ProductName",
@@ -145,11 +214,22 @@ SELECT
     SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "Standart Sapma"
 FROM "products"
 GROUP BY "SupplierID"
+-- Standart sapma hesaplanırken “Toplam” takma ismi kullanılmamalı.
+
 
 
 
 -- İlintili Sorgu
 
+
+--	İç içe döngülerdeki gibi dış sorgunun her bir satırı iç sorguya gönderilerek iç sorgunun çalıştırılması sağlanır.
+
+--	Aşağıdaki örnekte;
+--	Dış sorgunun birinci satırı seçilir. 
+--	İç sorgu çalıştırılır ve dış sorguda seçilen satırın SupplierID değerine sahip olan tüm kayıtların UnitPrice alanlarındaki değerlerin aritmetik ortalaması hesaplanır.
+--	Dış sorgunun birinci satırının UnitPrice alanındaki değer, alt sorguda hesaplanan ortalamadan büyük ise seçilen birinci satır sonuç kümesine eklenir. Değilse eklenmez.
+--	Dış sorgunun ikinci satırı seçilir ve aynı işlem yapılır.
+--	Bu işlemler dış sorgunun tüm satırları için tekrarlanır.
 
 SELECT "ProductName", "UnitPrice" FROM "products" AS "urunler1"
 WHERE "urunler1"."UnitPrice" >
@@ -158,15 +238,34 @@ WHERE "urunler1"."UnitPrice" >
   WHERE "urunler1"."SupplierID" = "urunler2"."SupplierID"
 );
 
+--	EXIST ifadesi ile birlikte başarımı çok iyidir.
+--	Siparişi olan müşterilerin listesi.
+
+--	Alt sorgudaki * ifadesi yerine herhangi bir alan adı da yazılabilir.
 
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
+    
+--	Siparişi olmayan müşterilerin listesi.
+
+SELECT "CustomerID", "CompanyName", "ContactName"
+FROM "customers"
+WHERE NOT EXISTS
+    (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
+
 
 
 
 -- UNION ve UNION ALL örnekleri
+
+--	İki tablonun küme birleşimini alır.
+--	Rastgele 2 tablonun birleşimi alınamaz.
+--	İki tablonun nitelik sayıları aynı olmalı.
+--	Aynı sıradaki nitelikleri aynı değer  alanı üzerinde tanımlanmış olmalıdır.
+--	UNION ifadesi ile aynı kayıtlar bir defa gösterilir.
+--	UNION ALL ifadesi ile aynı kayıtlar gösterilir.
 
 SELECT "CustomerID" FROM "customers"
 UNION
@@ -186,8 +285,26 @@ SELECT "CompanyName", "Country" FROM "suppliers"
 ORDER BY 2;
 
 
+-- INTERSECT
+
+--	İki tablonun küme kesişimi elde edilir.
+--	Rasgele 2 tablonun kesişimi alınamaz.
+--	İki tablonun nitelik sayıları aynı olmalı. 
+--	Aynı sıradaki nitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
+
+SELECT "CompanyName", "Country" FROM "customers"
+INTERSECT
+SELECT "CompanyName", "Country" FROM "suppliers"
+ORDER BY 2;
+
+
 
 -- EXCEPT örneği
+
+--	Bir tablonun diğerinden farkını elde etmek için kullanılır.
+--	Rastgele 2 tabloya uygulanamaz.
+--	İki tablonun nitelik sayıları aynı olmalı.
+--	Aynı sıradaki nitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
 
 SELECT "CompanyName", "Country" FROM "customers"
 EXCEPT
