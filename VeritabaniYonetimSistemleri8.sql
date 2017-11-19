@@ -21,7 +21,7 @@ DROP INDEX "musterilerAdiIndex";
 
 
 
--- Kalıtım Örneği
+-- Kalıtım Örneği --
 
 CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
@@ -82,7 +82,7 @@ WHERE "personelTipi"='S';
 
 
 
--- Özyineli Birleştirme / Tekli Bağıntı Örneği
+-- Özyineli Birleştirme / Tekli Bağıntı Örneği --
 
 
 CREATE TABLE "Personel" ( 
@@ -128,7 +128,26 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 
 
 
--- Görünüm / View Örneği
+--*** Görünüm / View Örneği ***--
+
+-- Bir veya daha fazla tablodan seçilen satırlar ve alanlardaki bilgilerin yeni bir tablo gibi görüntülenmesini temin eden yapıdır.
+
+-- Tablo(lar)dan tüm satırlar seçilebileceği gibi yalnızca belli kriterlere uyan satırlar da seçilebilir.
+
+-- Tablo(lar)daki tüm alanlar görünüme dahil edilebileceği gibi yalnızca belli alanlar da görünüme dahil edilebilir.
+
+-- Seçme (SELECT) işlemi için kısa yol tanımlamak adına kullanılır.
+
+-- Genellikle karmaşık olan seçme (SELECT) işlemlerinde tercih edilir.
+
+-- Dinamiktir. GÖRÜNÜM (VIEW) ile oluşturulan tabloya gerçekleştirilen her erişimde kendisini oluşturan ifadeler (görünüm – view ifadeleri) yeniden çalıştırılır.
+
+-- Karmaşık sorguları basit hale getirir.
+
+-- Güvenlik nedeniyle de kullanılır. 
+
+--      Örneğin şirket personeli, müşterilerin genel bilgilerini (ad, soyad, adres v.b.) görebilsin ancak kredi kartı bilgilerine erişemesin isteniyorsa 
+--     	yalnızca görmesini istediğimiz bilgileri içeren bir görünüm oluşturulabilir ve ilgili personeli bu görünüme yetkilendiririz.
 
 
 CREATE OR REPLACE VIEW "public"."SiparisMusteriSatisTemsilcisi" AS
@@ -146,9 +165,10 @@ INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 SELECT * FROM "SiparisMusteriSatisTemsilcisi"
 
 
+DROP VIEW "SiparisMusteriSatisTemsilcisi”;
 
 
--- SQL Fonksiyonları --
+-- *** SQL Fonksiyonları ***--
 
 
 
