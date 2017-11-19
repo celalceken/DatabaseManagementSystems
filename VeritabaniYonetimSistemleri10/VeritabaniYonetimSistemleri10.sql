@@ -99,7 +99,7 @@ WHERE "UnitPrice" = ANY
 (
     SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products"
+    INNER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
@@ -110,7 +110,7 @@ WHERE "UnitPrice" IN
 (
     SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products"
+    INNER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
@@ -121,7 +121,7 @@ WHERE "UnitPrice" < ANY
 (
     SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products"
+    INNER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
@@ -131,7 +131,7 @@ WHERE "UnitPrice" > ANY
 (
     SELECT "UnitPrice" 
     FROM "suppliers"
-    LEFT OUTER JOIN "products" 
+    INNER JOIN "products" 
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 )
@@ -157,7 +157,7 @@ WHERE "UnitPrice" < ALL
 (
     SELECT "UnitPrice"
     FROM "suppliers"
-    LEFT OUTER JOIN "products"
+    INNER JOIN "products"
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 );
@@ -168,7 +168,7 @@ WHERE "UnitPrice" > ALL
 (
     SELECT "UnitPrice" 
     FROM "suppliers"
-    LEFT OUTER JOIN "products" 
+    INNER JOIN "products" 
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
 )
@@ -248,12 +248,21 @@ FROM "customers"
 WHERE EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
     
+-- INNER JOIN ile de bulunabilirdi... (Daha yavaş)
+
+SELECT  DISTINCT "public"."customers"."CompanyName",
+         "public"."customers"."ContactName"
+FROM     "orders" 
+INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
+
 --	Siparişi olmayan müşterilerin listesi.
 
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE NOT EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
+    
+
 
 
 
