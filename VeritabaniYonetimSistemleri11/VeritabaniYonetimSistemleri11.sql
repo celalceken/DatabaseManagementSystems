@@ -1,7 +1,8 @@
+--***  SQL Programlama: Fonksiyon/Saklı Yordam Tanımlama, Cursor, Trigger, Hazır Fonksiyonlar ***--
 
--------Pagila Örnek Veri Tabanını Kullanmaktadır-------
+--Pagila Örnek Veri Tabanını Kullanmaktadır
 
-----Fonksiyon (Saklı Yordam) Tanımlama--------------
+--** Fonksiyon (Saklı Yordam) Tanımlama **--
 
 
 CREATE OR REPLACE FUNCTION fonksiyonTanimlama(mesaj text, altKarakterSayisi SMALLINT, tekrarSayisi integer)
