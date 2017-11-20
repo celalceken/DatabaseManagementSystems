@@ -1,8 +1,8 @@
 
+-- ***İleri SQL(Alt Sorgular, IN, ALL, ANY, İlintili Sorgular, 
+--UNION, INTERSECT, EXCEPT, Hareket/İşlem (Transaction)) ***--
 
--- *** İleri SQL *** --
-
--- Alt Sorgu Örnekleri
+--** Alt Sorgu Örnekleri **--
 
 -- Burada verilen örnekler NorthWind veritabanının 
 -- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS101.png 
@@ -10,7 +10,7 @@
 
 
 
--- WHERE ile Alt Sorgu (Tek Değer Döndüren) Kullanımı
+--* WHERE ile Alt Sorgu (Tek Değer Döndüren) Kullanımı *--
 
 -- WHERE ifadesinde yalnızca =, !=, <, > gibi operatörler kullanılıyor 
 -- ise alt sorgular sonucunda tek alan ve tek satır dönmeli ve veri tipi
@@ -30,7 +30,6 @@ WHERE "UnitPrice" < (SELECT AVG("UnitPrice") FROM "products");
 
 
 
-
 SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Bilgisayar Y Z';
 
 SELECT DISTINCT "public"."customers"."CustomerID",
@@ -44,9 +43,7 @@ WHERE "order_details"."ProductID" =
 ORDER BY "public"."customers"."CustomerID";
 
 
-
-
--- WHERE ile Alt Sorgu (Çok Değer Döndüren) Kullanımı
+--* WHERE ile Alt Sorgu (Çok Değer Döndüren) Kullanımı *--
 
 -- Alt sorgudan çok değer dönmesi durumunda IN, ANY ve ALL ifadeleri 
 -- kullanılmalıdır.
@@ -86,9 +83,7 @@ WHERE "SupplierID" IN
 (SELECT "SupplierID" FROM "suppliers" WHERE "Country" = 'USA');
 
 
-
-
--- ANY ile  alt sorgu
+--* ANY ile  alt sorgu *--
 
 
 -- Üç türü mevcuttur.
@@ -152,7 +147,7 @@ WHERE "UnitPrice" > ANY
 
 
 
---	ALL ile  alt sorgu
+--*	ALL ile  alt sorgu *--
 
 
 --	İki türü mevcuttur.
@@ -191,7 +186,7 @@ WHERE "UnitPrice" > ALL
 
 
 
---	HAVING ile Alt Sorgu Kullanımı
+--*	HAVING ile Alt Sorgu Kullanımı *--
 
 
 SELECT AVG("UnitsInStock") FROM "products";
@@ -235,7 +230,7 @@ GROUP BY "SupplierID"
 
 
 
---	İlintili Sorgu
+--*	İlintili Sorgu *--
 
 
 --	İç içe döngülerdeki gibi dış sorgunun her bir satırı iç sorguya gönderilerek iç sorgunun çalıştırılması sağlanır.
@@ -286,7 +281,7 @@ WHERE NOT EXISTS
 
 
 
--- UNION ve UNION ALL örnekleri
+--** UNION ve UNION ALL **--
 
 --	İki tablonun küme birleşimini alır.
 --	Rastgele 2 tablonun birleşimi alınamaz.
@@ -314,7 +309,7 @@ ORDER BY 2;
 
 
 
--- INTERSECT
+--** INTERSECT **--
 
 --	İki tablonun küme kesişimi elde edilir.
 --	Rasgele 2 tablonun kesişimi alınamaz.
@@ -329,7 +324,7 @@ ORDER BY 2;
 
 
 
--- EXCEPT örneği
+--** EXCEPT örneği **--
 
 --	Bir tablonun diğerinden farkını elde etmek için kullanılır.
 --	Rastgele 2 tabloya uygulanamaz.
@@ -344,7 +339,7 @@ ORDER BY 2;
 
 
 
--- İşlem/Hareket (Transaction)
+--** İşlem/Hareket (Transaction) **--
 
 -- İşlem (transaction) veri tabanı yönetim sistemlerinin önemli özelliklerinden birisi.
 -- ACID ile belirtilen ozellikleri destekler
