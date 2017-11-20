@@ -1,8 +1,6 @@
 
 
--- *** Temel SQL *** --
--- SQL DDL (Veri Tanımlama Dili / Data Definition Language) Komutları --
-
+-- *** Temel SQL (SQL DDL Komutları; CREATE, ALTER, DROP, ADD, SET, CONSTRAINTS) *** --
 
 -- CREATE --
 -- Nesne (veritabanı, şema, tablo, view, fonksiyon vb.) oluşturmak için kullanılır
