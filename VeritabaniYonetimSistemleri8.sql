@@ -165,7 +165,7 @@ INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 SELECT * FROM "SiparisMusteriSatisTemsilcisi"
 
 
-DROP VIEW "SiparisMusteriSatisTemsilcisi”;
+DROP VIEW "SiparisMusteriSatisTemsilcisi";
 
 
 -- *** SQL Fonksiyonları ***--
