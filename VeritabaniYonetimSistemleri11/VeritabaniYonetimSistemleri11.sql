@@ -1,4 +1,4 @@
---***  SQL Programlama: Fonksiyon/Saklı Yordam Tanımlama, Cursor, Trigger, Hazır Fonksiyonlar ***--
+--*** SQL Programlama: Fonksiyon/Saklı Yordam Tanımlama, Cursor, Trigger, Hazır Fonksiyonlar ***--
 
 --Pagila Örnek Veri Tabanını Kullanmaktadır
 
