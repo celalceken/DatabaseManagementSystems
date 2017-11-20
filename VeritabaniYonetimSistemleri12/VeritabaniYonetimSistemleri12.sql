@@ -1,202 +1,293 @@
 
--------Pagila Örnek Veri Tabanını Kullanmaktadır-------
+-- EXPLAIN ANALYSE
 
-----Fonksiyon (Saklı Yordam) Tanımlama--------------
+EXPLAIN ANALYSE
+SELECT * FROM "orders"
+WHERE "ShipCity" = 'Bern';
 
+----------------------------------
 
-CREATE OR REPLACE FUNCTION fonksiyonTanimlama(mesaj text, altKarakterSayisi SMALLINT, tekrarSayisi integer)
-RETURNS text AS  -- SETOF TEXT, SETOF record... diyerek çok sayıda değerin döndürülmesi de mümkündür
-$$ -- Fonksiyon govdesi başlangici
-DECLARE
-    sonuc text; --Degisken tanimlama Blogu
-BEGIN
-    sonuc := '';
-    IF tekrarSayisi > 0 THEN
-        FOR i IN 1 .. tekrarSayisi LOOP
-            sonuc := sonuc || i || '.' || SUBSTRING(mesaj FROM 1 FOR altKarakterSayisi) || E'\r\n';
-            -- E: string içerisindeki (E)scape karakterleri için...
-        END LOOP;
-    END IF;
-    RETURN sonuc;
-END;
-$$ -- Fonksiyon govdesi sonu
-LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER ;
---immutable: aynı girişler için aynı çıkışları üretecek
---SECURITY DEFINER: fonksiyonu oluşturanın yetkileriyle çalıştırılsın.
+-- PROJEKSİYON
+
+EXPLAIN ANALYSE
+SELECT * 
+FROM "customer" 
+INNER JOIN "store" ON "customer"."store_id" = "store"."store_id"
+INNER JOIN "rental" ON "rental"."customer_id" = "customer"."customer_id" 
+INNER JOIN "inventory" ON "inventory"."store_id" = "store"."store_id" 
+INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id";
+
+-- 20:52:27 Query time: 12.442 second(s), Number of cursor's records: 23
 
 
-SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10) --fonksiyonun cagrilmasi
+EXPLAIN ANALYSE
+SELECT "customer"."first_name", "customer"."last_name",
+    "film"."film_id", "film"."title"
+FROM "customer" 
+INNER JOIN "store" ON "customer"."store_id" = "store"."store_id" 
+INNER JOIN "rental" ON "rental"."customer_id" = "customer"."customer_id" 
+INNER JOIN "inventory" ON "inventory"."store_id" = "store"."store_id" 
+INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id";
+
+-- 20:52:40 Query time: 7.177 second(s), Number of cursor's records: 24
+
+----------------------------------
+
+-- LIMIT ve OFFSET
+
+EXPLAIN ANALYSE
+SELECT "store"."store_id", "film"."title"
+FROM "inventory" 
+INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
+INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id";
+
+-- 21:04:05 Query time: 5 millisecond(s), Number of cursor's records: 13
 
 
--------Dil Desteği Ekleme-------------
+EXPLAIN ANALYSE
+SELECT "store"."store_id", "film"."title"
+FROM "inventory" 
+INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
+INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id"
+LIMIT 20  OFFSET 39;
+
+-- 21:04:16 Query time: 2 millisecond(s), Number of cursor's records: 12
+
+----------------------------------
+
+-- SIRALAMA
+
+EXPLAIN ANALYSE
+SELECT "store"."store_id", "film"."title"
+FROM "inventory"
+INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
+INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id";
+
+-- 21:12:37 Query time: 5 millisecond(s), Number of cursor's records: 13
 
 
--- Linux
--- plperl diliyle program yazabilmek için plperl dil desteğini ekleme.
--- BilgisayarAdi@KullaniciAdi:~$ sudo apt-get install postgresql-plperl-9.5 
+EXPLAIN ANALYSE 
+SELECT "store"."store_id", "film"."title"
+FROM "inventory"
+INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
+INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id" 
+ORDER BY "film"."title";
+
+-- 21:12:41 Query time: 7 millisecond(s), Number of cursor's records: 16
+
+----------------------------------
+
+-- INDEX
+
+EXPLAIN ANALYSE
+SELECT * FROM "customer"
+WHERE "first_name" = 'Jeniffer';
+
+-- Execution time: 0.132 ms
 
 
--- Application Stack Builder uygulaması mevcutsa bu uygulama aracılığı ile de EDB Language Pack yüklenerek ek dil paketleri eklenebilir.
+EXPLAIN ANALYSE
+SELECT * FROM "customer"
+WHERE "last_name" = 'Davis';
 
--- Dil paketi yüklendikten sonra dilin oluşturulması gerekir.
-CREATE LANGUAGE "plperl";
+-- Execution time: 0.036 ms
 
--- Ekli dilleri göster.
-SELECT * FROM "pg_language";
+----------------------------------
 
-
-CREATE FUNCTION kucukOlaniDondur (INT, INT) 
-RETURNS INTEGER AS
-$$
-    if ($_[0] > $_[1]) 
-    { 
-		return $_[1]; 
-    }
-    return $_[0];
-$$
-LANGUAGE "plperl";
+-- EXISTS ve IN
 
 
+EXPLAIN ANALYSE
+SELECT DISTINCT "customer"."first_name", "customer"."last_name"
+FROM "customer"
+WHERE "customer_id" IN (SELECT "customer_id" FROM "payment"); 
+
+-- 21:34:45 Query time: 3 millisecond(s), Number of cursor's records: 9
 
 
------Select Sorgusu Sonucu Üzerinde Dolanım----------
+EXPLAIN ANALYSE
+SELECT "customer"."first_name", "customer"."last_name"
+FROM "customer"
+WHERE "customer_id" IN (SELECT DISTINCT "customer_id" FROM "payment");
+
+-- 21:34:49 Query time: 6 millisecond(s), Number of cursor's records: 10
 
 
-CREATE OR REPLACE FUNCTION kayitDolanimi()
-RETURNS TEXT AS
-$$
-DECLARE
-    musteriler  customer%ROWTYPE; --customer."CustomerID"%TYPE
-    sonuc TEXT;
-BEGIN
-    sonuc:='';
-    FOR musteriler IN SELECT * FROM customer LOOP
-        sonuc:= sonuc || musteriler."customer_id" || E'\t' || musteriler."first_name"|| E'\r\n';
-    END LOOP;
-    RETURN sonuc;
-END;
-$$
-LANGUAGE 'plpgsql';
+EXPLAIN ANALYSE
+SELECT "customer"."first_name", "customer"."last_name"
+FROM "customer"
+WHERE EXISTS 
+    (SELECT "customer_id" FROM "payment" 
+    WHERE "customer"."customer_id" = "payment"."customer_id");
 
-SELECT  kayitDolanimi() --fonksiyonun cagrilmasi
+-- 21:34:53 Query time: 4 millisecond(s), Number of cursor's records: 7
 
+----------------------------------
 
+-- Birleşim
 
----------- Tablo Döndürme----------
+EXPLAIN ANALYSE
+SELECT DISTINCT "customer"."first_name", "customer"."last_name" 
+FROM "customer"
+INNER JOIN "payment"
+ON "payment"."customer_id" = "customer"."customer_id";
 
-CREATE or replace FUNCTION personelAra(personelNo INT)
-RETURNS TABLE(numara INT, adi varchar(40), soyadi VARCHAR(40)) AS $$
-BEGIN
-    RETURN QUERY SELECT "staff_id","first_name","last_name" FROM staff
-                 WHERE "staff_id"=personelNo;
-END;
-$$
-LANGUAGE plpgsql;
-
-Select * from personelAra(1);
+-- 21:47:16 Query time: 14 millisecond(s), Number of cursor's records: 10
 
 
+EXPLAIN ANALYSE
+SELECT "customer"."first_name", "customer"."last_name" 
+FROM "customer"
+WHERE EXISTS 
+    (SELECT * FROM "payment"
+    WHERE "payment"."customer_id" = "customer"."customer_id");
+
+-- 21:47:19 Query time: 4 millisecond(s), Number of cursor's records: 7
+
+----------------------------------
+
+-- HAVING
+
+EXPLAIN ANALYSE
+SELECT "category"."name", COUNT("film"."film_id") 
+FROM "film"
+LEFT OUTER JOIN "film_category" ON "film"."film_id" = "film_category"."film_id"
+LEFT OUTER JOIN "category" ON "film_category"."category_id" = 
+    "category"."category_id"
+GROUP BY "category"."name"
+HAVING "category"."name" = 'Horror' OR "category"."name" = 'Comedy';
+
+-- 22:04:45 Query time: 3 millisecond(s), Number of cursor's records: 16
 
 
---------Çıkış Parametresi-------
+EXPLAIN ANALYSE
+SELECT "category"."name", COUNT("film"."film_id") 
+FROM "film"
+LEFT OUTER JOIN "film_category" ON "film"."film_id" = "film_category"."film_id"
+LEFT OUTER JOIN "category" ON "film_category"."category_id" = 
+    "category"."category_id"
+WHERE "category"."name" = 'Horror' OR "category"."name" = 'Comedy'
+GROUP BY "category"."name";
 
-CREATE or replace FUNCTION inch2cm(sayiInch real, OUT sayiCM REAL)
-AS $$
-BEGIN
-    sayiCM=2.54*sayiINCH;
-END;
-$$
-LANGUAGE plpgsql;
+-- 22:05:02 Query time: 2 millisecond(s), Number of cursor's records: 16
 
+----------------------------------
 
-Select * from inch2cm(2);
+-- Alt Sorgu Sayısı
 
+EXPLAIN ANALYSE
+SELECT * FROM "products" 
+WHERE "UnitPrice" < (SELECT AVG("UnitPrice") FROM "products")
+AND "UnitsInStock" < (SELECT AVG("UnitsInStock") FROM "products");
 
--------Fonksiyon içerisinden fonksiyon çağırma-------
-
-CREATE OR REPLACE FUNCTION public.odemetoplami(personelno integer)
- RETURNS text
- LANGUAGE plpgsql
-AS $$
-DECLARE
-
-    sonuc TEXT;
-    personel record;
-    miktar NUMERIC;
-
-BEGIN
-    personel=personelAra(personelNo);
-    FOR miktar IN SELECT SUM(amount) from payment where staff_id=personelNo LOOP
-    END LOOP;
-
-    return personel."numara"||E'\t'||personel."adi"||E'\t'||miktar;
-END
-$$;
+-- 22:12:27 Query time: 2 millisecond(s), Number of cursor's records: 11
 
 
-select odemeToplami(2);
+EXPLAIN ANALYSE
+SELECT * FROM "products" 
+WHERE ("UnitPrice", "UnitsInStock") < 
+    (SELECT AVG("UnitPrice"), AVG("UnitsInStock") FROM "products");
+
+-- 22:12:32 Query time: 1 millisecond(s), Number of cursor's records: 8
 
 
------ Cursor Kullanımı-----
+----------------------------------
 
- -- Sorgu sonuçlarının(resultset) toplu olarak gelmesi yerine veri tbanı sunucudan 
--- satır satır getirilmesini sağlar (LIMIT - OFFSET yapısı da benzer işi yapıyordu...).
--- Yük dengeleme, uygulama sunucusunun belleğinin verimli kullanımı v.s.
+-- UNION ve UNION ALL
+
+EXPLAIN ANALYSE
+SELECT "rental_id" FROM "rental"
+UNION
+SELECT "rental_id" FROM "payment";
+
+-- 22:23:50 Query time: 21 millisecond(s), Number of cursor's records: 7
 
 
-CREATE OR REPLACE FUNCTION "filmAra"(yapimYili INTEGER, filmAdi TEXT)
-RETURNS text AS
-$$
-DECLARE
-    filmAdlari TEXT DEFAULT '';
-    film RECORD;
-    filmImleci CURSOR(yapimYili INTEGER) FOR SELECT * FROM film WHERE release_year = yapimYili;
-BEGIN
-   OPEN filmImleci(yapimYili);
-   LOOP
-      FETCH filmImleci INTO film;
-      EXIT WHEN NOT FOUND;
-      IF film.title LIKE filmAdi || '%' THEN
-         filmAdlari := filmAdlari || ',' || film.title || ':' || film.release_year;
-      END IF;
-   END LOOP;
-   CLOSE filmImleci;
+EXPLAIN ANALYSE
+SELECT "rental_id" FROM "rental"
+UNION ALL
+SELECT "rental_id" FROM "payment";
 
-   RETURN filmAdlari;
-END; $$
-LANGUAGE 'plpgsql';
+-- 22:23:53 Query time: 11 millisecond(s), Number of cursor's records: 5
 
-----------
-SELECT * from filmAra(2006,'T');
+----------------------------------
+
+-- WHERE
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" WHERE "amount" != 11.99;
+
+-- 22:38:13 Query time: 6 millisecond(s), Number of cursor's records: 5
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" WHERE "amount" < 11.99;
+
+-- 22:38:13 Query time: 6 millisecond(s), Number of cursor's records: 5
 
 
 
-------Trigger  ------------
 
---NorthWind veritabanındaki ürünlerin birim fiyat değişimlerini izlemek için kullanılır...
+EXPLAIN ANALYSE
+SELECT * FROM "film" WHERE SUBSTR("title", 2, 2) = 'la';
 
-CREATE TABLE "public"."UrunDegisikligiIzle" (
-	"kayitNo" serial,
-	"urunNo" SmallInt NOT NULL,
-	"eskiBirimFiyat" Real NOT NULL,
-	"yeniBirimFiyat" Real NOT NULL,
-	"degisiklikTarihi" TIMESTAMP NOT NULL,
-	CONSTRAINT "PK" PRIMARY KEY ( "kayitNo" ) );
- -------------------
-CREATE OR REPLACE FUNCTION "urunDegisikligiTR1"()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF NEW."UnitPrice" <> OLD."UnitPrice" THEN
-		INSERT INTO "UrunDegisikligiIzle"("urunNo","eskiBirimFiyat","yeniBirimFiyat","degisiklikTarihi")
-		VALUES(OLD."ProductID",OLD."UnitPrice",NEW."UnitPrice",CURRENT_TIMESTAMP::TIMESTAMP);
-	END IF;
+--22:44:30 Query time: 2 millisecond(s), Number of affected records: 15
 
-	RETURN NEW;
-END;
-$$
-LANGUAGE plpgsql;
 
-CREATE  TRIGGER urunBirimFiyatDegistiginde
-BEFORE UPDATE  ON products
-FOR EACH ROW
-EXECUTE PROCEDURE "urunDegisikligiTR1"();
+EXPLAIN ANALYSE
+SELECT * FROM "film" WHERE "title" LIKE '_la%';
+
+-- 22:44:25 Query time: 1 millisecond(s), Number of affected records: 15
+
+
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" 
+WHERE "amount" - 1 = '1.99';
+
+-- 22:50:54 Query time: 6 millisecond(s), Number of cursor's records: 5
+
+
+EXPLAIN ANALYSE
+SELECT * FROM "payment" 
+WHERE "amount" = '2.99';
+
+-- 22:50:56 Query time: 5 millisecond(s), Number of cursor's records: 5
+
+
+----------------------------------
+
+-- VACUUM (silme ve update işlemlerinden sonra kayıtlar, Vacuum işlemine kadar, fiziksel olarak silinmezler)
+-- VACUUM ve ANALYSE işlemini, veritabanı kullanımının az olduğu zamanlarda, günde bir kez uygulamak sorgu  hızını artırır...
+
+VACUUM; -- Seçili veri tabanındaki tüm tabloları vakumla.
+VACUUM FULL; -- Daha fazla yer aç. Daha uzun sürer. (tabloları kilitleyerek yeni kopyasını oluşturur ve daha sonra eski tabloyu siler)
+VACUUM customer; -- customer tablosunu vakumla.
+
+-- Threshold değerini %20 aştıktan sonra otomatik vakum işlemi yap.
+-- Varsayılan 0.2
+ALTER TABLE table_name  
+SET (autovacuum_vacuum_scale_factor = 0.3);
+
+
+-- Threshold değeri 5000 kayıt olsun.
+-- Varsayılan 50 kayıt.
+ALTER TABLE table_name  
+SET (autovacuum_vacuum_threshold = 5000);
+
+--ANALYSE  (tablonun içeriği ile ilgili istatistikleri pg_statistic sistem katalogunda saklar. Daha sonrasında bu bilgi, sorgu planlayıcısının  
+-- (query planner) sorguları en etkin şekilde nasıl çalıştıracağının belirlenmesi işleminde kullanılır.)
+
+ANALYSE ; -- Seçili veritabanındaki tüm tablolara uygulanır.
+ANALYSE payment; -- payment tablosuna uygulanır.
+
+
+SELECT "relname", "last_vacuum", "last_autovacuum", "last_analyze", "last_autoanalyze”
+FROM "pg_stat_all_tables”
+WHERE "schemaname" = 'public';
+
+
+
+
+
