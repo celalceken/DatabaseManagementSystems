@@ -1,8 +1,8 @@
 
--- ***İleri SQL(Alt Sorgular, IN, ALL, ANY, İlintili Sorgular, 
---UNION, INTERSECT, EXCEPT, Hareket/İşlem (Transaction)) ***--
+-- *** İleri SQL(Alt Sorgular, IN, ALL, ANY, İlintili Sorgular, 
+-- UNION, INTERSECT, EXCEPT, Hareket/İşlem (Transaction)) *** --
 
---** Alt Sorgu Örnekleri **--
+-- ** Alt Sorgu Örnekleri ** --
 
 -- Burada verilen örnekler NorthWind veritabanının 
 -- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS101.png 
@@ -10,7 +10,7 @@
 
 
 
---* WHERE ile Alt Sorgu (Tek Değer Döndüren) Kullanımı *--
+-- * WHERE ile Alt Sorgu (Tek Değer Döndüren) Kullanımı * --
 
 -- WHERE ifadesinde yalnızca =, !=, <, > gibi operatörler kullanılıyor 
 -- ise alt sorgular sonucunda tek alan ve tek satır dönmeli ve veri tipi
@@ -43,7 +43,7 @@ WHERE "order_details"."ProductID" =
 ORDER BY "public"."customers"."CustomerID";
 
 
---* WHERE ile Alt Sorgu (Çok Değer Döndüren) Kullanımı *--
+-- * WHERE ile Alt Sorgu (Çok Değer Döndüren) Kullanımı * --
 
 -- Alt sorgudan çok değer dönmesi durumunda IN, ANY ve ALL ifadeleri 
 -- kullanılmalıdır.
@@ -83,7 +83,7 @@ WHERE "SupplierID" IN
 (SELECT "SupplierID" FROM "suppliers" WHERE "Country" = 'USA');
 
 
---* ANY ile  alt sorgu *--
+-- * ANY ile  alt sorgu * --
 
 
 -- Üç türü mevcuttur.
@@ -91,17 +91,17 @@ WHERE "SupplierID" IN
 -- > ANY
 -- < ANY
 
---	= ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
---	kümesinin elemanlarından her hangi birisine eşit olup olmadığını 
---	araştırmak için kullanılır.
+-- = ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+-- kümesinin elemanlarından her hangi birisine eşit olup olmadığını 
+-- araştırmak için kullanılır.
 
---	> ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
---	kümesinin elemanlarının her hangi birisinden büyük olup olmadığını 
---	araştırmak için kullanılır.
+-- > ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+-- kümesinin elemanlarının her hangi birisinden büyük olup olmadığını 
+-- araştırmak için kullanılır.
 
---	< ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
---	kümesinin elemanlarının her hangi birisinden küçük olup olmadığını 
---	araştırmak için kullanılır.
+-- < ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+-- kümesinin elemanlarının her hangi birisinden küçük olup olmadığını 
+-- araştırmak için kullanılır.
 
 SELECT * FROM  "products"
 WHERE "UnitPrice" = ANY
@@ -147,20 +147,20 @@ WHERE "UnitPrice" > ANY
 
 
 
---*	ALL ile  alt sorgu *--
+-- * ALL ile  alt sorgu * --
 
 
---	İki türü mevcuttur.
---	> ALL
---	< ALL
+-- İki türü mevcuttur.
+-- > ALL
+-- < ALL
 
---	> ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
---	kümesinin elemanlarının tamamından büyük olup olmadığını araştırmak 
---	için kullanılır.
+-- > ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+-- kümesinin elemanlarının tamamından büyük olup olmadığını araştırmak 
+-- için kullanılır.
 
---	< ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
---	kümesinin elemanlarının tamamından küçük olup olmadığını araştırmak 
---	için kullanılır.
+-- < ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+-- kümesinin elemanlarının tamamından küçük olup olmadığını araştırmak 
+-- için kullanılır.
 
 
 SELECT * FROM  "products"
@@ -186,7 +186,7 @@ WHERE "UnitPrice" > ALL
 
 
 
---*	HAVING ile Alt Sorgu Kullanımı *--
+-- * HAVING ile Alt Sorgu Kullanımı * --
 
 
 SELECT AVG("UnitsInStock") FROM "products";
@@ -208,9 +208,9 @@ HAVING SUM("Quantity") > (SELECT MAX("Quantity") FROM "order_details");
 
 
 
---	Satır İçi (Inline) Alt Sorgu Kullanımı
+-- * Satır İçi (Inline) Alt Sorgu Kullanımı * --
 
---	Alt sorgular sonucunda tek alan ve tek satır dönmeli. Aksi halde hata verir.
+-- Alt sorgular sonucunda tek alan ve tek satır dönmeli. Aksi halde hata verir.
 
 SELECT
     "ProductName",
@@ -230,17 +230,22 @@ GROUP BY "SupplierID"
 
 
 
---*	İlintili Sorgu *--
+-- * İlintili Sorgu * --
 
 
---	İç içe döngülerdeki gibi dış sorgunun her bir satırı iç sorguya gönderilerek iç sorgunun çalıştırılması sağlanır.
+-- İç içe döngülerdeki gibi dış sorgunun her bir satırı iç sorguya gönderilerek 
+-- iç sorgunun çalıştırılması sağlanır.
 
---	Aşağıdaki örnekte;
---	Dış sorgunun birinci satırı seçilir. 
---	İç sorgu çalıştırılır ve dış sorguda seçilen satırın SupplierID değerine sahip olan tüm kayıtların UnitPrice alanlarındaki değerlerin aritmetik ortalaması hesaplanır.
---	Dış sorgunun birinci satırının UnitPrice alanındaki değer, alt sorguda hesaplanan ortalamadan büyük ise seçilen birinci satır sonuç kümesine eklenir. Değilse eklenmez.
---	Dış sorgunun ikinci satırı seçilir ve aynı işlem yapılır.
---	Bu işlemler dış sorgunun tüm satırları için tekrarlanır.
+-- Aşağıdaki örneğin çalışması şu adımlardan oluşur;
+-- 1. Dış sorgunun birinci satırı seçilir.
+-- 2. İç sorgu çalıştırılır ve dış sorguda seçilen satırın SupplierID değerine 
+--    sahip olan tüm kayıtların UnitPrice alanlarındaki değerlerin aritmetik 
+--    ortalaması hesaplanır.
+-- 3. Dış sorgunun birinci satırının UnitPrice alanındaki değer, alt sorguda 
+--    hesaplanan ortalamadan büyük ise seçilen birinci satır sonuç kümesine 
+--    eklenir. Değilse eklenmez.
+-- 4. Dış sorgunun ikinci satırı seçilir ve aynı işlem yapılır.
+-- 5. Bu işlemler dış sorgunun tüm satırları için tekrarlanır.
 
 SELECT "ProductName", "UnitPrice" FROM "products" AS "urunler1"
 WHERE "urunler1"."UnitPrice" >
@@ -250,10 +255,10 @@ WHERE "urunler1"."UnitPrice" >
 );
 
 
---	EXIST ifadesi ile birlikte başarımı çok iyidir.
---	Siparişi olan müşterilerin listesi.
+-- EXIST ifadesi ile birlikte başarımı çok iyidir.
+-- Siparişi olan müşterilerin listesi.
 
---	Alt sorgudaki * ifadesi yerine herhangi bir alan adı da yazılabilir.
+-- Alt sorgudaki * ifadesi yerine herhangi bir alan adı da yazılabilir.
 
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
@@ -269,7 +274,7 @@ FROM     "orders"
 INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
 
 
---	Siparişi olmayan müşterilerin listesi.
+-- Siparişi olmayan müşterilerin listesi.
 
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
@@ -279,16 +284,14 @@ WHERE NOT EXISTS
 
 
 
+-- ** UNION ve UNION ALL ** --
 
-
---** UNION ve UNION ALL **--
-
---	İki tablonun küme birleşimini alır.
---	Rastgele 2 tablonun birleşimi alınamaz.
---	İki tablonun nitelik sayıları aynı olmalı.
---	Aynı sıradaki nitelikleri aynı değer  alanı üzerinde tanımlanmış olmalıdır.
---	UNION ifadesi ile aynı kayıtlar bir defa gösterilir.
---	UNION ALL ifadesi ile aynı kayıtlar gösterilir.
+-- İki tablonun küme birleşimini alır.
+-- Rastgele iki tablonun birleşimi alınamaz.
+-- İki tablonun öznitelik sayıları aynı olmalı.
+-- Aynı sıradaki öznitelikleri aynı değer alanı üzerinde tanımlanmış olmalıdır.
+-- UNION ifadesi ile aynı kayıtlar bir defa gösterilir.
+-- UNION ALL ifadesi ile aynı kayıtlar gösterilir.
 
 SELECT "CustomerID" FROM "customers"
 UNION
@@ -309,12 +312,12 @@ ORDER BY 2;
 
 
 
---** INTERSECT **--
+-- ** INTERSECT ** --
 
---	İki tablonun küme kesişimi elde edilir.
---	Rasgele 2 tablonun kesişimi alınamaz.
---	İki tablonun nitelik sayıları aynı olmalı. 
---	Aynı sıradaki nitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
+-- İki tablonun küme kesişimi elde edilir.
+-- Rasgele iki tablonun kesişimi alınamaz.
+-- İki tablonun öznitelik sayıları aynı olmalı. 
+-- Aynı sıradaki öznitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
 
 SELECT "CompanyName", "Country" FROM "customers"
 INTERSECT
@@ -324,12 +327,12 @@ ORDER BY 2;
 
 
 
---** EXCEPT örneği **--
+-- ** EXCEPT örneği ** --
 
---	Bir tablonun diğerinden farkını elde etmek için kullanılır.
---	Rastgele 2 tabloya uygulanamaz.
---	İki tablonun nitelik sayıları aynı olmalı.
---	Aynı sıradaki nitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
+-- Bir tablonun diğerinden farkını elde etmek için kullanılır.
+-- Rastgele iki tabloya uygulanamaz.
+-- İki tablonun öznitelik sayıları aynı olmalı.
+-- Aynı sıradaki öznitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
 
 SELECT "CompanyName", "Country" FROM "customers"
 EXCEPT
@@ -339,20 +342,29 @@ ORDER BY 2;
 
 
 
---** İşlem/Hareket (Transaction) **--
+-- ** İşlem / Hareket (Transaction) ** --
 
--- İşlem (transaction) veri tabanı yönetim sistemlerinin önemli özelliklerinden birisi.
--- ACID ile belirtilen ozellikleri destekler
+-- İşlem (transaction) veritabanı yönetim sistemlerinin önemli özelliklerinden 
+-- birisidir.
+-- ACID ile belirtilen ozellikleri destekler.
 
--- ACID:  
--- Atomicity: İşlem(transaction) kapsamındaki alt işlemlerin tamamı bir bütün olarak ele alınır. Ya alt işlemlerin tamamı 
--- başarılı olarak çalıştırılır, ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski kararlı haline 
--- döndürülür. 
--- Consistency: Herhangi bir kısıt ihlal edilirse roll back işlemiyle veritabanı eski kararlı haline döndürülür.
--- Isolation: İşlemler birbirlerini (ortak kaynak kullanımı durumunda) etkilemezler. Kullanılan ortak kaynak işlem tarafından, 
--- işlem tamamlanana kadar, kilitlenir.
--- Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmış olan işlem sistem çalışmaya başladıktan sonra 
--- mutlaka tamamlanır.
+-- ACID ifadesi, Atomicity, Consistency, Isolation ve Durability kelimelerinin
+-- ilk harflerinin birleşiminden oluşur. Detayları aşağıda anlatılmıştır.
+
+-- Atomicity: İşlem(transaction) kapsamındaki alt işlemlerin tamamı bir bütün 
+-- olarak ele alınır. Ya alt işlemlerin tamamı başarılı olarak çalıştırılır, 
+-- ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski 
+-- kararlı haline döndürülür. 
+
+-- Consistency: Herhangi bir kısıt ihlal edilirse roll back işlemiyle veritabanı
+-- eski kararlı haline döndürülür.
+
+-- Isolation: İşlemler birbirlerini (ortak kaynak kullanımı durumunda) 
+-- etkilemezler. Kullanılan ortak kaynak işlem tarafından, işlem tamamlanana
+-- kadar, kilitlenir.
+
+-- Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmış 
+-- olan işlem sistem çalışmaya başladıktan sonra mutlaka tamamlanır.
 
 
 BEGIN; --İşleme (Transaction) başla.
@@ -368,7 +380,8 @@ Update "products"
 SET "UnitsInStock" = "UnitsInStock" - 2
 WHERE "ProductID" = 11;
 
--- Her iki sorguda hatasız bir şekilde icra edilirse her ikisini de işlet ve veri tabanının durumunu güncelle.
+-- Her iki sorguda hatasız bir şekilde icra edilirse her ikisini de işlet ve 
+-- veri tabanının durumunu güncelle.
 
 COMMIT; --İşlemi (transaction) tamamla.
 
@@ -383,10 +396,12 @@ UPDATE Hesap SET bakiye = bakiye - 100.00
 UPDATE Hesap SET bakiye = bakiye + 100.00
     WHERE adi = 'Mehmet';
 
--- parayı Mehmete değil Ayşeye gönder
---ROLLBACK TO my_savepoint;
---UPDATE Hesap SET bakiye = bakiye + 100.00
-    --WHERE adi = 'Ayşe';
+
+-- Parayı Mehmet'e değil Ayşe'ye gönder
+
+-- ROLLBACK TO my_savepoint;
+-- UPDATE Hesap SET bakiye = bakiye + 100.00
+    -- WHERE adi = 'Ayşe';
 COMMIT;
 
 
