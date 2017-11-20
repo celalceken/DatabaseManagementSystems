@@ -1,7 +1,7 @@
 
--- *** Temel SQL *** --
--- SQL DDL (Veri Tanımlama Dili / Data Definition Language) Komutları --
 
+-- *** Temel SQL (SQL DDL Komutları; INDEKS, KALITIM, TEKLİ BAĞINTI, SQL DML
+-- Komutları; VIEW (GÖRÜNÜM), ÇOKLU SATIR FONKSİYONLARI, GRUPLAMA) *** --
 
 
 -- INDEX --
@@ -128,26 +128,32 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 
 
 
---*** Görünüm / View Örneği ***--
+-- ** Görünüm (View) ** --
 
--- Bir veya daha fazla tablodan seçilen satırlar ve alanlardaki bilgilerin yeni bir tablo gibi görüntülenmesini temin eden yapıdır.
+-- Bir veya daha fazla tablodan seçilen satırlar ve alanlardaki bilgilerin yeni 
+-- bir tablo gibi görüntülenmesini temin eden yapıdır.
 
--- Tablo(lar)dan tüm satırlar seçilebileceği gibi yalnızca belli kriterlere uyan satırlar da seçilebilir.
+-- Tablo(lar)dan tüm satırlar seçilebileceği gibi yalnızca belli kriterlere uyan
+-- satırlar da seçilebilir.
 
--- Tablo(lar)daki tüm alanlar görünüme dahil edilebileceği gibi yalnızca belli alanlar da görünüme dahil edilebilir.
+-- Tablo(lar)daki tüm alanlar görünüme dahil edilebileceği gibi yalnızca belli 
+-- alanlar da görünüme dahil edilebilir.
 
 -- Seçme (SELECT) işlemi için kısa yol tanımlamak adına kullanılır.
 
 -- Genellikle karmaşık olan seçme (SELECT) işlemlerinde tercih edilir.
 
--- Dinamiktir. GÖRÜNÜM (VIEW) ile oluşturulan tabloya gerçekleştirilen her erişimde kendisini oluşturan ifadeler (görünüm – view ifadeleri) yeniden çalıştırılır.
+-- Dinamiktir. GÖRÜNÜM (VIEW) ile oluşturulan tabloya gerçekleştirilen her 
+-- erişimde kendisini oluşturan ifadeler (görünüm – view ifadeleri) yeniden 
+-- çalıştırılır.
 
 -- Karmaşık sorguları basit hale getirir.
 
 -- Güvenlik nedeniyle de kullanılır. 
-
---      Örneğin şirket personeli, müşterilerin genel bilgilerini (ad, soyad, adres v.b.) görebilsin ancak kredi kartı bilgilerine erişemesin isteniyorsa 
---     	yalnızca görmesini istediğimiz bilgileri içeren bir görünüm oluşturulabilir ve ilgili personeli bu görünüme yetkilendiririz.
+--     Örneğin şirket personeli, müşterilerin genel bilgilerini (ad, soyad, 
+--     adres v.b.) görebilsin ancak kredi kartı bilgilerine erişemesin 
+--     isteniyorsa yalnızca görmesini istediğimiz bilgileri içeren bir görünüm 
+--     oluşturulabilir ve ilgili personeli bu görünüme yetkilendiririz.
 
 
 CREATE OR REPLACE VIEW "public"."SiparisMusteriSatisTemsilcisi" AS
@@ -168,12 +174,11 @@ SELECT * FROM "SiparisMusteriSatisTemsilcisi"
 DROP VIEW "SiparisMusteriSatisTemsilcisi";
 
 
--- *** SQL Fonksiyonları ***--
 
+-- ** SQL Fonksiyonları ** --
 
 
 -- Çoklu Satır Fonksiyonları --
-
 
 
 -- AVG - Ortalama --
