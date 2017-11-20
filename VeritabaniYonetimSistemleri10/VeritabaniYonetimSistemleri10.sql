@@ -5,17 +5,22 @@
 -- Alt Sorgu Örnekleri
 
 -- Burada verilen örnekler NorthWind veritabanının 
---	http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS101.png 
---	verilen alt şemasıyla ilgilidir.
+-- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS101.png 
+-- verilen alt şemasıyla ilgilidir.
 
--- WHERE ifadesi içerisinde alt sorgu (Tek Değer Döndüren) Kullanımı
 
---	WHERE ifadesinde yalnızca =, !=, <, > gibi operatörler kullanılıyor ise alt sorgular sonucunda tek alan ve tek satır dönmeli  ve tipi uygun olmalı. 
---	Aksi halde hata verir.
 
---	Gruplama işleminden geriye tek değer döndürüldüğü için alt sorgu içerisinde gruplama fonksiyonu kullanılabilir.
+-- WHERE ile Alt Sorgu (Tek Değer Döndüren) Kullanımı
 
---	Alt sorgudaki koşul içerisinde birincil anahtar kullanılarak alt sorgudan tek değer döndürülmesi garanti edilebilir.
+-- WHERE ifadesinde yalnızca =, !=, <, > gibi operatörler kullanılıyor 
+-- ise alt sorgular sonucunda tek alan ve tek satır dönmeli ve veri tipi
+-- uygun olmalı. Aksi halde hata verir.
+
+-- Gruplama işleminden geriye tek değer döndürüldüğü için alt sorgu 
+-- içerisinde gruplama fonksiyonu kullanılabilir.
+
+-- Alt sorgudaki koşul içerisinde birincil anahtar kullanılarak alt 
+-- sorgudan tek değer döndürülmesi garanti edilebilir.
 
 
 SELECT AVG("UnitPrice") FROM "products";
@@ -40,13 +45,15 @@ ORDER BY "public"."customers"."CustomerID";
 
 
 
+
 -- WHERE ile Alt Sorgu (Çok Değer Döndüren) Kullanımı
 
---	Alt sorgudan çok değer dönmesi durumunda IN, ANY ve ALL ifadeleri kullanılmalıdır.
+-- Alt sorgudan çok değer dönmesi durumunda IN, ANY ve ALL ifadeleri 
+-- kullanılmalıdır.
 
 
--- 	IN ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesi içerisinde olup olmadığını araştırmak için kullanılır.
-
+-- IN ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesi 
+-- içerisinde olup olmadığını araştırmak için kullanılır.
 
 SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18
 
@@ -80,19 +87,26 @@ WHERE "SupplierID" IN
 
 
 
---	ANY ile  alt sorgu
+
+-- ANY ile  alt sorgu
 
 
---	Üç türü mevcuttur.
---	= ANY
---	> ANY
---	< ANY
+-- Üç türü mevcuttur.
+-- = ANY
+-- > ANY
+-- < ANY
 
---	= ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarından her hangi birisine eşit olup olmadığını araştırmak için kullanılır.
+--	= ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+--	kümesinin elemanlarından her hangi birisine eşit olup olmadığını 
+--	araştırmak için kullanılır.
 
---	> ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının her hangi birisinden büyük olup olmadığını araştırmak için kullanılır.
+--	> ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+--	kümesinin elemanlarının her hangi birisinden büyük olup olmadığını 
+--	araştırmak için kullanılır.
 
---	< ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının her hangi birisinden küçük olup olmadığını araştırmak için kullanılır.
+--	< ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+--	kümesinin elemanlarının her hangi birisinden küçük olup olmadığını 
+--	araştırmak için kullanılır.
 
 SELECT * FROM  "products"
 WHERE "UnitPrice" = ANY
@@ -145,11 +159,13 @@ WHERE "UnitPrice" > ANY
 --	> ALL
 --	< ALL
 
---	> ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının tamamından büyük olup olmadığını araştırmak için kullanılır.
+--	> ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+--	kümesinin elemanlarının tamamından büyük olup olmadığını araştırmak 
+--	için kullanılır.
 
---	< ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının tamamından küçük olup olmadığını araştırmak için kullanılır.
-
-
+--	< ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler 
+--	kümesinin elemanlarının tamamından küçük olup olmadığını araştırmak 
+--	için kullanılır.
 
 
 SELECT * FROM  "products"
@@ -175,7 +191,7 @@ WHERE "UnitPrice" > ALL
 
 
 
--- HAVING ifadesi içerisinde alt sorgu
+--	HAVING ile Alt Sorgu Kullanımı
 
 
 SELECT AVG("UnitsInStock") FROM "products";
@@ -184,7 +200,6 @@ SELECT "SupplierID", SUM("UnitsInStock") AS "Stoktaki Toplam Ürün Sayısı"
 FROM  "products"
 GROUP BY "SupplierID"
 HAVING SUM("UnitsInStock") < (SELECT AVG("UnitsInStock") FROM "products");
-
 
 
 
@@ -197,7 +212,8 @@ HAVING SUM("Quantity") > (SELECT MAX("Quantity") FROM "order_details");
 
 
 
--- Satır İçi (Inline) Alt Sorgu Kullanımı
+
+--	Satır İçi (Inline) Alt Sorgu Kullanımı
 
 --	Alt sorgular sonucunda tek alan ve tek satır dönmeli. Aksi halde hata verir.
 
@@ -219,7 +235,7 @@ GROUP BY "SupplierID"
 
 
 
--- İlintili Sorgu
+--	İlintili Sorgu
 
 
 --	İç içe döngülerdeki gibi dış sorgunun her bir satırı iç sorguya gönderilerek iç sorgunun çalıştırılması sağlanır.
@@ -238,6 +254,7 @@ WHERE "urunler1"."UnitPrice" >
   WHERE "urunler1"."SupplierID" = "urunler2"."SupplierID"
 );
 
+
 --	EXIST ifadesi ile birlikte başarımı çok iyidir.
 --	Siparişi olan müşterilerin listesi.
 
@@ -247,6 +264,7 @@ SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
+
     
 -- INNER JOIN ile de bulunabilirdi... (Daha yavaş)
 
@@ -254,6 +272,7 @@ SELECT  DISTINCT "public"."customers"."CompanyName",
          "public"."customers"."ContactName"
 FROM     "orders" 
 INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID" 
+
 
 --	Siparişi olmayan müşterilerin listesi.
 
@@ -294,6 +313,7 @@ SELECT "CompanyName", "Country" FROM "suppliers"
 ORDER BY 2;
 
 
+
 -- INTERSECT
 
 --	İki tablonun küme kesişimi elde edilir.
@@ -308,6 +328,7 @@ ORDER BY 2;
 
 
 
+
 -- EXCEPT örneği
 
 --	Bir tablonun diğerinden farkını elde etmek için kullanılır.
@@ -319,6 +340,7 @@ SELECT "CompanyName", "Country" FROM "customers"
 EXCEPT
 SELECT "CompanyName", "Country" FROM "suppliers"
 ORDER BY 2;
+
 
 
 
