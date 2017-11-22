@@ -409,7 +409,7 @@ ALTER TABLE "Urunler1" ADD CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu")
 CREATE TABLE "UrunTipleri" (
     "tipNo" SERIAL,
     "adi" VARCHAR(30) NOT NULL,
-	CONSTRAINT "urunTipiPK" PRIMARY KEY("tipNumarasi")
+	CONSTRAINT "urunTipiPK" PRIMARY KEY("tipNo")
 );
 
 CREATE TABLE "Urunler" (
