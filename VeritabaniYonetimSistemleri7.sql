@@ -422,7 +422,7 @@ CREATE TABLE "Urunler" (
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
-	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0),
 	CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") REFERENCES "UrunTipleri"("tipNo")	
 );
 
@@ -440,7 +440,7 @@ CREATE TABLE "Urunler" (
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
-	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0),
 	CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") REFERENCES "UrunTipleri"("tipNo") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
