@@ -4,6 +4,43 @@
 
 --** Fonksiyon (Saklı Yordam) Tanımlama **--
 
+Veri tabanı kataloğunda saklanan SQL ifadeleridir. Fonksiyonlar / saklı yordamlar; uygulama yazılımları, tetikleyici ya da başka bir 
+fonksiyon / saklı yordam tarafından çağrılabilirler.
+
+--* Avantajları *--
+
+Uygulamanın başarımını iyileştirir. Fonksiyonlar / saklı yordamlar, bir defa oluşturulduktan sonra derlenerek veri tabanı kataloğunda saklanır. 
+Her çağrıldığında SQL motoru tarafından derlenmek zorunda olan SQL ifadelerine göre çok daha hızlıdır.
+
+Uygulama ile veri tabanı sunucusu arasındaki trafiği azaltır.
+Uzun SQL ifadeleri yerine fonkiyonun / saklı yordamın adını ve parametrelerini göndermek yeterlidir. 
+Ara sonuçların istemci/sunucu arasında gönderilmesi önlenir.
+
+Yeniden kullanılabilir (reusable). Tasarım ve uygulama geliştirme sürecini hızlandırır.
+
+Güvenliğin sağlanması açısından çok kullanışlıdır. Veri tabanı yöneticisi, fonksiyonlara / saklı yordamlara hangi uygulamalar tarafından 
+erişileceğini, tabloların güvenlik düzeyleriyle uğraşmadan, kolayca belirleyebilir.
+
+--* Dezavantajları*--
+
+Fonksiyon / saklı yordam ile program yazmak, değiştirmek (sürüm kontrolü) ve hata bulmak zordur.
+
+VTYS veri depolama ve listeleme işlerine ek olarak farklı işler yapmak zorunda da kalacağı için bellek kullanımı ve işlem zamanı 
+açısından olumsuz sonuçlara neden olabilir.
+
+Saklı yordamların yapacağı işler uygulama yazılımlarına da yaptırılabilir.
+
+Uygulamanın iş mantığı veri tabanı sunucuya kaydırıldığı için uygulama ile veri tabanı arasındaki 
+bağımlılık artar ve veri tabanından bağımsız kodlama yapma gitgide imkansızlaşır...
+
+--* Koşullu İfadeler *--
+
+http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
+
+--* Tekrarlı İfadeler - Döngüler *--
+
+http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
+
 
 CREATE OR REPLACE FUNCTION fonksiyonTanimlama(mesaj text, altKarakterSayisi SMALLINT, tekrarSayisi integer)
 RETURNS text AS  -- SETOF TEXT, SETOF record... diyerek çok sayıda değerin döndürülmesi de mümkündür
