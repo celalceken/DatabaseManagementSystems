@@ -6,7 +6,7 @@
 
 -- Burada verilen örnekler NorthWind veritabanının 
 -- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS101.png 
--- verilen alt şemasıyla ilgilidir.
+-- bağlantısıyla verilen alt şemasıyla ilgilidir.
 
 
 
