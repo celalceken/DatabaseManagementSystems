@@ -42,6 +42,21 @@ http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png
 http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
 
 
+--* Fonksiyon Örneği 1 *--
+CREATE or replace FUNCTION inch2m(sayiInch real)
+RETURNS REAL AS
+$$
+BEGIN
+    RETURN 2.54*sayiINCH/100;
+END;
+$$
+LANGUAGE plpgsql;
+
+
+Select * from inch2m(10);
+
+---------------------------------
+
 CREATE OR REPLACE FUNCTION fonksiyonTanimlama(mesaj text, altKarakterSayisi SMALLINT, tekrarSayisi integer)
 RETURNS text AS  -- SETOF TEXT, SETOF record... diyerek çok sayıda değerin döndürülmesi de mümkündür
 $$ -- Fonksiyon govdesi başlangici
@@ -175,9 +190,9 @@ $$;
 select odemeToplami(2);
 
 
------ Cursor Kullanımı-----
+--* Cursor Kullanımı *--
 
- -- Sorgu sonuçlarının(resultset) toplu olarak gelmesi yerine veri tbanı sunucudan 
+-- Sorgu sonuçlarının(resultset) toplu olarak gelmesi yerine veri tbanı sunucudan 
 -- satır satır getirilmesini sağlar (LIMIT - OFFSET yapısı da benzer işi yapıyordu...).
 -- Yük dengeleme, uygulama sunucusunun belleğinin verimli kullanımı v.s.
 
@@ -209,7 +224,32 @@ SELECT * from filmAra(2006,'T');
 
 
 
-------Trigger  ------------
+--** Tetikleyici (Trigger) **--
+
+http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
+
+
+INSERT, UPDATE  ve DELETE (PostgreSQL de TRUNCATE içinde tanımlanabilir) 
+işlemleri ile birlikte otomatik olarak çalıştırılabilen fonksiyonlardır.
+
+--* Avantajları *--
+Veri bütünlüğünün sağlanması için alternatif bir yoldur.
+
+İş mantığındaki hataları veritabanı düzeyinde yakalar. 
+
+Zamanlanmış görevler için alternatif bir yoldur. Görevler beklenmeden insert, update ve delete 
+işlemlerinden önce ya da sonra otomatik olarak yerine getirilebilir.
+
+Tablolardaki değişikliklerin loglanması işlemlerinde oldukça faydalıdır.
+
+--* Dezavantajları *--
+Veritabanı tasarımının anlaşılabilirliğini düşürür. Saklı yordamlarla/fonksiyonlarla birlikte, görünür 
+veritabanı yapısının arkasında başka bir yapı oluştururlar
+
+Tablolarla ilgili her değişiklikte çalıştıkları için ek iş yükü oluştururlar ve bunun sonucu olarak işlem 
+gecikmeleri artabilir.
+
+
 
 --NorthWind veritabanındaki ürünlerin birim fiyat değişimlerini izlemek için kullanılır...
 
@@ -238,3 +278,20 @@ CREATE  TRIGGER urunBirimFiyatDegistiginde
 BEFORE UPDATE  ON products
 FOR EACH ROW
 EXECUTE PROCEDURE "urunDegisikligiTR1"();
+
+
+--** PostgreSQL Hazır Fonksiyonları **--
+
+
+--* Matematiksel Fonksiyonlar *--
+
+https://www.postgresql.org/docs/9.6/static/functions-math.html
+
+--* Karakter Katarı (String) Fonksiyonları *--
+
+https://www.postgresql.org/docs/9.6/static/functions-string.html
+
+--* Tarih ve Zaman Fonksiyonları *--
+
+https://www.postgresql.org/docs/9.6/static/functions-datetime.html
+https://www.postgresql.org/docs/9.6/static/functions-formatting.html
