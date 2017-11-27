@@ -226,7 +226,7 @@ SELECT * from filmAra(2006,'T');
 
 --** Tetikleyici (Trigger) **--
 
-http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
+http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS113.png 
 
 
 INSERT, UPDATE  ve DELETE (PostgreSQL de TRUNCATE içinde tanımlanabilir) 
