@@ -60,13 +60,13 @@
 
 -- * Koşullu İfadeler * --
 
-http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
+-- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
 
 
 
 -- * Döngüler * --
 
-http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
+-- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
 
 
 
