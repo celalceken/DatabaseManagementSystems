@@ -1,67 +1,103 @@
---*** SQL Programlama: Karar Yapıları, Tekrarlı İfadeler, Fonksiyon/Saklı Yordam Tanımlama, Cursor, Trigger, Hazır Fonksiyonlar ***--
 
---Pagila Örnek Veri Tabanını Kullanmaktadır
+-- *** SQL Programlama: Fonksiyon / Saklı Yordam, Koşullu İfadeler,
+-- Döngüler, İmleç (Cursor), Tetikleyici (Trigger), Hazır Fonksiyonlar *** --
 
---** Fonksiyon (Saklı Yordam) Tanımlama **--
 
-Veri tabanı kataloğunda saklanan SQL ifadeleridir. Fonksiyonlar / saklı yordamlar; uygulama yazılımları, tetikleyici ya da başka bir 
-fonksiyon / saklı yordam tarafından çağrılabilirler.
 
---* Avantajları *--
+-- Pagila Örnek Veri Tabanını Kullanmaktadır.
 
-Uygulamanın başarımını iyileştirir. Fonksiyonlar / saklı yordamlar, bir defa oluşturulduktan sonra derlenerek veri tabanı kataloğunda saklanır. 
-Her çağrıldığında SQL motoru tarafından derlenmek zorunda olan SQL ifadelerine göre çok daha hızlıdır.
 
-Uygulama ile veri tabanı sunucusu arasındaki trafiği azaltır.
-Uzun SQL ifadeleri yerine fonkiyonun / saklı yordamın adını ve parametrelerini göndermek yeterlidir. 
-Ara sonuçların istemci/sunucu arasında gönderilmesi önlenir.
 
-Yeniden kullanılabilir (reusable). Tasarım ve uygulama geliştirme sürecini hızlandırır.
+-- ** Fonksiyon / Saklı Yordam **--
 
-Güvenliğin sağlanması açısından çok kullanışlıdır. Veri tabanı yöneticisi, fonksiyonlara / saklı yordamlara hangi uygulamalar tarafından 
-erişileceğini, tabloların güvenlik düzeyleriyle uğraşmadan, kolayca belirleyebilir.
 
---* Dezavantajları*--
 
-Fonksiyon / saklı yordam ile program yazmak, değiştirmek (sürüm kontrolü) ve hata bulmak zordur.
+-- Fonksiyonlar / saklı yordamlar, veri tabanı kataloğunda saklanan SQL 
+-- ifadeleridir. Uygulama yazılımları, tetikleyici ya da başka bir 
+-- fonksiyon / saklı yordam tarafından çağrılabilirler.
 
-VTYS veri depolama ve listeleme işlerine ek olarak farklı işler yapmak zorunda da kalacağı için bellek kullanımı ve işlem zamanı 
-açısından olumsuz sonuçlara neden olabilir.
 
-Saklı yordamların yapacağı işler uygulama yazılımlarına da yaptırılabilir.
 
-Uygulamanın iş mantığı veri tabanı sunucuya kaydırıldığı için uygulama ile veri tabanı arasındaki 
-bağımlılık artar ve veri tabanından bağımsız kodlama yapma gitgide imkansızlaşır...
+-- * Avantajları * --
 
---* Koşullu İfadeler *--
+-- Uygulamanın başarımını iyileştirir. 
+--     Fonksiyonlar / saklı yordamlar, bir defa oluşturulduktan sonra 
+--     derlenerek veritabanı kataloğunda saklanır. Her çağrıldıklarında 
+--     SQL motoru tarafından derlenmek zorunda olan SQL ifadelerine göre
+--     çok daha hızlıdır.
+
+-- Uygulama ile veritabanı sunucusu arasındaki trafiği azaltır.
+--     Uzun SQL ifadeleri yerine fonkiyonun / saklı yordamın adını ve 
+--     parametrelerini göndermek yeterlidir. Ara sonuçların istemci ve 
+--     sunucu arasında gönderilmesi önlenir.
+
+-- Yeniden kullanılabilir (reusable). 
+--     Tasarım ve uygulama geliştirme sürecini hızlandırır.
+
+-- Güvenliğin sağlanması açısından çok kullanışlıdır. 
+--     Veritabanı yöneticisi, fonksiyonlara / saklı yordamlara hangi 
+--     uygulamalar tarafından erişileceğini, tabloların güvenlik 
+--     düzeyleriyle uğraşmadan, kolayca belirleyebilir.
+
+
+
+-- * Dezavantajları * --
+
+-- Fonksiyon / saklı yordam ile program yazmak, değiştirmek 
+-- (sürüm kontrolü) ve hata bulmak zordur.
+
+-- Veritabanı Yönetim Sistemi, veri depolama ve listeleme işlerine ek 
+-- olarak farklı işler yapmak zorunda da kalacağı için bellek kullanımı 
+-- ve işlem zamanı açısından olumsuz sonuçlara neden olabilir.
+
+-- Saklı yordamların yapacağı işler uygulama yazılımlarına da yaptırılabilir.
+
+-- Uygulamanın iş mantığı veritabanı sunucusuna kaydırıldığı için uygulama 
+-- ile veritabanı arasındaki bağımlılık artar ve veritabanından bağımsız 
+-- kodlama yapmak gitgide imkansızlaşır.
+
+
+
+-- * Koşullu İfadeler * --
 
 http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
 
---* Tekrarlı İfadeler - Döngüler *--
+
+
+-- * Döngüler * --
 
 http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
 
 
---* Fonksiyon Örneği 1 *--
-CREATE or replace FUNCTION inch2m(sayiInch real)
-RETURNS REAL AS
-$$
+
+-- * Fonksiyon Örneği 1 * --
+
+CREATE OR REPLACE FUNCTION inch2m(sayiInch REAL)
+RETURNS REAL 
+AS
+$$ -- Fonksiyon govdesinin (tanımının) başlangıcı
 BEGIN
-    RETURN 2.54*sayiINCH/100;
+    RETURN 2.54 * sayiINCH / 100;
 END;
-$$
+$$ -- Fonksiyon govdesinin (tanımının) sonu
 LANGUAGE plpgsql;
 
 
-Select * from inch2m(10);
 
----------------------------------
+-- Fonksiyon çağrısı
+
+SELECT * FROM inch2m(10);
+
+
+
+-- * Fonksiyon Örneği 2 * --
 
 CREATE OR REPLACE FUNCTION fonksiyonTanimlama(mesaj text, altKarakterSayisi SMALLINT, tekrarSayisi integer)
-RETURNS text AS  -- SETOF TEXT, SETOF record... diyerek çok sayıda değerin döndürülmesi de mümkündür
-$$ -- Fonksiyon govdesi başlangici
+RETURNS TEXT -- SETOF TEXT, SETOF RECORD diyerek çok sayıda değerin döndürülmesi de mümkündür
+AS  
+$$
 DECLARE
-    sonuc text; --Degisken tanimlama Blogu
+    sonuc TEXT; -- Değişken tanımlama bloğu
 BEGIN
     sonuc := '';
     IF tekrarSayisi > 0 THEN
@@ -72,16 +108,27 @@ BEGIN
     END IF;
     RETURN sonuc;
 END;
-$$ -- Fonksiyon govdesi sonu
-LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER ;
---immutable: aynı girişler için aynı çıkışları üretecek
---SECURITY DEFINER: fonksiyonu oluşturanın yetkileriyle çalıştırılsın.
+$$
+LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER;
+
+-- IMMUTABLE: Aynı girişler için aynı çıkışları üretir. Optimizasyon
+-- mümkün olabilir.
+-- Varsayılan VOLATILE: Fonksiyon değeri değişebilir dolayısıyla
+-- optimizasyon yapılamaz.
+
+-- SECURITY DEFINER: Fonksiyon, oluşturan kullanıcının yetkileriyle 
+-- çalıştırılır.
+-- Varsayılan SECURITY INVOKER: Fonksiyon, çağıran kullanıcının yetkileri 
+-- ile çalıştırılır.
 
 
-SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10) --fonksiyonun cagrilmasi
+-- Fonksiyon çağrısı
+
+SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10);
 
 
--------Dil Desteği Ekleme-------------
+
+-- * Dil Desteği Ekleme * --
 
 
 -- Linux
@@ -89,17 +136,27 @@ SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10) --fonksiyonun cagrilmasi
 -- BilgisayarAdi@KullaniciAdi:~$ sudo apt-get install postgresql-plperl-9.5 
 
 
--- Application Stack Builder uygulaması mevcutsa bu uygulama aracılığı ile de EDB Language Pack yüklenerek ek dil paketleri eklenebilir.
+-- Application Stack Builder uygulaması mevcutsa bu uygulama aracılığı 
+-- ile de EDB Language Pack yüklenerek ek dil paketleri eklenebilir.
 
 -- Dil paketi yüklendikten sonra dilin oluşturulması gerekir.
+
 CREATE LANGUAGE "plperl";
 
+
 -- Ekli dilleri göster.
+
 SELECT * FROM "pg_language";
 
 
-CREATE FUNCTION kucukOlaniDondur (INT, INT) 
-RETURNS INTEGER AS
+
+-- * Fonksiyon Örneği 3 * --
+
+-- plperl dili ile örnek bir fonksiyon örneği aşağıda görülmektedir.
+
+CREATE FUNCTION kucukOlaniDondur (INT, INT)
+RETURNS INTEGER 
+AS
 $$
     if ($_[0] > $_[1]) 
     { 
@@ -111,94 +168,123 @@ LANGUAGE "plperl";
 
 
 
+-- * Fonksiyon Örneği 4 * --
 
------Select Sorgusu Sonucu Üzerinde Dolanım----------
-
+-- Bir SELECT sorgusu sonuç kümesi içerisinde dolanımın nasıl 
+-- yapılacağını gösteren bir fonksiyon örneği aşağıda gösterilmektedir.
 
 CREATE OR REPLACE FUNCTION kayitDolanimi()
-RETURNS TEXT AS
+RETURNS TEXT
+AS
 $$
 DECLARE
-    musteriler  customer%ROWTYPE; --customer."CustomerID"%TYPE
+    musteriler customer%ROWTYPE; -- customer."CustomerID"%TYPE
     sonuc TEXT;
 BEGIN
-    sonuc:='';
+    sonuc := '';
     FOR musteriler IN SELECT * FROM customer LOOP
-        sonuc:= sonuc || musteriler."customer_id" || E'\t' || musteriler."first_name"|| E'\r\n';
+        sonuc := sonuc || musteriler."customer_id" || E'\t' || musteriler."first_name" || E'\r\n';
     END LOOP;
     RETURN sonuc;
 END;
 $$
 LANGUAGE 'plpgsql';
 
-SELECT  kayitDolanimi() --fonksiyonun cagrilmasi
+
+-- Fonksiyon çağrısı
+
+SELECT  kayitDolanimi();
 
 
 
----------- Tablo Döndürme----------
+-- * Fonksiyon Örneği 5 * --
 
-CREATE or replace FUNCTION personelAra(personelNo INT)
-RETURNS TABLE(numara INT, adi varchar(40), soyadi VARCHAR(40)) AS $$
+-- Tablo döndüren fonksiyon örneği aşağıdadır.
+
+CREATE OR REPLACE FUNCTION personelAra(personelNo INT)
+RETURNS TABLE(numara INT, adi VARCHAR(40), soyadi VARCHAR(40)) 
+AS 
+$$
 BEGIN
-    RETURN QUERY SELECT "staff_id","first_name","last_name" FROM staff
-                 WHERE "staff_id"=personelNo;
+    RETURN QUERY SELECT "staff_id", "first_name", "last_name" FROM staff
+                 WHERE "staff_id" = personelNo;
 END;
 $$
-LANGUAGE plpgsql;
-
-Select * from personelAra(1);
+LANGUAGE "plpgsql";
 
 
+-- Fonksiyon çağrısı
+
+SELECT * FROM personelAra(1);
 
 
---------Çıkış Parametresi-------
 
-CREATE or replace FUNCTION inch2cm(sayiInch real, OUT sayiCM REAL)
-AS $$
+-- * Fonksiyon Örneği 6 * --
+
+-- Argüman listesinde çıkış parametresi tanımlanan fonksiyon örneği 
+-- aşağıdadır.
+
+CREATE OR REPLACE FUNCTION inch2cm(sayiInch real, OUT sayiCM REAL)
+AS 
+$$
 BEGIN
-    sayiCM=2.54*sayiINCH;
+    sayiCM := 2.54 * sayiINCH;
 END;
 $$
-LANGUAGE plpgsql;
+LANGUAGE "plpgsql";
 
 
-Select * from inch2cm(2);
+-- Fonksiyon çağrısı
+
+SELECT * FROM inch2cm(2);
 
 
--------Fonksiyon içerisinden fonksiyon çağırma-------
 
-CREATE OR REPLACE FUNCTION public.odemetoplami(personelno integer)
- RETURNS text
- LANGUAGE plpgsql
-AS $$
+-- * Fonksiyon Örneği 7 * --
+
+-- Fonksiyon içerisinden fonksiyon çağırma örneği aşağıdadır.
+
+CREATE OR REPLACE FUNCTION public.odemetoplami(personelno INTEGER)
+RETURNS TEXT
+LANGUAGE "plpgsql"
+AS
+$$
 DECLARE
-
     sonuc TEXT;
     personel record;
     miktar NUMERIC;
-
 BEGIN
-    personel=personelAra(personelNo);
-    FOR miktar IN SELECT SUM(amount) from payment where staff_id=personelNo LOOP
+    personel := personelAra(personelNo);
+    FOR miktar IN SELECT SUM(amount) FROM payment WHERE staff_id = personelNo LOOP
     END LOOP;
 
-    return personel."numara"||E'\t'||personel."adi"||E'\t'||miktar;
+    RETURN personel."numara" || E'\t' || personel."adi" || E'\t' || miktar;
 END
 $$;
 
 
-select odemeToplami(2);
+-- Fonksiyon çağrısı
+
+SELECT odemeToplami(2);
 
 
---* Cursor Kullanımı *--
 
--- Sorgu sonuçlarının(resultset) toplu olarak gelmesi yerine veri tbanı sunucudan 
--- satır satır getirilmesini sağlar (LIMIT - OFFSET yapısı da benzer işi yapıyordu...).
--- Yük dengeleme, uygulama sunucusunun belleğinin verimli kullanımı v.s.
+-- ** İmleç (Cursor) ** --
+
+-- İmleç (cursor), sorgunun sonuç kümesinin toplu olarak getirilmesi 
+-- yerine veritabanı sunucusundan satır satır getirilmesini sağlar. 
+-- LIMIT ve OFFSET yapılarının da benzer bir işi yaptığını hatırlayın.
+
+-- Yük dengeleme, uygulama sunucusunun belleğinin verimli kullanımı vb.
+-- amaçlar ile kullanılabilir.
 
 
-CREATE OR REPLACE FUNCTION "filmAra"(yapimYili INTEGER, filmAdi TEXT)
-RETURNS text AS
+
+-- ** İmleç Örneği ** --
+
+CREATE OR REPLACE FUNCTION filmAra(yapimYili INTEGER, filmAdi TEXT)
+RETURNS TEXT
+AS
 $$
 DECLARE
     filmAdlari TEXT DEFAULT '';
@@ -210,48 +296,63 @@ BEGIN
       FETCH filmImleci INTO film;
       EXIT WHEN NOT FOUND;
       IF film.title LIKE filmAdi || '%' THEN
-         filmAdlari := filmAdlari || ',' || film.title || ':' || film.release_year;
+          filmAdlari := filmAdlari || ',' || film.title || ':' || film.release_year;
       END IF;
    END LOOP;
    CLOSE filmImleci;
 
    RETURN filmAdlari;
-END; $$
+END;
+$$
 LANGUAGE 'plpgsql';
 
-----------
-SELECT * from filmAra(2006,'T');
+
+-- Fonksiyon çağrısı
+
+SELECT * FROM filmAra(2006, 'T');
 
 
 
---** Tetikleyici (Trigger) **--
+-- ** Tetikleyici (Trigger) ** --
 
-http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS113.png 
+-- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS113.png 
 
-
-INSERT, UPDATE  ve DELETE (PostgreSQL de TRUNCATE içinde tanımlanabilir) 
-işlemleri ile birlikte otomatik olarak çalıştırılabilen fonksiyonlardır.
-
---* Avantajları *--
-Veri bütünlüğünün sağlanması için alternatif bir yoldur.
-
-İş mantığındaki hataları veritabanı düzeyinde yakalar. 
-
-Zamanlanmış görevler için alternatif bir yoldur. Görevler beklenmeden insert, update ve delete 
-işlemlerinden önce ya da sonra otomatik olarak yerine getirilebilir.
-
-Tablolardaki değişikliklerin loglanması işlemlerinde oldukça faydalıdır.
-
---* Dezavantajları *--
-Veritabanı tasarımının anlaşılabilirliğini düşürür. Saklı yordamlarla/fonksiyonlarla birlikte, görünür 
-veritabanı yapısının arkasında başka bir yapı oluştururlar
-
-Tablolarla ilgili her değişiklikte çalıştıkları için ek iş yükü oluştururlar ve bunun sonucu olarak işlem 
-gecikmeleri artabilir.
+-- INSERT, UPDATE ve DELETE (PostgreSQL'de TRUNCATE için de tanımlanabilir) 
+-- işlemleri ile birlikte otomatik olarak çalıştırılabilen fonksiyonlardır.
 
 
 
---NorthWind veritabanındaki ürünlerin birim fiyat değişimlerini izlemek için kullanılır...
+-- * Avantajları * --
+
+-- Veri bütünlüğünün sağlanması için alternatif bir yoldur.
+
+-- İş mantığındaki hataları veritabanı düzeyinde yakalar. 
+
+-- Zamanlanmış görevler için alternatif bir yoldur. 
+--     Görevler beklenmeden INSERT, UPDATE ve DELETE işlemlerinden önce 
+--     ya da sonra otomatik olarak yerine getirilebilir.
+
+-- Tablolardaki değişikliklerin günlüğünün tutulması (logging) 
+-- işlemlerinde oldukça faydalıdır.
+
+
+
+-- * Dezavantajları * --
+
+-- Veritabanı tasarımının anlaşılabilirliğini düşürür. 
+--     Fpnksiyonlarla / saklı yordamlarla birlikte görünür veritabanı 
+--     yapısının arkasında başka bir yapı oluştururlar.
+
+-- Ek iş yükü oluştururlar ve dolayısıyla işlem gecikmeleri artabilir. 
+--     Tablolarla ilgili her değişiklikte çalıştıkları için ek iş yükü 
+--     oluştururlar ve bunun sonucu olarak işlem gecikmeleri artabilir.
+
+
+
+-- * Tetikleyici Örneği * --
+
+-- NorthWind veritabanındaki ürünlerin birim fiyat değişimlerini izlemek
+-- için kullanılan bir tetikleyici örneği aşağıdadır.
 
 CREATE TABLE "public"."UrunDegisikligiIzle" (
 	"kayitNo" serial,
@@ -259,39 +360,48 @@ CREATE TABLE "public"."UrunDegisikligiIzle" (
 	"eskiBirimFiyat" Real NOT NULL,
 	"yeniBirimFiyat" Real NOT NULL,
 	"degisiklikTarihi" TIMESTAMP NOT NULL,
-	CONSTRAINT "PK" PRIMARY KEY ( "kayitNo" ) );
- -------------------
+	CONSTRAINT "PK" PRIMARY KEY ( "kayitNo" )
+);
+	
 CREATE OR REPLACE FUNCTION "urunDegisikligiTR1"()
-RETURNS TRIGGER AS $$
+RETURNS TRIGGER 
+AS
+$$
 BEGIN
     IF NEW."UnitPrice" <> OLD."UnitPrice" THEN
-		INSERT INTO "UrunDegisikligiIzle"("urunNo","eskiBirimFiyat","yeniBirimFiyat","degisiklikTarihi")
-		VALUES(OLD."ProductID",OLD."UnitPrice",NEW."UnitPrice",CURRENT_TIMESTAMP::TIMESTAMP);
-	END IF;
+        INSERT INTO "UrunDegisikligiIzle"("urunNo", "eskiBirimFiyat", "yeniBirimFiyat", "degisiklikTarihi")
+        VALUES(OLD."ProductID", OLD."UnitPrice", NEW."UnitPrice", CURRENT_TIMESTAMP::TIMESTAMP);
+    END IF;
 
-	RETURN NEW;
+    RETURN NEW;
 END;
 $$
-LANGUAGE plpgsql;
+LANGUAGE "plpgsql";
 
-CREATE  TRIGGER urunBirimFiyatDegistiginde
-BEFORE UPDATE  ON products
+CREATE TRIGGER urunBirimFiyatDegistiginde
+BEFORE UPDATE ON "products"
 FOR EACH ROW
 EXECUTE PROCEDURE "urunDegisikligiTR1"();
 
 
---** PostgreSQL Hazır Fonksiyonları **--
+
+-- ** PostgreSQL Hazır Fonksiyonları ** --
 
 
---* Matematiksel Fonksiyonlar *--
 
-https://www.postgresql.org/docs/9.6/static/functions-math.html
+-- * Matematiksel Fonksiyonlar * --
 
---* Karakter Katarı (String) Fonksiyonları *--
+-- https://www.postgresql.org/docs/9.6/static/functions-math.html
 
-https://www.postgresql.org/docs/9.6/static/functions-string.html
 
---* Tarih ve Zaman Fonksiyonları *--
 
-https://www.postgresql.org/docs/9.6/static/functions-datetime.html
-https://www.postgresql.org/docs/9.6/static/functions-formatting.html
+-- * Karakter Katarı (String) Fonksiyonları * --
+
+-- https://www.postgresql.org/docs/9.6/static/functions-string.html
+
+
+
+-- * Tarih ve Zaman Fonksiyonları * --
+
+-- https://www.postgresql.org/docs/9.6/static/functions-datetime.html
+-- https://www.postgresql.org/docs/9.6/static/functions-formatting.html
