@@ -409,4 +409,9 @@ EXECUTE PROCEDURE "urunDegisikligiTR1"();
 -- * Tarih ve Zaman Fonksiyonları * --
 
 -- https://www.postgresql.org/docs/9.6/static/functions-datetime.html
+
+
+
+-- * Veri Tipi Biçimlendirme Fonksiyonları * --
+
 -- https://www.postgresql.org/docs/9.6/static/functions-formatting.html
