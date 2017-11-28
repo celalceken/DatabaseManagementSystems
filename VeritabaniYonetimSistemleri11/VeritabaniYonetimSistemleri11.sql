@@ -27,7 +27,7 @@
 --     çok daha hızlıdır.
 
 -- Uygulama ile veritabanı sunucusu arasındaki trafiği azaltır.
---     Uzun SQL ifadeleri yerine fonkiyonun / saklı yordamın adını ve 
+--     Uzun SQL ifadeleri yerine fonksiyonun / saklı yordamın adını ve 
 --     parametrelerini göndermek yeterlidir. Ara sonuçların istemci ve 
 --     sunucu arasında gönderilmesi önlenir.
 
@@ -50,7 +50,8 @@
 -- olarak farklı işler yapmak zorunda da kalacağı için bellek kullanımı 
 -- ve işlem zamanı açısından olumsuz sonuçlara neden olabilir.
 
--- Saklı yordamların yapacağı işler uygulama yazılımlarına da yaptırılabilir.
+-- Fonksiyonların / saklı yordamların yapacağı işler uygulama 
+-- yazılımlarına da yaptırılabilir.
 
 -- Uygulamanın iş mantığı veritabanı sunucusuna kaydırıldığı için uygulama 
 -- ile veritabanı arasındaki bağımlılık artar ve veritabanından bağımsız 
