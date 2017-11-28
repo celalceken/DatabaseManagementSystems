@@ -384,6 +384,10 @@ FOR EACH ROW
 EXECUTE PROCEDURE "urunDegisikligiTR1"();
 
 
+-- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS114.png 
+
+
+
 
 -- ** PostgreSQL Hazır Fonksiyonları ** --
 
