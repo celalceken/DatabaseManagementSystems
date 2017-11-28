@@ -31,7 +31,7 @@
 --     parametrelerini göndermek yeterlidir. Ara sonuçların istemci ve 
 --     sunucu arasında gönderilmesi önlenir.
 
--- Yeniden kullanılabilir (reusable). 
+-- Yeniden kullanılabilir (reusable).
 --     Tasarım ve uygulama geliştirme sürecini hızlandırır.
 
 -- Güvenliğin sağlanması açısından çok kullanışlıdır. 
@@ -74,7 +74,7 @@
 -- * Fonksiyon Örneği 1 * --
 
 CREATE OR REPLACE FUNCTION inch2m(sayiInch REAL)
-RETURNS REAL 
+RETURNS REAL
 AS
 $$ -- Fonksiyon govdesinin (tanımının) başlangıcı
 BEGIN
@@ -327,7 +327,7 @@ SELECT * FROM filmAra(2006, 'T');
 
 -- Veri bütünlüğünün sağlanması için alternatif bir yoldur.
 
--- İş mantığındaki hataları veritabanı düzeyinde yakalar. 
+-- İş mantığındaki hataları veritabanı düzeyinde yakalar.
 
 -- Zamanlanmış görevler için alternatif bir yoldur. 
 --     Görevler beklenmeden INSERT, UPDATE ve DELETE işlemlerinden önce 
@@ -341,7 +341,7 @@ SELECT * FROM filmAra(2006, 'T');
 -- * Dezavantajları * --
 
 -- Veritabanı tasarımının anlaşılabilirliğini düşürür. 
---     Fpnksiyonlarla / saklı yordamlarla birlikte görünür veritabanı 
+--     Fonksiyonlarla / saklı yordamlarla birlikte görünür veritabanı 
 --     yapısının arkasında başka bir yapı oluştururlar.
 
 -- Ek iş yükü oluştururlar ve dolayısıyla işlem gecikmeleri artabilir. 
@@ -361,7 +361,7 @@ CREATE TABLE "public"."UrunDegisikligiIzle" (
 	"eskiBirimFiyat" Real NOT NULL,
 	"yeniBirimFiyat" Real NOT NULL,
 	"degisiklikTarihi" TIMESTAMP NOT NULL,
-	CONSTRAINT "PK" PRIMARY KEY ( "kayitNo" )
+	CONSTRAINT "PK" PRIMARY KEY ("kayitNo")
 );
 	
 CREATE OR REPLACE FUNCTION "urunDegisikligiTR1"()
@@ -379,14 +379,32 @@ END;
 $$
 LANGUAGE "plpgsql";
 
-CREATE TRIGGER urunBirimFiyatDegistiginde
+CREATE TRIGGER "urunBirimFiyatDegistiginde"
 BEFORE UPDATE ON "products"
 FOR EACH ROW
 EXECUTE PROCEDURE "urunDegisikligiTR1"();
 
+UPDATE "products"
+SET "UnitPrice" = 100
+WHERE "ProductID" = 4 
 
--- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS114.png 
 
+ALTER TABLE "products"
+DISABLE TRIGGER "urunBirimFiyatDegistiginde";
+
+ALTER TABLE "products"
+ENABLE TRIGGER "urunBirimFiyatDegistiginde";
+
+ALTER TABLE "products"
+DISABLE TRIGGER ALL;
+
+ALTER TABLE "products"
+ENABLE TRIGGER ALL;
+
+
+DROP TRIGGER "urunBirimFiyatDegistiginde" ON "products";
+
+DROP TRIGGER IF EXISTS "urunBirimFiyatDegistiginde" ON "products";
 
 
 
