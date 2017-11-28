@@ -8,7 +8,7 @@
 
 
 
--- ** Fonksiyon / Saklı Yordam **--
+-- ** Fonksiyon / Saklı Yordam ** --
 
 
 
@@ -59,18 +59,6 @@
 
 
 
--- * Koşullu İfadeler * --
-
--- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
-
-
-
--- * Döngüler * --
-
--- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
-
-
-
 -- * Fonksiyon Örneği 1 * --
 
 CREATE OR REPLACE FUNCTION inch2m(sayiInch REAL)
@@ -88,6 +76,18 @@ LANGUAGE plpgsql;
 -- Fonksiyon çağrısı
 
 SELECT * FROM inch2m(10);
+
+
+
+-- * Koşullu İfadeler * --
+
+-- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS111.png 
+
+
+
+-- * Döngüler * --
+
+-- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
 
 
 
