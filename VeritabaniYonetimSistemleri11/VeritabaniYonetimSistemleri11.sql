@@ -134,7 +134,7 @@ SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10);
 
 -- Linux
 -- plperl diliyle program yazabilmek için plperl dil desteğini ekleme.
--- BilgisayarAdi@KullaniciAdi:~$ sudo apt-get install postgresql-plperl-9.5 
+-- BilgisayarAdi@KullaniciAdi:~$ sudo apt-get install postgresql-plperl-9.6 
 
 
 -- Application Stack Builder uygulaması mevcutsa bu uygulama aracılığı 
@@ -225,7 +225,7 @@ SELECT * FROM personelAra(1);
 -- Argüman listesinde çıkış parametresi tanımlanan fonksiyon örneği 
 -- aşağıdadır.
 
-CREATE OR REPLACE FUNCTION inch2cm(sayiInch real, OUT sayiCM REAL)
+CREATE OR REPLACE FUNCTION inch2cm(sayiInch REAL, OUT sayiCM REAL)
 AS 
 $$
 BEGIN
