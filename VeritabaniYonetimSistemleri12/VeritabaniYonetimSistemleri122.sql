@@ -1,13 +1,37 @@
+--*** Başarım Eniyileme (Performance Tuning) ***--
 
--- EXPLAIN ANALYSE
+-- Örnekler İçin Pagila Veri Tabanı Kullanılmaktadır.
+
+
+--** EXPLAIN ANALYSE **--
+
+-- EXPLAIN ANALYSE ifadesi ile SQL sorgularının başarımına ilişkin detaylı bilgi edinebiliriz.
 
 EXPLAIN ANALYSE
-SELECT * FROM "orders"
-WHERE "ShipCity" = 'Bern';
+SELECT * FROM "customer"
+WHERE "first_name" = 'Bruce';
 
-----------------------------------
 
--- PROJEKSİYON
+EXPLAIN ANALYSE
+SELECT * FROM "customer"
+WHERE "last_name" = 'Lee';
+
+
+EXPLAIN ANALYSE
+SELECT   "public"."customer"."customer_id",
+         "public"."customer"."first_name",
+         "public"."customer"."last_name",
+         "public"."address"."phone"
+FROM     "customer" 
+INNER JOIN "address"  ON "customer"."address_id" = "address"."address_id" 
+
+
+--** PROJEKSİYON **--
+
+
+SELECT ifadesinde bütün alanlara projeksiyon yapmak (* kullanımı) yerine yalnızca gerekli olan alanlara projeksiyon yapmalıyız.
+Yani yalnızca gerekli alanların getirilmesini istemeliyiz. 
+Böylece; işlem gecikmesi, iletim gecikmesi ve kaynak kullanımı azaltılmış olur.
 
 EXPLAIN ANALYSE
 SELECT * 
@@ -49,13 +73,24 @@ SELECT "store"."store_id", "film"."title"
 FROM "inventory" 
 INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
 INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id"
-LIMIT 20  OFFSET 39;
+LIMIT 20  OFFSET 39; -- İlk 39 dan sonra 20 kayıt getirilsin.
 
 -- 21:04:16 Query time: 2 millisecond(s), Number of cursor's records: 12
+
+
+
+SELECT "customer_id", "first_name", "last_name"
+FROM "customer" ORDER BY "customer_id" DESC
+
+SELECT "customer_id", "first_name", "last_name"
+FROM "customer" ORDER BY "customer_id" DESC
+LIMIT 10  OFFSET 20; -- Son 20 den sonraki 10 getirilsin
 
 ----------------------------------
 
 -- SIRALAMA
+
+--Gereksiz sıralama başarımı düşürür.
 
 EXPLAIN ANALYSE
 SELECT "store"."store_id", "film"."title"
@@ -79,6 +114,9 @@ ORDER BY "film"."title";
 
 -- INDEX
 
+-- Index olarak belirlenmiş alanlar üzerinde arama işlemi daha hızlı gerçekleştirilir.
+-- Aşağıdaki sorgularda “customer” tablosunun “last_name” alanı index olarak belirlenmiştir.
+
 EXPLAIN ANALYSE
 SELECT * FROM "customer"
 WHERE "first_name" = 'Jeniffer';
@@ -94,7 +132,18 @@ WHERE "last_name" = 'Davis';
 
 ----------------------------------
 
--- EXISTS ve IN
+--** Birleşim (Inner Join), IN ve EXIST(İlintili Sorgu) **--
+
+-- İlintili sorgu, özellikle EXIST ifadesi ile birlikte, daha iyi sonuç verebilir.
+
+
+EXPLAIN ANALYSE
+SELECT DISTINCT "customer"."first_name", "customer"."last_name" 
+FROM "customer"
+INNER JOIN "payment"
+ON "payment"."customer_id" = "customer"."customer_id";
+
+-- 21:47:16 Query time: 14 millisecond(s), Number of cursor's records: 10
 
 
 EXPLAIN ANALYSE
@@ -102,7 +151,7 @@ SELECT DISTINCT "customer"."first_name", "customer"."last_name"
 FROM "customer"
 WHERE "customer_id" IN (SELECT "customer_id" FROM "payment"); 
 
--- 21:34:45 Query time: 3 millisecond(s), Number of cursor's records: 9
+-- 21:34:45 Query time: 5 millisecond(s), Number of cursor's records: 9
 
 
 EXPLAIN ANALYSE
@@ -120,33 +169,14 @@ WHERE EXISTS
     (SELECT "customer_id" FROM "payment" 
     WHERE "customer"."customer_id" = "payment"."customer_id");
 
--- 21:34:53 Query time: 4 millisecond(s), Number of cursor's records: 7
+-- 21:34:53 Query time: 3 millisecond(s), Number of cursor's records: 7
 
 ----------------------------------
 
--- Birleşim
+--** HAVING **--
 
-EXPLAIN ANALYSE
-SELECT DISTINCT "customer"."first_name", "customer"."last_name" 
-FROM "customer"
-INNER JOIN "payment"
-ON "payment"."customer_id" = "customer"."customer_id";
-
--- 21:47:16 Query time: 14 millisecond(s), Number of cursor's records: 10
-
-
-EXPLAIN ANALYSE
-SELECT "customer"."first_name", "customer"."last_name" 
-FROM "customer"
-WHERE EXISTS 
-    (SELECT * FROM "payment"
-    WHERE "payment"."customer_id" = "customer"."customer_id");
-
--- 21:47:19 Query time: 4 millisecond(s), Number of cursor's records: 7
-
-----------------------------------
-
--- HAVING
+-- HAVING ifadesi seçim işlemi yapılıp gruplandırma işlemi tamamlandıktan sonra filtreleme yapmak için kullanılır.
+-- Filtreyi mümkün ise gruplama işleminden önce eklemek başarımı artırır.
 
 EXPLAIN ANALYSE
 SELECT "category"."name", COUNT("film"."film_id") 
@@ -173,7 +203,11 @@ GROUP BY "category"."name";
 
 ----------------------------------
 
--- Alt Sorgu Sayısı
+--** Alt Sorgu Sayısı **--
+
+-- Bazen ana sorguda birden fazla alt sorgu bulunabilir.
+-- Bu durumda alt sorgu bloklarının sayısını azaltmaya çalışmalıyız.
+
 
 EXPLAIN ANALYSE
 SELECT * FROM "products" 
@@ -193,7 +227,12 @@ WHERE ("UnitPrice", "UnitsInStock") <
 
 ----------------------------------
 
--- UNION ve UNION ALL
+--** UNION ve UNION ALL **--
+
+-- UNION yerine UNION ALL komutunu kullanmaya çalışmalıyız.
+-- UNION komutu icra edilirken DISTINCT işlemi de gerçekleştirildiği için daha yavaştır
+
+
 
 EXPLAIN ANALYSE
 SELECT "rental_id" FROM "rental"
@@ -212,7 +251,8 @@ SELECT "rental_id" FROM "payment";
 
 ----------------------------------
 
--- WHERE
+--** WHERE **--
+-- WHERE koşul ifadeleri yazarken dikkat etmemiz gereken hususlar.
 
 EXPLAIN ANALYSE
 SELECT * FROM "payment" WHERE "amount" != 11.99;
@@ -256,22 +296,36 @@ WHERE "amount" = '2.99';
 -- 22:50:56 Query time: 5 millisecond(s), Number of cursor's records: 5
 
 
-----------------------------------
+--** Genel Kurallar **--
 
--- VACUUM (silme ve update işlemlerinden sonra kayıtlar, Vacuum işlemine kadar, fiziksel olarak silinmezler)
+
+-- Büyük ikili nesneleri depolamak için ilk önce onları dosyalama sistemine yerleştiriniz ve veritabanına dosyanın konumunu ekleyiniz.
+-- Etkin performans sağlayan SQL sorguları yazmak için genel SQL standart kurallarını takip ediniz.
+
+
+--** VAUUM & ANALYSE **--
+
+-- PostgreSQL’de bir kayıt silindiği zaman aslında gerçekten silinmez.
+-- Yalnızca silindiğine ilişkin bir işaret olur.
+-- Dolayısıyla belli bir süre sonra depolama alanı problemi oluşabilir.
+-- Silinen kayıtların gerçekten tablodan silinmesini gerçekleştirmek için VACUUM komutu kullanılır.
+-- Bu yapıldığında depolama alanımızda yer açılacaktır.
+
+-- VACUUM (Silme işlemlerinden sonra kayıtlar, Vacuum işlemine kadar, fiziksel olarak silinmezler )
 -- VACUUM ve ANALYSE işlemini, veritabanı kullanımının az olduğu zamanlarda, günde bir kez uygulamak sorgu  hızını artırır...
 
 VACUUM; -- Seçili veri tabanındaki tüm tabloları vakumla.
-VACUUM FULL; -- Daha fazla yer aç. Daha uzun sürer. (tabloları kilitleyerek yeni kopyasını oluşturur ve daha sonra eski tabloyu siler)
+VACUUM FULL; -- Daha uzun sürer. (tabloları kilitleyerek yeni kopyasını oluşturur ve daha sonra eski tabloyu siler)
 VACUUM customer; -- customer tablosunu vakumla.
 
--- Threshold değerini %20 aştıktan sonra otomatik vakum işlemi yap.
+-- Threshold değerini %20 aştıktan sonra otomatik vakum işlemi yap. (postgresql.conf dosyasında da belirtilebilir)
 -- Varsayılan 0.2
 ALTER TABLE table_name  
-SET (autovacuum_vacuum_scale_factor = 0.3);
+SET (autovacuum_vacuum_scale_factor = 0.2);
 
 
--- Threshold değeri 5000 kayıt olsun.
+-- Threshold değeri 5000 kayıt olsun. (5000 update ya da delete yapılan satırdan sonra vakum işlemini başlat)
+-- (postgresql.conf dosyasında da belirtilebilir)
 -- Varsayılan 50 kayıt.
 ALTER TABLE table_name  
 SET (autovacuum_vacuum_threshold = 5000);
