@@ -305,7 +305,7 @@ GRANT "gruprol" TO "rol2";
 
 
 
--- rol1 isimli role verilmiş yetkilerin geri alınması.
+-- rol1 isimli role verilmiş yetkilerin (gruprol yetkileri) geri alınması.
 
 REVOKE "gruprol" FROM "rol1";
 
@@ -350,7 +350,6 @@ REVOKE ALL ON SCHEMA "Sema1" FROM "rol1";
 
 
 -- Herhangi bir nesne üzerinde yetkiye sahip olan bir rolü silemeyiz.
--- Silmeden önce yetkilerini silmeliyiz.
 
 CREATE ROLE "rol1";
 GRANT SELECT ON "customers" TO "rol1";
@@ -359,6 +358,7 @@ DROP ROLE "rol1";
 -- 16:12:44 Kernel error: ERROR:  role "rol4" cannot be dropped because some objects depend on it
 -- DETAIL:  privileges for table customers
 
+-- rol1 in sahibi olduğu tüm nesneleri sil (kısıtlar ihlal edilemez)
 DROP OWNED BY "rol1";
 DROP ROLE "rol1";
 
@@ -432,6 +432,8 @@ SELECT * FROM milKMDonustur(3);
 
 
 SET SESSION AUTHORIZATION "postgres";
+
+
 
 REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM "PUBLIC";
 
