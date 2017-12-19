@@ -15,12 +15,6 @@ psql -U postgres -h localhost
 psql -U ayse -d pagila -h localhost
 
 
--- W seçeneği şifre ile giriş için kullanılır.
-
-psql -U ahmet -d pagila -h localhost -W
-
-
-
 -- psql Açma Örneği
 
 psql -U postgres
