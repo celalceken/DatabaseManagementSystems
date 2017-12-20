@@ -143,7 +143,7 @@ postgres=#
 -- yetkiler verilir.
 
 -- SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER, 
--- CREATE, CONNECT, TEMPORARY, EXECUTE, USAGE
+-- CREATE, CONNECT, TEMPORARY, EXECUTE, USAGE ...
 
 
 
@@ -247,7 +247,8 @@ DROP USER "kullanici1";
 DROP ROLE "rol1";
 
 
-
+-- Nesne oluşturulurken bu nesnenin sahibi olan rol de (Create komutunu çalıştıran rol) atanır.
+-- Nesne sahibi (ya da SUPERUSER) nesne üzerindeki tüm haklara sahiptir.
 -- Veri tabanı sahibi olan bir rolü silmeden önce veri tabanı 
 -- sahipliğini başka bir role aktarmalıyız.
 -- Bu işlemi ALTER DATABASE ile yapabiliriz.
@@ -266,7 +267,7 @@ DROP ROLE "rol1";
 
 -- Veri tabanı sahibi olan bir rolü silmeden önce veri tabanı 
 -- sahipliğini başka bir role aktarmalıyız.
--- Bu işlemi REASSIGN ile yapabiliriz.
+-- Bu işlemi REASSIGN ile de yapabiliriz.
 
 CREATE ROLE "rol1";
 ALTER DATABASE "Uygulama" owner to "rol1";
@@ -275,6 +276,7 @@ DROP ROLE "rol1";
 -- 16:18:33 Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it
 -- DETAIL:  owner of database Uygulama
 
+-- "rol1" in sahibi olduğu tüm nesnelerin yeni sahibi "postgres" oluyor.
 REASSIGN OWNED BY "rol1" TO "postgres";
 DROP ROLE "rol1";
 
