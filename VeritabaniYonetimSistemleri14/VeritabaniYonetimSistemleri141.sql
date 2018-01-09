@@ -1,6 +1,6 @@
 
 
--- *** Veritabanı Güvenliğii *** --
+-- *** Veritabanı Güvenliği *** --
 
 
 
