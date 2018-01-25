@@ -32,7 +32,7 @@ postgres=#
 
 postgres=# \q
 postgres=#
-VTYS_Comp:~ veysel$
+VTYS_Comp:~ vtys$
 
 
 
