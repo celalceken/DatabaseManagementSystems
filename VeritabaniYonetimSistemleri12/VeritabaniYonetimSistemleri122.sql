@@ -376,7 +376,7 @@ VACUUM;
 -- Bu işlem daha uzun sürer. Tabloları kilitleyerek yeni bir kopyasını 
 -- oluşturur ve daha sonra eski tabloyu siler.
 
-VACUUM FULL; 
+VACUUM FULL;
 
 
 -- customer tablosuna vacuum işlemi uygula.
