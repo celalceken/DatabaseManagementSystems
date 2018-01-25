@@ -223,7 +223,7 @@ CREATE USER "kullanici1" WITH PASSWORD 'abc';
 -- 8.1 ile birlikte user ve group kavramı yerine rol kavramı getirildi. 
 -- Bir rol, user olabilir, group olabilir veya ikisi birden olabilir.
 
-CREATE ROLE "rol3" WITH PASSWORD 'abc' LOGIN; 
+CREATE ROLE "rol3" WITH PASSWORD 'abc' LOGIN;
 
 
 
@@ -346,7 +346,7 @@ REVOKE ALL ON "customers" FROM "rol1";
 
 -- rol1 kullanicisinin Sema1 icerisindeki nesnelere ait tüm yetkileri alinir.
 
-REVOKE ALL ON SCHEMA "Sema1" FROM "rol1"; 
+REVOKE ALL ON SCHEMA "Sema1" FROM "rol1";
 
 
 -- Herhangi bir nesne üzerinde yetkiye sahip olan bir rolü silemeyiz.
@@ -403,7 +403,7 @@ SELECT * FROM "customers";
 --** Fonksiyonlar ve Yetkilendirme ** --
 
 
-CREATE OR REPLACE FUNCTION milKMDonustur(degerMil REAL, OUT degerKM REAL)
+CREATE OR REPLACE FUNCTION "milKMDonustur"(degerMil REAL, OUT degerKM REAL)
 AS $$
 BEGIN
     degerKM = degerMil * 1.6;
@@ -435,7 +435,7 @@ SET SESSION AUTHORIZATION "postgres";
 
 
 
-REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM "PUBLIC";
+REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM PUBLIC;
 
 SET SESSION AUTHORIZATION "rol15";
 
