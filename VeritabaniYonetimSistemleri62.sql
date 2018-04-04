@@ -104,12 +104,12 @@ SELECT * FROM "Urunler" WHERE "birimFiyati" IS NOT NULL;
 -- AS --
 -- AS ifadesi ile alanlara takma isim verilir.
 
-SELECT "CompanyName" AS "Musteriler" FROM "customers";
+SELECT "CompanyName" AS "musteriler" FROM "customers";
 
 SELECT "UnitPrice", "UnitPrice" * 1.18 AS "KDVliTutar" FROM "products";
 
-SELECT "OrderID" AS "Sipariş No",
-       "ShipPostalCode" || ',' || "ShipAddress" AS "Gonderi Adresi"
+SELECT "OrderID" AS "siparisNo",
+       "ShipPostalCode" || ',' || "ShipAddress" AS "gonderiAdresi"
 FROM "orders"
 WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
 
