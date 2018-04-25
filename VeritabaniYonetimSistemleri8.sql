@@ -110,17 +110,17 @@ INSERT INTO "Personel"
 ("adi", "soyadi", "yoneticisi")
 VALUES ('Fatma', 'Demir', '2');
 
-SELECT "Calisan"."adi" AS "Çalışan Adi",
-    "Calisan"."soyadi" AS "Çalışan Soyadı",
-	"Yonetici"."adi" AS "Yönetici Adi",
-	"Yonetici"."soyadi" AS "Yönetici Soyadi"
+SELECT "Calisan"."adi" AS "calisanAdi",
+    "Calisan"."soyadi" AS "calisanSoyadi",
+	"Yonetici"."adi" AS "yoneticiAdi",
+	"Yonetici"."soyadi" AS "yoneticiSoyadi"
 FROM "Personel" AS "Calisan"
 INNER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."yoneticisi";
 
-SELECT "Calisan"."adi" AS "Çalışan Adi",
-    "Calisan"."soyadi" AS "Çalışan Soyadı",
-	"Yonetici"."adi" AS "Yönetici Adi",
-	"Yonetici"."soyadi" AS "Yönetici Soyadi"
+SELECT "Calisan"."adi" AS "calisanAdi",
+    "Calisan"."soyadi" AS "calisanSoyadi",
+	"Yonetici"."adi" AS "yoneticiAdi",
+	"Yonetici"."soyadi" AS "yoneticiSoyadi"
 FROM "Personel" AS "Calisan"
 LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."yoneticisi";
 -- Yoneticisi olmayan çalışanlar da listelenir.
