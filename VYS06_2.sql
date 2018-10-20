@@ -39,6 +39,7 @@ SELECT * FROM "order_details" WHERE "UnitPrice" >= 14;
 SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
 
 
+
 -- DISTINCT --
 -- Tabloda bazı sütunlar tekrar eden kayıtlar içerebilir. “DISTINCT” ifadesi
 -- sorgu sonucu gelen değerler içerisindeki tekrarlanan kayıtların tek kayıt
