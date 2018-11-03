@@ -1,10 +1,11 @@
 
+
+
+-- *** Temel SQL Temel SQL (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) *** --
+
+
+
 -- *** Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır. *** --
-
-
-
--- *** Temel SQL *** --
--- SQL DML Komutları: SELECT, INSERT, UPDATE, DELETE, JOIN --
 
 
 
@@ -253,5 +254,5 @@ WHERE "CompanyName" = 'LINO-Delicateses' AND "ContactName" = 'Felipe Izquierdo';
 -- Tabloyu silmeden tablodaki bütün kayıtları silmek mümkündür. 
 -- Aşağıdaki komut tablodaki bütün kayıtları silmeye yarar.
 
-DELETE FROM "TabloAdi";
+DELETE FROM "customers";
 
