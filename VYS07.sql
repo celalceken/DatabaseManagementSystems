@@ -40,16 +40,15 @@ CREATE SCHEMA "sema1";
 --   hız artar, kaynaklar etkin kullanılır,
 --   veriler tutarlı olarak saklanır (doğrulama) ve 
 --   bazı saldırılara karşı önlem alınmış olur.
--- PostgreSQL'deki veri tipleri aşağıdaki sayfadan erişilebilir.
--- https://www.postgresql.org/docs/9.6/static/datatype.html
-
+-- PostgreSQL'deki veri tiplerine aşağıdaki sayfadan erişilebilir.
+-- https://www.postgresql.org/docs/10/static/datatype.html
 
 
 CREATE TABLE "sema1"."Urunler" (
     "urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -87,7 +86,7 @@ CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -98,12 +97,12 @@ CREATE TABLE "Urunler" (
 INSERT INTO "sema1"."Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO001', 'TV', '13', '2017-10-30', 5);
+('ELO001', 'TV', '13', '2019-10-30', 5);
 
 INSERT INTO "sema1"."Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO002', 'TV', '13', '2017-10-30', 5);
+('ELO002', 'TV', '13', '2019-10-30', 5);
 
 TRUNCATE TABLE "Urunler";
 
@@ -117,7 +116,7 @@ CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -142,7 +141,7 @@ CREATE TABLE "sema1"."Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -153,7 +152,7 @@ CREATE TABLE "sema1"."Urunler" (
 INSERT INTO "sema1"."Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'TV', '13', '2017-10-30', 5);
+('ELO004', 'TV', '13', '2019-10-30', 5);
 
 
 
@@ -164,7 +163,7 @@ CREATE TABLE "sema1"."Urunler" (
 	"urunNo" INTEGER,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -179,13 +178,13 @@ ALTER SEQUENCE "sayac" OWNED BY "Urunler"."urunNo";
 INSERT INTO "sema1"."Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-(NEXTVAL('"public"."sayac"'), 'ELO004', 'TV', '13', '2017-10-30', 5);
+(NEXTVAL('"public"."sayac"'), 'ELO004', 'TV', '13', '2019-10-30', 5);
 
 
 
 -- SEQUENCE nesnesinin bir sonraki değerini NEXTVAL kullanarak elde edebiliriz.
 -- SEQUENCE işleme fonksiyonlarını aşağıdaki bağlantıdan öğrenebiliriz.
--- https://www.postgresql.org/docs/9.6/static/functions-sequence.html
+-- https://www.postgresql.org/docs/10/static/functions-sequence.html
 
 SELECT NEXTVAL('sayac');
 
@@ -202,7 +201,7 @@ CREATE TABLE "Urunler" (
 	"urunNo" INTEGER DEFAULT NEXTVAL('sayac'),
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -213,12 +212,12 @@ CREATE TABLE "Urunler" (
 INSERT INTO "Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-(NEXTVAL('sayac1'), 'ELO004', 'TV', '13', '2017-10-30', 5);
+(NEXTVAL('sayac'), 'ELO004', 'TV', '13', '2019-10-30', 5);
 
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'TV', '13', '2017-10-30', 5);
+('ELO004', 'TV', '13', '2019-10-30', 5);
 
 
 
@@ -230,13 +229,13 @@ VALUES
 
 
 -- NOT NULL --
--- Tanımlandığı alan boş olamaz. Veri girilmek zorunda.
+-- Tanımlandığı alan boş olamaz. Veri girilmek zorundadır.
 
 CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -250,7 +249,7 @@ CREATE TABLE "Urunler" (
 INSERT INTO "Urunler"
 ("adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('TV', '13', '2017-10-30', 5);
+('TV', '13', '2019-10-30', 5);
 
 ALTER TABLE "Urunler" ALTER COLUMN "kodu" DROP NOT NULL;
 
@@ -267,7 +266,7 @@ CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -282,7 +281,7 @@ VALUES
 
 ALTER TABLE "Urunler" ALTER "uretimTarihi" DROP DEFAULT;
 
-ALTER TABLE "Urunler" ALTER COLUMN "uretimTarihi" SET DEFAULT '2017-01-01';
+ALTER TABLE "Urunler" ALTER COLUMN "uretimTarihi" SET DEFAULT '2019-01-01';
 
 
 
@@ -294,7 +293,7 @@ CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -314,7 +313,7 @@ CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -334,7 +333,7 @@ VALUES
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO005', 'Bilgisayar', '13', '2017-10-20', 5);
+('ELO005', 'Bilgisayar', '13', '2019-10-20', 5);
 
 
 
@@ -346,7 +345,7 @@ CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -366,13 +365,13 @@ VALUES
 
 
 
--- PRIMARY KEY --
+-- Birincil Anahtar (PRIMARY KEY) --
 
 CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo")
@@ -391,7 +390,7 @@ CREATE TABLE "Urunler1" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu")
@@ -404,7 +403,7 @@ ALTER TABLE "Urunler1" ADD CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu")
 
 
 
--- FOREIGN KEY --
+-- Yabancı Anahtar (FOREIGN KEY) --
 
 CREATE TABLE "UrunTipleri" (
     "tipNo" SERIAL,
@@ -417,7 +416,7 @@ CREATE TABLE "Urunler" (
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
 	"urunTipi" INTEGER NOT NULL, 
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
@@ -435,7 +434,7 @@ CREATE TABLE "Urunler" (
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
 	"urunTipi" INTEGER NOT NULL, 
-	"uretimTarihi" DATE DEFAULT '2017-01-01',
+	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
