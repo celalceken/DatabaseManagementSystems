@@ -290,7 +290,7 @@ ORDER BY 1;
 
 -- HAVING
 -- Gruplandırılmış veriler üzerinde filtreleme yapma işlemi için kullanılır.
--- HAVING ile yazılan koşullar gruplama fonksiyonları ile veya gruplama 
+-- HAVING ile yazılan koşullar çoklu satır fonksiyonları ile veya gruplama 
 -- yapılan alan üzerinden yapılır.
 
 SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
