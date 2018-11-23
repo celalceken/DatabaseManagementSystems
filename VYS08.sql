@@ -74,18 +74,28 @@ SELECT * FROM "Personel"."Personel"
 INNER JOIN "Personel"."SatisTemsilcisi"
 ON "Personel"."Personel"."personelNo" = "Personel"."SatisTemsilcisi"."personelNo"
 
+SELECT * FROM "Personel"."Personel"
+INNER JOIN "Personel"."Danisman"
+ON "Personel"."Personel"."personelNo" = "Personel"."Danisman"."personelNo"
+
 
 -- Sorguların hızlandırılması için temel tabloya eklenen alan
 SELECT "adi", "soyadi" FROM "Personel"."Personel"
 WHERE "personelTipi"='S';
 
+SELECT "adi", "soyadi" FROM "Personel"."Personel"
+WHERE "personelTipi"='D';
+
+SELECT "adi", "soyadi" FROM "Personel"."Personel"
+INNER JOIN "Personel"."Danisman"
+ON "Personel"."personelNo" = "Danisman"."personelNo"
 
 
 
 -- Özyineli Birleştirme / Tekli Bağıntı Örneği --
 
 
-CREATE TABLE "Personel" ( 
+CREATE TABLE "Personel" (
 	"personelNo" SERIAL,
 	"adi" CHARACTER VARYING(40) NOT NULL,
 	"soyadi" CHARACTER VARYING(40) NOT NULL,
@@ -149,7 +159,7 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 
 -- Karmaşık sorguları basit hale getirir.
 
--- Güvenlik nedeniyle de kullanılır. 
+-- Güvenlik nedeniyle de kullanılır.
 --     Örneğin şirket personeli, müşterilerin genel bilgilerini (ad, soyad, 
 --     adres v.b.) görebilsin ancak kredi kartı bilgilerine erişemesin 
 --     isteniyorsa yalnızca görmesini istediğimiz bilgileri içeren bir görünüm 
@@ -179,14 +189,6 @@ DROP VIEW "SiparisMusteriSatisTemsilcisi";
 
 
 -- Çoklu Satır Fonksiyonları --
-
-
--- AVG - Ortalama --
-
-
-SELECT SUM("UnitPrice") / COUNT("ProductID") FROM "products";
-
-SELECT AVG("UnitPrice") FROM "products";
 
 
 
@@ -252,6 +254,14 @@ SELECT MIN("UnitPrice") AS "enDusukFiyat" FROM "products";
 SELECT SUM("UnitPrice") FROM "products";
 
 SELECT SUM("UnitPrice") AS "toplam" FROM "products";
+
+
+-- AVG - Ortalama --
+
+
+SELECT SUM("UnitPrice") / COUNT("ProductID") FROM "products";
+
+SELECT AVG("UnitPrice") FROM "products";
 
 
 
