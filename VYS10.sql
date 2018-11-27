@@ -280,7 +280,7 @@ SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE NOT EXISTS
     (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
-    
+
 
 
 
@@ -288,8 +288,8 @@ WHERE NOT EXISTS
 
 -- İki tablonun küme birleşimini alır.
 -- Rastgele iki tablonun birleşimi alınamaz.
--- İki tablonun öznitelik sayıları aynı olmalı.
--- Aynı sıradaki öznitelikleri aynı değer alanı üzerinde tanımlanmış olmalıdır.
+--   İki tablonun nitelik sayıları aynı olmalı.
+--   Aynı sıradaki nitelikleri aynı değer alanı üzerinde tanımlanmış olmalıdır.
 -- UNION ifadesi ile aynı kayıtlar bir defa gösterilir.
 -- UNION ALL ifadesi ile aynı kayıtlar gösterilir.
 
@@ -316,8 +316,8 @@ ORDER BY 2;
 
 -- İki tablonun küme kesişimi elde edilir.
 -- Rasgele iki tablonun kesişimi alınamaz.
--- İki tablonun öznitelik sayıları aynı olmalı. 
--- Aynı sıradaki öznitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
+--   İki tablonun nitelik sayıları aynı olmalı. 
+--   Aynı sıradaki nitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
 
 SELECT "CompanyName", "Country" FROM "customers"
 INTERSECT
@@ -327,12 +327,12 @@ ORDER BY 2;
 
 
 
--- ** EXCEPT örneği ** --
+-- ** EXCEPT ** --
 
 -- Bir tablonun diğerinden farkını elde etmek için kullanılır.
 -- Rastgele iki tabloya uygulanamaz.
--- İki tablonun öznitelik sayıları aynı olmalı.
--- Aynı sıradaki öznitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
+--   İki tablonun nitelik sayıları aynı olmalı.
+--   Aynı sıradaki nitelikleri aynı değer alanı üzerinde tanımlanmış olmalı.  
 
 SELECT "CompanyName", "Country" FROM "customers"
 EXCEPT
@@ -351,7 +351,7 @@ ORDER BY 2;
 -- ACID ifadesi, Atomicity, Consistency, Isolation ve Durability kelimelerinin
 -- ilk harflerinin birleşiminden oluşur. Detayları aşağıda anlatılmıştır.
 
--- Atomicity: İşlem(transaction) kapsamındaki alt işlemlerin tamamı bir bütün 
+-- Atomicity: İşlem (transaction) kapsamındaki alt işlemlerin tamamı bir bütün 
 -- olarak ele alınır. Ya alt işlemlerin tamamı başarılı olarak çalıştırılır, 
 -- ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski 
 -- kararlı haline döndürülür. 
@@ -363,11 +363,11 @@ ORDER BY 2;
 -- etkilemezler. Kullanılan ortak kaynak işlem tarafından, işlem tamamlanana
 -- kadar, kilitlenir.
 
--- Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmış 
+-- Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmamış 
 -- olan işlem sistem çalışmaya başladıktan sonra mutlaka tamamlanır.
 
 
-BEGIN; --İşleme (Transaction) başla.
+BEGIN; --İşleme (transaction) başla.
 
 INSERT INTO "order_details" ("OrderID", "ProductID", "UnitPrice", "Quantity", "Discount")
 VALUES (10248, 11, 20, 2, 0);
@@ -380,8 +380,8 @@ Update "products"
 SET "UnitsInStock" = "UnitsInStock" - 2
 WHERE "ProductID" = 11;
 
--- Her iki sorguda hatasız bir şekilde icra edilirse her ikisini de işlet ve 
--- veri tabanının durumunu güncelle.
+-- Her iki sorgu da hatasız bir şekilde icra edilirse her ikisini de işlet ve 
+-- veritabanının durumunu güncelle.
 
 COMMIT; --İşlemi (transaction) tamamla.
 
@@ -403,7 +403,3 @@ UPDATE Hesap SET bakiye = bakiye + 100.00
 -- UPDATE Hesap SET bakiye = bakiye + 100.00
     -- WHERE adi = 'Ayşe';
 COMMIT;
-
-
-
-
