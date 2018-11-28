@@ -165,6 +165,7 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 --     isteniyorsa yalnızca görmesini istediğimiz bilgileri içeren bir görünüm 
 --     oluşturulabilir ve ilgili personeli bu görünüme yetkilendiririz.
 
+-- Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır. --
 
 CREATE OR REPLACE VIEW "public"."SiparisMusteriSatisTemsilcisi" AS
 SELECT "orders"."OrderID",
@@ -186,6 +187,9 @@ DROP VIEW "SiparisMusteriSatisTemsilcisi";
 
 
 -- ** SQL Fonksiyonları ** --
+
+-- Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır. --
+
 
 
 -- Çoklu Satır Fonksiyonları --
