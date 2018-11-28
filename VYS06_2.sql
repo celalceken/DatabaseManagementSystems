@@ -138,9 +138,9 @@ ORDER BY "public"."customers"."CompanyName" DESC;
 
 
 SELECT 
-  "orders"."OrderID" AS "Sipariş No",
-  "customers"."CompanyName" AS "Şirket",
-  "orders"."OrderDate" AS "Sipariş Tarihi"
+  "orders"."OrderID" AS "siparisNo",
+  "customers"."CompanyName" AS "sirket",
+  "orders"."OrderDate" AS "siparisTarihi"
 FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
@@ -148,9 +148,9 @@ INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
 -- Aşağıdaki kullanım biçimi de INNER JOIN gibidir.
 SELECT 
-  "orders"."OrderID" AS "Sipariş No",
-  "customers"."CompanyName" AS "Şirket",
-  "orders"."OrderDate" AS "Sipariş Tarihi"
+   "orders"."OrderID" AS "siparisNo",
+  "customers"."CompanyName" AS "sirket",
+  "orders"."OrderDate" AS "siparisTarihi"
 FROM "orders", "customers"
 WHERE "orders"."CustomerID" = "customers"."CustomerID"
 ORDER BY "customers"."CompanyName" DESC;
@@ -182,9 +182,9 @@ INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
 -- SOL DIŞ BİRLEŞTİRME - LEFT OUTER JOIN --
 
 SELECT
-  "orders"."OrderID" AS "Sipariş No",
-  "customers"."CompanyName" AS "Şirket",
-  "orders"."OrderDate" AS "Sipariş Tarihi"
+   "orders"."OrderID" AS "siparisNo",
+  "customers"."CompanyName" AS "sirket",
+  "orders"."OrderDate" AS "siparisTarihi"
 FROM "customers"
 LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" ;
 
@@ -194,10 +194,10 @@ LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" ;
 -- SAĞ DIŞ BİRLEŞTİRME - RIGHT OUTER JOIN --
 
 SELECT
-  "orders"."OrderID" AS "Sipariş No",
-  "employees"."FirstName" AS "Satış Temsilcisi Ad",
-  "employees"."LastName" AS "Satış Temsilcisi Soyad",
-  "orders"."OrderDate" AS "Sipariş Tarihi"
+  "orders"."OrderID" AS "siparisNo",
+  "employees"."FirstName" AS "satisTemsilcisiAdi",
+  "employees"."LastName" AS "satisTemsilcisiSoyadi",
+  "orders"."OrderDate" AS "siparisTarihi"
 FROM "orders"
 RIGHT OUTER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID" ;
 
