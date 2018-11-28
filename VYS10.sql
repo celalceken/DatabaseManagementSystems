@@ -191,7 +191,7 @@ WHERE "UnitPrice" > ALL
 
 SELECT AVG("UnitsInStock") FROM "products";
 
-SELECT "SupplierID", SUM("UnitsInStock") AS "Stoktaki Toplam Ürün Sayısı"
+SELECT "SupplierID", SUM("UnitsInStock") AS "stoktakiToplamUrunSayisi"
 FROM  "products"
 GROUP BY "SupplierID"
 HAVING SUM("UnitsInStock") < (SELECT AVG("UnitsInStock") FROM "products");
@@ -215,14 +215,14 @@ HAVING SUM("Quantity") > (SELECT MAX("Quantity") FROM "order_details");
 SELECT
     "ProductName",
     "UnitsInStock",
-    (SELECT MAX("UnitsInStock") FROM "products") AS "En Büyük Değer"
+    (SELECT MAX("UnitsInStock") FROM "products") AS "enBuyukDeger"
 FROM "products";
 
 
 SELECT
     "SupplierID",
-    COUNT("UnitsInStock") AS "Toplam",
-    SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "Standart Sapma"
+    COUNT("UnitsInStock") AS "toplam",
+    SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "standartSapma"
 FROM "products"
 GROUP BY "SupplierID"
 -- Standart sapma hesaplanırken “Toplam” takma ismi kullanılmamalı.
