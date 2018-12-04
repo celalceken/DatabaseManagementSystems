@@ -275,10 +275,10 @@ SELECT odemeToplami(2);
 
 -- İmleç (cursor), sorgunun sonuç kümesinin toplu olarak getirilmesi 
 -- yerine veritabanı sunucusundan satır satır getirilmesini sağlar. 
--- LIMIT ve OFFSET yapılarının da benzer bir işi yaptığını hatırlayın.
+-- LIMIT ve OFFSET yapılarının da benzer bir işi yaptığını hatırlayınız.
 
--- Yük dengeleme, uygulama sunucusunun belleğinin verimli kullanımı vb.
--- amaçlar ile kullanılabilir.
+-- Yük dengeleme, uygulama sunucusunun, veritabanı sunucusunun ve istemci belleğinin verimli kullanımı vb.
+-- amaçlar için kullanılabilir.
 
 
 
