@@ -327,8 +327,7 @@ SELECT * FROM filmAra(2006, 'T');
 -- * Avantajları * --
 
 -- Veri bütünlüğünün sağlanması için alternatif bir yoldur.
-
--- İş mantığındaki hataları veritabanı düzeyinde yakalar.
+-- (Örneğin; ürün satıldığında stok miktarının da azaltılması)
 
 -- Zamanlanmış görevler için alternatif bir yoldur. 
 --     Görevler beklenmeden INSERT, UPDATE ve DELETE işlemlerinden önce 
