@@ -93,7 +93,7 @@ SELECT * FROM inch2m(10);
 
 -- * Fonksiyon Örneği 2 * --
 
-CREATE OR REPLACE FUNCTION fonksiyonTanimlama(mesaj text, altKarakterSayisi SMALLINT, tekrarSayisi integer)
+CREATE OR REPLACE FUNCTION "fonksiyonTanimlama"(mesaj text, altKarakterSayisi SMALLINT, tekrarSayisi integer)
 RETURNS TEXT -- SETOF TEXT, SETOF RECORD diyerek çok sayıda değerin döndürülmesi de mümkündür
 AS  
 $$
@@ -112,8 +112,8 @@ END;
 $$
 LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER;
 
--- IMMUTABLE: Aynı girişler için aynı çıkışları üretir. Optimizasyon
--- mümkün olabilir.
+-- IMMUTABLE: Aynı girişler için aynı çıkışları üretir. Böylece, fonksiyonun gövde kısmı bir kez 
+-- çalıştırıldıktan sonra diğer çağrılarda çalıştırılmaz. Optimizasyon mümkün olabilir. 
 -- Varsayılan VOLATILE: Fonksiyon değeri değişebilir dolayısıyla
 -- optimizasyon yapılamaz.
 
@@ -125,7 +125,7 @@ LANGUAGE 'plpgsql' IMMUTABLE SECURITY DEFINER;
 
 -- Fonksiyon çağrısı
 
-SELECT fonksiyonTanimlama('Deneme', 2::SMALLINT, 10);
+SELECT "fonksiyonTanimlama"('Deneme', 2::SMALLINT, 10);
 
 
 
@@ -155,7 +155,7 @@ SELECT * FROM "pg_language";
 
 -- plperl dili ile örnek bir fonksiyon örneği aşağıda görülmektedir.
 
-CREATE FUNCTION kucukOlaniDondur (INT, INT)
+CREATE FUNCTION "kucukOlaniDondur" (INT, INT)
 RETURNS INTEGER 
 AS
 $$
@@ -167,7 +167,8 @@ $$
 $$
 LANGUAGE "plperl";
 
-
+-- Fonksiyon çağrısı
+SELECT "kucukOlaniDondur"(12,6)
 
 -- * Fonksiyon Örneği 4 * --
 
