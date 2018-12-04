@@ -394,6 +394,35 @@ UPDATE "products"
 SET "UnitPrice" = 100
 WHERE "ProductID" = 4 
 
+-- * Before İfadesi * -- 
+-- Ekleme ve güncelleme işleminde yeni verinin değiştirilebilmesini/denetimini sağlar
+
+CREATE TRIGGER "kayitKontrol"
+BEFORE INSERT ON "customers"  --before ifadesi, veriyi eklemeden önce üzerinde işlem yapılabilmesini sağlar
+FOR EACH ROW
+EXECUTE PROCEDURE "kayitEkleTR1"();
+
+CREATE OR REPLACE FUNCTION "kayitEkleTR1"()
+RETURNS TRIGGER 
+AS
+$$
+BEGIN
+    NEW."CompanyName" = UPPER(NEW."CompanyName"); -- büyük harfe dönüştürdükten sonra ekle
+    NEW."ContactName" = LTRIM(NEW."ContactName"); -- Önceki ve sonraki boşlukları temizle
+    RETURN NEW;
+END;
+$$
+LANGUAGE "plpgsql";
+
+INSERT INTO "customers" ( "CustomerID","CompanyName", "ContactName") 
+VALUES ( '45', 'Orka Ltd.', '    Ayşe Yalın     ' );
+
+
+
+
+
+
+
 
 ALTER TABLE "products"
 DISABLE TRIGGER "urunBirimFiyatDegistiginde";
