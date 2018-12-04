@@ -90,6 +90,8 @@ SELECT * FROM inch2m(10);
 -- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS112.png 
 
 
+-- https://www.postgresql.org/docs/current/plpgsql-control-structures.html
+
 
 -- * Fonksiyon Örneği 2 * --
 
@@ -148,6 +150,9 @@ CREATE LANGUAGE "plperl";
 -- Ekli dilleri göster.
 
 SELECT * FROM "pg_language";
+
+
+-- https://www.postgresql.org/docs/current/catalog-pg-language.html
 
 
 
@@ -318,6 +323,7 @@ SELECT * FROM filmAra(2006, 'T');
 -- ** Tetikleyici (Trigger) ** --
 
 -- http://www.iotlab.sakarya.edu.tr/Storage/VYS/VYS113.png 
+-- https://www.postgresql.org/docs/current/sql-createtrigger.html
 
 -- INSERT, UPDATE ve DELETE (PostgreSQL'de TRUNCATE için de tanımlanabilir) 
 -- işlemleri ile birlikte otomatik olarak çalıştırılabilen fonksiyonlardır.
