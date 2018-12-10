@@ -161,6 +161,57 @@ WHERE "last_name" = 'Davis';
 
 
 
+-- Örnek Ek Veritabanı
+
+CREATE DATABASE "TestVeritabani"
+ENCODING='UTF-8'
+LC_COLLATE='tr_TR.UTF-8'
+LC_CTYPE='tr_TR.UTF-8'	
+OWNER postgres
+TEMPLATE=template0;
+
+CREATE TABLE "Kisiler" (
+    "kisiNo" SERIAL,
+	"adi" VARCHAR(40) NOT NULL,
+	"soyadi" VARCHAR(40) NOT NULL,
+	"kayitTarihi" TIMESTAMP DEFAULT '2019-01-01 01:00:00',
+	CONSTRAINT "urunlerPK1" PRIMARY KEY("kisiNo")
+);
+
+
+
+CREATE OR REPLACE FUNCTION "veriGir"(kayitSayisi integer)
+RETURNS VOID
+AS  
+$$
+BEGIN   
+    IF kayitSayisi > 0 THEN
+        FOR i IN 1 .. kayitSayisi LOOP
+            insert into "Kisiler" ("adi","soyadi", "kayitTarihi") 
+            Values(
+                substring('ABCÇDEFGĞHIiJKLMNOÖPRSŞTUÜVYZ' from ceil(random()*10)::smallint for ceil(random()*20)::SMALLINT), 
+                substring('ABCÇDEFGĞHIiJKLMNOÖPRSŞTUÜVYZ' from ceil(random()*10)::smallint for ceil(random()*20)::SMALLINT),
+                NOW() + (random() * (NOW()+'365 days' - NOW()))
+                 );
+        END LOOP;
+    END IF; 
+END;
+$$
+LANGUAGE 'plpgsql'  SECURITY DEFINER;
+
+
+SELECT "veriGir"(100);
+
+TRUNCATE "Kisiler"
+
+-----
+
+
+
+
+
+
+
 -- ** Birleşim (INNER JOIN), IN ve EXIST (İlintili Sorgu) ** --
 
 
@@ -294,19 +345,6 @@ SELECT "rental_id" FROM "payment";
 
 
 EXPLAIN ANALYSE
-SELECT * FROM "payment" WHERE "amount" != 11.99;
-
--- 22:38:13 Query time: 6 millisecond(s), Number of cursor's records: 5
-
-
-EXPLAIN ANALYSE
-SELECT * FROM "payment" WHERE "amount" < 11.99;
-
--- 22:38:13 Query time: 6 millisecond(s), Number of cursor's records: 5
-
-
-
-EXPLAIN ANALYSE
 SELECT * FROM "film" WHERE SUBSTR("title", 2, 2) = 'la';
 
 --22:44:30 Query time: 2 millisecond(s), Number of affected records: 15
@@ -338,7 +376,7 @@ WHERE "amount" = '2.99';
 -- ** Genel Kurallar ** --
 
 
--- Büyük ikili nesneleri depolamak için ilk önce onları dosyalama 
+-- Büyük ikili nesneleri (resim, pdf) depolamak için ilk önce onları dosyalama 
 -- sistemine yerleştiriniz ve veritabanına dosyanın konumunu ekleyiniz.
 
 -- SQL standart kurallarını takip ediniz.
@@ -367,7 +405,7 @@ WHERE "amount" = '2.99';
 
 
 
--- Seçili veri tabanındaki tüm tablolara vacuum işlemi uygula.
+-- Seçili veritabanındaki tüm tablolara vacuum işlemi uygula.
 
 VACUUM;
 
@@ -424,8 +462,4 @@ SELECT * FROM "pg_statistic"
 SELECT "relname", "last_vacuum", "last_autovacuum", "last_analyze", "last_autoanalyze"
 FROM "pg_stat_all_tables"
 WHERE "schemaname" = 'public';
-
-
-
-
 
