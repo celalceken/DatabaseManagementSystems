@@ -451,51 +451,56 @@ DROP TRIGGER IF EXISTS "urunBirimFiyatDegistiginde" ON "products";
 SELECT CURRENT_DATE; -- 2001-11-26 -- O anki tarih
 
 -- TIME : Zaman
-SELECT CURRENT_TIME;--  23:08:04.762164+03   -- O anki zaman.Zaman bölgesiyle birlikte   
+SELECT CURRENT_TIME;--  23:08:04.762164+03   -- O anki zaman. Zaman bölgesiyle birlikte   
 SELECT LOCALTIME;  -- Zaman bölgesi olamdan
 
 -- TIMESTAMP: Tarih + Zaman  
 SELECT CURRENT_TIMESTAMP; -- 2017-11-26 23:10:44.599394+03  -- O anki tarih ve zaman. Zaman bölgesiyle birlikte 
-SELECT now(); -- CURRENT_TIMESTAMP ile aynı
+SELECT NOW(); -- CURRENT_TIMESTAMP ile aynı
 SELECT LOCALTIMESTAMP; -- Zaman bölgesi olamdan
 
-SELECT age(timestamp '20018-04-10', timestamp '1957-06-13')
-SELECT age(timestamp '2018-10-07 23:00:01');
+SELECT AGE(timestamp '2018-04-10', timestamp '1957-06-13');
+SELECT AGE(timestamp '2018-10-07 23:00:01');
 
-SELECT age(timestamp '2000-10-07'); --Doğum tarihi '2000-10-07' olan kişinin yaşı 
-SELECT date_part('years', age(timestamp '2000-10-07'));
+SELECT AGE(timestamp '2000-10-07'); -- Doğum tarihi '2000-10-07' olan kişinin yaşı 
 
---date_part()/extract() fonksiyonu, tarih/zaman dan ya da zaman diliminden(interval) istenen bölümü almak için kullanılır
-SELECT date_part('day', interval '2 years 5 months 4 days'); 
-SELECT extract(DAY from INTERVAL '2 years 5 months 4 days'); 
-SELECT extract(hour from timestamp '2018-12-10 19:27:45');
+-- DATE_PART()/EXTRACT() fonksiyonu, tarih/zaman'dan ya da zaman diliminden(interval) istenen bölümü almak için kullanılır
+SELECT DATE_PART('years', AGE(timestamp '2000-10-07'));
+SELECT DATE_PART('day', INTERVAL '2 years 5 months 4 days'); 
+SELECT EXTRACT(day from INTERVAL '2 years 5 months 4 days'); 
+SELECT EXTRACT(hour from timestamp '2018-12-10 19:27:45');
 
--- istenen hassasiyeti elde etmek için kullanılır.
-SELECT date_trunc('minute', timestamp '2018-10-07 23:05:40'); 
+-- İstenen hassasiyeti elde etmek için kullanılır.
+SELECT DATE_TRUNC('minute', timestamp '2018-10-07 23:05:40'); 
 
-SELECT justify_days(interval '51 days');  --1 mon 21 days
+SELECT JUSTIFY_DAYS(interval '51 days');  -- 1 ay 21 gün
 
-SELECT justify_hours(interval '27 hours')  1 day 03:00:00
+SELECT JUSTIFY_HOURS(interval '27 hours') -- 1 gün 03:00:00
 
-SELECT justify_interval(interval '1 mon -1 hour') --29 days 23:00:00
+SELECT JUSTIFY_INTERVAL(interval '1 mon -1 hour') -- 29 gün 23:00:00
 
-select extract(epoch from now()); -- Unix timestamp 1.1.1970
+
+SELECT EXTRACT(EPOCH FROM NOW()); -- UNIX timestamp 1.1.1970'den o ana kadar geçen süre (sn cinsinden).
 SELECT EXTRACT(EPOCH FROM TIMESTAMP WITH TIME ZONE '2018-12-10 20:38:40.12-08'); -- 982384720.12
-SELECT to_timestamp(0)
-SELECT to_timestamp(1544503120.12)
 
-//Tarih Zaman biçimlendirme 
-SELECT to_char(current_timestamp, 'HH24:MI:SS:MS');  -- HH12, MS Milisecond, US microsecond
-SELECT to_char(current_timestamp, 'DD/MM/YYYY'); -- , YYYY year (4 basamak), YY, TZ	time zone
+SELECT TO_TIMESTAMP(0); -- Epoch değerini UNIX zaman damgasına dönüştür.
+SELECT TO_TIMESTAMP(1544503120.12);
+
+-- Tarih Zaman biçimlendirme
+
+SELECT TO_CHAR(current_timestamp, 'HH24:MI:SS:MS');  -- HH12, MS Milisecond, US microsecond
+SELECT TO_CHAR(current_timestamp, 'DD/MM/YYYY'); -- , YYYY year (4 basamak), YY, TZ	time zone
+
 
 
 
 -- Pagila veritabanından film kiralama sürelerinin bulunması
+
 SELECT customer_id, to_char(rental_date, 'DD/MM/YYYY'  ), return_date,
          age(return_date, rental_date)
 FROM rental
 WHERE return_date IS NOT NULL
-ORDER BY  3 DESC
+ORDER BY 3 DESC
 
 
 
