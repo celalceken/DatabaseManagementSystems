@@ -2,7 +2,7 @@
 -- *** Başarım Eniyileme (Performance Tuning) *** --
 
 
--- Örnekler İçin Pagila Veri Tabanı Kullanılmaktadır.
+-- Örnekler İçin Pagila Veritabanı Kullanılmaktadır.
 
 
 
@@ -87,7 +87,7 @@ SELECT "store"."store_id", "film"."title"
 FROM "inventory" 
 INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
 INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id"
-LIMIT 20  OFFSET 39; 
+LIMIT 20 OFFSET 39; 
 
 -- 21:04:16 Query time: 2 millisecond(s), Number of cursor's records: 12
 
@@ -103,7 +103,7 @@ FROM "customer" ORDER BY "customer_id" DESC
 EXPLAIN ANALYSE
 SELECT "customer_id", "first_name", "last_name"
 FROM "customer" ORDER BY "customer_id" DESC
-LIMIT 10  OFFSET 20;
+LIMIT 10 OFFSET 20;
 
 
 
@@ -294,6 +294,7 @@ GROUP BY "category"."name";
 -- Bazen ana sorguda birden fazla alt sorgu bulunabilir. Bu durumda alt 
 -- sorgu bloklarının sayısını azaltmaya çalışmalıyız.
 
+-- Bu bölüm NorthWind veritabanı kullanmaktadır.
 
 EXPLAIN ANALYSE
 SELECT * FROM "products" 
@@ -376,7 +377,7 @@ WHERE "amount" = '2.99';
 -- ** Genel Kurallar ** --
 
 
--- Büyük ikili nesneleri (resim, pdf) depolamak için ilk önce onları dosyalama 
+-- Büyük ikili nesneleri (resim, pdf vb.) depolamak için ilk önce onları dosyalama 
 -- sistemine yerleştiriniz ve veritabanına dosyanın konumunu ekleyiniz.
 
 -- SQL standart kurallarını takip ediniz.
