@@ -226,14 +226,6 @@ CREATE USER "kullanici1" WITH PASSWORD 'abc';
 CREATE ROLE "rol3" WITH PASSWORD 'abc' LOGIN;
 
 
-
--- Şifre kodlanmadan saklanır.
--- Şifrenin son geçerlilik tarihi de belirtilir. 
-
-CREATE ROLE "rol4" WITH UNENCRYPTED PASSWORD 'abc' VALID UNTIL '2017-01-01';
-
-
-
 -- Şifre kodlanarak saklanır.
 -- Şifrenin son geçerlilik tarihi de belirtilir. 
 
@@ -295,11 +287,11 @@ GRANT "gruprol" TO "rol1";
 
 
 -- Bunun yapılabilmesi için rol1 isimli rolün kalıtım alma özelliğine 
--- sahip olması gerekir.
+-- sahip olması gerekir. (Postgresql in yeni sürümlerinde rol oluşturulduğunda INHERIT yetkisi veriliyor)
 -- Diğer bir deyişle INHERIT yetkisine sahip olması gerekir.
 -- Bu yetki yoksa, yetkiler kalıtım alınmaz.
 
-ALTER ROLE "rol1" WITH INHERIT;
+ALTER ROLE "rol1" WITH INHERIT;  
 
 CREATE ROLE "rol2" WITH INHERIT;
 
