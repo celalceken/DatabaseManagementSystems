@@ -50,7 +50,7 @@ INNER JOIN "rental" ON "rental"."customer_id" = "customer"."customer_id"
 INNER JOIN "inventory" ON "inventory"."store_id" = "store"."store_id" 
 INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id";
 
--- 20:52:27 Query time: 12.442 second(s), Number of cursor's records: 23
+-- Execution time: 10968.823 ms
 
 
 EXPLAIN ANALYSE
@@ -62,7 +62,7 @@ INNER JOIN "rental" ON "rental"."customer_id" = "customer"."customer_id"
 INNER JOIN "inventory" ON "inventory"."store_id" = "store"."store_id" 
 INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id";
 
--- 20:52:40 Query time: 7.177 second(s), Number of cursor's records: 24
+-- Execution time: 6220.990 ms
 
 
 
@@ -76,20 +76,20 @@ FROM "inventory"
 INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
 INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id";
 
--- 21:04:05 Query time: 5 millisecond(s), Number of cursor's records: 13
+-- Execution time: 4.450 ms
 
 
 
--- İlk 39 dan sonra 20 kayıt getirilsin.
+-- İlk 40 dan sonraki 20 kayıt getirilsin.
 
 EXPLAIN ANALYSE
 SELECT "store"."store_id", "film"."title"
 FROM "inventory" 
 INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
 INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id"
-LIMIT 20 OFFSET 39; 
+LIMIT 20 OFFSET 40; 
 
--- 21:04:16 Query time: 2 millisecond(s), Number of cursor's records: 12
+-- Execution time: 0.315 ms
 
 
 
@@ -120,7 +120,7 @@ FROM "inventory"
 INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id" 
 INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id";
 
--- 21:12:37 Query time: 5 millisecond(s), Number of cursor's records: 13
+-- Execution time: 4.968 ms
 
 
 EXPLAIN ANALYSE 
@@ -130,8 +130,7 @@ INNER JOIN "film" ON "inventory"."film_id" = "film"."film_id"
 INNER JOIN "store" ON "inventory"."store_id" = "store"."store_id" 
 ORDER BY "film"."title";
 
--- 21:12:41 Query time: 7 millisecond(s), Number of cursor's records: 16
-
+-- Execution time: 7.411 ms
 
 
 
@@ -142,8 +141,8 @@ ORDER BY "film"."title";
 -- gerçekleştirilir. 
 
 
--- Aşağıdaki sorgularda “customer” tablosunun “last_name” alanı index 
--- olarak belirlenmiştir.
+-- Aşağıdaki sorgularda “customer” tablosunun “last_name” alanı için index 
+-- tanımlanmıştır.
 
 EXPLAIN ANALYSE
 SELECT * FROM "customer"
@@ -179,7 +178,6 @@ CREATE TABLE "Kisiler" (
 );
 
 
-
 CREATE OR REPLACE FUNCTION "veriGir"(kayitSayisi integer)
 RETURNS VOID
 AS  
@@ -200,15 +198,21 @@ $$
 LANGUAGE 'plpgsql'  SECURITY DEFINER;
 
 
-SELECT "veriGir"(100);
+SELECT "veriGir"(100000);
 
-TRUNCATE "Kisiler"
+EXPLAIN ANALYZE
+SELECT * FROM "Kisiler"
+WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
 
------
+-- Execution time: 10.274 ms
 
+CREATE INDEX "adiINDEX" ON "public"."Kisiler" USING btree( "adi" Asc NULLS Last );
 
+EXPLAIN ANALYZE
+SELECT * FROM "Kisiler"
+WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
 
-
+-- Execution time: 0.086 ms
 
 
 
@@ -225,7 +229,7 @@ FROM "customer"
 INNER JOIN "payment"
 ON "payment"."customer_id" = "customer"."customer_id";
 
--- 21:47:16 Query time: 14 millisecond(s), Number of cursor's records: 10
+-- Execution time: 11.081 ms
 
 
 EXPLAIN ANALYSE
@@ -233,7 +237,7 @@ SELECT DISTINCT "customer"."first_name", "customer"."last_name"
 FROM "customer"
 WHERE "customer_id" IN (SELECT "customer_id" FROM "payment"); 
 
--- 21:34:45 Query time: 5 millisecond(s), Number of cursor's records: 9
+-- Execution time: 2.699 ms
 
 
 EXPLAIN ANALYSE
@@ -241,7 +245,7 @@ SELECT "customer"."first_name", "customer"."last_name"
 FROM "customer"
 WHERE "customer_id" IN (SELECT DISTINCT "customer_id" FROM "payment");
 
--- 21:34:49 Query time: 6 millisecond(s), Number of cursor's records: 10
+-- Execution time: 6.290 ms
 
 
 EXPLAIN ANALYSE
@@ -251,8 +255,7 @@ WHERE EXISTS
     (SELECT "customer_id" FROM "payment" 
      WHERE "customer"."customer_id" = "payment"."customer_id");
 
--- 21:34:53 Query time: 3 millisecond(s), Number of cursor's records: 7
-
+-- Execution time: 2.253 ms
 
 
 
@@ -272,7 +275,7 @@ LEFT OUTER JOIN "category" ON "film_category"."category_id" =  "category"."categ
 GROUP BY "category"."name"
 HAVING "category"."name" = 'Horror' OR "category"."name" = 'Comedy';
 
--- 22:04:45 Query time: 3 millisecond(s), Number of cursor's records: 16
+-- Execution time: 0.922 ms
 
 
 EXPLAIN ANALYSE
@@ -283,7 +286,7 @@ LEFT OUTER JOIN "category" ON "film_category"."category_id" = "category"."catego
 WHERE "category"."name" = 'Horror' OR "category"."name" = 'Comedy'
 GROUP BY "category"."name";
 
--- 22:05:02 Query time: 2 millisecond(s), Number of cursor's records: 16
+-- Execution time: 0.898 ms
 
 
 
@@ -326,7 +329,7 @@ SELECT "rental_id" FROM "rental"
 UNION
 SELECT "rental_id" FROM "payment";
 
--- 22:23:50 Query time: 21 millisecond(s), Number of cursor's records: 7
+-- Execution time: 20.382 ms
 
 
 EXPLAIN ANALYSE
@@ -334,8 +337,7 @@ SELECT "rental_id" FROM "rental"
 UNION ALL
 SELECT "rental_id" FROM "payment";
 
--- 22:23:53 Query time: 11 millisecond(s), Number of cursor's records: 5
-
+-- Execution time: 10.742 ms
 
 
 
@@ -358,22 +360,6 @@ SELECT * FROM "film" WHERE "title" LIKE '_la%';
 
 
 
-EXPLAIN ANALYSE
-SELECT * FROM "payment" 
-WHERE "amount" - 1 = '1.99';
-
--- 22:50:54 Query time: 6 millisecond(s), Number of cursor's records: 5
-
-
-EXPLAIN ANALYSE
-SELECT * FROM "payment" 
-WHERE "amount" = '2.99';
-
--- 22:50:56 Query time: 5 millisecond(s), Number of cursor's records: 5
-
-
-
-
 -- ** Genel Kurallar ** --
 
 
@@ -385,7 +371,7 @@ WHERE "amount" = '2.99';
 
 
 
--- ** VAUUM ve ANALYSE ** --
+-- ** VACUUM ve ANALYSE ** --
 
 
 -- PostgreSQL’de bir kayıt silindiği zaman aslında gerçekten silinmez.
