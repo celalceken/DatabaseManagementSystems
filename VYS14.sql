@@ -1,6 +1,6 @@
 
 
--- *** Veritabanı Güvenliği *** --
+-- *** Veritabanı Güvenliği, Yetkilendirme *** --
 
 
 
@@ -132,8 +132,8 @@ postgres=#
 
 -- Yetkilendirme İşlemleri
 
--- Kullanicilarin / rollerin nesneler uzerinde hangi haklara sahip 
--- olacaginin belirlenmesine yetkilendirme adı verilir.
+-- Kullanıcıların / rollerin nesneler üzerinde hangi haklara sahip 
+-- olacağının belirlenmesine yetkilendirme adı verilir.
 
 
 
@@ -229,7 +229,7 @@ CREATE ROLE "rol3" WITH PASSWORD 'abc' LOGIN;
 -- Şifre kodlanarak saklanır.
 -- Şifrenin son geçerlilik tarihi de belirtilir. 
 
-CREATE ROLE "kullanici4" WITH PASSWORD 'abc' VALID UNTIL '2017-01-01';
+CREATE ROLE "kullanici4" WITH PASSWORD 'abc' VALID UNTIL '2020-01-01';
 
 
 
@@ -239,9 +239,10 @@ DROP USER "kullanici1";
 DROP ROLE "rol1";
 
 
--- Nesne oluşturulurken bu nesnenin sahibi olan rol de (Create komutunu çalıştıran rol) atanır.
+-- Nesne oluşturulurken bu nesnenin sahibi olan rol de (CREATE komutunu 
+-- çalıştıran rol) atanır.
 -- Nesne sahibi (ya da SUPERUSER) nesne üzerindeki tüm haklara sahiptir.
--- Veri tabanı sahibi olan bir rolü silmeden önce veri tabanı 
+-- Veritabanı sahibi olan bir rolü silmeden önce veritabanı 
 -- sahipliğini başka bir role aktarmalıyız.
 -- Bu işlemi ALTER DATABASE ile yapabiliriz.
 
@@ -257,7 +258,7 @@ DROP ROLE "rol1";
 
 
 
--- Veri tabanı sahibi olan bir rolü silmeden önce veri tabanı 
+-- Veritabanı sahibi olan bir rolü silmeden önce veri tabanı 
 -- sahipliğini başka bir role aktarmalıyız.
 -- Bu işlemi REASSIGN ile de yapabiliriz.
 
@@ -287,7 +288,8 @@ GRANT "gruprol" TO "rol1";
 
 
 -- Bunun yapılabilmesi için rol1 isimli rolün kalıtım alma özelliğine 
--- sahip olması gerekir. (Postgresql in yeni sürümlerinde rol oluşturulduğunda INHERIT yetkisi veriliyor)
+-- sahip olması gerekir. (Postgresql in yeni sürümlerinde rol 
+-- oluşturulduğunda INHERIT yetkisi veriliyor)
 -- Diğer bir deyişle INHERIT yetkisine sahip olması gerekir.
 -- Bu yetki yoksa, yetkiler kalıtım alınmaz.
 
@@ -299,7 +301,8 @@ GRANT "gruprol" TO "rol2";
 
 
 
--- rol1 isimli role verilmiş yetkilerin (gruprol yetkileri) geri alınması.
+-- rol1 isimli role verilmiş yetkilerin (gruprol yetkileri) geri 
+-- alınması.
 
 REVOKE "gruprol" FROM "rol1";
 
@@ -328,7 +331,8 @@ GRANT INSERT ON "customers" TO PUBLIC;
 GRANT ALL ON "customers" TO "rol1";
 
 
--- rol1 isimli rolün customers tablosu üzerindeki güncelleme yetkisini geri al.
+-- rol1 isimli rolün customers tablosu üzerindeki güncelleme yetkisini 
+-- geri al.
 
 REVOKE UPDATE ON "customers" FROM "rol1";
 
@@ -338,7 +342,8 @@ REVOKE UPDATE ON "customers" FROM "rol1";
 REVOKE ALL ON "customers" FROM "rol1";
 
 
--- rol1 kullanicisinin Sema1 icerisindeki nesnelere ait tüm yetkileri alinir.
+-- rol1 kullanicisinin Sema1 icerisindeki nesnelere ait tüm yetkileri 
+-- geri alinir.
 
 REVOKE ALL ON SCHEMA "Sema1" FROM "rol1";
 
@@ -407,15 +412,15 @@ LANGUAGE plpgsql;
 
 
 
-SET SESSION AUTHORIZATION "rol15";
+SET SESSION AUTHORIZATION "rol1";
 
-SELECT * FROM milKMDonustur(3);
+SELECT * FROM "milKMDonustur"(3);
 
 
 
 SET SESSION AUTHORIZATION "postgres";
 
-REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM "rol15";
+REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM "rol1";
 
 
 -- Aşağıdaki ifade çalışır. Fonksiyonlar PUBLIC grubu için 
@@ -431,7 +436,7 @@ SET SESSION AUTHORIZATION "postgres";
 
 REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM PUBLIC;
 
-SET SESSION AUTHORIZATION "rol15";
+SET SESSION AUTHORIZATION "rol1";
 
 
 -- Aşağıdaki ifade çalışmaz.
