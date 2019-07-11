@@ -186,7 +186,8 @@ SELECT
   "customers"."CompanyName" AS "sirket",
   "orders"."OrderDate" AS "siparisTarihi"
 FROM "customers"
-LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" ;
+LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" 
+ORDER BY "OrderID" DESC;
 
 
 
@@ -199,8 +200,12 @@ SELECT
   "employees"."LastName" AS "satisTemsilcisiSoyadi",
   "orders"."OrderDate" AS "siparisTarihi"
 FROM "orders"
-RIGHT OUTER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID" ;
+RIGHT OUTER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID" 
+ORDER BY "OrderID" DESC;
 
+
+INSERT INTO "employees" ( "EmployeeID","FirstName", "LastName") 
+VALUES ( 10,'Melih', 'Can' );
 
 
 
