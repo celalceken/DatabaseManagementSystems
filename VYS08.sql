@@ -20,6 +20,67 @@ CREATE INDEX "musterilerSoyadiIndex" ON "Musteriler" USING btree ("soyadi");
 DROP INDEX "musterilerAdiIndex";
 
 
+-- INDEX-Örnek Uygulama --
+
+-- Örnek Ek Veritabanı
+
+CREATE DATABASE "TestVeritabani"
+ENCODING='UTF-8'
+LC_COLLATE='tr_TR.UTF-8'
+LC_CTYPE='tr_TR.UTF-8'	
+OWNER postgres
+TEMPLATE=template0;
+
+CREATE TABLE "Kisiler" (
+    "kisiNo" SERIAL,
+	"adi" VARCHAR(40) NOT NULL,
+	"soyadi" VARCHAR(40) NOT NULL,
+	"kayitTarihi" TIMESTAMP DEFAULT '2019-01-01 01:00:00',
+	CONSTRAINT "urunlerPK1" PRIMARY KEY("kisiNo")
+);
+
+
+CREATE OR REPLACE FUNCTION "veriGir"(kayitSayisi integer)
+RETURNS VOID
+AS  
+$$
+BEGIN   
+    IF kayitSayisi > 0 THEN
+        FOR i IN 1 .. kayitSayisi LOOP
+            insert into "Kisiler" ("adi","soyadi", "kayitTarihi") 
+            Values(
+                substring('ABCÇDEFGĞHIiJKLMNOÖPRSŞTUÜVYZ' from ceil(random()*10)::smallint for ceil(random()*20)::SMALLINT), 
+                substring('ABCÇDEFGĞHIiJKLMNOÖPRSŞTUÜVYZ' from ceil(random()*10)::smallint for ceil(random()*20)::SMALLINT),
+                NOW() + (random() * (NOW()+'365 days' - NOW()))
+                 );
+        END LOOP;
+    END IF; 
+END;
+$$
+LANGUAGE 'plpgsql'  SECURITY DEFINER;
+
+
+SELECT "veriGir"(100000);
+
+EXPLAIN ANALYZE
+SELECT * FROM "Kisiler"
+WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
+
+-- Execution time: 10.274 ms
+
+CREATE INDEX "adiINDEX" ON "public"."Kisiler" USING btree( "adi" Asc NULLS Last );
+
+EXPLAIN ANALYZE
+SELECT * FROM "Kisiler"
+WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
+
+-- Execution time: 0.086 ms
+
+
+
+
+
+
 
 -- Kalıtım Örneği --
 
