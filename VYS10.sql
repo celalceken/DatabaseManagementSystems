@@ -293,22 +293,21 @@ WHERE NOT EXISTS
 -- UNION ifadesi ile aynı kayıtlar bir defa gösterilir.
 -- UNION ALL ifadesi ile aynı kayıtlar gösterilir.
 
-SELECT "CustomerID" FROM "customers"
-UNION
-SELECT "CustomerID" FROM "orders"
-ORDER BY "CustomerID";
-
-
-SELECT "CustomerID" FROM "customers"
-UNION ALL
-SELECT "CustomerID" FROM "orders"
-ORDER BY "CustomerID";
-
+SELECT "CompanyName", "Country" FROM "customers"
+UNION 
+SELECT "CompanyName", "Country" FROM "suppliers"
+ORDER BY 2;
 
 SELECT "CompanyName", "Country" FROM "customers"
 UNION ALL
 SELECT "CompanyName", "Country" FROM "suppliers"
 ORDER BY 2;
+
+
+SELECT "CustomerID" FROM "customers"
+UNION
+SELECT "CustomerID" FROM "orders"
+ORDER BY "CustomerID";
 
 
 
