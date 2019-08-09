@@ -1,4 +1,4 @@
-
+﻿
 
 -- *** Temel SQL (SQL DDL Komutları; CREATE, ALTER, DROP, ADD, SET, CONSTRAINTS) *** --
 
@@ -15,6 +15,16 @@ CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
 LC_COLLATE='tr_TR.UTF-8'-- Bu özellik sonradan değiştirilemez (arama, sıralama işlemleri için)
 LC_CTYPE='tr_TR.UTF-8'	-- Bu özellik sonradan değiştirilemez (aksan)
+OWNER postgres
+TEMPLATE=template0;
+
+
+-- Windows işletim sistemi için
+
+CREATE DATABASE "AlisVerisUygulamasi"
+ENCODING='UTF-8'
+LC_COLLATE='Turkish_Turkey.1254'-- Bu özellik sonradan değiştirilemez (arama, sıralama işlemleri için)
+LC_CTYPE='Turkish_Turkey.1254'	-- Bu özellik sonradan değiştirilemez (aksan)
 OWNER postgres
 TEMPLATE=template0;
 
