@@ -4,7 +4,7 @@
 
 
 
--- Pagila Örnek Veri Tabanını Kullanmaktadır.
+-- Pagila örnek veri tabanını kullanmaktadır.
 
 
 
