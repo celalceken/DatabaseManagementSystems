@@ -114,7 +114,8 @@
 
 
 * Veri soyutlama örneği
+  + Klasik dosyadan okuma işlemi (http://www.cplusplus.com)
+![](Sekiller/DosyaSistemiKod.png)
 
-![Klasik dosyadan okuma işlemi (http://www.cplusplus.com)](Sekiller/DosyaSistemiKod.png)
-
-SELECT * FROM Ogrenciler;
+  + VTYS (SQL) ile okuma işlemi
+```SELECT * FROM Ogrenciler;```
