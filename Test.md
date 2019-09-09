@@ -1,10 +1,8 @@
 
 
-# Veritabanı Kavramı
+# Veritabanı Kavramı - Veritabanı Sistemleri
 
-## Veritabanı Sistemleri
-
-### Konular
+## Konular
 
 * Büyük Resim
 * Ders Tanıtımı
@@ -20,18 +18,18 @@
 * Kaynaklar
 
 
-### Büyük Resim
+## Büyük Resim
 
 ![](Sekiller/BuyukResim.png)
 
 
-### Ders Tanıtımı
+## Ders Tanıtımı
 
 * Ders hakkında EBS üzerinden bilgi alabilirsiniz.
 * https://ebs.sabis.sakarya.edu.tr
 
 
-### Niçin Veritabanı
+## Niçin Veritabanı
 
 * Dosyalarda depolanan birbiriyle ilişkili veri topluluklarına veri tabanı denir .
 * Günümüz verileri; terabayt (1024 gigabayt), petabayt, ekzabayt, zetabayt, yotabayt boyutlarında.
@@ -55,7 +53,7 @@
   + Üretim
 
 
-### Veri ve Bilgi Kavramları
+## Veri ve Bilgi Kavramları
 
 * İşlenerek anlam kazandırılmamış ham gerçeklere veri denir.
 * Veriler işlenerek bilgi oluşturulur
@@ -70,7 +68,7 @@
 ![](Sekiller/GitVerileri.png)
 
 
-### Klasik Dosya Yapısı
+## Klasik Dosya Yapısı
 
 * Veriler, kayıtlar halinde klasik dosya yapısı kullanılarak saklanır. 
 * Örnek bir dosya yapısı aşağıda verilmiştir.
@@ -78,7 +76,7 @@
 ![](Sekiller/DosyaYapisi.png)
 
 
-### Veritabanı Sistemi
+## Veritabanı Sistemi
 
 * Veritabanı Sistemi = Veritabanı + VTYS + Kullanıcılar
 * Dosyalarda depolanan birbiriyle ilişkili veri topluluklarına veritabanı denir .
@@ -88,7 +86,7 @@
 ![](Sekiller/VeritabaniSistemi.png)
 
 
-### Veritabanı Sistemi Ortamı
+## Veritabanı Sistemi Ortamı
 
 * Donanım
   + Suncular, iş istasyonları, ağ ortamı, depolama cihazları, raid vb.
@@ -101,7 +99,7 @@
 * Veri
 
 
-### Veritabanı Yönetim Sistemi Kullanmanın Yararları
+## Veritabanı Yönetim Sistemi Kullanmanın Yararları
 ### VTYS ile Dosya Sisteminin Karşılaştırılması
 
 * **Veri Tümleştirme (Data Integration):** Verilerin tekrarsız olarak etkin bir şekilde saklanması garanti edilebilir.
@@ -117,8 +115,27 @@
   + Klasik dosyadan okuma işlemi (http://www.cplusplus.com)
 ![](Sekiller/DosyaSistemiKod.png)
 
-  + VTYS (SQL) ile okuma işlemi \n
+  + VTYS (SQL) ile okuma işlemi
 
 ```sql
 SELECT * FROM Ogrenciler;
 ```
+
+
+##  Örnek Bir Veritabanı (Varlık Bağıntı Modeli)
+
+![](Sekiller/VBDiyagrami.png)
+
+
+##  Örnek Bir Veritabanı (İlişkisel Model)
+
+![](Sekiller/IliskiselModel.png)
+
+
+## Veritabanı Sınıfları
+
+* Kullanım Amacı
+  + **Operasyonel:** Veriler üzerinde sürekli değişiklikler yapılır. (OLTP: Online Transaction Processing)
+  + **Veri Ambarı:** Veriler raporlama ve karar destek amaçlarıyla kullanılır. (OLAP: Online Analytical Processing)
+
+  ![](Sekiller/VeritabaniSiniflari.png)
