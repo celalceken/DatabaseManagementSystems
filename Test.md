@@ -80,8 +80,13 @@
 
 ### Veritabanı Sistemi
 
-
-
+* Veritabanı Sistemi = Veritabanı + VTYS + Kullanıcılar
+* Dosyalarda depolanan birbiriyle ilişkili veri topluluklarına veritabanı denir .
+  + Veritabanı = HamVeri + ÜstVeri/Metadata (İlişkiler+Veri Karakteristikleri)
+* Veritabanı yapısını yöneten ve verilere erişimi sağlayan yazılımlara Veritabanı Yönetim Sistemi adı verilir.
 
 ![](Sekiller/VeritabaniSistemi.png)
+
+
+### Veritabanı Sistemi Ortamı
 
