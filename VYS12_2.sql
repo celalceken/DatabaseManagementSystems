@@ -1,4 +1,4 @@
-
+﻿
 -- *** Başarım Eniyileme (Performance Tuning) *** --
 
 
@@ -168,6 +168,17 @@ LC_COLLATE='tr_TR.UTF-8'
 LC_CTYPE='tr_TR.UTF-8'	
 OWNER postgres
 TEMPLATE=template0;
+
+
+-- Windows işletim sistemi için
+
+CREATE DATABASE "TestVeritabani"
+ENCODING='UTF-8'
+LC_COLLATE='Turkish_Turkey.1254'
+LC_CTYPE='Turkish_Turkey.1254'	
+OWNER postgres
+TEMPLATE=template0;
+
 
 CREATE TABLE "Kisiler" (
     "kisiNo" SERIAL,
