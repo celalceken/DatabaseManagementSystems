@@ -142,3 +142,11 @@ SELECT * FROM Ogrenciler;
 
 ![](Sekiller/VeritabaniSiniflariTablo.png)
 
+
+## Kaynaklar
+
+* Carlos Coronel, Steven Morris, and Peter Rob, Database Systems: Design, Implementation, and Management, Cengage Learning.
+* http://www.digitalinformationworld.com/2015/02/fascinating- social-networking-stats-2015.html
+* https://www.forbes.com/sites/bernardmarr/2018/05/21/how- much-data-do-we-create-every-day-the-mind-blowing-stats- everyone-should-read/#230ac18d60ba
+* Apache Spark Tutorial | Spark Tutorial for Beginners | Apache Spark Training | Edureka
+  + https://www.youtube.com/watch?v=9mELEARcxJo
