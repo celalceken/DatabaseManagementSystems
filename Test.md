@@ -19,7 +19,9 @@
 * Veritabanı Sınıfları
 * Kaynaklar
 
+
 ### Büyük Resim
+
 ![](Sekiller/BuyukResim.png)
 
 
@@ -27,6 +29,7 @@
 
 * Ders hakkında EBS üzerinden bilgi alabilirsiniz.
 * https://ebs.sabis.sakarya.edu.tr
+
 
 ### Niçin Veritabanı
 
@@ -51,7 +54,32 @@
   + Bilişim
   + Üretim
 
+
 ### Veri ve Bilgi Kavramları
+
+* İşlenerek anlam kazandırılmamış ham gerçeklere veri denir.
+* Veriler işlenerek bilgi oluşturulur
+* Bilgi, verinin anlamını göstermek için kullanılır.
+* Doğru, ilgili ve zamanında elde edilebilen bilgi, karar verme süreçlerinde çok etkilidir.
+* Doğru karar verme, kuruluşların yaşamını sürdürebilmesi açısından son derece önemlidir.
+* Veri yönetimi, organizasyonların en temel aktivitelerindendir. 
+* **Veri yönetimi** verinin uygun bir şekilde üretimi, saklanması ve erişilmesiyle ilgilenen disiplindir.
+
+![](Sekiller/AlgilayiciVerileri.png)
+
+![](Sekiller/GitVerileri.png)
+
+
+### Klasik Dosya Yapısı
+
+* Veriler, kayıtlar halinde klasik dosya yapısı kullanılarak saklanır. 
+* Örnek bir dosya yapısı aşağıda verilmiştir.
+
+![](Sekiller/DosyaYapisi.png)
+
+
+### Veritabanı Sistemi
+
 
 
 
