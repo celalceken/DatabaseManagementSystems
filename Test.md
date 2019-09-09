@@ -140,14 +140,5 @@ SELECT * FROM Ogrenciler;
   + **Operasyonel:** Veriler üzerinde sürekli değişiklikler yapılır. (OLTP: Online Transaction Processing)
   + **Veri Ambarı:** Veriler raporlama ve karar destek amaçlarıyla kullanılır. (OLAP: Online Analytical Processing)
 
-  ![](Sekiller/VeritabaniSiniflari.png)
+![](Sekiller/VeritabaniSiniflariTablo.png)
 
-
-  |             |          Grouping           ||
-First Header  | Second Header | Third Header |
- ------------ | :-----------: | -----------: |
-Content       |          *Long Cell*        ||
-Content       |   **Cell**    |         Cell |
-
-New section   |     More      |         Data |
-And more      | With an escaped '\|'         ||  
