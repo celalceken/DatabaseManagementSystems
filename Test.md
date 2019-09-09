@@ -111,11 +111,13 @@
 ![](Sekiller/VeritabaniVeDosyaSistemi.png)
 
 
-* Veri soyutlama örneği
-  + Klasik dosyadan okuma işlemi (http://www.cplusplus.com)
+### VTYS ile Dosya Sisteminin Karşılaştırılması
+
+*Klasik dosyadan okuma işlemi (http://www.cplusplus.com)
+
 ![](Sekiller/DosyaSistemiKod.png)
 
-  + VTYS (SQL) ile okuma işlemi
+* VTYS (SQL) ile okuma işlemi
 
 ```sql
 SELECT * FROM Ogrenciler;
