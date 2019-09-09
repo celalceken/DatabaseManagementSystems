@@ -1,6 +1,6 @@
 
 
-# (Veritabanı Kavramı)
+# Veritabanı Kavramı
 
 ## Veritabanı Sistemleri
 
@@ -55,5 +55,5 @@
 
 
 
-![](Sekiller/VeritabanıSistemi.png)
+![](Sekiller/VeritabaniSistemi.png)
 
