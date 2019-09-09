@@ -131,7 +131,7 @@ SELECT * FROM Ogrenciler;
 
 ##  Örnek Bir Veritabanı (İlişkisel Model)
 
-![](Sekiller/IliskiselModel.png)
+![](Sekiller/IliskiselSema.png)
 
 
 ## Veritabanı Sınıfları
@@ -141,3 +141,13 @@ SELECT * FROM Ogrenciler;
   + **Veri Ambarı:** Veriler raporlama ve karar destek amaçlarıyla kullanılır. (OLAP: Online Analytical Processing)
 
   ![](Sekiller/VeritabaniSiniflari.png)
+
+
+  |             |          Grouping           ||
+First Header  | Second Header | Third Header |
+ ------------ | :-----------: | -----------: |
+Content       |          *Long Cell*        ||
+Content       |   **Cell**    |         Cell |
+
+New section   |     More      |         Data |
+And more      | With an escaped '\|'         ||  
