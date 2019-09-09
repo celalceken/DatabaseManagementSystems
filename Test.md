@@ -90,3 +90,31 @@
 
 ### Veritabanı Sistemi Ortamı
 
+* Donanım
+  + Suncular, iş istasyonları, ağ ortamı, depolama cihazları, raid vb.
+* Yazılım
+  + İşletim Sistemleri
+  + VTYS (Oracle, PostgreSQL, DB2, MSSQL, MySQL vb.)
+  + Uygulama programları ve yardımcı programlar
+* Kişiler
+  + Sistem yöneticisi, veritabanı yöneticisi, veritabanı tasarımcısı, uygulama programcısı, kullanıcı
+* Veri
+
+
+### Veritabanı Yönetim Sistemi Kullanmanın Yararları
+### VTYS ile Dosya Sisteminin Karşılaştırılması
+
+* **Veri Tümleştirme (Data Integration):** Verilerin tekrarsız olarak etkin bir şekilde saklanması garanti edilebilir.
+* **Veri Bütünlüğü (Data Integrity):** Verilerin bozulmadan ve tutarlı olarak saklanması sağlanabilir. Kısıtlar eklenerek veri tutarsızlığı önlenebilir (key constraints, integrity rules).
+* **Veri Güvenliği (Data Security):** Sistem hataları karşısında ya da saldırıya rağmen verilerin kaybolmaması ve tutarlılığının korunması sağlanabilir (transaction, raid sistemler, kurtarma mekanizmaları, gelişmiş yetkilendirme yapısı vb.).
+* **Veri Soyutlama (Data Abstraction):** Kullanıcıya, karmaşık yapıdaki fiziksel veri yapısı yerine anlaşılabilirliği ve yönetilebilirliği daha kolay olan mantıksal model sunulur.
+
+
+![](Sekiller/VeritabaniVeDosyaSistemi.png)
+
+
+* Veri soyutlama örneği
+
+![Klasik dosyadan okuma işlemi (http://www.cplusplus.com)](Sekiller/DosyaSistemiKod.png)
+
+SELECT * FROM Ogrenciler;
