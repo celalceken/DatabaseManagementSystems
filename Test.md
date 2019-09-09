@@ -20,7 +20,7 @@
 
 ## Büyük Resim
 
-![](Sekiller/BuyukResim.png)
+![](Sekiller/01/BuyukResim.png)
 
 
 ## Ders Tanıtımı
@@ -63,9 +63,9 @@
 * Veri yönetimi, organizasyonların en temel aktivitelerindendir. 
 * **Veri yönetimi** verinin uygun bir şekilde üretimi, saklanması ve erişilmesiyle ilgilenen disiplindir.
 
-![](Sekiller/AlgilayiciVerileri.png)
+![](Sekiller/01/AlgilayiciVerileri.png)
 
-![](Sekiller/GitVerileri.png)
+![](Sekiller/01/GitVerileri.png)
 
 
 ## Klasik Dosya Yapısı
@@ -73,7 +73,7 @@
 * Veriler, kayıtlar halinde klasik dosya yapısı kullanılarak saklanır. 
 * Örnek bir dosya yapısı aşağıda verilmiştir.
 
-![](Sekiller/DosyaYapisi.png)
+![](Sekiller/01/DosyaYapisi.png)
 
 
 ## Veritabanı Sistemi
@@ -83,7 +83,7 @@
   + Veritabanı = HamVeri + ÜstVeri/Metadata (İlişkiler+Veri Karakteristikleri)
 * Veritabanı yapısını yöneten ve verilere erişimi sağlayan yazılımlara Veritabanı Yönetim Sistemi adı verilir.
 
-![](Sekiller/VeritabaniSistemi.png)
+![](Sekiller/01/VeritabaniSistemi.png)
 
 
 ## Veritabanı Sistemi Ortamı
@@ -108,14 +108,14 @@
 * **Veri Soyutlama (Data Abstraction):** Kullanıcıya, karmaşık yapıdaki fiziksel veri yapısı yerine anlaşılabilirliği ve yönetilebilirliği daha kolay olan mantıksal model sunulur.
 
 
-![](Sekiller/VeritabaniVeDosyaSistemi.png)
+![](Sekiller/01/VeritabaniVeDosyaSistemi.png)
 
 
 ### VTYS ile Dosya Sisteminin Karşılaştırılması
 
-*Klasik dosyadan okuma işlemi (http://www.cplusplus.com)
+* Klasik dosyadan okuma işlemi (http://www.cplusplus.com)
 
-![](Sekiller/DosyaSistemiKod.png)
+![](Sekiller/01/DosyaSistemiKod.png)
 
 * VTYS (SQL) ile okuma işlemi
 
@@ -126,12 +126,12 @@ SELECT * FROM Ogrenciler;
 
 ##  Örnek Bir Veritabanı (Varlık Bağıntı Modeli)
 
-![](Sekiller/VBDiyagrami.png)
+![](Sekiller/01/VBDiyagrami.png)
 
 
 ##  Örnek Bir Veritabanı (İlişkisel Model)
 
-![](Sekiller/IliskiselSema.png)
+![](Sekiller/01/IliskiselSema.png)
 
 
 ## Veritabanı Sınıfları
@@ -140,7 +140,7 @@ SELECT * FROM Ogrenciler;
   + **Operasyonel:** Veriler üzerinde sürekli değişiklikler yapılır. (OLTP: Online Transaction Processing)
   + **Veri Ambarı:** Veriler raporlama ve karar destek amaçlarıyla kullanılır. (OLAP: Online Analytical Processing)
 
-![](Sekiller/VeritabaniSiniflariTablo.png)
+![](Sekiller/01/VeritabaniSiniflariTablo.png)
 
 
 ## Kaynaklar
