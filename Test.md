@@ -1,0 +1,3 @@
+
+
+![](Sekiller/VeritabanıSistemi.png)
