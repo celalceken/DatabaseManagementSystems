@@ -19,8 +19,8 @@
 
 * Yıl içi çalışmalar
 
-  + 1. Ödev - %15
-  + 2. Ödev - %15
+  + Ödev 1 - %15
+  + Ödev 2 - %15
   + Proje/Tasarım - %20
   + Ara sınav (vize) - %50
 
