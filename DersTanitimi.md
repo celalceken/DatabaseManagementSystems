@@ -25,8 +25,9 @@
   + Ara sınav (vize) - %50
 
 * Yıl sonu
-  + Yarıyıl sonu (final) sınavı - %45
-  + Yıl içi çalışmalar - %55
+    + Yıl içi çalışmalar - %55
+    + Yarıyıl sonu (final) sınavı - %45
+
 
 ## Kaynaklar
 
