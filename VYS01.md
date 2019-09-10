@@ -1,5 +1,7 @@
 
 
+BSM303 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
+
 # Veritabanı Kavramı - Veritabanı Sistemleri
 
 ## Konular
@@ -113,9 +115,23 @@
 
 ### VTYS ile Dosya Sisteminin Karşılaştırılması
 
-* Klasik dosyadan okuma işlemi (http://www.cplusplus.com)
+* Klasik dosyadan okuma işlemi
 
-![](Sekiller/01/DosyaSistemiKod.png)
+```java
+String dosya = "Ogrenciler.dat";
+try {
+    FileReader fileReader = new FileReader(dosya);
+    BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+    String satir = null;
+    while ((satir = bufferedReader.readLine()) != null) {
+        System.out.println(satir);
+    }
+        bufferedReader.close();
+    } catch (IOException e) {
+    e.printStackTrace();
+}
+```
 
 * VTYS (SQL) ile okuma işlemi
 
