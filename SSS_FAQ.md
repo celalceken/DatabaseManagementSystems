@@ -1,9 +1,8 @@
 
 # Sıkça Sorulan Sorular ve İstekler
 
-* AraSınav (Vize) / YarıyılSonu (Final) beklediğimden düşük geldi.
-  + Yanlışlık yapılma ihtimalinin çok yüksek olduğunu düşünüyorsanız ve notlara son hal verilmemiş ise, sınav kağıdınıza kendiniz gelerek bakabilirsiniz. Notlara son hal verilmiş ise bölüme dilekçe vererek kağıdınızın incelenmesini isteyebilirsiniz.
-
+### AraSınav (Vize) / YarıyılSonu (Final) beklediğimden düşük geldi.
+Yanlışlık yapılma ihtimalinin çok yüksek olduğunu düşünüyorsanız ve notlara son hal verilmemiş ise, sınav kağıdınıza kendiniz gelerek bakabilirsiniz. Notlara son hal verilmiş ise bölüme dilekçe vererek kağıdınızın incelenmesini isteyebilirsiniz.
 
 ### Harf notları aralıkları nelerdir? Not aralığımı değiştirebilir misiniz?
 
