@@ -1,8 +1,18 @@
 
 # Ders Tanıtımı
 
+
 ## Konular
 
+* Değerlendirme
+* Kaynaklar
+* Dersin Amaçları
+* Çalışma Ortamı
+* Ders Takibi ve İletişim
+* Dersi Verenler
+* Sıkça Sorulan Sorular
+* Bilgisayar Mühendisliği Etiği
+* Bilgisayar Mühendisliği
 
 
 ## Değerlendirme
