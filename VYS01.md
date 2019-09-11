@@ -2,7 +2,7 @@
 
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
-# Veritabanı Kavramı - Veritabanı Sistemleri
+# Veritabanı Sistemleri
 
 ## Konular
 
