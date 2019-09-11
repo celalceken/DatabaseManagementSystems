@@ -27,7 +27,7 @@ Veritabanı tasarımı, lineer ya da ardışık olmaktan çok tekrarlı bir sür
 
 ## Örnek Uygulama - Araç Üreticisi
 
-### Senaryo
+### Senaryo
 
 Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği araçlar, araçlarda kullanılan malzemeler, tedarikçiler vb. bilgilerini saklamak ve yönetmek istediği bir yazılım sistemi talep etmektedir.
 
@@ -52,12 +52,12 @@ Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği ara�
 
 ### İlişkisel Şema
 
-* Arac(sasiNo:char, renk: varchar, modelKodu: char, turKodu: char, uretimTarihi: date)
-* AracMalzeme(sasiNo: char, malzemeKodu: char, miktar: int)
-* Malzeme(malzemeKodu: char, adi: varchar, stokMiktari: int, tedarikciKodu: char)
-* Tur(turKodu: char, ad: varchar)
-* Model(modelKodu: char, ad: varchar, agirlik: real, yolcuSayisi: int)
-* Tedarikci(tedarikciKodu: char, ad: varchar, vergiDairesi: varchar, vergiNo: char)
+* Arac(**sasiNo:char**, renk: varchar, modelKodu: char, turKodu: char, uretimTarihi: date)
+* AracMalzeme(**sasiNo: char**, **malzemeKodu: char**, miktar: int)
+* Malzeme(**malzemeKodu: char**, adi: varchar, stokMiktari: int, tedarikciKodu: char)
+* Tur(**turKodu: char**, ad: varchar)
+* Model(**modelKodu: char**, ad: varchar, agirlik: real, yolcuSayisi: int)
+* Tedarikci(**tedarikciKodu: char**, ad: varchar, vergiDairesi: varchar, vergiNo: char)
 
 Not: Birincil anahtarların altı çizilir.
 
