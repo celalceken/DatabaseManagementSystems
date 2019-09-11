@@ -1,8 +1,8 @@
 
-BSM303 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
+BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
 
-# Veritabanı Kavramı - Varlık Bağıntı Modeli - Örnek Uygulamalar
+# Varlık Bağıntı Modeli - Örnek Uygulamalar
 
 
 ## Konular
