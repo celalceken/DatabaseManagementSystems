@@ -492,7 +492,7 @@ SET SESSION AUTHORIZATION "postgres";
 
 ~~~sql
 REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM "rol1";
-~~~sql
+~~~
 
   + Aşağıdaki ifade çalışır. Fonksiyonlar PUBLIC grubu için varsayılan olarak çalıştırılırlar.
 
