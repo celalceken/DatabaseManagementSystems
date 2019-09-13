@@ -84,15 +84,17 @@ SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
 sorgu sonucu gelen değerler içerisindeki tekrarlanan kayıtların tek kayıt
 olarak gösterilmesini sağlar.
 
+~~~sql
 SELECT DISTINCT "City" from "customers";
+~~~
 
 
+### ORDER BY
+* Sorgular sonucunda listelenen kayıtların belirli alanlara göre alfabetik 
+veya sayısal olarak artan ya da azalan şeklinde sıralanması için 
+"ORDER BY" komutu kullanılır.
 
--- ORDER BY --
--- Sorgular sonucunda listelenen kayıtların belirli alanlara göre alfabetik 
--- veya sayısal olarak artan ya da azalan şeklinde sıralanması için 
--- "ORDER BY" komutu kullanılır.
-
+~~~sql
 SELECT * FROM "customers" ORDER BY "ContactName" ASC;
 
 SELECT * FROM "customers" ORDER BY "ContactName" DESC;
@@ -100,10 +102,12 @@ SELECT * FROM "customers" ORDER BY "ContactName" DESC;
 SELECT * FROM "customers" ORDER BY "ContactName" DESC, "CompanyName";
 
 SELECT * FROM "customers" ORDER BY "Country", "ContactName";
+~~~
 
 
+### LIKE 
 
--- LIKE --
+~~~sql
 
 SELECT * FROM "customers" WHERE "Country" LIKE '%pa%';
 
@@ -112,34 +116,38 @@ SELECT * FROM "customers" WHERE "Country" LIKE '_razil';
 SELECT * FROM "customers" WHERE "City" LIKE 'Sao _aulo';
 
 SELECT * FROM "customers" WHERE "Country" LIKE '%pa_';
+~~~
 
+### BETWEEN
 
--- BETWEEN --
-
+~~~sql
 SELECT * FROM "products" WHERE "UnitPrice" BETWEEN 10 AND 20;
 
 SELECT * FROM "products" WHERE "ProductName" BETWEEN 'C' AND 'M';
+~~~
 
 
+### IN
 
--- IN --
-
+~~~sql
 SELECT * FROM "customers" 
 WHERE "public"."customers"."Country" IN ('Türkiye', 'Kuzey Kıbrıs Türk Cumhuriyeti');
+~~~
 
 
+### NULL ve NULL olmayan içeriğe sahip alanların sorgulanması.
 
--- NULL ve NULL olmayan içeriğe sahip alanların sorgulanması.
-
+~~~sql
 SELECT * FROM "customers" WHERE "Region" IS NOT NULL;
 
 SELECT * FROM "customers" WHERE "Region" IS NULL;
+~~~
 
 
+### AS
+* AS ifadesi ile alanlara takma isim verilir.
 
--- AS --
--- AS ifadesi ile alanlara takma isim verilir.
-
+~~~sql
 SELECT "CompanyName" AS "musteriler" FROM "customers";
 
 SELECT "UnitPrice", "UnitPrice" * 1.18 AS "KDVliTutar" FROM "products";
@@ -148,7 +156,7 @@ SELECT "OrderID" AS "siparisNo",
        "ShipPostalCode" || ',' || "ShipAddress" AS "gonderiAdresi"
 FROM "orders"
 WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
-
+~~~
 
 
 ## TABLO BİRLEŞTİRME İŞLEMLERİ
@@ -165,7 +173,7 @@ SELECT * FROM "Muzisyenler" INNER JOIN "Iller"
 
 ![](Sekiller/06/DogalBirlestirme.png)
 
-
+~~~sql
 SELECT 
   "public"."orders"."OrderID",
   "public"."customers"."CompanyName",
@@ -173,8 +181,9 @@ SELECT
   "public"."orders"."OrderDate"
 FROM "orders" 
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
+~~~
 
-
+~~~sql
 SELECT 
   "public"."orders"."OrderID",
   "public"."customers"."CompanyName",
@@ -184,19 +193,21 @@ FROM "orders"
 INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID"
 WHERE "public"."customers"."Country" LIKE 'A%'
 ORDER BY "public"."customers"."CompanyName" DESC;
+~~~
 
-
-
+~~~sql
 SELECT 
   "orders"."OrderID" AS "siparisNo",
   "customers"."CompanyName" AS "sirket",
   "orders"."OrderDate" AS "siparisTarihi"
 FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
+~~~
 
 
+* Aşağıdaki kullanım biçimi de INNER JOIN gibidir.
 
--- Aşağıdaki kullanım biçimi de INNER JOIN gibidir.
+~~~sql
 SELECT 
    "orders"."OrderID" AS "siparisNo",
   "customers"."CompanyName" AS "sirket",
@@ -204,9 +215,9 @@ SELECT
 FROM "orders", "customers"
 WHERE "orders"."CustomerID" = "customers"."CustomerID"
 ORDER BY "customers"."CompanyName" DESC;
+~~~
 
-
-
+~~~sql
 SELECT 
   "orders"."OrderID",
   "orders"."OrderDate",
@@ -216,18 +227,16 @@ SELECT
 FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
 INNER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID";
+~~~
 
-
-
+~~~sql
 SELECT
   "orders"."OrderID",
   "products"."ProductName"
 FROM "order_details"
 INNER JOIN "orders" ON "order_details"."OrderID" = "orders"."OrderID"
 INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
-
-
-
+~~~
 
 ### Sol Dış Birleştirme (Left Outer Join)
 
@@ -238,7 +247,7 @@ SELECT * FROM "Muzisyenler" LEFT OUTER JOIN "Iller"
 
 ![](Sekiller/06/SolDisBirlestirme.png)
 
-
+~~~sql
 SELECT
    "orders"."OrderID" AS "siparisNo",
   "customers"."CompanyName" AS "sirket",
@@ -246,9 +255,7 @@ SELECT
 FROM "customers"
 LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" 
 ORDER BY "OrderID" DESC;
-
-
-
+~~~
 
 
 ### Sağ Dış Birleştirme (Right Outer Join)
@@ -260,6 +267,7 @@ SELECT * FROM "Muzisyenler" RIGHT OUTER JOIN "Iller"
 
 ![](Sekiller/06/SagDisBirlestirme.png)
 
+~~~sql
 SELECT
   "orders"."OrderID" AS "siparisNo",
   "employees"."FirstName" AS "satisTemsilcisiAdi",
@@ -268,62 +276,73 @@ SELECT
 FROM "orders"
 RIGHT OUTER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID" 
 ORDER BY "OrderID" DESC;
+~~~
 
-
+~~~sql
 INSERT INTO "employees" ( "EmployeeID","FirstName", "LastName") 
 VALUES ( 10,'Melih', 'Can' );
+~~~
 
 
+## SELECT ... INTO
+* Bir tablodan alınan verileri, yeni bir tabloya kopyalamak için kullanılır. 
+* Yeni tablonun mevcut olmaması gerekir.
 
--- SELECT ... INTO --
--- Bir tablodan alınan verileri, yeni bir tabloya kopyalamak için kullanılır. 
--- Yeni tablonun mevcut olmaması gerekir.
-
+~~~sql
 SELECT "CompanyName", "ContactName" INTO "MusteriYedek" FROM "customers";
+~~~
 
 
 
+## INSERT
+* INSERT komutu tabloya yeni kayıt eklemek için kullanılır. 
+* Ekleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
+* Yalnızca bazı sütunlara veri eklememiz mümkündür. 
+* Veri eklenmeyen sütunlar NULL (boş) gözükecektir.
 
--- INSERT --
--- INSERT komutu tabloya yeni kayıt eklemek için kullanılır. 
--- Ekleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
--- Yalnızca bazı sütunlara veri eklememiz mümkündür. Veri eklenmeyen 
--- sütunlar NULL (boş) gözükecektir.
-
+~~~sql
 INSERT INTO "customers" 
 ("CustomerID", "CompanyName", "ContactName","Address", "City", "PostalCode", "Country")
 VALUES ('ZZA', 'Zafer', 'Ayşe', 'Serdivan', 'Sakarya', '54400', 'Türkiye');
+~~~
 
 
+## INSERT INTO ... SELECT
+* Bir tablodan alınan verileri, varolan bir tabloya kopyalamak için kullanılır.
 
--- INSERT INTO ... SELECT --
--- Bir tablodan alınan verileri, varolan bir tabloya kopyalamak için kullanılır.
-
+~~~sql
 INSERT INTO "MusteriYedek" SELECT "CompanyName", "ContactName" FROM "customers";
+~~~
 
 
+## UPDATE 
+* UPDATE komutu tablodaki kayıt(lar)ın değiştirilmesini sağlar.
+* Güncelleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
--- UPDATE --
--- UPDATE komutu tablodaki kayıt(lar)ın değiştirilmesini sağlar.
--- Güncelleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
-
+~~~sql
 UPDATE "customers" SET "ContactName" = 'Mario Pontes', "City" = 'Rio de Janeiro' 
 WHERE "CompanyName" = 'Familia Arquibaldo';
---WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
+~~~
+
+
+* WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
+WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
 
 
 
--- DELETE --
--- DELETE ifadesi tablodaki kayıt veya kayıtların silinmesini sağlar.
--- Silme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
+## DELETE
+* DELETE ifadesi tablodaki kayıt veya kayıtların silinmesini sağlar.
+* Silme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
+~~~sql
 DELETE FROM "customers" 
 WHERE "CompanyName" = 'LINO-Delicateses' AND "ContactName" = 'Felipe Izquierdo';
+~~~
 
 
+* Tabloyu silmeden tablodaki bütün kayıtları silmek mümkündür. 
+* Aşağıdaki komut tablodaki bütün kayıtları silmeye yarar.
 
--- Tabloyu silmeden tablodaki bütün kayıtları silmek mümkündür. 
--- Aşağıdaki komut tablodaki bütün kayıtları silmeye yarar.
-
+~~~sql
 DELETE FROM "customers";
 
