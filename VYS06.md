@@ -1,25 +1,60 @@
 
+BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
+
+# Yapısal Sorgulama Dili (Structured Query Language, SQL)
+
+## Konular
+
+* Çalışma Ortamının Hazırlanması
+* SQL
+* Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
+
+## Çalışma Ortamının Hazırlanması
+
+* PostgreSQL kurulumu
+  + PostgreSQL 11.x
+  + https://www.postgresql.org/download
+* pgAdmin kurulumu
+  + pgAdmin 4
+  + PostgreSQL ile dağıtılıyor.
+* Valentina Studio
+  + https://www.valentina-db.com/en/valentina-studio-overview
+* NorthWind veritabanının içe aktarılması, dışa verilmesi
+  + https://code.google.com/archive/p/northwindextended/downloads
+* Pagila veritabanının içe aktarılması, dışa verilmesi
+  + http://www.postgresqltutorial.com/postgresql-sample-database
+
+## Yapısal Sorgulama Dili (SQL)
+
+* SQL Fonksiyonları 2 bölüme ayrılabilir:
+* Veri Tanımlama Dili (Data Definition Language, DDL)
+  + Yapısal Komutlar
+  + Veritabanı, tablo, ilişki vs. oluşturma, değiştirme, silme vs.
+* Veri İşleme Dili (Data Manipulation Language, DML)
+  + Veri ekleme, silme, güncelleme, sorgulama vs.
+
+![](Sekiller/06/YapisalSorgulamaDili.png)
 
 
--- *** Temel SQL Temel SQL (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) *** --
+
+# Yapısal Sorgulama Diline (SQL) Giriş, Temel SQL (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
 
 
 
--- *** Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır. *** --
+* Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır.
 
 
+## SELECT
 
--- SELECT --
--- Select Komutu veritabanından veri almak (arama/listeleme) için kullanılır.
+Select Komutu veritabanından veri almak (arama/listeleme) için kullanılır.
 
 SELECT * FROM "customers";
 
 SELECT "CompanyName", "ContactName" FROM "customers";
 
+## WHERE
 
-
--- WHERE --
--- İstenilen koşula uyan kayıtların listelenmesi için WHERE komutu kullanılır.
+İstenilen koşula uyan kayıtların listelenmesi için WHERE komutu kullanılır.
 
 SELECT * FROM "customers" WHERE "Country" = 'Argentina';
 
@@ -113,7 +148,20 @@ WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
 
 
 
--- İÇ BİRLEŞTİRME - INNER JOIN --
+## TABLO BİRLEŞTİRME İŞLEMLERİ
+
+* Birleştirme (join) işlemi, farklı tablolardaki kayıtları birleştirip yeni veri kümeleri oluşturmak için kullanılır.
+
+### Doğal/İç Birleştirme (Natural/Inner Join)
+
+
+~~~sql
+SELECT * FROM "Muzisyenler" INNER JOIN "Iller"
+    ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
+~~~
+
+![](Sekiller/06/DogalBirlestirme.png)
+
 
 SELECT 
   "public"."orders"."OrderID",
@@ -122,7 +170,6 @@ SELECT
   "public"."orders"."OrderDate"
 FROM "orders" 
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
-
 
 
 SELECT 
@@ -179,7 +226,15 @@ INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
 
 
 
--- SOL DIŞ BİRLEŞTİRME - LEFT OUTER JOIN --
+### Sol Dış Birleştirme (Left Outer Join)
+
+~~~sql
+SELECT * FROM "Muzisyenler" LEFT OUTER JOIN "Iller"
+    ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
+~~~
+
+![](Sekiller/06/SolDisBirlestirme.png)
+
 
 SELECT
    "orders"."OrderID" AS "siparisNo",
@@ -192,7 +247,15 @@ ORDER BY "OrderID" DESC;
 
 
 
--- SAĞ DIŞ BİRLEŞTİRME - RIGHT OUTER JOIN --
+
+### Sağ Dış Birleştirme (Right Outer Join)
+
+~~~sql
+SELECT * FROM "Muzisyenler" RIGHT OUTER JOIN "Iller"
+    ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
+~~~
+
+![](Sekiller/06/SagDisBirlestirme.png)
 
 SELECT
   "orders"."OrderID" AS "siparisNo",
