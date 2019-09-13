@@ -68,8 +68,8 @@ postgres=#
 
 * Örnek
 
-  + CREATE USER ifadesi, CREATE ROLE ifadesinin bir takma isimdir. 
-  + Aralarındaki fark LOGIN seçeneğidir.
+  + `CREATE USER` ifadesi, `CREATE ROLE` ifadesinin bir takma isimdir. 
+  + Aralarındaki fark `LOGIN` seçeneğidir.
   + https://www.postgresql.org/docs/9.6/static/sql-createrole.html
 ~~~
 postgres=# CREATE ROLE testk2 WITH PASSWORD '111111';
