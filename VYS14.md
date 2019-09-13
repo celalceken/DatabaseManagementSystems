@@ -327,6 +327,7 @@ CREATE ROLE "gruprol";
 ~~~
 
   + rol1 isimli rolün yetkilerine gruprol isimli rolün yetkilerini de ekle.
+  + Temel yetkiler kalıtım olarak alınmaz. Yalnızca grubun nesneler üzerindeki yetkileri kalıtım olarak alınır.
 
 ~~~sql
 GRANT "gruprol" TO "rol1";
@@ -347,7 +348,6 @@ CREATE ROLE "rol2" WITH INHERIT;
 ~~~sql
 GRANT "gruprol" TO "rol2";
 ~~~
-
 
   + rol1 isimli role verilmiş yetkilerin (gruprol yetkileri) geri alınması.
 
