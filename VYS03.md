@@ -50,17 +50,6 @@ Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği ara�
 ![](Sekiller/03/AracUreticisi.png)
 
 
-### İlişkisel Şema
-
-* Arac(**sasiNo:char**, renk: varchar, modelKodu: char, turKodu: char, uretimTarihi: date)
-* AracMalzeme(**sasiNo: char**, **malzemeKodu: char**, miktar: int)
-* Malzeme(**malzemeKodu: char**, adi: varchar, stokMiktari: int, tedarikciKodu: char)
-* Tur(**turKodu: char**, ad: varchar)
-* Model(**modelKodu: char**, ad: varchar, agirlik: real, yolcuSayisi: int)
-* Tedarikci(**tedarikciKodu: char**, ad: varchar, vergiDairesi: varchar, vergiNo: char)
-
-Not: Birincil anahtarların altı çizilir.
-
 
 ## Örnek Uygulama - Kitabevi Yazılımı
 
@@ -93,7 +82,8 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 
 Üniversite bilgi sisteminde, bir üniversiteye ait bilgilerin depolanması ve yönetilmesi istenmektedir. Daha özelde fakültelerin,bölümlerinin, bölümlerin sunduğu derslerin, öğretim elemanlarının, açılan derslerin, açılan derslerin dersliklerinin, öğrencilerin, öğrencilerin açılan derslere yaptıkları kayıtların, üniversitedeki binaların ve binalardaki dersliklerin bilgilerinin saklanması istenmektedir.
 
-### İlişkisel Şema
+
+### İş Kuralları
 
 * Üniversite fakültelerden oluşur.
 * Üniversite yöneticileri (rektör) ve fakülte yöneticileri (dekan), öğretim elemanlarından seçilir.
