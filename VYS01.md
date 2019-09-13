@@ -1,5 +1,4 @@
 
-
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
 # Veritabanı Sistemleri
@@ -142,7 +141,7 @@ SELECT * FROM Ogrenciler;
 
 ##  Örnek Bir Veritabanı (Varlık Bağıntı Modeli)
 
-![](Sekiller/01/VBDiyagrami.png)
+![](Sekiller/01/ETicaret.png)
 
 
 ##  Örnek Bir Veritabanı (İlişkisel Model)
