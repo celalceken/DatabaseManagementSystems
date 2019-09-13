@@ -6,7 +6,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Konular
 
 * Çalışma Ortamının Hazırlanması
-* SQL
+* Yapısal Sorgulama Dili (Structured Query Language, SQL)
 * Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
 
 ## Çalışma Ortamının Hazırlanması
@@ -37,7 +37,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 
-# Yapısal Sorgulama Diline (SQL) Giriş, Temel SQL (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
+# Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
 
 
 
@@ -46,16 +46,19 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ## SELECT
 
-Select Komutu veritabanından veri almak (arama/listeleme) için kullanılır.
+* Select Komutu veritabanından veri almak (arama/listeleme) için kullanılır.
 
+~~~sql
 SELECT * FROM "customers";
 
 SELECT "CompanyName", "ContactName" FROM "customers";
+~~~
 
-## WHERE
+### WHERE
 
-İstenilen koşula uyan kayıtların listelenmesi için WHERE komutu kullanılır.
+* İstenilen koşula uyan kayıtların listelenmesi için WHERE komutu kullanılır.
 
+~~~sql
 SELECT * FROM "customers" WHERE "Country" = 'Argentina';
 
 SELECT * FROM "customers" WHERE "Country" != 'Brazil';
@@ -73,13 +76,13 @@ SELECT * FROM "order_details" WHERE "UnitPrice" <= 14;
 SELECT * FROM "order_details" WHERE "UnitPrice" >= 14;
 
 SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
+~~~
 
 
-
--- DISTINCT --
--- Tabloda bazı sütunlar tekrar eden kayıtlar içerebilir. “DISTINCT” ifadesi
--- sorgu sonucu gelen değerler içerisindeki tekrarlanan kayıtların tek kayıt
--- olarak gösterilmesini sağlar.
+### DISTINCT 
+* Tabloda bazı sütunlar tekrar eden kayıtlar içerebilir. “DISTINCT” ifadesi
+sorgu sonucu gelen değerler içerisindeki tekrarlanan kayıtların tek kayıt
+olarak gösterilmesini sağlar.
 
 SELECT DISTINCT "City" from "customers";
 
