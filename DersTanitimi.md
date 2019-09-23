@@ -57,9 +57,10 @@
 
 ### PostgreSQL
 
+* Lisans ücreti gerektirmez
 * Açık kaynak
 * Nesne-ilişkisel veritabanı yönetim sistemi
-* Birden fazla işletim sisteminde çalışır. 
+* Çok sayıda işletim sisteminde çalışır (Çoklu platform desteği)
 * https://www.postgresql.org
 
 
