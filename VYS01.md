@@ -1,12 +1,16 @@
 
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
+# Ders Tanıtımı
+
+* https://ebs.sabis.sakarya.edu.tr
+* https://github.com/celalceken/DatabaseManagementSystems/blob/master/DersTanitimi.md
+
 # Veritabanı Sistemleri
 
 ## Konular
 
 * Büyük Resim
-* Ders Tanıtımı
 * Niçin Veritabanı?
 * Veri ve Bilgi Kavramları
 * Klasik Dosya Yapıları
@@ -23,11 +27,6 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ![](Sekiller/01/BuyukResim.png)
 
-
-## Ders Tanıtımı
-
-* https://ebs.sabis.sakarya.edu.tr
-* https://github.com/celalceken/DatabaseManagementSystems/blob/master/DersTanitimi.md
 
 ## Niçin Veritabanı
 
