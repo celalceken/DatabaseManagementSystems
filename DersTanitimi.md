@@ -76,7 +76,7 @@
 ### Dersi Verenler
 
 * Celal ÇEKEN
-  + celalceken@sakarya.edu.tr - Oda No: 115
+  + celalceken@sakarya.edu.tr - Oda No: 1156
 * İsmail ÖZTEL
   + ioztel@sakarya.edu.tr - Oda No: 1206
 * Veysel Harun ŞAHİN
