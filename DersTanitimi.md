@@ -59,7 +59,7 @@
 
 * Lisans ücreti gerektirmez
 * Açık kaynak
-* Nesne-ilişkisel veritabanı yönetim sistemi
+* Gelişmiş bir ilişkisel veritabanı yönetim sistemi
 * Çok sayıda işletim sisteminde çalışır (Çoklu platform desteği)
 * https://www.postgresql.org
 
@@ -74,7 +74,7 @@
 * GitHub deposundaki ders notları, uygulamalar vb. içerikler sürekli güncellenmektedir.
 * https://github.com/celalceken/DatabaseManagementSystems
 
-### Dersi Verenler
+### Ders Sorumluları
 
 * Celal ÇEKEN
   + celalceken@sakarya.edu.tr - Oda No: 1156
@@ -82,6 +82,8 @@
   + ioztel@sakarya.edu.tr - Oda No: 1206
 * Veysel Harun ŞAHİN
   + vsahin@sakarya.edu.tr - Oda No: 1057
+* Nurbanu OĞUR
+  + nbogur@sakarya.edu.tr - Oda No: 
 
 
 ## Sıkça Sorulan Sorular
