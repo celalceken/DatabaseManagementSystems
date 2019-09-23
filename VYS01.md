@@ -126,8 +126,8 @@ try {
     while ((satir = bufferedReader.readLine()) != null) {
         System.out.println(satir);
     }
-        bufferedReader.close();
-    } catch (IOException e) {
+    bufferedReader.close();
+} catch (IOException e) {
     e.printStackTrace();
 }
 ```
