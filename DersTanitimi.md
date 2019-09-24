@@ -61,6 +61,18 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 * Çok sayıda işletim sisteminde çalışır (Çoklu platform desteği)
 * https://www.postgresql.org
 
+### pgAdmin
+  + İstemci Yazılımı
+  + pgAdmin 4
+  + PostgreSQL ile dağıtılıyor.
+### Valentina Studio
+  + İstemci Yazılımı
+  + https://www.valentina-db.com/en/valentina-studio-overview
+### NorthWind veritabanı
+  + https://code.google.com/archive/p/northwindextended/downloads
+### Pagila veritabanı
+  + http://www.postgresqltutorial.com/postgresql-sample-database
+
 
 ## Ders Takibi ve İletişim
 
