@@ -5,9 +5,9 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 
 ## Konular
 
+* Dersin Amaçları
 * Değerlendirme
 * Kaynaklar
-* Dersin Amaçları
 * Çalışma Ortamı
 * Ders Takibi ve İletişim
 * Dersi Verenler
@@ -15,6 +15,18 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 * Bilgisayar Mühendisliği Etiği
 * Bilgisayar Mühendisliği
 
+## Dersin Amaçları
+
+* Bilgi çağı
+  + Veri yönetimi, organizasyonların en temel etkinliklerinden birisi.
+  + Doğru, ilgili ve zamanında elde edilebilen bilgi önemli.
+  + Karar verme süreçlerinde çok etkili.
+  + Kuruluşların yaşamını sürdürebilmesi açısından son derece önemli.
+* Çözüm: Veri Tabanı Yönetim Sistemi
+* Veri Tabanı Yönetim Sistemi
+  + Verilerin saklanması, erişilmesi, düzenlenmesi.
+* Amacımız
+  + Veritabanı Yönetim Sistemleri hakkında beceriler kazandırmak.
 
 ## Değerlendirme
 
@@ -38,21 +50,6 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 * Database Systems: Design, Implementation, and Management; Carlos Coronel, Steven Morris, Peter Rob; Cengage Learning
 * https://www.postgresql.org/docs/manuals/
 * https://www.lucidchart.com/
-
-
-## Dersin Amaçları
-
-* Bilgi çağı
-  + Veri yönetimi, organizasyonların en temel etkinliklerinden birisi.
-  + Doğru, ilgili ve zamanında elde edilebilen bilgi önemli.
-  + Karar verme süreçlerinde çok etkili.
-  + Kuruluşların yaşamını sürdürebilmesi açısından son derece önemli.
-* Çözüm: Veri Tabanı Yönetim Sistemi
-* Veri Tabanı Yönetim Sistemi
-  + Verilerin saklanması, erişilmesi, düzenlenmesi.
-* Amacımız
-  + Veritabanı Yönetim Sistemleri hakkında beceriler kazandırmak.
-
 
 ## Çalışma Ortamı
 
