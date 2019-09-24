@@ -231,9 +231,6 @@ Veri modellerinin daha iyi anlaşılabilmesini sağlamak amacıyla ANSI-SPARC, 1
 * Varlık Bağıntı Modeli (VBM/ERM) ile Tasarım
 * Kaynaklar
 
-## Veritabanı Geliştirme Yaşam Döngüsü
-
-![](Sekiller/02/YasamDongusu.png)
 
 ## Temel Kavramlar
 
