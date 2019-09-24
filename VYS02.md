@@ -5,9 +5,9 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ## Konular
 
-* Veritabanı Tasarımı Yaşam Döngüsü Veri Modeli Nedir?
-* Veri Modeli Temel Bileşenleri
+* Veritabanı Geliştirme Yaşam Döngüsü
 * İş Kuralları (Business Rules)
+* Veri Modeli Temel Bileşenleri
 * İş Kurallarını Veri Modeline Dönüştürme Veri Modellerinin Gelişimi
 * Dosya Sistemi
 * Hiyerarşik Model
@@ -16,6 +16,12 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Nesne Yönelimli Model
 * Yeni Veri Modelleri
 * Veri Soyutlama
+* Varlık Bağıntı Modeli 
+* Varlıklar Arası Bağıntılar
+* Var Olma Bağımlılığı (Existence Dependency)
+* Zayıf/Güçlü Bağıntılar
+* Bağıntı Dereceleri
+* Varlık Bağıntı Modeli (VBM/ERM) ile Tasarım
 * Kaynaklar
 
 
