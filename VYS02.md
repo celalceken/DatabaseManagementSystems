@@ -8,7 +8,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Veritabanı Geliştirme Yaşam Döngüsü
 * İş Kuralları (Business Rules)
 * Veri Modeli Temel Bileşenleri
-* İş Kurallarını Veri Modeline Dönüştürme Veri Modellerinin Gelişimi
+* İş Kurallarını Veri Modeline Dönüştürme 
+* Veri Modellerinin Gelişimi
 * Dosya Sistemi
 * Hiyerarşik Model
 * Ağ Modeli
@@ -64,10 +65,10 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * **Nitelik (Attribute):** Varlığın sahip olduğu özellikler.
 * **Bağıntı (Relationship):** Varlıklar arasındaki ilişkiyi ifade eder. 
     + Bir-Çok (One to Many 1:M)
-    + Bir müşteri çok sayıda sipariş verebilir.
+        + Bir müşteri çok sayıda sipariş verebilir.
         + Her sipariş yalnızca bir müşteri tarafından verilir.
-        + Çok-Çok (Many to Many M:N)
-    + Bir öğrenci çok sayıda ders alabilir.
+    + Çok-Çok (Many to Many M:N)
+        + Bir öğrenci çok sayıda ders alabilir.
         + Her ders çok sayıda öğrenci tarafından alınabilir.
     + Bir-Bir (One to One 1:1)
         + Bir mağaza bir personel tarafından yönetilir.
