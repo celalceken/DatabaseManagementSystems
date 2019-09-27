@@ -49,7 +49,7 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
   + https://github.com/celalceken/DatabaseManagementSystems
 * Database Systems: Design, Implementation, and Management; Carlos Coronel, Steven Morris, Peter Rob; Cengage Learning
 * https://www.postgresql.org/docs/manuals/
-* https://www.lucidchart.com/
+* https://www.draw.io
 
 ## Çalışma Ortamı
 
