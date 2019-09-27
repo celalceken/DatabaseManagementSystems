@@ -10,19 +10,21 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Veri Modeli Temel Bileşenleri
 * İş Kurallarını Veri Modeline Dönüştürme 
 * Veri Modellerinin Gelişimi
-* Dosya Sistemi
-* Hiyerarşik Model
-* Ağ Modeli
-* İlişkisel Veri Modeli Varlık Bağıntı Modeli
-* Nesne Yönelimli Model
-* Yeni Veri Modelleri
+  * Dosya Sistemi
+  * Hiyerarşik Model
+  * Ağ Modeli
+  * İlişkisel Veri Modeli
+  * Varlık Bağıntı Modeli
+  * Nesne Yönelimli Model
+  * Yeni Veri Modelleri
 * Veri Soyutlama
-* Varlık Bağıntı Modeli 
-* Varlıklar Arası Bağıntılar
-* Var Olma Bağımlılığı (Existence Dependency)
-* Zayıf/Güçlü Bağıntılar
-* Bağıntı Dereceleri
-* Varlık Bağıntı Modeli (VBM/ERM) ile Tasarım
+* Varlık Bağıntı Modeli
+  * Temel Kavramlar
+  * Varlıklar Arası Bağıntılar
+  * Var Olma Bağımlılığı (Existence Dependency)
+  * Zayıf/Güçlü Bağıntılar
+  * Bağıntı Dereceleri
+  * Varlık Bağıntı Modeli (VBM/ERM) ile Tasarım
 * Kaynaklar
 
 
@@ -224,19 +226,16 @@ Veri modellerinin daha iyi anlaşılabilmesini sağlamak amacıyla ANSI-SPARC, 1
 
 
 
-# Varlık Bağıntı Modeli
+## Varlık Bağıntı Modeli
 
-## Konular
+Bu bölümde varlık bağıntı modeli detaylı bir şekilde anlatılmaktadır.
 
-* Veritabanı Tasarım Aşamaları
-* Kavramsal Tasarım
 * Temel Kavramlar
 * Varlıklar Arası Bağıntılar
 * Var Olma Bağımlılığı (Existence Dependency)
 * Zayıf/Güçlü Bağıntılar
 * Bağıntı Dereceleri
 * Varlık Bağıntı Modeli (VBM/ERM) ile Tasarım
-* Kaynaklar
 
 
 ## Temel Kavramlar
