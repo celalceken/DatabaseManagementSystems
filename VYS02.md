@@ -35,7 +35,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ## İş Kuralları (Business Rules)
 
-* Veritabanı (varlık, öz nitelik, bağıntı ve kısıtlar) oluşturulurken iş kurallarına bakılır.
+* Veritabanı (varlık, nitelik, bağıntı ve kısıtlar) oluşturulurken iş kurallarına bakılır.
 * **İş kuralı:** Veritabanı tasarımı yapılacak organizasyon ile ilgili işleyiş, kural ya da  yönetmeliğin özetlenmiş şekline iş kuralları denilebilir. İş kuralları ihtiyaç listesine benzer.
 * Örnek iş kuralları:
     + Bir müşteri çok sayıda sipariş verebilir.
