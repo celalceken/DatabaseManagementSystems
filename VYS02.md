@@ -387,7 +387,7 @@ Bir personel bilgi sisteminde Personel ve Bagimli (Personele bagimli olan kişil
   + Senaryoda geçen işlerin tanımları baz alınarak iş kuralları oluşturulur.
   + İş kuralları baz alınarak ana varlıklar ve varlıklar arasındaki bağıntılar oluşturulur.
   + İlk varlık bağıntı diyagramı geliştirilir.
-  + Varlıkları net bir şekilde tanımlayan özellikleri ve birincil anahtarları oluşturulur.
+  + Varlıkları net bir şekilde tanımlayan nitelikleri ve birincil anahtarları oluşturulur.
   + Varlık Bağıntı Diyagramı gözden geçirilerek gerekirse yukarıdaki adımlar, istenilen duruma gelininceye kadar tekrarlanır.
 
 
