@@ -331,9 +331,8 @@ Bu bölümde varlık bağıntı modeli detaylı bir şekilde anlatılmaktadır.
 
 ### Var Olma Bağımlılığı (Existence Dependency)
 
-* Bir site yönetim sistemi bilgi sistemi düşünelim.
-* Bu sistemde Apartman ve Daire varlık kümeleri olsun.
-* Böyle bir sistemde «**bir apartmana bağlı olmayan daire olama**z» kuralı mevcuttur.
+* Bir site yönetim sisteminde Apartman ve Daire varlık kümeleri olsun.
+* Böyle bir sistemde «**bir apartmana bağlı olmayan daire olamaz**» kuralı mevcuttur.
 * Örneğin Daire varlık kümesine hiçbir apartmana ait olmayan bir dairenin kaydını yapamayız, yapmamalıyız.
 * Bu örnekte, Apartman ve Daire arasında var olma bağımlılığı vardır denir.
 * Bu durumda Apartman üstün varlık, Daire ise bağımlı varlıktır.
