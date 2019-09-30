@@ -270,7 +270,8 @@ Bu bölümde varlık bağıntı modeli detaylı bir şekilde anlatılmaktadır.
   
 ## Temel Kavramlar
 
-* Birincil anahtarlar (primary key) tek bir alan olabileceği gibi birden fazla alanın birleşiminden de oluşabilir.
+* Birincil anahtar (primary key): Bir varlık kümesindeki herbir varlığı eşsiz bir şekilde tanımlamıza olanak tanıyan nitelik(ler).
+  + Tek bir nitelik (alan) olabileceği gibi birden fazla niteliğin birleşiminden de oluşabilir.
   + urunKodu
   + dersKodu + ogrenciNo
 * Birleşik nitelikler:
