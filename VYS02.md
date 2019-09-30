@@ -254,7 +254,7 @@ Bu bölümde varlık bağıntı modeli detaylı bir şekilde anlatılmaktadır.
 * Hakkında bilgi bulunan isim ya da isim tamlamaları varlık adayı iken, bilgi bulunmayanlar varlığa ait nitelik adayıdır.
   + _Müşterinin_ **ad, soyad, numara, adres** bilgileri saklanır.
   + Bir _müşteri_ çok sayıda _fatura_ **_üretir_**.
-* İlişkiler iki yönlüdür.
+* Bağıntılar iki yönlüdür.
   + **1 öğretim üyesi çok** sayıda (4) **ders** verebilir
   + **1 ders** sadece **1 öğretim üyesi** tarafından verilebilir.
   + **1 kişi 1 bölüme** yönetici olabilir.
