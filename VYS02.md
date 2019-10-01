@@ -63,7 +63,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Veri Modelinin Temel Bileşenleri
 
 * **Varlık (Entity):** Hakkında veri toplanan ve saklanan her şey (öğrenci, ders, personel vb.). Gerçek dünyadaki nesneleri ifade eder. Var olan ve benzerlerinden ayırt edilebilen her şey.
-* **Varlık kümesi (Entity set):** Aynı türden benzer varlıkların oluşturduğu kümeye denir (Öğrenciler,  Dersler vb.).
+* **Varlık kümesi (Entity set):** Aynı türden varlıkların oluşturduğu kümeye denir (Öğrenciler,  Dersler vb.).
 * **Nitelik (Attribute):** Varlığın sahip olduğu özellikler.
 * **Bağıntı (Relationship):** Varlıklar arasındaki ilişkiyi ifade eder. 
     + Bir-Çok (One to Many 1:M)
@@ -230,15 +230,8 @@ Veri modellerinin daha iyi anlaşılabilmesini sağlamak amacıyla ANSI-SPARC, 1
 
 Bu bölümde varlık bağıntı modeli detaylı bir şekilde anlatılmaktadır.
 
-* Temel Kavramlar
-* Varlıklar Arası Bağıntılar
-* Var Olma Bağımlılığı (Existence Dependency)
-* Zayıf/Güçlü Bağıntılar
-* Bağıntı Dereceleri
-* Varlık Bağıntı Modeli (VBM/ERM) ile Tasarım
 
-
-## Temel Kavramlar
+## Giriş
 
 * Varlık Bağıntı Diyagramı (VBD, Entity Relationship Diagram (ERD)) veritabanının kavramsal olarak modellenmesini sağlayan yazılım ve donanımlardan tamamen bağımsız gösterim şekilleridir.
 * Farklı kullanıcılar arasında haberleşmeyi sağlamak için kullanılır.
@@ -267,8 +260,6 @@ Bu bölümde varlık bağıntı modeli detaylı bir şekilde anlatılmaktadır.
   + Hungarian Notation,
   + GNU Coding Standards
   + Java Coding Style Guide
-  
-## Temel Kavramlar
 
 * Birincil anahtar (primary key): Bir varlık kümesindeki herbir varlığı eşsiz bir şekilde tanımlamıza olanak tanıyan nitelik(ler).
   + Tek bir nitelik (alan) olabileceği gibi birden fazla niteliğin birleşiminden de oluşabilir.
