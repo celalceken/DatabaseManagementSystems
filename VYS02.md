@@ -270,14 +270,6 @@ Bu bölümde varlık bağıntı modeli detaylı bir şekilde anlatılmaktadır.
   + Detaylı sorgular için basit özellikli alanlara dönüştürülmeliler.
 * Basit nitelikler
   + yaş, ad, soyad, cinsiyet vb.
-* Çoklu değer alan nitelikler
-  + filmTuru: Komedi, Macera, Korku, Komedi-Macera vb.
-  + İki çözümü vardır.
-    + Farklı alanlarda saklanabilir.
-    + Yeni bir  ilişki (tablo, varlık) oluşturulabilir.
-    
-![](Sekiller/02/CokluDeger.png)
-
 * Türetilmiş nitelikler
   + Değeri diğer özellikler kullanılarak oluşturulan özellikler.
   ~~~~sql
