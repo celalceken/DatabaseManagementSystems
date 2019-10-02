@@ -59,7 +59,7 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 
 ### İş Kuralları
 
-* Her kitabın ISBN-10, ISBN-13, başlık, ağırlık, durum (yeni, kullanılmış), basım türü (kağıt kapak, karton kapak, elektronik), baskı numarası, basım tarihi bilgilerine sahiptir.
+* Her kitabın ISBN, başlık, ağırlık, durum (yeni, kullanılmış), basım türü (kağıt kapak, karton kapak, elektronik), baskı numarası, basım tarihi bilgilerine sahiptir.
 * Kitapların basım türlerine göre farklı fiyatları ve ağırlıkları mevcuttur.
 * Kitaplar yayınevleri tarafından basılır.
 * Yayınevlerinin kodu, adı ve telefon numarası, web adresi, e-posta adresi ve adres bilgileri mevcuttur.
@@ -71,7 +71,7 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 
 ### Varlık Bağıntı Diyagramı
 
-![](Sekiller/03/Kitabevi.png)
+![](Sekiller/03/Kitap_Evi.png)
 
 
 
