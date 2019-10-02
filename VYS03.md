@@ -62,7 +62,7 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 * Kitapların basım türlerine göre farklı fiyatları ve ağırlıkları mevcuttur.
 * Kitaplar yayınevleri tarafından basılır.
 * Yayınevlerinin kodu, adı ve telefon numarası, web adresi, e-posta adresi ve adres bilgileri mevcuttur.
-* Yazarların yazar numarası, adı, soyadı, telefon numarası, e-posta bilgileri mevcuttur.
+* Yazarların yazar numarası, adı, soyadı, telefon numarası, e-posta, adres bilgileri mevcuttur.
 * Bir kitabın bir baskısı yalnızca bir yayınevi tarafından basılır. Bir yayınevinin hiçbir kitabı olmayabilir ancak birden fazla kitabı da olabilir.
 * Bir kitabın çok sayıda basım türü olabilir. En az bir basım türü olmak zorundadır. Bir basım türüne ait çok sayıda kitap olabilir. Hiçbir kitap da olmayabilir.
 * Bir kitabın en az bir yazarı olmalıdır ancak birden fazla yazarı da olabilir. Bir yazarın hiçbir kitabı olmayabilir ancak çok sayıda kitabı da olabilir.
