@@ -71,7 +71,7 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 
 ### Varlık Bağıntı Diyagramı
 
-![](Sekiller/03/Kitap_Evi.png)
+![](Sekiller/03/Kitabevi.png)
 
 
 
