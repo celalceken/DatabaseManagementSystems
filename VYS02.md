@@ -160,7 +160,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ### Crow’s Foot Gösterimi
 
-![](Sekiller/02/VBDiyagrami.png)
+![](Sekiller/02/ETicaret.png)
 
 
 
