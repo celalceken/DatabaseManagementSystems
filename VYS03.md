@@ -99,7 +99,7 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 * Bir öğretim elemanı yalnızca bir bölüme bağlıdır. Bir bölümün en az bir öğretim elemanı olmak zorundadır ancak birden fazla öğretim elemanı da olabilir.
 * Bir bölüm yalnızca bir öğretim elemanı tarafından yönetilmek zorundadır. Bir öğretim elemanı ise en fazla bir bölümün yöneticiliğini yapabilir.
 * Bir öğretim elemanı çok sayıda öğrencinin danışman hocası olabilir. Bir öğrencinin danışmanlığını yalnızca bir tane öğretim elemanı yapabilir.
-* Bir bölümün çok sayıda öğrencisi mevcuttur. Bir öğrenci, en fazla bir tane bölümün öğrencisidir.
+* Bir bölümün çok sayıda öğrencisi mevcuttur. Bir öğrenci, yalnızca bir tane bölümün öğrencisidir.
 * Bir öğretim elemanı birden fazla (açılan) ders verebilir. Bir (açılan) ders yalnızca bir öğretim elemanı tarafından verilmelidir.
 * Bir bölüm çok sayıda katalog ders sunabilir. Bir katalog ders yalnızca bir bölüm tarafından sunulur.
 * Bir katalog dersin çok sayıda açılan dersi (şubesi) olabilir. Bir açılan dersin yalnızca bir tane katalog dersi olmalıdır.
