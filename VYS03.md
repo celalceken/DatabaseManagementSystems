@@ -35,9 +35,9 @@ Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği ara�
 * Üretilen her bir aracın şasi numarası, renk, tür (otomobil, kamyon, minibüs vb.), model ve üretim tarihi bilgileri mevcuttur. Araçlar birbirinden şasi numarası ile ayırt edilir.
 * Araç türlerinin kodu ve adı bilgileri mevcuttur.
 * Araç modellerinin kodu, adı, ağırlık ve yolcu sayısı bilgileri mevcuttur.
+* Malzemelerin kodu, adı, stok miktarı bilgileri mevcuttur.
 * Araçlar farklı miktarda ve farklı türlerde malzemelerden üretilir. Bu bilgiler de kaydedilmelidir.
 * Malzemeler tedarikçi şirketlerden satın alınmaktadır.
-* Malzemelerin kodu, adı, stok miktarı bilgileri mevcuttur.
 * Tedarikçi şirketlerin kodu, adı, vergi dairesi, vergi numarası bilgileri mevcuttur.
 * Bir tedarikçi hiçbir malzeme tedarik etmeyebileceği gibi bir veya daha fazla malzeme de tedarik edebilir. Bir malzeme yalnızca bir tedarikçi tarafından temin edilir.
 * Bir araç çok sayıda malzemeden oluşur. En az bir adet malzemeden oluşmak zorundadır. Bir malzeme birden fazla araçta kullanılabilir. Ancak henüz hiçbir araçta kullanılmamış da olabilir.
