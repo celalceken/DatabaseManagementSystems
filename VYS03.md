@@ -36,11 +36,11 @@ Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği ara�
 * Araç türlerinin kodu ve adı bilgileri mevcuttur.
 * Araç modellerinin kodu, adı, ağırlık ve yolcu sayısı bilgileri mevcuttur.
 * Malzemelerin kodu, adı, stok miktarı bilgileri mevcuttur.
-* Araçlar farklı miktarda ve farklı türlerde malzemelerden üretilir. Bu bilgiler de kaydedilmelidir.
 * Malzemeler tedarikçi şirketlerden satın alınmaktadır.
 * Tedarikçi şirketlerin kodu, adı, vergi dairesi, vergi numarası bilgileri mevcuttur.
 * Bir tedarikçi hiçbir malzeme tedarik etmeyebileceği gibi bir veya daha fazla malzeme de tedarik edebilir. Bir malzeme yalnızca bir tedarikçi tarafından temin edilir.
 * Bir araç çok sayıda malzemeden oluşur. En az bir adet malzemeden oluşmak zorundadır. Bir malzeme birden fazla araçta kullanılabilir. Ancak henüz hiçbir araçta kullanılmamış da olabilir.
+* Araçlar farklı miktarda ve farklı türlerde malzemelerden üretilir. Bu bilgiler de kaydedilmelidir.
 * Bir araç yalnızca bir türe sahip olur. Bir türe ait hiçbir araç olmayabileceği gibi çok sayıda araç da olabilir.
 * Bir araç yalnızca bir modele sahip olur. Bir modele ait hiçbir araç olmayabileceği gibi çok sayıda araç da olabilir.
 
