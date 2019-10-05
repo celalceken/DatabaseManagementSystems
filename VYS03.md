@@ -85,8 +85,8 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 ### İş Kuralları
 
 * Üniversite fakültelerden oluşur.
-* Üniversite yöneticileri (rektör) ve fakülte yöneticileri (dekan), öğretim elemanlarından seçilir.
-* Fakülteler bölümlerden oluşur. Bölümün adı ve öğretim elemanlarından seçilen bir başkanı bulunur.
+* Üniversite yöneticileri (rektör) ve fakülte yöneticileri (dekan) öğretim üyelerinden seçilir.
+* Fakülteler bölümlerden oluşur. Bölümün adı ve öğretim üyelerinden seçilen bir başkanı bulunur.
 * Öğretim elemanı bilgileri içerisinde kimlik numarası, adı, soyadı, ve bağlı bulunduğu (görev yaptığı) bölüm bilgileri bulunmalıdır.
 * Bölümlerin sunduğu dersler (katalog dersler) bilgileri içerisinde ders kodu, ders adı, kredisi ve dersi sunan bölümün bilgisi olmalıdır.
 * Açılan dersler bilgileri içerisinde açılan dersin kodu, katalog ders bilgisi (kodu), bölümü, şube bilgisi, dersi veren öğretim elemanı ve dersin yapıldığı dersliğin bilgisi olmalıdır.
