@@ -87,20 +87,20 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 * Üniversite fakültelerden oluşur.
 * Üniversite yöneticileri (rektör) ve fakülte yöneticileri (dekan) öğretim üyelerinden seçilir.
 * Fakülteler bölümlerden oluşur. Bölümün adı ve öğretim üyelerinden seçilen bir başkanı bulunur.
-* Öğretim elemanı bilgileri içerisinde kimlik numarası, adı, soyadı, ve bağlı bulunduğu (görev yaptığı) bölüm bilgileri bulunmalıdır.
+* Öğretim üyesi bilgileri içerisinde kimlik numarası, adı, soyadı, ve bağlı bulunduğu (görev yaptığı) bölüm bilgileri bulunmalıdır.
 * Bölümlerin sunduğu dersler (katalog dersler) bilgileri içerisinde ders kodu, ders adı, kredisi ve dersi sunan bölümün bilgisi olmalıdır.
-* Açılan dersler bilgileri içerisinde açılan dersin kodu, katalog ders bilgisi (kodu), bölümü, şube bilgisi, dersi veren öğretim elemanı ve dersin yapıldığı dersliğin bilgisi olmalıdır.
+* Açılan dersler bilgileri içerisinde açılan dersin kodu, katalog ders bilgisi (kodu), bölümü, şube bilgisi, dersi veren öğretim üyesi ve dersin yapıldığı dersliğin bilgisi olmalıdır.
 * Öğrenci bilgileri içerisinde öğrenci numarası, bölüm numarası, adı, soyadı ve danışman hocasının bilgisi yer almalıdır.
 * Öğrencilerin açılan derslere yaptıkları kayıtlar, kayıt tarihleri ve o derslerden aldıkları notlar da saklanmalıdır.
 * Bina bilgileri içerisinde bina adı ve yeri bilgileri bulunmalıdır.
 * Derslik bilgileri içerisinde derslik kodu ve dersliğin hangi binada bulunduğuna ilişkin bilgiler bulunmalıdır.
-* Bir fakültenin yalnızca bir tane dekanı (öğretim elemanları içerisinden) olmak zorundadır. Bir öğretim elemanı en fazla bir fakültenin dekanı olabilir.
+* Bir fakültenin yalnızca bir tane dekanı (öğretim üyeleri içerisinden) olmak zorundadır. Bir öğretim üyesi en fazla bir fakültenin dekanı olabilir.
 * Bir fakültenin en az bir bölümü olmak zorundadır ancak birden fazla bölümü de olabilir. Bir bölüm ise yalnızca bir fakültenin altında yer alabilir.
-* Bir öğretim elemanı yalnızca bir bölüme bağlıdır. Bir bölümün en az bir öğretim elemanı olmak zorundadır ancak birden fazla öğretim elemanı da olabilir.
-* Bir bölüm yalnızca bir öğretim elemanı tarafından yönetilmek zorundadır. Bir öğretim elemanı ise en fazla bir bölümün yöneticiliğini yapabilir.
-* Bir öğretim elemanı çok sayıda öğrencinin danışman hocası olabilir. Bir öğrencinin danışmanlığını yalnızca bir tane öğretim elemanı yapabilir.
+* Bir öğretim üyesi yalnızca bir bölüme bağlıdır. Bir bölümün en az bir öğretim üyesi olmak zorundadır ancak birden fazla öğretim üyesi da olabilir.
+* Bir bölüm yalnızca bir öğretim üyesi tarafından yönetilmek zorundadır. Bir öğretim üyesi ise en fazla bir bölümün yöneticiliğini yapabilir.
+* Bir öğretim üyesi çok sayıda öğrencinin danışman hocası olabilir. Bir öğrencinin danışmanlığını yalnızca bir tane öğretim üyesi yapabilir.
 * Bir bölümün çok sayıda öğrencisi mevcuttur. Bir öğrenci, yalnızca bir tane bölümün öğrencisidir.
-* Bir öğretim elemanı birden fazla (açılan) ders verebilir. Bir (açılan) ders yalnızca bir öğretim elemanı tarafından verilmelidir.
+* Bir öğretim üyesi birden fazla (açılan) ders verebilir. Bir (açılan) ders yalnızca bir öğretim üyesi tarafından verilmelidir.
 * Bir bölüm çok sayıda katalog ders sunabilir. Bir katalog ders yalnızca bir bölüm tarafından sunulur.
 * Bir katalog dersin çok sayıda açılan dersi (şubesi) olabilir. Bir açılan dersin yalnızca bir tane katalog dersi olmalıdır.
 * Bir öğrenci birden fazla derse kayıt yaptırabilir. Bir derse birden fazla öğrenci kayıt olabilir.
