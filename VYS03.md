@@ -79,7 +79,7 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 
 ### Senaryo
 
-Üniversite bilgi sisteminde, bir üniversiteye ait bilgilerin depolanması ve yönetilmesi istenmektedir. Daha özelde fakültelerin,bölümlerinin, bölümlerin sunduğu derslerin, öğretim üyelerinin, açılan derslerin, açılan derslerin dersliklerinin, öğrencilerin, öğrencilerin açılan derslere yaptıkları kayıtların, üniversitedeki binaların ve binalardaki dersliklerin bilgilerinin saklanması istenmektedir.
+Üniversite bilgi sisteminde, bir üniversiteye ait bilgilerin depolanması ve yönetilmesi istenmektedir. Daha özelde fakültelerin, bölümlerinin, bölümlerin sunduğu derslerin, öğretim üyelerinin, açılan derslerin, açılan derslerin dersliklerinin, öğrencilerin, öğrencilerin açılan derslere yaptıkları kayıtların, üniversitedeki binaların ve binalardaki dersliklerin bilgilerinin saklanması istenmektedir.
 
 
 ### İş Kuralları
