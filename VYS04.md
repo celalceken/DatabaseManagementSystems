@@ -14,6 +14,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Varlık Bağıntı Modelinin İlişkisel Modele Dönüştürülmesi
 * İndeks
 * Veri Sözlüğü (Sistem Kataloğu)
+* Örnek Uygulama - Araç Üreticisi
+* Örnek Uygulama – Elektronik Ticaret Sistemi
 * Kaynaklar
 
 ## Veritabanı Geliştirme Yaşam Döngüsü
@@ -109,11 +111,12 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ## Bütünlük Kuralları
 
-* **Varlık Bütünlüğü (Entity Integrity):** Her tabloda birincil anahtar olmalı ve birincil anahtar alanı NULL olmamalı.
-  + Her varlığın eşsiz bir tanımlayıcısı olması garanti edilir.
-  + Her yabancı anahtar değerinin diğer tablonun birincil anahtarı değeriyle tutarlı olması garanti edilir.
+* **Varlık Bütünlüğü (Entity Integrity):** Varlık bütünlüğünün sağlanabilmesi için her tabloda birincil anahtar (PK) olmalıdır.
+  + Her varlığın "not null" kısıtını sağlayan eşsiz ("unique" kısıtı) bir tanımlayıcısı olması garanti edilir.
   + Varlık bütünlüğü kullanılarak, örneğin; aynı öğrenci numarasına sahip çok sayıda öğrencinin ya da öğrenci numarası olmayan öğrencinin bulunamaması garanti edilir.
-* **Referans Bütünlüğü (Referential Integrity):** Yabancı anahtar alanı ya NULL olabilir ya da bağıntı kuran tablodaki birincil anahtar alanı değerlerinden biri olabilir.
+* **Referans Bütünlüğü (Referential Integrity):** Referans bütünlüğünün sağlanabilmesi için yabancı anahtar(FK)tanımlanır.
+  + Yabancı anahtar alanı ya NULL olabilir ya da bağıntı kuran tablodaki birincil anahtar alanı değerlerinden biri olabilir.
+  + Her yabancı anahtar değerinin diğer tablonun birincil anahtarı değeriyle tutarlı olması garanti edilir.
   + Referans bütünlüğü kullanılarak, örneğin; öğrencinin açılmayan bir dersi alması, derse kayıtlı bir öğrencinin okuldan kaydının silinmesi, olmayan bir ürünün sipariş edilmesi vs. önlenir.
 ![](Sekiller/04/ButunlukKurallari.png)
   + **Referans Bütünlüğü Uygulama Notu**
@@ -233,6 +236,88 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Veritabanı Yönetim Sistemi tarafından yönetilir.
 * Oluşturulan tüm veritabanlarına ait üst veriler (tablolar, tablo alanları, alan tipleri, değer aralıkları, anahtarlar, indeksler, bağıntılar, kısıtlar vb.) burada saklanır.
 * Kullanıcı tarafından sorgulanabilir.
+
+
+## Örnek Uygulama - Araç Üreticisi
+
+### Senaryo
+
+Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği araçlar, araçlarda kullanılan malzemeler, tedarikçiler vb. bilgilerini saklamak ve yönetmek istediği bir yazılım sistemi talep etmektedir.
+
+
+### İş Kuralları
+
+* Üretilen her bir aracın şasi numarası, renk, tür (otomobil, kamyon, minibüs vb.), model ve üretim tarihi bilgileri mevcuttur. Araçlar birbirinden şasi numarası ile ayırt edililir.
+* Araç türlerinin kodu ve adı bilgileri mevcuttur.
+* Araç modellerinin kodu, adı, ağırlık ve yolcu sayısı bilgileri mevcuttur.
+* Araçlar farklı miktarda ve farklı türlerde malzemelerden üretilir. Bu bilgiler de kaydedilmelidir.
+* Malzemeler tedarikçi şirketlerden satın alınmaktadır.
+* Malzemelerin kodu, adı, stok miktarı bilgileri mevcuttur.
+* Tedarikçi şirketlerin kodu, adı, vergi dairesi, vergi numarası bilgileri mevcuttur.
+* Bir tedarikçi hiçbir malzeme tedarik etmeyebileceği gibi bir veya daha fazla malzeme de tedarik edebilir. Bir malzeme yalnızca bir tedarikçi tarafından temin edilir.
+* Bir araç çok sayıda malzemeden oluşur. En az bir adet malzemeden oluşmak zorundadır. Bir malzeme birden fazla araçta kullanılabilir. Ancak henüz hiçbir araçta kullanılmamış da olabilir.
+* Bir araç yalnızca bir türe sahip olur. Bir türe ait hiçbir araç olmayabileceği gibi çok sayıda araç da olabilir.
+* Bir araç yalnızca bir modele sahip olur. Bir modele ait hiçbir araç olmayabileceği gibi çok sayıda araç da olabilir.
+
+
+### Varlık Bağıntı Diyagramı
+
+![](Sekiller/04/AracUreticisi.png)
+
+### İlişkisel Şema
+
+* Arac(**sasiNo:char**, renk: varchar, modelKodu: char, turKodu: char, uretimTarihi: date)
+* AracMalzeme(**sasiNo: char**, **malzemeKodu: char**, miktar: int)
+* Malzeme(**malzemeKodu: char**, adi: varchar, stokMiktari: int, tedarikciKodu: char)
+* Tur(**turKodu: char**, ad: varchar)
+* Model(**modelKodu: char**, ad: varchar, agirlik: real, yolcuSayisi: int)
+* Tedarikci(**tedarikciKodu: char**, ad: varchar, vergiDairesi: varchar, vergiNo: char)
+
+
+
+## Örnek Uygulama – Elektronik Ticaret Sistemi
+
+### Senaryo
+
+Bir elektronik ticaret şirketi geliştirlecek olan bir elektronik ticaret sistemi için bir veritabanı tasarlanması isteniyor. Tasarlanan veritabanında müşteriler, ürünler, siparişler, faturalar, satış temsilcileri vb. bilgilerin saklanması beklenmektedir.
+
+
+### İş Kuralları
+
+* Bu veritabanında her müşteriye bir numara verilerek müşterinin TC Kimlik numarası, adı, soyadı, yaşadığı ili saklanması düşünülüyor.
+* İllerin plaka numarası ve adı saklanır.
+* Her siparişe bakan bir satış temsilcisi mevcuttur. Satış temsilcilerinin TCKimlikNo, ad ve soyad bilgileri mevcuttur.
+* Ürünlerin (kişisel bilgisayar, telefon vb.) kodu, adı, fiyatı ve stok miktarlarının saklanması gerekmektedir.
+* Ürünlerin kategorileri (bilgisayar, ev elektroniği, kozmetik vb.) mevcuttur.
+* Müşterilerin ürün siparişleri saklanarak her bir siparişe bir fatura kesilmesi sağlanmalıdır.
+* Her siparişin eşsiz bir sipariş numarası ve sipariş tarihi mevcuttur.
+* Sipariş edilen bir ürünün sipariş adedi ve birim fiyatı (kişiye özel indirim v.s. nedeniyle ürün tablosundaki fiyattan farklılık gösterebilir) da kaydedilmelidir.
+* Faturaların fatura numarası, tarih ve  fatura adresi  bilgileri saklanmalıdır. (Toplam fiyat hesaplanabilir ya da saklanabilir).
+* Siparişler bir kargo firması tarafından iletilir. Kargo firmasının kodu, adı, adresi bilgileri yer alır. Her kargo firmasında siparişlerden sorumlu bir yetkili yer alır.
+* Bir ürünün yalnızca bir kategorisi mevcuttur. Bir kategori çok sayıda ürünün kategorisi olabilir.
+* Bir siparişte en az bir ürün bulunur. Ancak çok sayıda ürün de bulunabilir. Bir ürün çok sayıda siparişte yer alabilir.
+* Bir müşteri çok sayıda sipariş verebilir. Bir sipariş yalnızca bir müşteri tarafından verilebilir.
+* Bir siparişin yalnızca bir faturası olabilir. Bir fatura yalnızca bir siparişin faturası olabilir.
+* Bir sipariş ile yalnızca bir satış temsilcisi ilgilenir. Bir satış temsilcisi çok sayıda sipariş ile ilgilenebilir.
+* Bir müşteri yalnızca bir ilde yaşayabilir. Bir ilde çok sayıda müşteri yaşayabilir.
+* Bir sipariş yalnızca bir kargo firması tarafından iletilir. Bir kargo firması çok sayıda sipariş iletebilir.
+
+
+![](Sekiller/04/siparis.png)
+
+
+### İlişkisel Şema
+
+* SatisTemsilcisi(**sicilNo: char**, TCKimlikNo: char, ad: varchar, soyad: varchar)
+* KargoFirması(**kod: char**, ad: varchar, adres: varchar, temsilci: varchar)
+* Musteri(**musteriNo: char**, TCKimlikNo: char, ad: varchar, soyad: varchar, yasadıgıIl: varchar)
+* Siparis(**siparisNo: char**, siparisTarihi: date, toplamTutar: real, kargoFirması: char, faturaNo: char, musteriNo: char, satisTemsilciNo: char)
+* SiparisUrun(**kayitNo: int**, siparisNo: char, urunKodu: char, birimFiyati: real, miktar: int)
+* Kategori(**kategoriKodu: char**, adi: varchar)
+* İller(**plakaNo: varchar**, ilAdi: varchar)
+* Fatura(**faturaNo: char**, tarih: date)
+* Urun(**urunKodu: char**, adi: varchar, stokMiktari: int, birimFiyati: real, kategoriKodu: char)
+
 
 ## Kaynaklar
 
