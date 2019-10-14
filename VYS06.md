@@ -370,7 +370,7 @@ public class VeritabaniIslemleri {
                 System.out.println("Bağlantı girişimi başarısız!");
 
 
-            String sql= "SELECT * FROM \"customers\"";
+            String sql= "SELECT \"CustomerID\", \"CompanyName\", \"Country\"  FROM \"customers\"";
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
