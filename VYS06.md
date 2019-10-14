@@ -8,6 +8,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Çalışma Ortamının Hazırlanması
 * Yapısal Sorgulama Dili (Structured Query Language, SQL)
 * Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
+* Uygulama Programları ile VYS İşlemleri
 
 ## Çalışma Ortamının Hazırlanması
 
@@ -345,4 +346,57 @@ WHERE "CompanyName" = 'LINO-Delicateses' AND "ContactName" = 'Felipe Izquierdo';
 
 ~~~sql
 DELETE FROM "customers";
+~~~
+# Uygulama Programları ile VYS İşlemleri
+
+
+
+~~~java
+package edu.sau.vys.vys1;
+
+import java.sql.*;
+
+public class VeritabaniIslemleri {
+
+    public static void main(String[] args)
+    {
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Northwind",
+                    "postgres", "LecturePassword");
+            if (conn != null)
+                System.out.println("Veritabanına bağlandı!");
+            else
+                System.out.println("Bağlantı girişimi başarısız!");
+
+
+            String sql= "SELECT * FROM \"customers\"";
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next())
+            {
+                //Kayda ait alan değerlerini değişkene ata
+                String musteriNo  = rs.getString("CustomerID");
+                String sirketAdi = rs.getString("CompanyName");
+                String ulke = rs.getString("Country");
+
+                //Ekrana yazdır
+                System.out.print("Sıra No: " + musteriNo);
+                System.out.print(", Şirket Adı: " + sirketAdi);
+                System.out.println(", Ulke: " + ulke);
+            }
+            //Kaynakları serbest bırak
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+~~~
 
