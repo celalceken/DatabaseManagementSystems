@@ -303,7 +303,7 @@ Bir elektronik ticaret şirketi geliştirlecek olan bir elektronik ticaret siste
 * Bir sipariş yalnızca bir kargo firması tarafından iletilir. Bir kargo firması çok sayıda sipariş iletebilir.
 
 
-![](Sekiller/04/siparis.png)
+![](Sekiller/04/ETicaret_Kucuk.png)
 
 
 ### İlişkisel Şema
