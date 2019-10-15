@@ -349,19 +349,27 @@ DELETE FROM "customers";
 ~~~
 # Uygulama Programları ile VYS İşlemleri
 
+Uygulama programları ile veritabanı işlemleri yapılabilmesi için, programlama dili ile kullanılan veritabanı arasında iletişimi sağlayacak sürücülere ihtiyaç vardır.
+
+Sürücüler aşağıdaki temel fonksiyonları sağlar:
+
+* bağlantı kurulumu
+* sorgu çalıştırma
+* bağlantı sonlandırma
+
 
 
 ~~~java
 package edu.sau.vys.vys1;
 
-import java.sql.*;
+import java.sql.*;   //Veritabanı sürücüsü
 
 public class VeritabaniIslemleri {
 
     public static void main(String[] args)
     {
         try
-        {
+        {   // Bağlantı kurulumu
             Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Northwind",
                     "postgres", "LecturePassword");
             if (conn != null)
@@ -373,6 +381,9 @@ public class VeritabaniIslemleri {
             String sql= "SELECT \"CustomerID\", \"CompanyName\", \"Country\"  FROM \"customers\"";
 
             Statement stmt = conn.createStatement();
+            
+            //Sorgu çalıştırma
+            
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next())
@@ -390,6 +401,9 @@ public class VeritabaniIslemleri {
             //Kaynakları serbest bırak
             rs.close();
             stmt.close();
+            
+            //Bağlantı sonlandırma
+            
             conn.close();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
