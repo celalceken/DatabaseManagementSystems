@@ -99,7 +99,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + Birincil anahtar eşsiz değerlere sahip olmalıdır, NULL değerler alamaz.
   + ogrenciNo, kimlikNo, pasaportNo alanları aday anahtarlardır. Her biri birincil anahtar olarak seçilebilir (sadece biri seçilmelidir).
 * **Vekil Birincil Anahtar:**
-  + Uygulamada çoğunlukla vekil birincil anahtarlar kullanılır. Ayrıntılar ileriki bölümlerde verilecektir.
+  + Uygulamada çoğunlukla vekil birincil anahtarlar kullanılır. Ayrıntılar "Vekil Birincil Anahtar" başlıklı bölümde verilmektedir.
 * **İkincil/Alternatif Anahtar:** Birincil anahtar olarak seçilmeyen diğer aday anahtarlara ikincil/alternatif anahtar denir.
 * **Yabancı Anahtar (Foreign Key, FK):** Bağıntı kurulan tablo içerisinde yer alan ve bağıntı kuran tablodaki birincil anahtarın değerlerine benzeyen değerler içeren alan.
   + İki tablo arasında bağıntı kurulurken bağıntı kuran tablonun birincil anahtarı ile bağıntı kurulan tablonun yabancı anahtarı kullanılır. Dolayısıyla iki anahtar da aynı tipte olmalıdır.
@@ -130,13 +130,12 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ## Birincil Anahtar Özellikleri
 
-* Kayıtları eşsiz olarak tanımlayabilmeli.
-* UNIQUE ve NOT NULL bütünlük kurallarını sağlamalı.
+* UNIQUE (kayıtları eşsiz olarak tanımlayabilmesi) ve NOT NULL (boş olmaması) bütünlük kurallarını sağlamalı.
 * Anlamsal içeriğe (semantic meaning) sahip alanlar tercih edilmemeli.
   + Zamanla değişme ihtimali.
 * Mümkün olduğunca tek bir alandan oluşmalı.
   + Çok alandan oluşursa bağıntıları kurmak ve sorguları yazmak zor olur.
-* Sayısal alanlar daha çok tercih edilmeli.
+* Sayısal alanlar tercih edilmeli.
   + İşlem hızı, otomatik artma (auto increment) desteğinden ötürü önemli.
 * Güvenlik riski bulunan alanlar tercih edilmemeli.
   + Yazılımlarda yoğun olarak birincil anahtar değeri kullanılır.
