@@ -78,7 +78,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ### Fonksiyonel Bağımlılık 
 
-* **Anahtar:** kayıtların ayırt edilebilmesini (süper, aday, birincil, ikincil ve vekil anahtarlar) ve/veya tablolar arasında ilişki kurulabilmesini (birincil, yabancı anahtarlar) sağlayan yapı.
+* **Anahtar:** Kayıtların ayırt edilebilmesini (süper, aday, birincil, ikincil ve vekil anahtarlar) ve/veya tablolar arasında ilişki kurulabilmesini (birincil, yabancı anahtarlar) sağlayan yapı.
 * Anahtarlar belirlenirken **fonksiyonel bağımlılık** kavramının bilinmesi gerekir.
 * Örnekte, ogenciNo alanı kullanılarak öğrenci adı belirlenebilir. Tersi doğru değildir.
 * Bu durumda:
