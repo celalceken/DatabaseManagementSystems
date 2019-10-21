@@ -351,12 +351,13 @@ DELETE FROM "customers";
 
 Uygulama programları ile veritabanı işlemleri yapılabilmesi için, programlama dili ile kullanılan veritabanı arasında iletişimi sağlayacak sürücülere ihtiyaç vardır.
 
+PostgreSQL jdbc sürücüsü https://jdbc.postgresql.org/download.html bağlantısından indirilebilir.
+
 Sürücüler aşağıdaki temel fonksiyonları sağlar:
 
 * bağlantı kurulumu
 * sorgu çalıştırma
 * bağlantı sonlandırma
-
 
 
 ~~~java
