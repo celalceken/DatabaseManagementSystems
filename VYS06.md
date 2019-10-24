@@ -359,6 +359,7 @@ Sürücüler aşağıdaki temel fonksiyonları sağlar:
 * sorgu çalıştırma
 * bağlantı sonlandırma
 
+Aşağıdaki Java kodunun uygulanmasına yardımcı olabilecek örnek bir video https://youtu.be/aPEx1RexoCY bağlantısından izlenebilir.
 
 ~~~java
 package edu.sau.vys.vys1;
