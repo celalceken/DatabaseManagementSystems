@@ -304,6 +304,7 @@ Bir elektronik ticaret şirketi geliştirlecek olan bir elektronik ticaret siste
 
 ![](Sekiller/04/ETicaret_Kucuk.png)
 
+![](Sekiller/04/E-TicaretTablo.png)
 
 ### İlişkisel Şema
 
