@@ -285,7 +285,7 @@ INSERT INTO "employees" ("EmployeeID","FirstName", "LastName")
 ~~~
 
 
-### SELECT ... INTO
+## SELECT ... INTO
 * Bir tablodan alınan verileri, yeni bir tabloya kopyalamak için kullanılır. 
 * Yeni tablonun mevcut olmaması gerekir.
 
