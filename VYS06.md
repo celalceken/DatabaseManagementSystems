@@ -38,7 +38,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 
-# Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
+## Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
 
 
 
@@ -55,7 +55,7 @@ SELECT * FROM "customers";
 SELECT "CompanyName", "ContactName" FROM "customers";
 ~~~
 
-### WHERE
+## WHERE
 
 * İstenilen koşula uyan kayıtların listelenmesi için WHERE komutu kullanılır.
 
@@ -132,7 +132,7 @@ SELECT * FROM "products" WHERE "ProductName" BETWEEN 'C' AND 'M';
 
 ~~~sql
 SELECT * FROM "customers" 
-WHERE "public"."customers"."Country" IN ('Türkiye', 'Kuzey Kıbrıs Türk Cumhuriyeti');
+  WHERE "public"."customers"."Country" IN ('Türkiye', 'Kuzey Kıbrıs Türk Cumhuriyeti');
 ~~~
 
 
@@ -169,7 +169,7 @@ WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
 
 ~~~sql
 SELECT * FROM "Muzisyenler" INNER JOIN "Iller"
-    ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
+  ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
 ~~~
 
 ![](Sekiller/06/DogalBirlestirme.png)
@@ -210,7 +210,7 @@ INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 
 ~~~sql
 SELECT 
-   "orders"."OrderID" AS "siparisNo",
+  "orders"."OrderID" AS "siparisNo",
   "customers"."CompanyName" AS "sirket",
   "orders"."OrderDate" AS "siparisTarihi"
 FROM "orders", "customers"
@@ -243,14 +243,14 @@ INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
 
 ~~~sql
 SELECT * FROM "Muzisyenler" LEFT OUTER JOIN "Iller"
-    ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
+  ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
 ~~~
 
 ![](Sekiller/06/SolDisBirlestirme.png)
 
 ~~~sql
 SELECT
-   "orders"."OrderID" AS "siparisNo",
+  "orders"."OrderID" AS "siparisNo",
   "customers"."CompanyName" AS "sirket",
   "orders"."OrderDate" AS "siparisTarihi"
 FROM "customers"
@@ -263,7 +263,7 @@ ORDER BY "OrderID" DESC;
 
 ~~~sql
 SELECT * FROM "Muzisyenler" RIGHT OUTER JOIN "Iller"
-    ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
+  ON "Muzisyenler"."ilKodu" = "Iller"."ilKodu"
 ~~~
 
 ![](Sekiller/06/SagDisBirlestirme.png)
@@ -280,12 +280,12 @@ ORDER BY "OrderID" DESC;
 ~~~
 
 ~~~sql
-INSERT INTO "employees" ( "EmployeeID","FirstName", "LastName") 
-VALUES ( 10,'Melih', 'Can' );
+INSERT INTO "employees" ("EmployeeID","FirstName", "LastName") 
+  VALUES (10,'Melih', 'Can');
 ~~~
 
 
-## SELECT ... INTO
+### SELECT ... INTO
 * Bir tablodan alınan verileri, yeni bir tabloya kopyalamak için kullanılır. 
 * Yeni tablonun mevcut olmaması gerekir.
 
