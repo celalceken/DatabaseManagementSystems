@@ -326,9 +326,7 @@ WHERE "CompanyName" = 'Familia Arquibaldo';
 ~~~
 
 
-* WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
-WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.--
-
+* WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.
 
 
 ## DELETE
