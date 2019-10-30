@@ -415,3 +415,6 @@ public class VeritabaniIslemleri {
 }
 ~~~
 
+* .NET ile Postgresql bağlantısını sağlayabilmek için linkteki dökümandan faydalanabilirsiniz.
+
+[.NET & Postgresql](https://github.com/celalceken/DatabaseManagementSystems/blob/master/Open%20Database%20Connectivity/.NET_Postgres_connection.pdf)
