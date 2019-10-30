@@ -349,6 +349,8 @@ DELETE FROM "customers";
 
 Uygulama programları ile veritabanı işlemleri yapılabilmesi için, programlama dili ile kullanılan veritabanı arasında iletişimi sağlayacak sürücülere ihtiyaç vardır.
 
+## Java ile PostgreSQL İşlemleri
+
 PostgreSQL jdbc sürücüsü https://jdbc.postgresql.org/download.html bağlantısından indirilebilir.
 
 Sürücüler aşağıdaki temel fonksiyonları sağlar:
@@ -415,6 +417,8 @@ public class VeritabaniIslemleri {
 }
 ~~~
 
-[.NET platformu ile Postgresql işlemleri için buraya bakınız](https://github.com/celalceken/DatabaseManagementSystems/blob/master/Belgeler/.NET_Postgres_connection.pdf)
+## .net ile PostgreSQL İşlemleri
+
+[.net platformu ile Postgresql işlemleri için buraya bakınız](https://github.com/celalceken/DatabaseManagementSystems/blob/master/Belgeler/.NET_Postgres_connection.pdf)
 
 
