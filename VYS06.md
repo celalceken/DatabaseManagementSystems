@@ -362,14 +362,15 @@ Aşağıdaki Java kodunun uygulanmasına yardımcı olabilecek örnek bir video 
 ~~~java
 package edu.sau.vys.vys1;
 
-import java.sql.*;   //Veritabanı sürücüsü
+/***** Veritabanı sürücüsü *****/
+import java.sql.*;
 
 public class VeritabaniIslemleri {
 
     public static void main(String[] args)
     {
         try
-        {   // Bağlantı kurulumu
+        {   /***** Bağlantı kurulumu *****/
             Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Northwind",
                     "postgres", "LecturePassword");
             if (conn != null)
@@ -380,30 +381,32 @@ public class VeritabaniIslemleri {
 
             String sql= "SELECT \"CustomerID\", \"CompanyName\", \"Country\"  FROM \"customers\"";
 
+            /***** Sorgu çalıştırma *****/
             Statement stmt = conn.createStatement();
-            
-            //Sorgu çalıştırma
-            
             ResultSet rs = stmt.executeQuery(sql);
+
+            String musteriNo= null;
+            String sirketAdi=null;
+            String ulke;
 
             while(rs.next())
             {
-                //Kayda ait alan değerlerini değişkene ata
-                String musteriNo  = rs.getString("CustomerID");
-                String sirketAdi = rs.getString("CompanyName");
-                String ulke = rs.getString("Country");
+                /***** Kayda ait alan değerlerini değişkene ata *****/
+                musteriNo  = rs.getString("CustomerID");
+                sirketAdi = rs.getString("CompanyName");
+                ulke = rs.getString("Country");
 
-                //Ekrana yazdır
-                System.out.print("Sıra No: " + musteriNo);
-                System.out.print(", Şirket Adı: " + sirketAdi);
-                System.out.println(", Ulke: " + ulke);
+                /***** Ekrana yazdır *****/
+                System.out.print("Sıra No:"+ musteriNo);
+                System.out.print(", Şirket Adı:" + sirketAdi);
+                System.out.println(", Ulke:" + ulke);
             }
-            //Kaynakları serbest bırak
+            /***** Kaynakları serbest bırak *****/
+
             rs.close();
             stmt.close();
-            
-            //Bağlantı sonlandırma
-            
+
+            /***** Bağlantı sonlandırma *****/
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
