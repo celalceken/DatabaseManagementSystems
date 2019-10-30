@@ -64,7 +64,7 @@ CREATE TABLE "sema1"."Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
