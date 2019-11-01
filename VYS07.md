@@ -1,7 +1,7 @@
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
 
-# Temel SQL (SQL DDL Komutları; CREATE, ALTER, DROP, ADD, SET, CONSTRAINTS) 
+# Temel SQL (SQL DDL Komutları; CREATE, ALTER, DROP, ADD, SET, CONSTRAINTS)
 
 ## CREATE 
 * Nesne (veritabanı, şema, tablo, view, fonksiyon vb.) oluşturmak için kullanılır
@@ -49,25 +49,25 @@ CREATE SCHEMA "sema1";
 
 * Tablo oluşturmak için kullanılır.
 
-* Veri Tipleri
-* Uygun veri tipinin seçilmesi durumunda; 
+* Tablo oluşturulurken her sütunlarının veri tipi bildirilir.
+* PostgreSQL'deki veri tiplerine aşağıdaki sayfadan erişilebilir.
+  + https://www.postgresql.org/docs/10/static/datatype.html
+* Sütunlar için uygun veri tipinin seçilmesi önemlidir. Bu yapıldığı takdirde;
   + hız artar, kaynaklar etkin kullanılır,
   + veriler tutarlı olarak saklanır (doğrulama) ve 
   + bazı saldırılara karşı önlem alınmış olur.
-* PostgreSQL'deki veri tiplerine aşağıdaki sayfadan erişilebilir.
-* https://www.postgresql.org/docs/10/static/datatype.html
 
 ~~~sql
 CREATE TABLE "sema1"."Urunler" (
     "urunNo" SERIAL,
-	"kodu" CHAR(6) NOT NULL,
-	"adi" VARCHAR(40) NOT NULL,
-	"uretimTarihi" DATE DEFAULT '2019-01-01',
-	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT 0,
-	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
-	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
-	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
+    "kodu" CHAR(6) NOT NULL,
+    "adi" VARCHAR(40) NOT NULL,
+    "uretimTarihi" DATE DEFAULT '2019-01-01',
+    "birimFiyati" MONEY,
+    "miktari" SMALLINT DEFAULT 0,
+    CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
+    CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
+    CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
 );
 ~~~
 
