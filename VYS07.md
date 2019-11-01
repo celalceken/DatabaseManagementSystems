@@ -3,7 +3,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 # Temel SQL (SQL DDL Komutları; CREATE, ALTER, DROP, ADD, SET, CONSTRAINTS)
 
-## Tablo oluşturma, silme, düzenleme
+## Nesne oluşturma, silme, düzenleme
 
 ### CREATE 
 
