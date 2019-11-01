@@ -88,8 +88,14 @@ SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
 sorgu sonucu gelen değerler içerisindeki tekrarlanan kayıtların tek kayıt
 olarak gösterilmesini sağlar.
 
+
 ~~~sql
 SELECT DISTINCT "City" from "customers";
+~~~
+
+
+~~~sql
+SELECT DISTINCT "OrderID", "Discount" FROM "order_details" ORDER BY "OrderID" 
 ~~~
 
 
@@ -192,6 +198,20 @@ FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
 ~~~
 
+
+* Aşağıdaki sorgu eşdeğerdir.
+
+~~~sql
+SELECT 
+  "public"."orders"."OrderID",
+  "public"."customers"."CompanyName",
+  "public"."customers"."ContactName",
+  "public"."orders"."OrderDate"
+FROM "orders" 
+JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID" 
+~~~
+
+
 ~~~sql
 SELECT 
   "public"."orders"."OrderID",
@@ -268,6 +288,19 @@ LEFT OUTER JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID"
 ORDER BY "OrderID" DESC;
 ~~~
 
+* Aşağıdaki sorgu eşdeğerdir.
+
+~~~sql
+SELECT
+  "orders"."OrderID" AS "siparisNo",
+  "customers"."CompanyName" AS "sirket",
+  "orders"."OrderDate" AS "siparisTarihi"
+FROM "customers"
+LEFT JOIN "orders" ON "orders"."CustomerID" = "customers"."CustomerID" 
+ORDER BY "OrderID" DESC;
+~~~
+
+
 
 #### Sağ Dış Birleştirme (Right Outer Join)
 
@@ -291,7 +324,22 @@ ORDER BY "OrderID" DESC;
 
 ~~~sql
 INSERT INTO "employees" ("EmployeeID","FirstName", "LastName") 
-  VALUES (10,'Melih', 'Can');
+  VALUES (10, 'Melih', 'Can');
+~~~
+
+
+
+* Aşağıdaki sorgu yukarıdaki birleştirme sorgusuna eşdeğerdir.
+
+~~~sql
+SELECT
+  "orders"."OrderID" AS "siparisNo",
+  "employees"."FirstName" AS "satisTemsilcisiAdi",
+  "employees"."LastName" AS "satisTemsilcisiSoyadi",
+  "orders"."OrderDate" AS "siparisTarihi"
+FROM "orders"
+RIGHT JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID" 
+ORDER BY "OrderID" DESC;
 ~~~
 
 
