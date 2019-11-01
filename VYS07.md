@@ -3,10 +3,11 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 # Temel SQL (SQL DDL Komutları; CREATE, ALTER, DROP, ADD, SET, CONSTRAINTS)
 
-## CREATE 
+## Tablo oluşturma, silme, düzenleme
+
+### CREATE 
+
 * Nesne (veritabanı, şema, tablo, view, fonksiyon vb.) oluşturmak için kullanılır
-
-
 
 
 ### CREATE DATABASE 
@@ -237,7 +238,7 @@ SELECT CURRVAL('sayac');
 
 
 * Otomatik artım örneği - SEQUENCE Kullanımı 2
-  + Tablol oluşturulurken de SEQUENCE kullanabiliriz.
+  + Tablo oluşturulurken de SEQUENCE kullanabiliriz.
 
 ~~~sql
 CREATE SEQUENCE "sayac";
@@ -273,9 +274,9 @@ VALUES
 
 
 
-* SQL Kısıtları (CONSTRAINTS)
-  + Veri bütünlüğünün korunmasına yardımcı olur.
+## SQL Kısıtları (CONSTRAINTS)
 
+* Veri bütünlüğünün korunmasına yardımcı olur.
 
 
 
@@ -315,7 +316,8 @@ ALTER TABLE "Urunler" ALTER "kodu" SET NOT NULL;
 
 
 
-### DEFAULT 
+### DEFAULT
+
 * Tanımlandığı alana değer girilmemesi durumunda varsayılan bir değerin atanmasını sağlar.
 
 ~~~sql
@@ -350,7 +352,9 @@ ALTER TABLE "Urunler" ALTER COLUMN "uretimTarihi" SET DEFAULT '2019-01-01';
 
 
 ### UNIQUE 
+
 * Tanımlandığı alandaki verilerin eşsiz (tekil, benzersiz) olmasını sağlar.
+
 
 ~~~sql
 CREATE TABLE "Urunler" (
@@ -416,6 +420,7 @@ VALUES
 
 
 ### CHECK 
+
 * Tanımlandığı alandaki değer aralığını sınırlamada kullanılır.
 
 
@@ -471,8 +476,9 @@ ALTER TABLE "Urunler" DROP CONSTRAINT "urunlerPK";
 ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo");
 ~~~
 
-* İki alanlı birincil anahtar örneği.
 
+
+* İki alanlı birincil anahtar örneği.
 
 ~~~sql
 CREATE TABLE "Urunler1" (
@@ -522,8 +528,8 @@ CREATE TABLE "Urunler" (
 );
 ~~~
 
-* Bu ifade yukarıdaki ile aynıdır. ON DELETE ve ON UPDATE durumunda ne yapılacağı belirtilmediğinde varsayılan olarak NO ACTION olur.
 
+* Bu ifade yukarıdaki ile aynıdır. ON DELETE ve ON UPDATE durumunda ne yapılacağı belirtilmediğinde varsayılan olarak NO ACTION olur.
 
 ~~~sql
 CREATE TABLE "Urunler" (
@@ -540,6 +546,7 @@ CREATE TABLE "Urunler" (
 	CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") REFERENCES "UrunTipleri"("tipNo") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 ~~~
+
 
 * Üç davranış şekli vardır: NO ACTION (varsayılan), RESTRICT, CASCADE
 
@@ -570,8 +577,3 @@ REFERENCES "UrunTipleri"("tipNo")
 ON DELETE CASCADE
 ON UPDATE CASCADE;
 ~~~
-
-
-
-
-
