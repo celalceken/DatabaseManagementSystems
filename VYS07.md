@@ -16,7 +16,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
 LC_COLLATE='tr_TR.UTF-8'-- Bu özellik sonradan değiştirilemez (arama, sıralama işlemleri için)
-LC_CTYPE='tr_TR.UTF-8'	-- Bu özellik sonradan değiştirilemez (aksan)
+LC_CTYPE='tr_TR.UTF-8'	-- Bu özellik sonradan değiştirilemez (aksan, büyük küçük harf dönüşümü, bir veri harf mi? vb.)
 OWNER postgres
 TEMPLATE=template0;
 ~~~
@@ -26,8 +26,8 @@ TEMPLATE=template0;
 ~~~sql
 CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
-LC_COLLATE='Turkish_Turkey.1254'-- Bu özellik sonradan değiştirilemez (arama, sıralama işlemleri için)
-LC_CTYPE='Turkish_Turkey.1254'	-- Bu özellik sonradan değiştirilemez (aksan)
+LC_COLLATE='Turkish_Turkey.1254'
+LC_CTYPE='Turkish_Turkey.1254'
 OWNER postgres
 TEMPLATE=template0;
 ~~~
