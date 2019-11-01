@@ -37,7 +37,7 @@ TEMPLATE=template0;
 ### CREATE SCHEMA 
 
 * Veritabanını mantıksal olarak bölümlere ayırmak için kullanılır. 
-* Sabit disklerdeki klasör yapısına benzetilebilir. Bu sayede veritabanı daha kolay yönetilir. Çok sayıda kişinin aynı projede çalışabilmesi (isim uzayı) ve güvenlik kolaaylaşır.
+* Sabit disklerdeki klasör yapısına benzetilebilir. Bu sayede veritabanı daha kolay yönetilir. Çok sayıda kişinin aynı projede çalışabilmesi (isim uzayı) ve güvenlik kolaylaşır.
 
 ~~~sql
 CREATE SCHEMA "sema1";
