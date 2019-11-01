@@ -3,12 +3,14 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 # Yapısal Sorgulama Dili (Structured Query Language, SQL)
 
+
 ## Konular
 
 * Çalışma Ortamının Hazırlanması
 * Yapısal Sorgulama Dili (Structured Query Language, SQL)
 * Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
 * Uygulama Programları ile VYS İşlemleri
+
 
 ## Çalışma Ortamının Hazırlanması
 
@@ -24,6 +26,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + https://code.google.com/archive/p/northwindextended/downloads
 * Pagila veritabanının içe aktarılması, dışa verilmesi
   + http://www.postgresqltutorial.com/postgresql-sample-database
+
 
 ## Yapısal Sorgulama Dili (SQL)
 
@@ -41,11 +44,10 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
 
 
-
 * Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır.
 
 
-## SELECT
+### SELECT
 
 * Select Komutu veritabanından veri almak (arama/listeleme) için kullanılır.
 
@@ -55,7 +57,7 @@ SELECT * FROM "customers";
 SELECT "CompanyName", "ContactName" FROM "customers";
 ~~~
 
-## WHERE
+### WHERE
 
 * İstenilen koşula uyan kayıtların listelenmesi için WHERE komutu kullanılır.
 
@@ -80,7 +82,8 @@ SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
 ~~~
 
 
-### DISTINCT 
+### DISTINCT
+
 * Tabloda bazı sütunlar tekrar eden kayıtlar içerebilir. “DISTINCT” ifadesi
 sorgu sonucu gelen değerler içerisindeki tekrarlanan kayıtların tek kayıt
 olarak gösterilmesini sağlar.
@@ -91,6 +94,7 @@ SELECT DISTINCT "City" from "customers";
 
 
 ### ORDER BY
+
 * Sorgular sonucunda listelenen kayıtların belirli alanlara göre alfabetik 
 veya sayısal olarak artan ya da azalan şeklinde sıralanması için 
 "ORDER BY" komutu kullanılır.
@@ -119,6 +123,7 @@ SELECT * FROM "customers" WHERE "City" LIKE 'Sao _aulo';
 SELECT * FROM "customers" WHERE "Country" LIKE '%pa_';
 ~~~
 
+
 ### BETWEEN
 
 ~~~sql
@@ -146,6 +151,7 @@ SELECT * FROM "customers" WHERE "Region" IS NULL;
 
 
 ### AS
+
 * AS ifadesi ile alanlara takma isim verilir.
 
 ~~~sql
@@ -160,11 +166,13 @@ WHERE "OrderDate" BETWEEN '07/04/1996' AND '07/09/1996';
 ~~~
 
 
-## TABLO BİRLEŞTİRME İŞLEMLERİ
+
+### Tablo Birleştirme İşlemleri
 
 * Birleştirme (join) işlemi, farklı tablolardaki kayıtları birleştirip yeni veri kümeleri oluşturmak için kullanılır.
 
-### Doğal/İç Birleştirme (Natural/Inner Join)
+
+#### Doğal/İç Birleştirme (Natural/Inner Join)
 
 
 ~~~sql
@@ -239,7 +247,9 @@ INNER JOIN "orders" ON "order_details"."OrderID" = "orders"."OrderID"
 INNER JOIN "products" ON "order_details"."ProductID" = "products"."ProductID";
 ~~~
 
-### Sol Dış Birleştirme (Left Outer Join)
+
+
+#### Sol Dış Birleştirme (Left Outer Join)
 
 ~~~sql
 SELECT * FROM "Muzisyenler" LEFT OUTER JOIN "Iller"
@@ -259,7 +269,7 @@ ORDER BY "OrderID" DESC;
 ~~~
 
 
-### Sağ Dış Birleştirme (Right Outer Join)
+#### Sağ Dış Birleştirme (Right Outer Join)
 
 ~~~sql
 SELECT * FROM "Muzisyenler" RIGHT OUTER JOIN "Iller"
@@ -285,7 +295,8 @@ INSERT INTO "employees" ("EmployeeID","FirstName", "LastName")
 ~~~
 
 
-## SELECT ... INTO
+### SELECT ... INTO
+
 * Bir tablodan alınan verileri, yeni bir tabloya kopyalamak için kullanılır. 
 * Yeni tablonun mevcut olmaması gerekir.
 
@@ -295,7 +306,8 @@ SELECT "CompanyName", "ContactName" INTO "MusteriYedek" FROM "customers";
 
 
 
-## INSERT
+### INSERT
+
 * INSERT komutu tabloya yeni kayıt eklemek için kullanılır. 
 * Ekleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 * Yalnızca bazı sütunlara veri eklememiz mümkündür. 
@@ -308,7 +320,8 @@ VALUES ('ZZA', 'Zafer', 'Ayşe', 'Serdivan', 'Sakarya', '54400', 'Türkiye');
 ~~~
 
 
-## INSERT INTO ... SELECT
+### INSERT INTO ... SELECT
+
 * Bir tablodan alınan verileri, varolan bir tabloya kopyalamak için kullanılır.
 
 ~~~sql
@@ -316,7 +329,8 @@ INSERT INTO "MusteriYedek" SELECT "CompanyName", "ContactName" FROM "customers";
 ~~~
 
 
-## UPDATE 
+### UPDATE
+
 * UPDATE komutu tablodaki kayıt(lar)ın değiştirilmesini sağlar.
 * Güncelleme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
@@ -329,7 +343,8 @@ WHERE "CompanyName" = 'Familia Arquibaldo';
 * WHERE ifadesi kullanılmazsa tüm satırlar değiştirilir.
 
 
-## DELETE
+### DELETE
+
 * DELETE ifadesi tablodaki kayıt veya kayıtların silinmesini sağlar.
 * Silme işlemlerinde veri bütünlüğü kısıtları göz önüne alınır.
 
@@ -345,11 +360,13 @@ WHERE "CompanyName" = 'LINO-Delicateses' AND "ContactName" = 'Felipe Izquierdo';
 ~~~sql
 DELETE FROM "customers";
 ~~~
-# Uygulama Programları ile VYS İşlemleri
+
+
+## Uygulama Programları ile VYS İşlemleri
 
 Uygulama programları ile veritabanı işlemleri yapılabilmesi için, programlama dili ile kullanılan veritabanı arasında iletişimi sağlayacak sürücülere ihtiyaç vardır.
 
-## Java ile PostgreSQL İşlemleri
+### Java ile PostgreSQL İşlemleri
 
 PostgreSQL jdbc sürücüsü https://jdbc.postgresql.org/download.html bağlantısından indirilebilir.
 
@@ -417,7 +434,8 @@ public class VeritabaniIslemleri {
 }
 ~~~
 
-## .net ile PostgreSQL İşlemleri
+
+### .net ile PostgreSQL İşlemleri
 
 [.net platformu ile Postgresql işlemleri için buraya bakınız](https://github.com/celalceken/DatabaseManagementSystems/blob/master/Belgeler/.NET_Postgres_connection.pdf)
 
