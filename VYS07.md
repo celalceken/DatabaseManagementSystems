@@ -49,7 +49,7 @@ CREATE SCHEMA "sema1";
 
 * Tablo oluşturmak için kullanılır.
 
-* Tablo oluşturulurken her sütunlarının veri tipi bildirilir.
+* Tablo oluşturulurken sütunlarının veri tipi bildirilir.
 * PostgreSQL'deki veri tiplerine aşağıdaki sayfadan erişilebilir.
   + https://www.postgresql.org/docs/10/static/datatype.html
 * Sütunlar için uygun veri tipinin seçilmesi önemlidir. Bu yapıldığı takdirde;
