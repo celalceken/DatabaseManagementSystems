@@ -171,7 +171,7 @@ ALTER TABLE "Urunler" ALTER COLUMN "uretimYeri" TYPE CHAR(20);
 * Otomatik artım örneği - SERIAL kullanımı.
 
 ~~~sql
-CREATE TABLE "sema1"."Urunler" (
+CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
@@ -185,7 +185,7 @@ CREATE TABLE "sema1"."Urunler" (
 ~~~
 
 ~~~sql
-INSERT INTO "sema1"."Urunler" 
+INSERT INTO "Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 ('ELO004', 'TV', '13', '2019-10-30', 5);
@@ -195,7 +195,7 @@ VALUES
 * Otomatik artım örneği - SEQUENCE Kullanımı 1
 
 ~~~sql
-CREATE TABLE "sema1"."Urunler" (
+CREATE TABLE "Urunler" (
 	"urunNo" INTEGER,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
@@ -217,7 +217,7 @@ ALTER SEQUENCE "sayac" OWNED BY "Urunler"."urunNo";
 ~~~
 
 ~~~sql
-INSERT INTO "sema1"."Urunler"
+INSERT INTO "Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 (NEXTVAL('"public"."sayac"'), 'ELO004', 'TV', '13', '2019-10-30', 5);
