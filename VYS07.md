@@ -114,14 +114,14 @@ CREATE TABLE "Urunler" (
 ~~~
 
 ~~~sql
-INSERT INTO "sema1"."Urunler" 
+INSERT INTO "Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 ('ELO001', 'TV', '13', '2019-10-30', 5);
 ~~~
 
 ~~~sql
-INSERT INTO "sema1"."Urunler" 
+INSERT INTO "Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 ('ELO002', 'TV', '13', '2019-10-30', 5);
