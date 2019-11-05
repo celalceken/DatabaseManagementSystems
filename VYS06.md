@@ -451,6 +451,9 @@ public class VeritabaniIslemleri {
             /***** Sorgu çalıştırma *****/
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
+            
+            /***** Bağlantı sonlandırma *****/
+            conn.close();
 
             String musteriNo= null;
             String sirketAdi=null;
@@ -468,13 +471,11 @@ public class VeritabaniIslemleri {
                 System.out.print(", Şirket Adı:" + sirketAdi);
                 System.out.println(", Ulke:" + ulke);
             }
+            
             /***** Kaynakları serbest bırak *****/
-
             rs.close();
             stmt.close();
 
-            /***** Bağlantı sonlandırma *****/
-            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
