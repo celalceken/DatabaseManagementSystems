@@ -54,9 +54,9 @@ CREATE SCHEMA "sema1";
 * PostgreSQL'deki veri tiplerine aşağıdaki sayfadan erişilebilir.
   + https://www.postgresql.org/docs/10/static/datatype.html
 * Sütunlar için uygun veri tipinin seçilmesi önemlidir. Bu yapıldığı takdirde;
-  + hız artar, kaynaklar etkin kullanılır,
-  + veriler tutarlı olarak saklanır (doğrulama) ve 
-  + bazı saldırılara karşı önlem alınmış olur.
+  + Hız artar, kaynaklar etkin kullanılır.
+  + Veriler tutarlı olarak saklanır (doğrulama).
+  + Bazı saldırılara karşı önlem alınmış olur.
 
 ~~~sql
 CREATE TABLE "sema1"."Urunler" (
