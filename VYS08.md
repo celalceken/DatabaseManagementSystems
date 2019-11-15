@@ -1,10 +1,19 @@
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
 
-# Temel SQL (SQL DDL Komutları; INDEKS, KALITIM, TEKLİ BAĞINTI, SQL DML Komutları; VIEW (GÖRÜNÜM), ÇOKLU SATIR FONKSİYONLARI, GRUPLAMA) 
+# Temel SQL (SQL DDL Komutları; İndeks (Index), Kalıtım, Tekli Bağıntı, SQL DML Komutları; Görünüm (View), Çoklu Satır Fonksiyonları, Gruplama) 
+
+## Konular
+
+* İndex (Index)
+* Kalıtım
+* Tekli Bağıntı / Özyineli Birleştirme
+* Görünüm (View)
+* Çoklu Satır Fonksiyonları
+* Gruplama
 
 
-## INDEX 
+## İndeks
 
 ~~~sql
 CREATE TABLE "Musteriler" (
@@ -27,7 +36,7 @@ CREATE INDEX "musterilerSoyadiIndex" ON "Musteriler" USING btree ("soyadi");
 DROP INDEX "musterilerAdiIndex";
 ~~~
 
-## INDEX-Örnek Uygulama 
+### Örnek Uygulama 
 
 * Örnek Ek Veritabanı
 
@@ -95,11 +104,7 @@ WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değişt
 
 
 
-
-
-
-
-## Kalıtım Örneği
+## Kalıtım
 
 ~~~sql
 CREATE DATABASE "AlisVerisUygulamasi"
@@ -190,7 +195,8 @@ ON "Personel"."personelNo" = "Danisman"."personelNo"
 ~~~
 
 
-## Özyineli Birleştirme / Tekli Bağıntı Örneği
+
+## Tekli Bağıntı / Özyineli Birleştirme
 
 ~~~sql
 CREATE TABLE "Personel" (
@@ -204,27 +210,10 @@ CREATE TABLE "Personel" (
 ~~~
 
 ~~~sql
-INSERT INTO "Personel"
-("adi", "soyadi")
-VALUES ('Ahmet', 'Şahin');
-~~~
-
-~~~sql
-INSERT INTO "Personel"
-("adi", "soyadi")
-VALUES ('Ayşe', 'Kartal');
-~~~
-
-~~~sql
-INSERT INTO "Personel"
-("adi", "soyadi", "yoneticisi")
-VALUES ('Mustafa', 'Çelik', '1');
-~~~
-
-~~~sql
-INSERT INTO "Personel"
-("adi", "soyadi", "yoneticisi")
-VALUES ('Fatma', 'Demir', '2');
+INSERT INTO "Personel" ("adi", "soyadi") VALUES ('Ahmet', 'Şahin');
+INSERT INTO "Personel" ("adi", "soyadi") VALUES ('Ayşe', 'Kartal');
+INSERT INTO "Personel" ("adi", "soyadi", "yoneticisi") VALUES ('Mustafa', 'Çelik', '1');
+INSERT INTO "Personel" ("adi", "soyadi", "yoneticisi") VALUES ('Fatma', 'Demir', '2');
 ~~~
 
 ~~~sql
@@ -250,7 +239,7 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 
 
 
-## Görünüm (View) ##
+## Görünüm (View)
 
 * Bir veya daha fazla tablodan seçilen satırlar ve alanlardaki bilgilerin yeni bir tablo gibi görüntülenmesini temin eden yapıdır.
 
@@ -293,15 +282,16 @@ DROP VIEW "SiparisMusteriSatisTemsilcisi";
 ~~~
 
 
-## SQL Fonksiyonları 
+
+
+
+
+## Çoklu Satır Fonksiyonları 
 
 > Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır. 
 
 
-
-### Çoklu Satır Fonksiyonları 
-
-
+### COUNT
 
 * COUNT (Satır sayısı)
 * Sorgu sonucunda oluşan sonuç kümesindeki satır sayısını döndürür.
@@ -388,7 +378,10 @@ SELECT SUM("UnitPrice") FROM "products";
 SELECT SUM("UnitPrice") AS "toplam" FROM "products";
 ~~~
 
-### AVG - Ortalama 
+
+### AVG
+
+* Seçilen sütundaki değerlerin ortalamasına ulaşmak için kullanılır.
 
 ~~~sql
 SELECT SUM("UnitPrice") / COUNT("ProductID") FROM "products";
@@ -399,6 +392,8 @@ SELECT AVG("UnitPrice") FROM "products";
 ~~~
 
 
+
+## Gruplama
 
 ### GROUP BY
 
@@ -433,6 +428,7 @@ ORDER BY 1;
 
 
 ### HAVING
+
 * Gruplandırılmış veriler üzerinde filtreleme yapma işlemi için kullanılır.
 * HAVING ile yazılan koşullar çoklu satır fonksiyonları ile veya gruplama yapılan alan üzerinden yapılır.
 
@@ -465,38 +461,3 @@ FROM "products"
 GROUP BY "SupplierID"
 WHERE COUNT("SupplierID") > 2;
 ~~~
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
