@@ -57,6 +57,25 @@ CREATE TABLE "Kisiler" (
 );
 ~~~
 
+* Windows işletim sistemi için:
+
+~~~sql
+CREATE DATABASE "TestVeritabani"
+ENCODING='UTF-8'
+LC_COLLATE='Turkish_Turkey.1254'
+LC_CTYPE='Turkish_Turkey.1254'	
+OWNER postgres
+TEMPLATE=template0;
+
+CREATE TABLE "Kisiler" (
+    "kisiNo" SERIAL,
+	"adi" VARCHAR(40) NOT NULL,
+	"soyadi" VARCHAR(40) NOT NULL,
+	"kayitTarihi" TIMESTAMP DEFAULT '2019-01-01 01:00:00',
+	CONSTRAINT "urunlerPK1" PRIMARY KEY("kisiNo")
+);
+~~~
+
 ~~~sql
 CREATE OR REPLACE FUNCTION "veriGir"(kayitSayisi integer)
 RETURNS VOID
