@@ -59,7 +59,7 @@ CREATE SCHEMA "sema1";
   + Bazı saldırılara karşı önlem alınmış olur.
 
 ~~~sql
-CREATE TABLE "Urunler" (
+CREATE TABLE "sema1"."Urunler" (
     "urunNo" SERIAL,
     "kodu" CHAR(6) NOT NULL,
     "adi" VARCHAR(40) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE "Urunler" (
 ### DROP TABLE
 
 ~~~sql
-DROP TABLE "Urunler";
+DROP TABLE "sema1"."Urunler";
 ~~~
 
 
