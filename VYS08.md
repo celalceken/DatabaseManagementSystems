@@ -134,6 +134,17 @@ OWNER postgres
 TEMPLATE=template0;
 ~~~
 
+* Windows işletim sistemi için:
+
+~~~sql
+CREATE DATABASE "AlisVerisUygulamasi"
+ENCODING='UTF-8'
+LC_COLLATE='Turkish_Turkey.1254'
+LC_CTYPE='Turkish_Turkey.1254'	
+OWNER postgres
+TEMPLATE=template0;
+~~~
+
 ~~~sql
 CREATE SCHEMA "Personel";
 ~~~
