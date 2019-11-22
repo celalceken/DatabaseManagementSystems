@@ -125,6 +125,7 @@ WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değişt
 
 ## Kalıtım
 
+
 ~~~sql
 CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
@@ -144,6 +145,10 @@ LC_CTYPE='Turkish_Turkey.1254'
 OWNER postgres
 TEMPLATE=template0;
 ~~~
+
+
+![](Sekiller/08/PersonelKalitim.png)
+
 
 ~~~sql
 CREATE SCHEMA "Personel";
