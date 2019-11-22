@@ -103,6 +103,7 @@ DROP DATABASE "AlisVerisUygulamasi";
 
  
 ### TRUNCATE TABLE
+
 * Bir tablonun içindeki tüm verileri silmek için kullanılır.
 
 ~~~sql
@@ -124,9 +125,7 @@ INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
 ('ELO001', 'TV', '13', '2019-10-30', 5);
-~~~
 
-~~~sql
 INSERT INTO "Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
