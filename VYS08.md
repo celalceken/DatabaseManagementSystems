@@ -5,7 +5,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ## Konular
 
-* İndex (Index)
+* İndeks (Index)
 * Kalıtım
 * Tekli Bağıntı / Özyineli Birleştirme
 * Görünüm (View)
@@ -372,7 +372,7 @@ SELECT * FROM "products" ORDER BY "ProductID" DESC LIMIT 5
 
 
 ### MAX
-* Seçilen sütundaki en büyük değere ulaşmak için kullanılır.
+* Seçilen sütundaki en büyük değere ulaşmak için kullanılır.
 
 ~~~sql
 SELECT MAX("UnitPrice") FROM "products";
@@ -385,7 +385,7 @@ SELECT MAX("UnitPrice") AS "enYuksekFiyat" FROM "products";
 
 
 ### MIN
-* Seçilen sütundaki en küçük değere ulaşmak için kullanılır.
+* Seçilen sütundaki en küçük değere ulaşmak için kullanılır.
 
 ~~~sql
 SELECT MIN("UnitPrice") FROM "products";
@@ -398,7 +398,7 @@ SELECT MIN("UnitPrice") AS "enDusukFiyat" FROM "products";
 
 
 ### SUM
-* Seçilen sütundaki değerlerin toplamına ulaşmak için kullanılır.
+* Seçilen sütundaki değerlerin toplamına ulaşmak için kullanılır.
 
 ~~~sql
 SELECT SUM("UnitPrice") FROM "products";
@@ -411,7 +411,7 @@ SELECT SUM("UnitPrice") AS "toplam" FROM "products";
 
 ### AVG
 
-* Seçilen sütundaki değerlerin ortalamasına ulaşmak için kullanılır.
+* Seçilen sütundaki değerlerin ortalamasına ulaşmak için kullanılır.
 
 ~~~sql
 SELECT SUM("UnitPrice") / COUNT("ProductID") FROM "products";
@@ -427,12 +427,12 @@ SELECT AVG("UnitPrice") FROM "products";
 
 ### GROUP BY
 
-* Sorgu sonucunu belirtilen alan(lar)a göre gruplar.
-* Seçilecek alan, gruplama yapılan alan ya da çoklu satır fonksiyonları (COUNT) olmalı.
-* Gruplama işleminden sonra koşul yazılabilmesi için HAVING ifadesinin kullanılması gereklidir.
+* Sorgu sonucunu belirtilen alan(lar)a göre gruplar.
+* Seçilecek alan, gruplama yapılan alan ya da çoklu satır fonksiyonları (COUNT) olmalı.
+* Gruplama işleminden sonra koşul yazılabilmesi için HAVING ifadesinin kullanılması gereklidir.
 
 
-* Aşağıdaki sorgu, ü̈rünleri tedarikçilerine göre gruplar ve her tedarikçinin sağladığı ürünlerin sayısını hesaplayarak tedarikçi bilgisi ile birlikte döndürür.
+* Aşağıdaki sorgu, ü̈rünleri tedarikçilerine göre gruplar ve her tedarikçinin sağladığı ürünlerin sayısını hesaplayarak tedarikçi bilgisi ile birlikte döndürür.
 
 ~~~sql
 SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
