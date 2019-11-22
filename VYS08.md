@@ -84,8 +84,8 @@ $$
 BEGIN   
     IF kayitSayisi > 0 THEN
         FOR i IN 1 .. kayitSayisi LOOP
-            insert into "Kisiler" ("adi","soyadi", "kayitTarihi") 
-            Values(
+            INSERT INTO "Kisiler" ("adi","soyadi", "kayitTarihi") 
+            VALUES(
                 substring('ABCÇDEFGĞHIiJKLMNOÖPRSŞTUÜVYZ' from ceil(random()*10)::smallint for ceil(random()*20)::SMALLINT), 
                 substring('ABCÇDEFGĞHIiJKLMNOÖPRSŞTUÜVYZ' from ceil(random()*10)::smallint for ceil(random()*20)::SMALLINT),
                 NOW() + (random() * (NOW()+'365 days' - NOW()))
@@ -104,7 +104,8 @@ SELECT "veriGir"(100000);
 ~~~sql
 EXPLAIN ANALYZE
 SELECT * FROM "Kisiler"
-WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
+WHERE "adi"='DENEME';
+-- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
 ~~~
 
   + Execution time: 10.274 ms
@@ -116,7 +117,8 @@ CREATE INDEX "adiINDEX" ON "public"."Kisiler" USING btree( "adi" Asc NULLS Last 
 ~~~sql
 EXPLAIN ANALYZE
 SELECT * FROM "Kisiler"
-WHERE "adi"='DENEME' -- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
+WHERE "adi"='DENEME';
+-- Satırlardan birinin adi alanı "DENEME" olarak değiştirilmeli
 ~~~
 
   + Execution time: 0.086 ms
@@ -160,7 +162,7 @@ CREATE TABLE "Personel"."Personel" (
 	"adi" CHARACTER VARYING(40) NOT NULL,
 	"soyadi" CHARACTER VARYING(40) NOT NULL,
 	"personelTipi" CHARACTER(1) NOT NULL,
-	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo")
+	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo");
 );
 ~~~
 
@@ -168,7 +170,7 @@ CREATE TABLE "Personel"."Personel" (
 CREATE TABLE "Personel"."Danisman" ( 
 	"personelNo" INT,
 	"sirket" CHARACTER VARYING(40) NOT NULL,
-	CONSTRAINT "danismanPK" PRIMARY KEY ("personelNo")
+	CONSTRAINT "danismanPK" PRIMARY KEY ("personelNo");
 );
 ~~~
 
@@ -176,7 +178,7 @@ CREATE TABLE "Personel"."Danisman" (
 CREATE TABLE "Personel"."SatisTemsilcisi" ( 
 	"personelNo" INT,
 	"bolge" CHARACTER VARYING(40) NOT NULL,
-	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ("personelNo")
+	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ("personelNo");
 );
 ~~~
 
@@ -203,13 +205,13 @@ ALTER TABLE "Personel"."SatisTemsilcisi"
 ~~~sql
 SELECT * FROM "Personel"."Personel"
 INNER JOIN "Personel"."SatisTemsilcisi"
-ON "Personel"."Personel"."personelNo" = "Personel"."SatisTemsilcisi"."personelNo"
+ON "Personel"."Personel"."personelNo" = "Personel"."SatisTemsilcisi"."personelNo";
 ~~~
 
 ~~~sql
 SELECT * FROM "Personel"."Personel"
 INNER JOIN "Personel"."Danisman"
-ON "Personel"."Personel"."personelNo" = "Personel"."Danisman"."personelNo"
+ON "Personel"."Personel"."personelNo" = "Personel"."Danisman"."personelNo";
 ~~~
 
 * Sorguların hızlandırılması için temel tabloya eklenen alan
@@ -226,7 +228,7 @@ WHERE "personelTipi"='D';
 ~~~sql
 SELECT "adi", "soyadi" FROM "Personel"."Personel"
 INNER JOIN "Personel"."Danisman"
-ON "Personel"."personelNo" = "Danisman"."personelNo"
+ON "Personel"."personelNo" = "Danisman"."personelNo";
 ~~~
 
 
@@ -253,18 +255,18 @@ INSERT INTO "Personel" ("adi", "soyadi", "yoneticisi") VALUES ('Fatma', 'Demir',
 
 ~~~sql
 SELECT "Calisan"."adi" AS "calisanAdi",
-    "Calisan"."soyadi" AS "calisanSoyadi",
-	"Yonetici"."adi" AS "yoneticiAdi",
-	"Yonetici"."soyadi" AS "yoneticiSoyadi"
+  "Calisan"."soyadi" AS "calisanSoyadi",
+  "Yonetici"."adi" AS "yoneticiAdi",
+  "Yonetici"."soyadi" AS "yoneticiSoyadi"
 FROM "Personel" AS "Calisan"
 INNER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."yoneticisi";
 ~~~
 
 ~~~sql
 SELECT "Calisan"."adi" AS "calisanAdi",
-    "Calisan"."soyadi" AS "calisanSoyadi",
-	"Yonetici"."adi" AS "yoneticiAdi",
-	"Yonetici"."soyadi" AS "yoneticiSoyadi"
+  "Calisan"."soyadi" AS "calisanSoyadi",
+  "Yonetici"."adi" AS "yoneticiAdi",
+  "Yonetici"."soyadi" AS "yoneticiSoyadi"
 FROM "Personel" AS "Calisan"
 LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan"."yoneticisi";
 ~~~
@@ -298,27 +300,23 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 ~~~sql
 CREATE OR REPLACE VIEW "public"."SiparisMusteriSatisTemsilcisi" AS
 SELECT "orders"."OrderID",
-    "orders"."OrderDate",
-    "customers"."CompanyName",
-    "customers"."ContactName",
-    "employees"."FirstName",
-    "employees"."LastName"
+  "orders"."OrderDate",
+  "customers"."CompanyName",
+  "customers"."ContactName",
+  "employees"."FirstName",
+  "employees"."LastName"
 FROM "orders"
 INNER JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID";
 ~~~
 
 ~~~sql
-SELECT * FROM "SiparisMusteriSatisTemsilcisi"
+SELECT * FROM "SiparisMusteriSatisTemsilcisi";
 ~~~
 
 ~~~sql
 DROP VIEW "SiparisMusteriSatisTemsilcisi";
 ~~~
-
-
-
-
 
 
 ## Çoklu Satır Fonksiyonları 
@@ -345,10 +343,11 @@ WHERE "Country" = 'Mexico';
 ~~~
 
 
-  + Tablodaki tüm kayıtların sayısı
+* Tablodaki tüm kayıtların sayısı
+
 ~~~sql
 SELECT COUNT(*)
-FROM "customers"
+FROM "customers";
 ~~~
 
 ~~~sql
@@ -367,16 +366,17 @@ WHERE "Country" = 'Türkiye';
 ### LIMIT
 
 ~~~sql
-SELECT * FROM "products" ORDER BY "ProductID" ASC LIMIT 4
+SELECT * FROM "products" ORDER BY "ProductID" ASC LIMIT 4;
 ~~~
 
 ~~~sql
-SELECT * FROM "products" ORDER BY "ProductID" DESC LIMIT 5
+SELECT * FROM "products" ORDER BY "ProductID" DESC LIMIT 5;
 ~~~
 
 
 
 ### MAX
+
 * Seçilen sütundaki en büyük değere ulaşmak için kullanılır.
 
 ~~~sql
@@ -390,6 +390,7 @@ SELECT MAX("UnitPrice") AS "enYuksekFiyat" FROM "products";
 
 
 ### MIN
+
 * Seçilen sütundaki en küçük değere ulaşmak için kullanılır.
 
 ~~~sql
@@ -403,6 +404,7 @@ SELECT MIN("UnitPrice") AS "enDusukFiyat" FROM "products";
 
 
 ### SUM
+
 * Seçilen sütundaki değerlerin toplamına ulaşmak için kullanılır.
 
 ~~~sql
@@ -442,13 +444,13 @@ SELECT AVG("UnitPrice") FROM "products";
 ~~~sql
 SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
 FROM "products"
-GROUP BY "SupplierID"
+GROUP BY "SupplierID";
 ~~~
 
 ~~~sql
 SELECT "SupplierID", SUM("UnitsInStock") AS "stokSayisi"
 FROM "products"
-GROUP BY "SupplierID"
+GROUP BY "SupplierID";
 ~~~
 
 ~~~sql
