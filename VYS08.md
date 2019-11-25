@@ -162,7 +162,7 @@ CREATE TABLE "Personel"."Personel" (
 	"adi" CHARACTER VARYING(40) NOT NULL,
 	"soyadi" CHARACTER VARYING(40) NOT NULL,
 	"personelTipi" CHARACTER(1) NOT NULL,
-	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo");
+	CONSTRAINT "personelPK" PRIMARY KEY ("personelNo")
 );
 ~~~
 
@@ -170,7 +170,7 @@ CREATE TABLE "Personel"."Personel" (
 CREATE TABLE "Personel"."Danisman" ( 
 	"personelNo" INT,
 	"sirket" CHARACTER VARYING(40) NOT NULL,
-	CONSTRAINT "danismanPK" PRIMARY KEY ("personelNo");
+	CONSTRAINT "danismanPK" PRIMARY KEY ("personelNo")
 );
 ~~~
 
@@ -178,7 +178,7 @@ CREATE TABLE "Personel"."Danisman" (
 CREATE TABLE "Personel"."SatisTemsilcisi" ( 
 	"personelNo" INT,
 	"bolge" CHARACTER VARYING(40) NOT NULL,
-	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ("personelNo");
+	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ("personelNo")
 );
 ~~~
 
