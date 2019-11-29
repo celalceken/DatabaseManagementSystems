@@ -4,7 +4,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 
-* Pagila örnek veri tabanını kullanmaktadır.
+> Pagila örnek veritabanını kullanmaktadır.
 
 
 
@@ -168,7 +168,7 @@ SELECT "kucukOlaniDondur"(12,6)
 
 ## Fonksiyon Örneği 4 
 
-* Bir SELECT sorgusu sonuç kümesi içerisinde dolanımın nasıl yapılacağını gösteren bir fonksiyon örneği aşağıda gösterilmektedir.
+* Bir SELECT sorgusunun sonuç kümesi içerisinde dolanımın nasıl yapılacağını gösteren fonksiyon örneği aşağıda gösterilmektedir.
 
 ~~~sql
 CREATE OR REPLACE FUNCTION kayitDolanimi()
@@ -350,7 +350,9 @@ SELECT * FROM filmAra(2006, 'T');
 
 ### Tetikleyici Örneği
 
-* NorthWind veritabanındaki ürünlerin birim fiyat değişimlerini izlemek için kullanılan bir tetikleyici örneği aşağıdadır.
+> NorthWind veritabanı kullanmaktadır.
+
+* Ürünlerin birim fiyat değişimlerini izlemek için kullanılan bir tetikleyici örneği aşağıdadır.
 
 ~~~sql
 CREATE TABLE "public"."UrunDegisikligiIzle" (
@@ -460,75 +462,124 @@ DROP TRIGGER IF EXISTS "urunBirimFiyatDegistiginde" ON "products";
 
 ### Tarih ve Zaman Fonksiyonları
 
-* https://www.postgresql.org/docs/9.6/static/functions-datetime.html
+* https://www.postgresql.org/docs/11/functions-datetime.html
 
-* DATE : Tarih
+
+
+> CURRENT_DATE
+
+* O anki tarihi seç.
+
 ~~~sql
-SELECT CURRENT_DATE; -- 2001-11-26 -- O anki tarih
+SELECT CURRENT_DATE; -- 2019-11-29
 ~~~
 
 
-* TIME : Zaman
-~~~sql
-SELECT CURRENT_TIME;--  23:08:04.762164+03     
-~~~
-  + O anki zaman. Zaman bölgesiyle birlikte
-  
-~~~sql
-SELECT LOCALTIME;  
-~~~
-  + Zaman bölgesi olamdan
+> CURRENT_TIME
 
+* O anki zamanı seç.
+* Zaman bölgesiyle birlikte.
+~~~sql
+
+SELECT CURRENT_TIME; -- 10:36:58.477505+03  
+~~~
+
+
+> LOCALTIME
+
+* O anki zamanı seç. 
+* Zaman bölgesi olmadan.
+
+~~~sql
+SELECT LOCALTIME;  -- 10:29:23.910726
+~~~
+
+
+> CURRENT_TIMESTAMP
+
+* O anki tarih ve zamanı birlikte seç.
 * TIMESTAMP: Tarih + Zaman
+* Zaman bölgesi ile birlikte.
+
 ~~~sql
-SELECT CURRENT_TIMESTAMP; -- 2017-11-26 23:10:44.599394+03  
+SELECT CURRENT_TIMESTAMP; -- 2019-11-29 10:32:45.738494+03
 ~~~
-  + O anki tarih ve zaman. Zaman bölgesiyle birlikte 
-  
-  + O anki zaman. Zaman bölgesiyle birlikte
-  
+
+
+> NOW()
+
+* O anki zamanı seç.
+* CURRENT_TIMESTAMP ile aynı.
+
 ~~~sql  
-SELECT NOW();
-~~~
-  + CURRENT_TIMESTAMP ile aynı
- 
-~~~sql
-SELECT LOCALTIMESTAMP;
-~~~
-  + Zaman bölgesi olamdan
-
-~~~sql
-SELECT AGE(timestamp '2018-04-10', timestamp '1957-06-13');
+SELECT NOW(); -- 2019-11-29 10:32:27.821435+03
 ~~~
 
-~~~sql
-SELECT AGE(timestamp '2018-10-07 23:00:01');
-~~~
+
+> LOCALTIMESTAMP
+
+* O anki tarih ve zamanı birlikte seç.
+* TIMESTAMP: Tarih + Zaman
+* Zaman bölgesi olmadan.
 
 ~~~sql
-SELECT AGE(timestamp '2000-10-07'); 
+SELECT LOCALTIMESTAMP; -- 2019-11-29 10:33:16.82736
 ~~~
-  + Doğum tarihi '2000-10-07' olan kişinin yaşı 
 
-* DATE_PART()/EXTRACT() fonksiyonu, tarih/zaman'dan ya da zaman diliminden(interval) istenen bölümü almak için kullanılır.
+
+
+> AGE
+
+* Aralıktaki zamanı döndür.
+
+~~~sql
+SELECT AGE(timestamp '2018-04-10', timestamp '1957-06-13'); -- 60 years 9 mons 27 days
+~~~
+
+* Verilen zamandan günümüze kadar olan zamanı döndür.
+~~~sql
+SELECT AGE(timestamp '2018-10-07 23:00:01'); -- 1 year 1 mon 21 days 00:59:59
+~~~
+
+* Verilen tarihten günümüze kadar olan zamanı döndür.
+* Yaş hesapla.
+
+~~~sql
+SELECT AGE(timestamp '2000-10-07'); -- 19 years 1 mon 22 days
+~~~
+
+
+
+> DATE_PART() / EXTRACT()
+
+* DATE_PART() ve EXTRACT() fonksiyonları, tarih/zaman'dan ya da zaman diliminden(interval) istenen bölümü almak için kullanılır.
 
 ~~~sql
 SELECT DATE_PART('years', AGE(timestamp '2000-10-07'));
 ~~~
+
 ~~~sql
 SELECT DATE_PART('day', INTERVAL '2 years 5 months 4 days'); 
 ~~~
+
 ~~~sql
 SELECT EXTRACT(day from INTERVAL '2 years 5 months 4 days'); 
 ~~~
+
 ~~~sql
 SELECT EXTRACT(hour from timestamp '2018-12-10 19:27:45');
 ~~~
 
-* İstenen hassasiyeti elde etmek için kullanılır.
+
+> DATE_TRUNC
+
+* Tarih-zaman bilgisini istenilen hassasiyette göstermek için kullanılır.
+
 ~~~sql
 SELECT DATE_TRUNC('minute', timestamp '2018-10-07 23:05:40'); 
 ~~~
+
+
 
 ~~~sql
 SELECT JUSTIFY_DAYS(interval '51 days');  -- 1 ay 21 gün
