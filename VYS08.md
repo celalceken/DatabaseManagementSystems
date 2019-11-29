@@ -278,13 +278,13 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 
 ## Görünüm (View)
 
-* Bir veya daha fazla tablodan seçilen satırlar ve alanlardaki bilgilerin yeni bir tablo gibi görüntülenmesini temin eden yapıdır.
+* Bir veya daha fazla tablodan seçilen satırlar ve alanlardaki bilgilerin yeni bir tablo gibi ele alınmasını temin eden yapıdır.
+
+* Seçme (SELECT) işlemi için kısa yol tanımlar.
 
 * Tablo(lar)dan tüm satırlar seçilebileceği gibi yalnızca belli kriterlere uyan satırlar da seçilebilir.
 
 * Tablo(lar)daki tüm alanlar görünüme dahil edilebileceği gibi yalnızca belli alanlar da görünüme dahil edilebilir.
-
-* Seçme (SELECT) işlemi için kısa yol tanımlamak adına kullanılır.
 
 * Genellikle karmaşık olan seçme (SELECT) işlemlerinde tercih edilir.
 
@@ -418,7 +418,7 @@ SELECT SUM("UnitPrice") AS "toplam" FROM "products";
 
 ### AVG
 
-* Seçilen sütundaki değerlerin ortalamasına ulaşmak için kullanılır.
+* Seçilen sütundaki değerlerin aritmetik ortalamasını bulmak için kullanılır.
 
 ~~~sql
 SELECT SUM("UnitPrice") / COUNT("ProductID") FROM "products";
@@ -466,7 +466,7 @@ ORDER BY 1;
 
 ### HAVING
 
-* Gruplandırılmış veriler üzerinde filtreleme yapma işlemi için kullanılır.
+* Gruplandırılmış veriler üzerinde filtreleme yapmak için kullanılır.
 * HAVING ile yazılan koşullar çoklu satır fonksiyonları ile veya gruplama yapılan alan üzerinden yapılır.
 
 ~~~sql
