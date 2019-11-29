@@ -1,6 +1,6 @@
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
-# İleri SQL(Alt Sorgular, IN, ALL, ANY, İlintili Sorgular, UNION, INTERSECT, EXCEPT, Hareket/İşlem (Transaction))
+# İleri SQL(Alt Sorgular, IN, ANY, ALL, İlintili Sorgular, UNION, INTERSECT, EXCEPT, Hareket/İşlem (Transaction))
 
 
 ## Konular
@@ -44,13 +44,13 @@ SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Y Z Bilgisayar';
 
 ~~~sql
 SELECT DISTINCT "public"."customers"."CustomerID",
-    "public"."customers"."CompanyName",
-    "public"."customers"."ContactName"
+  "public"."customers"."CompanyName",
+  "public"."customers"."ContactName"
 FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
 INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID"
 WHERE "order_details"."ProductID" =
-    (SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Y Z Bilgisayar')
+  (SELECT "ProductID" FROM "products" WHERE "ProductName" = 'Y Z Bilgisayar')
 ORDER BY "public"."customers"."CustomerID";
 ~~~
 
@@ -62,13 +62,13 @@ ORDER BY "public"."customers"."CustomerID";
 * IN ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesi içerisinde olup olmadığını araştırmak için kullanılır.
 
 ~~~sql
-SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18
+SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18;
 ~~~
 
 ~~~sql
 SELECT * FROM "suppliers"
 WHERE "SupplierID" IN
-    (SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18);
+  (SELECT "SupplierID" FROM "products" WHERE "UnitPrice" > 18);
 ~~~
 
 ~~~sql
@@ -77,30 +77,31 @@ SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%';
 
 ~~~sql
 SELECT DISTINCT "public"."customers"."CustomerID",
-    "public"."customers"."CompanyName",
-    "public"."customers"."ContactName"
+  "public"."customers"."CompanyName",
+  "public"."customers"."ContactName"
 FROM "orders"
 INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
 INNER JOIN "order_details" ON "order_details"."OrderID" = "orders"."OrderID"
 WHERE "order_details"."ProductID" IN
-    (SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%');
+  (SELECT "ProductID" FROM "products" WHERE "ProductName" LIKE 'A%');
 ~~~
 
 ~~~sql
 UPDATE "orders"
 SET "ShipCountry" = 'Mexico'
 WHERE "CustomerID" IN
-(SELECT "CustomerID" FROM "customers" WHERE "Country" = 'Mexico')
+  (SELECT "CustomerID" FROM "customers" WHERE "Country" = 'Mexico');
 ~~~
 
 ~~~sql
 DELETE FROM "products"
 WHERE "SupplierID" IN
-(SELECT "SupplierID" FROM "suppliers" WHERE "Country" = 'USA');
+  (SELECT "SupplierID" FROM "suppliers" WHERE "Country" = 'USA');
 ~~~
 
-### ANY ile  alt sorgu
 
+
+### ANY ile Alt Sorgu Kullanımı
 
 * Üç türü mevcuttur.
   + = ANY
@@ -114,7 +115,7 @@ WHERE "SupplierID" IN
 * < ANY ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının her hangi birisinden küçük olup olmadığını araştırmak için kullanılır.
 
 ~~~sql  
-SELECT * FROM  "products"
+SELECT * FROM "products"
 WHERE "UnitPrice" = ANY
 (
     SELECT "UnitPrice"
@@ -126,7 +127,7 @@ WHERE "UnitPrice" = ANY
 ~~~
 
 ~~~sql
-SELECT * FROM  "products"
+SELECT * FROM "products"
 WHERE "UnitPrice" IN
 (
     SELECT "UnitPrice"
@@ -138,7 +139,7 @@ WHERE "UnitPrice" IN
 ~~~
 
 ~~~sql
-SELECT * FROM  "products"
+SELECT * FROM "products"
 WHERE "UnitPrice" < ANY
 (
     SELECT "UnitPrice"
@@ -150,7 +151,7 @@ WHERE "UnitPrice" < ANY
 ~~~
 
 ~~~sql
-SELECT * FROM  "products"
+SELECT * FROM "products"
 WHERE "UnitPrice" > ANY 
 (
     SELECT "UnitPrice" 
@@ -158,12 +159,12 @@ WHERE "UnitPrice" > ANY
     INNER JOIN "products" 
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
-)
+);
 ~~~
 
 
-### ALL ile  alt sorgu
 
+### ALL ile Alt Sorgu Kullanımı
 
 * İki türü mevcuttur.
   + \> ALL
@@ -174,7 +175,7 @@ WHERE "UnitPrice" > ANY
 * < ALL ifadesi, sorgulanan değerin, alt sorgudan dönen değerler kümesinin elemanlarının tamamından küçük olup olmadığını araştırmak için kullanılır.
 
 ~~~sql
-SELECT * FROM  "products"
+SELECT * FROM "products"
 WHERE "UnitPrice" < ALL
 (
     SELECT "UnitPrice"
@@ -186,7 +187,7 @@ WHERE "UnitPrice" < ALL
 ~~~
 
 ~~~sql
-SELECT * FROM  "products"
+SELECT * FROM "products"
 WHERE "UnitPrice" > ALL 
 (
     SELECT "UnitPrice" 
@@ -194,7 +195,7 @@ WHERE "UnitPrice" > ALL
     INNER JOIN "products" 
     ON "suppliers"."SupplierID" = "products"."SupplierID"
     WHERE "suppliers"."CompanyName" = 'Tokyo Traders'
-)
+);
 ~~~
 
 
@@ -224,25 +225,25 @@ HAVING SUM("Quantity") > (SELECT MAX("Quantity") FROM "order_details");
 
 
 
-### Satır İçi (Inline) Alt Sorgu Kullanımı 
+### Satır İçi (Inline) Alt Sorgu Kullanımı
 
 * Alt sorgular sonucunda tek alan ve tek satır dönmeli. Aksi halde hata verir.
 
 ~~~sql
 SELECT
-    "ProductName",
-    "UnitsInStock",
-    (SELECT MAX("UnitsInStock") FROM "products") AS "enBuyukDeger"
+  "ProductName",
+  "UnitsInStock",
+  (SELECT MAX("UnitsInStock") FROM "products") AS "enBuyukDeger"
 FROM "products";
 ~~~
 
 ~~~sql
 SELECT
-    "SupplierID",
-    COUNT("UnitsInStock") AS "toplam",
-    SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "standartSapma"
+  "SupplierID",
+  COUNT("UnitsInStock") AS "toplam",
+  SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "standartSapma"
 FROM "products"
-GROUP BY "SupplierID"
+GROUP BY "SupplierID";
 ~~~
 
 * Standart sapma hesaplanırken “Toplam” takma ismi kullanılmamalı.
@@ -250,7 +251,7 @@ GROUP BY "SupplierID"
 
 
 
-### İlintili Sorgu 
+### İlintili (Correlated) Sorgu 
 
 
 * İç içe döngülerdeki gibi dış sorgunun her bir satırı iç sorguya gönderilerek iç sorgunun çalıştırılması sağlanır.
@@ -280,32 +281,32 @@ WHERE "urunler1"."UnitPrice" >
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE EXISTS
-    (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
+  (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
 ~~~
+
+* Aynı sonuç farklı sorgular ile de bulunabilir. Ancak daha yavaş olur.
 
 ~~~sql
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE "CustomerID" =
-    (SELECT DISTINCT "CustomerID" FROM "orders" WHERE "orders"."CustomerID" = "customers"."CustomerID");
+  (SELECT DISTINCT "CustomerID" FROM "orders" WHERE "orders"."CustomerID" = "customers"."CustomerID");
 ~~~
 
 ~~~sql
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE "CustomerID" IN
-    (SELECT DISTINCT "CustomerID" FROM "orders" WHERE "orders"."CustomerID" = "customers"."CustomerID");
+  (SELECT "CustomerID" FROM "orders" WHERE "orders"."CustomerID" = "customers"."CustomerID");
 ~~~
-
-
-* INNER JOIN ile de bulunabilirdi... (Daha yavaş)
 
 ~~~sql
 SELECT DISTINCT "public"."customers"."CompanyName",
-                "public"."customers"."ContactName"
+  "public"."customers"."ContactName"
 FROM "orders" 
 INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID";
 ~~~
+
 
 * Siparişi olmayan müşterilerin listesi.
 
@@ -313,7 +314,7 @@ INNER JOIN "customers"  ON "orders"."CustomerID" = "customers"."CustomerID";
 SELECT "CustomerID", "CompanyName", "ContactName"
 FROM "customers"
 WHERE NOT EXISTS
-    (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
+  (SELECT * FROM "orders" WHERE "customers"."CustomerID" = "orders"."CustomerID");
 ~~~
 
 
@@ -382,21 +383,23 @@ ORDER BY 2;
 
 ## Hareket/İşlem (Transaction)
 
-* Hareketiİşlem (transaction) veritabanı yönetim sistemlerinin önemli özelliklerinden birisidir.
+* Hareket/işlem (transaction) veritabanı yönetim sistemlerinin önemli özelliklerinden birisidir.
+
 * ACID ile belirtilen ozellikleri destekler.
 
 * ACID ifadesi, Atomicity, Consistency, Isolation ve Durability kelimelerinin ilk harflerinin birleşiminden oluşur. Detayları aşağıda anlatılmıştır.
 
-* Atomicity: Hareket/işlem (transaction) kapsamındaki alt işlemlerin tamamı bir bütün olarak ele alınır. Ya alt işlemlerin tamamı başarılı olarak çalıştırılır, ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski kararlı haline döndürülür. 
+* Atomicity (Atomiklik): Hareket/işlem (transaction) kapsamındaki alt işlemlerin tamamı bir bütün olarak ele alınır. Ya alt işlemlerin tamamı başarılı olarak çalıştırılır, ya da herhangi birinde hata varsa tamamı iptal edilir ve veritabanı eski kararlı haline döndürülür. 
 
-* Consistency: Herhangi bir kısıt ihlal edilirse roll back işlemiyle veritabanı eski kararlı haline döndürülür.
+* Consistency (Tutarlılık): Herhangi bir kısıt ihlal edilirse roll back işlemiyle veritabanı eski kararlı haline döndürülür.
 
-* Isolation: İşlemler birbirlerini (ortak kaynak kullanımı durumunda) etkilemezler. Kullanılan ortak kaynak işlem tarafından, işlem tamamlanana kadar, kilitlenir.
+* Isolation (Yalıtım): İşlemler birbirlerini (ortak kaynak kullanımı durumunda) etkilemezler. Kullanılan ortak kaynak işlem tarafından, işlem tamamlanana kadar, kilitlenir.
 
-* Durability: Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmamış olan işlem sistem çalışmaya başladıktan sonra mutlaka tamamlanır.
+* Durability (Mukavemet): Sistem tarafından bir hata meydana gelmesi durumunda tamamlanmamış olan işlem sistem çalışmaya başladıktan sonra mutlaka tamamlanır.
+
 
 ~~~sql
-BEGIN; --İşleme (transaction) başla.
+BEGIN; -- Harekete (transaction) başla.
 
 INSERT INTO "order_details" ("OrderID", "ProductID", "UnitPrice", "Quantity", "Discount")
 VALUES (10248, 11, 20, 2, 0);
@@ -405,22 +408,23 @@ VALUES (10248, 11, 20, 2, 0);
 -- Aşağıdaki sorguda hata mevcutsa bu noktadan geri sarılır (rollback).
 -- Yani yukarıdaki sorguda yapılan işlemler geri alınır.
 
-Update "products" 
+UPDATE "products" 
 SET "UnitsInStock" = "UnitsInStock" - 2
 WHERE "ProductID" = 11;
 
 -- Her iki sorgu da hatasız bir şekilde icra edilirse her ikisini de işlet ve 
 -- veritabanının durumunu güncelle.
 
-COMMIT; --İşlemi (transaction) tamamla.
+COMMIT; -- Hareketi (transaction) tamamla.
 ~~~
 
 ~~~sql
 BEGIN;
+
 UPDATE Hesap SET bakiye = bakiye - 100.00
     WHERE adi = 'Ahmet';
 
---SAVEPOINT my_savepoint;
+SAVEPOINT my_savepoint;
 
 UPDATE Hesap SET bakiye = bakiye + 100.00
     WHERE adi = 'Mehmet';
@@ -428,8 +432,10 @@ UPDATE Hesap SET bakiye = bakiye + 100.00
 
 -- Parayı Mehmet'e değil Ayşe'ye gönder
 
--- ROLLBACK TO my_savepoint;
--- UPDATE Hesap SET bakiye = bakiye + 100.00
-    -- WHERE adi = 'Ayşe';
+ROLLBACK TO my_savepoint;
+
+UPDATE Hesap SET bakiye = bakiye + 100.00
+WHERE adi = 'Ayşe';
+
 COMMIT;
 ~~~
