@@ -580,52 +580,83 @@ SELECT DATE_TRUNC('minute', timestamp '2018-10-07 23:05:40');
 ~~~
 
 
+> JUSTIFY_DAYS
+
+* Zaman aralığını 30 günlük periyotlara bölerek ifade et.
 
 ~~~sql
 SELECT JUSTIFY_DAYS(interval '51 days');  -- 1 ay 21 gün
 ~~~
 
 
+
+> JUSTIFY_HOURS
+
+* Zaman aralığını 24 saatlik periyotlara bölerek ifade et.
+
 ~~~sql
 SELECT JUSTIFY_HOURS(interval '27 hours'); -- 1 gün 03:00:00 
 ~~~
 
 
-  
+> JUSTIFY_INTERVAL
+
+* Zaman aralığını hem JUSTIFY_DAYS hem de JUSTIFY_HOURS kullanarak işaretleri de dikkate alarak ifade et.
+
 ~~~sql  
 SELECT JUSTIFY_INTERVAL(interval '1 mon -1 hour') -- 29 gün 23:00:00
 ~~~
 
 
+
+> EXTRACT EPOCH
+
+* UNIX zaman damgasının başından (1.1.1970'den) belli bri ana kadar geçen süre (sn. cinsinden).
+
+* Şu ana kadar geçen süre.
+
 ~~~sql
 SELECT EXTRACT(EPOCH FROM NOW());
 ~~~
-  + UNIX timestamp 1.1.1970'den o ana kadar geçen süre (sn cinsinden).
-  
+
+
+* Verilen zamana kadar geçen süre.
+
 ~~~sql
 SELECT EXTRACT(EPOCH FROM TIMESTAMP WITH TIME ZONE '2018-12-10 20:38:40.12-08'); -- 982384720.12
 ~~~
 
 
+> TO_TIMESTAMP
+
+* Zaman damgasına dönüştürme.
+
+* UNIX zamanının başlangıç değerini (epoch = 0) UNIX zaman damgasına dönüştür.
+
 ~~~sql
 SELECT TO_TIMESTAMP(0);
 ~~~
-  + Epoch değerini UNIX zaman damgasına dönüştür.
+
+* Belli bir epoch değerini UNIX zaman damgasına dönüştür.
 ~~~sql
 SELECT TO_TIMESTAMP(1544503120.12);
 ~~~
-* Tarih Zaman biçimlendirme
+
+
+> TO_CHAR
+
+* Tarih zaman biçimlendirme.
 
 ~~~sql
 SELECT TO_CHAR(current_timestamp, 'HH24:MI:SS:MS'); -- HH12, MS Milisecond, US microsecond
 ~~~
-
   
 ~~~sql
 SELECT TO_CHAR(current_timestamp, 'DD/MM/YYYY');   -- YYYY year (4 basamak), YY, TZ	time zone
-
 ~~~
 
+
+> Tarih zaman fonksiyonu kullanımı örneği
 
 * Pagila veritabanından film kiralama sürelerinin bulunması
 
