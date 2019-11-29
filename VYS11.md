@@ -4,8 +4,16 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 
-> Pagila örnek veritabanını kullanmaktadır.
+## Konular
 
+* Fonksiyon / Saklı Yordam
+* Koşullu İfadeler, Döngüler
+* İmleç (Cursor)
+* Tetikleyici (Trigger)
+* Hazır Fonksiyonlar
+
+
+> Pagila örnek veritabanını kullanmaktadır.
 
 
 ## Fonksiyon / Saklı Yordam
