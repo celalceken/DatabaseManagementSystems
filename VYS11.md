@@ -20,7 +20,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 
-* Fonksiyonlar / saklı yordamlar, veri tabanı kataloğunda saklanan SQL ifadeleridir. Uygulama yazılımları, tetikleyici ya da başka bir fonksiyon / saklı yordam tarafından çağrılabilirler.
+* Fonksiyonlar / saklı yordamlar, veri tabanı kataloğunda saklanan SQL ifadeleridir. Fonksiyonlar / saklı yordamlar; uygulama yazılımları, tetikleyici ya da başka bir fonksiyon / saklı yordam tarafından çağrılabilirler.
 
 
 
