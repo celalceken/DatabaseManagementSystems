@@ -310,7 +310,7 @@ BEGIN
       FETCH filmImleci INTO film;
       EXIT WHEN NOT FOUND;
       IF film.title LIKE filmAdi || '%' THEN
-          filmAdlari := filmAdlari || ',' || film.title || ':' || film.release_year;
+          filmAdlari := filmAdlari || film.title || ':' || film.release_year|| E'\r\n';
       END IF;
    END LOOP;
    CLOSE filmImleci;
