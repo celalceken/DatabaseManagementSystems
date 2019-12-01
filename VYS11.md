@@ -228,29 +228,7 @@ SELECT * FROM personelAra(1);
 ~~~
 
 
-## Fonksiyon Örneği 6
-
-* Argüman listesinde çıkış parametresi tanımlanan fonksiyon örneği aşağıdadır.
-
-~~~sql
-CREATE OR REPLACE FUNCTION inch2cm(sayiInch REAL, OUT sayiCM REAL)
-AS 
-$$
-BEGIN
-    sayiCM := 2.54 * sayiINCH;
-END;
-$$
-LANGUAGE "plpgsql";
-~~~
-
-* Fonksiyon çağrısı
-
-~~~sql
-SELECT * FROM inch2cm(2);
-~~~
-
-
-## Fonksiyon Örneği 7 
+## Fonksiyon Örneği 6 
 
 * Fonksiyon içerisinden fonksiyon çağırma örneği aşağıdadır.
 
@@ -279,6 +257,31 @@ $$;
 ~~~sql
 SELECT odemeToplami(2);
 ~~~
+
+
+## Fonksiyon Örneği 7
+
+* Argüman listesinde çıkış parametresi tanımlanan fonksiyon örneği aşağıdadır.
+
+~~~sql
+CREATE OR REPLACE FUNCTION inch2cm(sayiInch REAL, OUT sayiCM REAL)
+AS 
+$$
+BEGIN
+    sayiCM := 2.54 * sayiINCH;
+END;
+$$
+LANGUAGE "plpgsql";
+~~~
+
+* Fonksiyon çağrısı
+
+~~~sql
+SELECT * FROM inch2cm(2);
+~~~
+
+
+
 
 
 ## İmleç (Cursor)
