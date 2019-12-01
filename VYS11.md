@@ -244,8 +244,7 @@ DECLARE
     miktar NUMERIC;
 BEGIN
     personel := personelAra(personelNo);
-    FOR miktar IN SELECT SUM(amount) FROM payment WHERE staff_id = personelNo LOOP
-    END LOOP;
+    miktar := (SELECT SUM(amount) FROM payment WHERE staff_id = personelNo); 
 
     RETURN personel."numara" || E'\t' || personel."adi" || E'\t' || miktar;
 END
