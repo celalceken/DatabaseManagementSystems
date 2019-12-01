@@ -586,7 +586,7 @@ SELECT EXTRACT(hour from timestamp '2018-12-10 19:27:45');
 * Tarih-zaman bilgisini istenilen hassasiyette göstermek için kullanılır.
 
 ~~~sql
-SELECT DATE_TRUNC('minute', timestamp '2018-10-07 23:05:40'); 
+SELECT DATE_TRUNC('minute', timestamp '2018-10-07 23:05:40'); -- 2018-10-07 23:05:00
 ~~~
 
 
