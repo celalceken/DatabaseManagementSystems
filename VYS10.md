@@ -25,7 +25,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * WHERE ifadesinde yalnızca =, !=, <, > gibi operatörler kullanılıyor ise alt sorgular sonucunda tek alan ve tek satır dönmeli ve veri tipi uygun olmalı. Aksi halde hata verir.
 
-* Gruplama işleminden geriye tek değer döndürüldüğü için alt sorgu içerisinde gruplama fonksiyonu kullanılabilir.
+* Çoklu satır fonksiyonlarından geriye tek değer döndürüldüğü için alt sorgu içerisinde bu tür fonksiyonlar kullanılabilir.
 
 * Alt sorgudaki koşul içerisinde birincil anahtar kullanılarak alt sorgudan tek değer döndürülmesi garanti edilebilir.
 
