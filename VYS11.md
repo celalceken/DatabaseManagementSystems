@@ -681,14 +681,12 @@ ORDER BY 3 DESC
 
 ### Matematiksel Fonksiyonlar 
 
-* https://www.postgresql.org/docs/9.6/static/functions-math.html
-
+* https://www.postgresql.org/docs/current/functions-math.html
 
 ### Karakter Katarı (String) Fonksiyonları
 
-* https://www.postgresql.org/docs/9.6/static/functions-string.html
-
+* https://www.postgresql.org/docs/current/functions-string.html
 
 ### Veri Tipi Biçimlendirme Fonksiyonları
 
-* https://www.postgresql.org/docs/9.6/static/functions-formatting.html
+* https://www.postgresql.org/docs/current/functions-formatting.html
