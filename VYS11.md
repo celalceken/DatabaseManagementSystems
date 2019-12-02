@@ -626,7 +626,7 @@ SELECT JUSTIFY_INTERVAL(interval '1 mon -1 hour') -- 29 gün 23:00:00
 * Şu ana kadar geçen süre.
 
 ~~~sql
-SELECT EXTRACT(EPOCH FROM NOW());
+SELECT EXTRACT(EPOCH FROM NOW()); -- 1575267225.07053
 ~~~
 
 
@@ -644,12 +644,12 @@ SELECT EXTRACT(EPOCH FROM TIMESTAMP WITH TIME ZONE '2018-12-10 20:38:40.12-08');
 * UNIX zamanının başlangıç değerini (epoch = 0) UNIX zaman damgasına dönüştür.
 
 ~~~sql
-SELECT TO_TIMESTAMP(0);
+SELECT TO_TIMESTAMP(0); -- 1970-01-01 02:00:00+02
 ~~~
 
 * Belli bir epoch değerini UNIX zaman damgasına dönüştür.
 ~~~sql
-SELECT TO_TIMESTAMP(1544503120.12);
+SELECT TO_TIMESTAMP(1544503120.12); -- 2018-12-11 07:38:40.12+03
 ~~~
 
 
