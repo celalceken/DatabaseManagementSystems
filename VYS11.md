@@ -73,12 +73,49 @@ SELECT * FROM inch2m(10);
 ~~~
 
 
+## Koşullu İfadeler
 
+~~~sql
+IF miktar > 0 THEN
+    ...
+ELSE
+    ...
+END IF;
+~~~sql
 
-![](Sekiller/11/KosulluIfadeler.png)
+~~~sql
+IF miktar < 100 THEN
+    ...
+ELSEIF miktar >= 100 AND miktar < 200 THEN
+    ...
+ELSEIF miktar >= 199 AND miktar < 300 THEN
+    ...
+ELSE
+    ...
+END IF;
+~~~sql
 
+~~~sql
+CASE
+    WHEN sonuc > 0 THEN
+        ...
+    WHEN sonuc < 0 THEN
+        ...
+    ELSE
+        ...
+END CASE;
+~~~sql
 
-
+~~~sql
+CASE sonuc
+    WHEN 0 THEN
+        ...
+    WHEN 1 THEN
+        ...
+    ELSE
+        ...
+END CASE;
+~~~sql
 
 
 ![](Sekiller/11/Donguler.png)
