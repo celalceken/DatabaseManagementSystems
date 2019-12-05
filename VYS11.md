@@ -81,7 +81,7 @@ IF miktar > 0 THEN
 ELSE
     ...
 END IF;
-~~~sql
+~~~
 
 ~~~sql
 IF miktar < 100 THEN
@@ -93,7 +93,7 @@ ELSEIF miktar >= 199 AND miktar < 300 THEN
 ELSE
     ...
 END IF;
-~~~sql
+~~~
 
 ~~~sql
 CASE
@@ -104,7 +104,7 @@ CASE
     ELSE
         ...
 END CASE;
-~~~sql
+~~~
 
 ~~~sql
 CASE sonuc
@@ -115,7 +115,7 @@ CASE sonuc
     ELSE
         ...
 END CASE;
-~~~sql
+~~~
 
 
 ![](Sekiller/11/Donguler.png)
