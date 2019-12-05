@@ -6,7 +6,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ## Konular
 
-* Fonksiyon / Saklı Yordam
+* Fonksiyon / Saklı Yordam (Stored Procedure)
 * Koşullu İfadeler, Döngüler
 * İmleç (Cursor)
 * Tetikleyici (Trigger)
@@ -16,8 +16,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 > Pagila örnek veritabanını kullanmaktadır.
 
 
-## Fonksiyon / Saklı Yordam
-
+## Fonksiyon / Saklı Yordam (Stored Procedure)
 
 
 * Fonksiyonlar / saklı yordamlar, veri tabanı kataloğunda saklanan SQL ifadeleridir. Fonksiyonlar / saklı yordamlar; uygulama yazılımları, tetikleyici ya da başka bir fonksiyon / saklı yordam tarafından çağrılabilirler.
