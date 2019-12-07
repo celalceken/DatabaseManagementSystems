@@ -235,6 +235,8 @@ ON "Personel"."personelNo" = "Danisman"."personelNo";
 
 ## Tekli Bağıntı / Özyineli Birleştirme
 
+![](Sekiller/08/TekliBaginti.png)
+
 ~~~sql
 CREATE TABLE "Personel" (
 	"personelNo" SERIAL,
