@@ -447,13 +447,6 @@ WHERE "ProductID" = 4
 * Ekleme ve güncelleme işleminde yeni verinin değiştirilebilmesini/denetimini sağlar
 
 ~~~sql
-CREATE TRIGGER "kayitKontrol"
-BEFORE INSERT ON "customers"  --before ifadesi, veriyi eklemeden önce üzerinde işlem yapılabilmesini sağlar
-FOR EACH ROW
-EXECUTE PROCEDURE "kayitEkleTR1"();
-~~~
-
-~~~sql
 CREATE OR REPLACE FUNCTION "kayitEkleTR1"()
 RETURNS TRIGGER 
 AS
@@ -465,6 +458,13 @@ BEGIN
 END;
 $$
 LANGUAGE "plpgsql";
+~~~
+
+~~~sql
+CREATE TRIGGER "kayitKontrol"
+BEFORE INSERT ON "customers"  --before ifadesi, veriyi eklemeden önce üzerinde işlem yapılabilmesini sağlar
+FOR EACH ROW
+EXECUTE PROCEDURE "kayitEkleTR1"();
 ~~~
 
 ~~~sql
@@ -508,7 +508,7 @@ DROP TRIGGER IF EXISTS "urunBirimFiyatDegistiginde" ON "products";
 
 ### Tarih ve Zaman Fonksiyonları
 
-* https://www.postgresql.org/docs/11/functions-datetime.html
+https://www.postgresql.org/docs/11/functions-datetime.html
 
 
 
