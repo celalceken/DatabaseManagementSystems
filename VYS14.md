@@ -278,7 +278,7 @@ DROP ROLE "rol1";
 CREATE ROLE "rol1";
 ~~~
 ~~~sql
-ALTER DATABASE "Uygulama" OWNER TO "rol1";
+ALTER DATABASE "NorthWind" OWNER TO "rol1";
 ~~~
 ~~~sql
 DROP ROLE "rol1";
@@ -287,7 +287,7 @@ DROP ROLE "rol1";
   + 16:18:33 Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it DETAIL:  owner of database Uygulama
 
 ~~~sql
-ALTER DATABASE "Uygulama" OWNER TO "postgres";
+ALTER DATABASE "NorthWind" OWNER TO "postgres";
 ~~~
 ~~~sql
 DROP ROLE "rol1";
@@ -301,7 +301,7 @@ DROP ROLE "rol1";
 CREATE ROLE "rol1";
 ~~~
 ~~~sql
-ALTER DATABASE "Uygulama" owner to "rol1";
+ALTER DATABASE "NorthWind" owner to "rol1";
 ~~~
 ~~~sql
 DROP ROLE "rol1";
