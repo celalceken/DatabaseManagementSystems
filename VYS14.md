@@ -284,7 +284,7 @@ ALTER DATABASE "NorthWind" OWNER TO "rol1";
 DROP ROLE "rol1";
 ~~~
 
-  + 16:18:33 Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it DETAIL:  owner of database Uygulama
+  + 16:18:33 Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it DETAIL:  owner of database NorthWind
 
 ~~~sql
 ALTER DATABASE "NorthWind" OWNER TO "postgres";
