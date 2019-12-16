@@ -326,6 +326,10 @@ DROP ROLE "rol1";
 CREATE ROLE "gruprol";
 ~~~
 
+~~~sql
+CREATE ROLE "rol1";
+~~~
+
   + rol1 isimli rolün yetkilerine gruprol isimli rolün yetkilerini de ekle.
   + Temel yetkiler kalıtım olarak alınmaz. Yalnızca grubun nesneler üzerindeki yetkileri kalıtım olarak alınır.
 
