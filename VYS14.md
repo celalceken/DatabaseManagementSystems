@@ -188,28 +188,25 @@ SELECT * FROM "pg_user";
 
 ### Rol Özellikleri (Temel Yetkiler) Listesi
 
-
-* SUPERUSER, CREATEDB, CREATEROLE, CREATEUSER, INHERIT, LOGIN, 
-* REPLICATION, BYPASSRLS, NOSUPERUSER, NOCREATEDB, NOCREATEROLE, 
-* NOCREATEUSER, NOINHERIT, NOLOGIN, NOREPLICATION, NOBYPASSRLS
+SUPERUSER, CREATEDB, CREATEROLE, CREATEUSER, INHERIT, LOGIN, REPLICATION, BYPASSRLS, NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOCREATEUSER, NOINHERIT, NOLOGIN, NOREPLICATION, NOBYPASSRLS
 
 
-  + Hiç bir yetkisi olmayan rol oluştur.
-  + Rolün aynı zamanda şifesi de mevcut değildir.
+* Hiç bir yetkisi olmayan rol oluştur.
+* Rolün aynı zamanda şifesi de mevcut değildir.
 
 ~~~sql
 CREATE ROLE "rol1";
 ~~~
 
 
-  + SUPERUSER yetkisi olan rol oluştur.
-  + SUPERUSER, nesnelerle ilgili herseyi yapma yetkisine sahiptir.
+* SUPERUSER yetkisi olan rol oluştur.
+* SUPERUSER, nesnelerle ilgili herseyi yapma yetkisine sahiptir.
 
 ~~~sql
 CREATE ROLE "rol2" WITH SUPERUSER;
 ~~~
 
-  + Roller oluşturulduktan sonra düzenlenebilir.
+* Roller oluşturulduktan sonra düzenlenebilir.
 
 ~~~sql
 ALTER ROLE "rol1" WITH SUPERUSER CREATEDB;
@@ -226,9 +223,8 @@ ALTER ROLE "rol1" WITH NOLOGIN;
 ~~~
 
 
-
-  + abc şifresine sahip "kullanici1" adında bir kullanıcı oluştur.
-  + abc şifresi MD5 algoritması ile kodlanır.
+* abc şifresine sahip "kullanici1" adında bir kullanıcı oluştur.
+* abc şifresi MD5 algoritması ile kodlanır.
 
 ~~~sql
 CREATE USER "kullanici1" WITH PASSWORD 'abc';
