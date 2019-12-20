@@ -139,25 +139,48 @@ postgres=#
 ~~~
 
 
-### Yetkilendirme İşlemleri
+* Örnek
+~~~
+postgres=# DROP ROLE testk2;
+ALTER ROLE
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ testk1    |                                                            | {}
+ testk3    |                                                            | {}
+ testk4    | Create DB                                                  | {}
 
-  + Kullanıcıların / rollerin nesneler üzerinde hangi haklara sahip olacağının belirlenmesine yetkilendirme adı verilir.
+postgres=#
+~~~
+
+
+## Yetki
+
+* Kullanıcıların/rollerin, veritabanı yönetim sistemi ve veritabanı nesneleri (tablo, görünüm, fonksiyon vb.) üzerinde hangi haklara sahip olacağının belirlenmesine yetkilendirme adı verilir.
+* İki tür yetki vardır:
+  + Temel yetkiler (rol özellikleri)
+  + Nesne yetkileri
+
+
+### Temel Yetkiler (Rol Özellikleri)
+
+* Kullanıcıların/rollerin veritabanı yönetim sistemi üzerindeki haklarını ifade eder.
+
+  + SUPERUSER, CREATEDB, CREATEROLE, CREATEUSER, INHERIT, LOGIN, REPLICATION, BYPASSRLS, NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOCREATEUSER, NOINHERIT, NOLOGIN, NOREPLICATION, NOBYPASSRLS
+
+
+### Nesne Yetkileri
+
+* Kullanıcıların/rollerin veritabanı nesneleri (tablo, görünüm, fonksiyon vb.) üzerindeki haklarını ifade eder.
+* Nesnelerin türüne göre (tablo, görünüm, fonksiyon) aşağıdaki yetkiler verilir.
+  + SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER, 
+  + CREATE, CONNECT, TEMPORARY, EXECUTE, USAGE ...
 
 
 
-### Yetki listesi
-
-  + Nesnelerin türüne göre (tablo, görünüm, fonksiyon) aşağıdaki yetkiler verilir.
-
-    + SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER, 
-    + CREATE, CONNECT, TEMPORARY, EXECUTE, USAGE ...
-
-
-
-
-
-### Kullanıcı/Rol  İşlemleri
-
+## Kullanıcı/Rol Katalogları
 
 * Oturum yetkilendirmesini postgres rolü olarak ayarla.
 * Böylelikle postgres rolünün sahip olduğu tüm yetkilerle tüm işlemleri yapabileceğiz.
@@ -186,9 +209,7 @@ SELECT * FROM "pg_user";
 
 
 
-### Rol Özellikleri (Temel Yetkiler) Listesi
-
-SUPERUSER, CREATEDB, CREATEROLE, CREATEUSER, INHERIT, LOGIN, REPLICATION, BYPASSRLS, NOSUPERUSER, NOCREATEDB, NOCREATEROLE, NOCREATEUSER, NOINHERIT, NOLOGIN, NOREPLICATION, NOBYPASSRLS
+## Kullanıcı/Rol Oluşturma/Değiştirme İşlemleri
 
 
 * Hiç bir yetkisi olmayan rol oluştur.
@@ -365,7 +386,7 @@ REVOKE "gruprol" FROM "rol1";
 
 
 
-### Yetkilendirme İşlemleri
+## Yetkilendirme İşlemleri
 
 > PUBLIC: Tüm roller / kullanıcılar.
 > kullaniciAdi: Tek bir kullanıcı.
@@ -436,7 +457,7 @@ DROP ROLE "rol1";
 
 
 
-### Yetkilendirme Örneği (Northwind Veri Tabanı)
+## Örnek (Northwind Veri Tabanı)
 
 ~~~sql
 CREATE ROLE "rol1";
@@ -485,7 +506,7 @@ SELECT * FROM "customers";
 
 
 
-### Fonksiyonlar ve Yetkilendirme
+## Fonksiyonlar ve Yetkilendirme
 
 ~~~sql
 CREATE OR REPLACE FUNCTION "milKMDonustur"(degerMil REAL, OUT degerKM REAL)
@@ -540,7 +561,7 @@ SELECT * FROM milKMDonustur(3);
 
 
 
-### Şifreleme
+## Şifreleme
 
 
 * Kullanici şifreleri ve gizli bilgiler açık olarak saklanmamalıdır.
