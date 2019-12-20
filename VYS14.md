@@ -388,9 +388,9 @@ REVOKE "gruprol" FROM "rol1";
 
 ## Yetkilendirme İşlemleri
 
-> PUBLIC: Tüm roller / kullanıcılar.
-> kullaniciAdi: Tek bir kullanıcı.
-> ALL: Tüm yetkiler.
+> PUBLIC: Tüm roller / kullanıcılar.  
+> kullaniciAdi: Tek bir kullanıcı.  
+> ALL: Tüm yetkiler.  
 
 
 * rol1 isimli role customers tablosu üzerinde seçim yapma yetkisi ver.
