@@ -70,7 +70,7 @@ postgres=#
 
   + `CREATE USER` ifadesi, `CREATE ROLE` ifadesinin bir takma isimdir. 
   + Aralarındaki fark `LOGIN` seçeneğidir.
-  + https://www.postgresql.org/docs/9.6/static/sql-createrole.html
+  + https://www.postgresql.org/docs/current/sql-createrole.html
 ~~~
 postgres=# CREATE ROLE testk2 WITH PASSWORD '111111';
 CREATE ROLE
@@ -156,7 +156,7 @@ postgres=#
 
 
 
-### Kullanıcı / Rol  İşlemleri
+### Kullanıcı/Rol  İşlemleri
 
 
 * Oturum yetkilendirmesini postgres rolü olarak ayarla.
@@ -255,7 +255,7 @@ CREATE ROLE "kullanici4" WITH PASSWORD 'abc' VALID UNTIL '2020-01-01';
 
 
 
-## Kullanıcı / rol silme işlemleri.
+## Kullanıcı/Rol Silme İşlemleri
 
 ~~~sql
 DROP USER "kullanici1";
@@ -265,58 +265,65 @@ DROP ROLE "rol1";
 ~~~
 
 
-  + Nesne oluşturulurken bu nesnenin sahibi olan rol de (CREATE komutunu çalıştıran rol) atanır.
-  + Nesne sahibi (ya da SUPERUSER) nesne üzerindeki tüm haklara sahiptir.
-  + Veritabanı sahibi olan bir rolü silmeden önce veritabanı sahipliğini başka bir role aktarmalıyız.
-  + Bu işlemi ALTER DATABASE ile yapabiliriz.
-  
+* Nesne oluşturulurken, CREATE komutunu çalıştıran rol, bu nesnenin sahibi olarak belirlenir.
+* Nesne sahibi (ya da SUPERUSER) nesne üzerindeki tüm haklara sahiptir.
+* Veritabanı sahibi olan bir rolü silmeden önce veritabanı sahipliğini başka bir role aktarmalıyız.
+* Bu işlemi ALTER DATABASE ile yapabiliriz.
+
 ~~~sql  
 CREATE ROLE "rol1";
 ~~~
+
 ~~~sql
 ALTER DATABASE "NorthWind" OWNER TO "rol1";
 ~~~
+
 ~~~sql
 DROP ROLE "rol1";
-~~~
 
-  + 16:18:33 Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it DETAIL:  owner of database NorthWind
+-- Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it DETAIL: owner of database NorthWind
+~~~
 
 ~~~sql
 ALTER DATABASE "NorthWind" OWNER TO "postgres";
 ~~~
+
 ~~~sql
 DROP ROLE "rol1";
 ~~~
 
 
-  + Veritabanı sahibi olan bir rolü silmeden önce veri tabanı sahipliğini başka bir role aktarmalıyız.
-  + Bu işlemi REASSIGN ile de yapabiliriz.
+* Veritabanı sahibi olan bir rolü silmeden önce veritabanı sahipliğini başka bir role aktarmalıyız.
+* Bu işlemi REASSIGN ile de yapabiliriz.
 
 ~~~sql
 CREATE ROLE "rol1";
 ~~~
+
 ~~~sql
-ALTER DATABASE "NorthWind" owner to "rol1";
+ALTER DATABASE "NorthWind" OWNER TO "rol1";
 ~~~
+
 ~~~sql
 DROP ROLE "rol1";
+
+-- Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it DETAIL:  owner of database NorthWind
 ~~~
 
-  + 16:18:33 Kernel error: ERROR:  role "rol1" cannot be dropped because some objects depend on it DETAIL:  owner of database NorthWind
 
-  + "rol1" in sahibi olduğu tüm nesnelerin yeni sahibi "postgres" oluyor.
+* "rol1" in sahibi olduğu tüm nesnelerin yeni sahibini "postgres" olarak belirle.
   
 ~~~sql
 REASSIGN OWNED BY "rol1" TO "postgres";
 ~~~
+
 ~~~sql
 DROP ROLE "rol1";
 ~~~
 
 
-  + Bir rolü grup gibi kullanabiliriz.
-  + Diğer rollerin bu rolden yetkilerini kalıtım olarak almasını temin edebiliriz.
+* Bir rolü grup gibi kullanabiliriz.
+* Diğer rollerin bu rolden yetkilerini kalıtım olarak almasını temin edebiliriz.
 
 ~~~sql
 CREATE ROLE "gruprol";
@@ -326,30 +333,31 @@ CREATE ROLE "gruprol";
 CREATE ROLE "rol1";
 ~~~
 
-  + rol1 isimli rolün yetkilerine gruprol isimli rolün yetkilerini de ekle.
-  + Temel yetkiler kalıtım olarak alınmaz. Yalnızca grubun nesneler üzerindeki yetkileri kalıtım olarak alınır.
+* rol1 isimli rolün yetkilerine gruprol isimli rolün yetkilerini de ekle.
+* Temel yetkiler kalıtım olarak alınmaz. Yalnızca grubun nesneler üzerindeki yetkileri kalıtım olarak alınır.
 
 ~~~sql
 GRANT "gruprol" TO "rol1";
 ~~~
 
 
-
-  + Bunun yapılabilmesi için rol1 isimli rolün kalıtım alma özelliğine sahip olması gerekir. (Postgresql in yeni sürümlerinde rol oluşturulduğunda INHERIT yetkisi veriliyor)
-  + Diğer bir deyişle INHERIT yetkisine sahip olması gerekir.
-  + Bu yetki yoksa, yetkiler kalıtım alınmaz.
+* Bunun yapılabilmesi için rol1 isimli rolün kalıtım alma özelliğine sahip olması gerekir. (Postgresql in yeni sürümlerinde rol oluşturulduğunda INHERIT yetkisi veriliyor)
+* Diğer bir deyişle INHERIT yetkisine sahip olması gerekir.
+* Bu yetki yoksa, yetkiler kalıtım alınmaz.
 
 ~~~sql
 ALTER ROLE "rol1" WITH INHERIT;  
 ~~~
+
 ~~~sql
 CREATE ROLE "rol2" WITH INHERIT;
 ~~~
+
 ~~~sql
 GRANT "gruprol" TO "rol2";
 ~~~
 
-  + rol1 isimli role verilmiş yetkilerin (gruprol yetkileri) geri alınması.
+* rol1 isimli role verilmiş yetkilerin (gruprol yetkileri) geri alınması.
 
 ~~~sql
 REVOKE "gruprol" FROM "rol1";
@@ -359,8 +367,9 @@ REVOKE "gruprol" FROM "rol1";
 
 ### Yetkilendirme İşlemleri
 
+> PUBLIC: Tüm roller / kullanıcılar.
 * PUBLIC: Tüm roller / kullanıcılar. 
-* kullaniciAdi: tek bir kullanıcı.
+* kullaniciAdi: Tek bir kullanıcı.
 * ALL: Tüm yetkiler.
 
 
