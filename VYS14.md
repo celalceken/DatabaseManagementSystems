@@ -142,7 +142,7 @@ postgres=#
 * Örnek
 ~~~
 postgres=# DROP ROLE testk2;
-ALTER ROLE
+DROP ROLE
 postgres=# \du
                                    List of roles
  Role name |                         Attributes                         | Member of
@@ -569,7 +569,7 @@ SELECT * FROM milKMDonustur(3);
 
 * Linux
 
-~~~shell
+~~~
 sudo apt-get install postgresql-contrib
 ~~~
 
