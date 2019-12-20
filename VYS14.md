@@ -368,66 +368,68 @@ REVOKE "gruprol" FROM "rol1";
 ### Yetkilendirme İşlemleri
 
 > PUBLIC: Tüm roller / kullanıcılar.
-* PUBLIC: Tüm roller / kullanıcılar. 
-* kullaniciAdi: Tek bir kullanıcı.
-* ALL: Tüm yetkiler.
+> kullaniciAdi: Tek bir kullanıcı.
+> ALL: Tüm yetkiler.
 
 
-  + rol1 isimli role customers tablosu üzerinde seçim yapma yetkisi ver.
+* rol1 isimli role customers tablosu üzerinde seçim yapma yetkisi ver.
 
 ~~~sql
 GRANT SELECT ON "customers" TO "rol1";
 ~~~
 
-  + Tüm rollere customers tablosu üzerinde kayıt ekleme yetkisi ver.
+* Tüm rollere customers tablosu üzerinde kayıt ekleme yetkisi ver.
 
 ~~~sql
 GRANT INSERT ON "customers" TO PUBLIC;
 ~~~
 
-  + rol1 isimli kullanıcıya customers tablosu üzerinde tüm yetkileri ver.
+* rol1 isimli kullanıcıya customers tablosu üzerinde tüm yetkileri ver.
 
 ~~~sql
 GRANT ALL ON "customers" TO "rol1";
 ~~~
 
-  + rol1 isimli rolün customers tablosu üzerindeki güncelleme yetkisini geri al.
+* rol1 isimli rolün customers tablosu üzerindeki güncelleme yetkisini geri al.
 
 ~~~sql
 REVOKE UPDATE ON "customers" FROM "rol1";
 ~~~
 
-  + rol1 isimli rolün customers tablosu üzerindeki tüm yetkilerini geri al.
+* rol1 isimli rolün customers tablosu üzerindeki tüm yetkilerini geri al.
 
 ~~~sql
 REVOKE ALL ON "customers" FROM "rol1";
 ~~~
 
-  + rol1 kullanicisinin Sema1 icerisindeki nesnelere ait tüm yetkileri geri alinir.
+* rol1 kullanicisinin Sema1 icerisindeki nesnelere ait tüm yetkileri geri alinir.
 
 ~~~sql
 REVOKE ALL ON SCHEMA "Sema1" FROM "rol1";
 ~~~
 
-  + Herhangi bir nesne üzerinde yetkiye sahip olan bir rolü silemeyiz.
+* Herhangi bir nesne üzerinde yetkiye sahip olan bir rolü silemeyiz.
 
 ~~~sql
 CREATE ROLE "rol1";
 ~~~
+
 ~~~sql
 GRANT SELECT ON "customers" TO "rol1";
 ~~~
+
 ~~~sql
 DROP ROLE "rol1"; 
+
+-- Kernel error: ERROR:  role "rol4" cannot be dropped because some objects depend on it DETAIL:  privileges for table customers
 ~~~
 
-  + 16:12:44 Kernel error: ERROR:  role "rol4" cannot be dropped because some objects depend on it DETAIL:  privileges for table customers
-
-  + rol1 in sahibi olduğu tüm nesneleri sil (kısıtlar ihlal edilemez)
+* rol1 in sahibi olduğu tüm nesneleri sil (kısıtlar ihlal edilemez)
 
 ~~~sql
 DROP OWNED BY "rol1";
 ~~~
+
 ~~~sql
 DROP ROLE "rol1";
 ~~~
@@ -439,34 +441,42 @@ DROP ROLE "rol1";
 ~~~sql
 CREATE ROLE "rol1";
 ~~~
+
 ~~~sql
 SET SESSION AUTHORIZATION "rol1";
 ~~~
+
 ~~~sql
 SELECT * FROM "customers"; 
+
+-- Kernel error: ERROR:  permission denied for relation customer
 ~~~
 
-  + Kernel error: ERROR:  permission denied for relation customer
 
-  + rol1 yetkilendirme haklarina sahip olmadigi icin hata oluşur.
+* rol1 seçme hakkına sahip olmadigi icin hata oluşur.
 
 ~~~sql
 GRANT SELECT ON "customers" TO "rol1"; 
 ~~~
 
-  + Yetkilendirme yapabilmek için oturum yetkilendirmesini "postgres" kullanıcısı şeklinde ayarla.
+
+* Yetkilendirme yapabilmek için oturum yetkilendirmesini "postgres" kullanıcısı şeklinde ayarla.
 
 ~~~sql
 SET SESSION AUTHORIZATION "postgres";
 ~~~
+
+* rol1, kullanıcısına "customers" tablosu üzerinde seçme yetisi ver.
+
 ~~~sql
 GRANT SELECT ON "customers" TO "rol1";
 ~~~
+
 ~~~sql
 SET SESSION AUTHORIZATION "rol1";
 ~~~
 
-  + Sorgu çalışır.
+* Sorgu çalışır.
 
 ~~~sql
 SELECT * FROM "customers";
@@ -503,7 +513,7 @@ SET SESSION AUTHORIZATION "postgres";
 REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM "rol1";
 ~~~
 
-  + Aşağıdaki ifade çalışır. Fonksiyonlar PUBLIC grubu için varsayılan olarak çalıştırılırlar.
+* Aşağıdaki ifade çalışır. Fonksiyonlar PUBLIC grubu için varsayılan olarak çalıştırılırlar.
 
 ~~~sql
 SELECT * FROM milKMDonustur(3);
@@ -521,7 +531,7 @@ REVOKE ALL ON FUNCTION "milKMDonustur"(REAL, OUT REAL) FROM PUBLIC;
 SET SESSION AUTHORIZATION "rol1";
 ~~~
 
-  + Aşağıdaki ifade çalışmaz.
+* Aşağıdaki ifade çalışmaz.
 
 ~~~sql
 SELECT * FROM milKMDonustur(3);
@@ -538,8 +548,9 @@ SELECT * FROM milKMDonustur(3);
 
 * Linux
 
+~~~shell
 sudo apt-get install postgresql-contrib
-
+~~~
 
 
 * Kripto eklentisini oluştur.
@@ -557,6 +568,7 @@ SELECT ENCODE(DIGEST('sifrem', 'sha512'), 'hex');
 
 
 * "sifrem" şifresini md5 algoritması ile kodla ve sonucu "md5" ifadesi ile birleştir.
+
 ~~~sql
 SELECT 'md5'|| MD5('sifrem');
 ~~~
