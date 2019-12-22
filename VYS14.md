@@ -156,8 +156,9 @@ postgres=#
 ~~~
 
 
-## Yetki
+## Yetki/Yetkilendirme
 
+* Nesnelerle ilgili sahip olunan haklara yetki denir.
 * Kullanıcıların/rollerin, veritabanı yönetim sistemi ve veritabanı nesneleri (tablo, görünüm, fonksiyon vb.) üzerinde hangi haklara sahip olacağının belirlenmesine yetkilendirme adı verilir.
 * İki tür yetki vardır:
   + Temel yetkiler (rol özellikleri)
