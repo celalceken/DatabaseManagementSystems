@@ -40,6 +40,55 @@ postgres=# \l
 
 ~~~
 
+### psql ile veritabanına bağlanma
+~~~
+postgres=# \c Northwind
+psql (10.3, server 12.1)
+WARNING: psql major version 10, server major version 12.
+         Some psql features might not work.
+You are now connected to database "Northwind" as user "postgres".
+~~~
+
+### psql ile tabloları görüntüleme
+~~~
+Northwind=# \d+
+                                     List of relations
+ Schema |              Name               |   Type   |  Owner   |    Size    | Description 
+--------+---------------------------------+----------+----------+------------+-------------
+ public | CustomersContactName            | table    | postgres | 16 kB      | 
+ public | Musteriler                      | table    | postgres | 0 bytes    | 
+ public | Musteriler_musteriNo_seq        | sequence | postgres | 8192 bytes | 
+ public | OrderCustomerEmployee           | view     | postgres | 0 bytes    | 
+ public | OrderCustomerEmployee1          | view     | postgres | 0 bytes    | 
+ public | OrderCustomerEmployee3          | view     | postgres | 0 bytes    | 
+ public | OrderCustomerEmployee4          | view     | postgres | 0 bytes    | 
+ public | SiparisMusteriSatisTemsilcisi   | view     | postgres | 0 bytes    | 
+ public | UrunDegisikligiIzle             | table    | postgres | 8192 bytes | 
+ public | UrunDegisikligiIzle_kayitNo_seq | sequence | postgres | 8192 bytes | 
+ public | categories                      | table    | postgres | 16 kB      | 
+ public | customercustomerdemo            | table    | postgres | 8192 bytes | 
+ public | customerdemographics            | table    | postgres | 8192 bytes | 
+ public | customers                       | table    | postgres | 56 kB      | 
+ public | employees                       | table    | postgres | 16 kB      | 
+ public | employeeterritories             | table    | postgres | 8192 bytes | 
+ public | order_details                   | table    | postgres | 120 kB     | 
+ public | orders                          | table    | postgres | 144 kB     | 
+ public | products                        | table    | postgres | 8192 bytes | 
+
+~~~
+
+### psql ile sql sorgusu çalıştırma
+~~~
+Northwind=# select "ProductID", "ProductName"  from products;
+ ProductID |           ProductName            
+-----------+----------------------------------
+         5 | Chef Anton's Gumbo Mix
+         7 | Uncle Bob's Organic Dried Pears
+        12 | Queso Manchego La Pastora
+        13 | Konbu
+~~~
+
+
 ### psql Çıkış Örneği
 ~~~
 postgres=# \q
@@ -49,21 +98,10 @@ VTYS_Comp:~ vtys$
 
 
 
-### psql - Kullanıcı Oluşturma Örnekleri
-
-
-
-* Örnek
+### psql - Kullanıcıları/Rolleri Listeleme
 
 ~~~
-postgres=# CREATE USER testk1 WITH PASSWORD '111111';
-
-CREATE ROLE
-
-postgres=#
-
 postgres=# \du
-
                                    List of roles
                                    
  Role name |                         Attributes                         | Member of
@@ -74,97 +112,6 @@ postgres=# \du
  
  testk1    |                                                            | {}
 
-postgres=#
-
-~~~
-
-* Örnek
-
-  + `CREATE USER` ifadesi, `CREATE ROLE` ifadesinin bir takma isimdir. 
-  + Aralarındaki fark `LOGIN` seçeneğidir.
-  + https://www.postgresql.org/docs/current/sql-createrole.html
-~~~
-postgres=# CREATE ROLE testk2 WITH PASSWORD '111111';
-CREATE ROLE
-postgres=# \du
-                                   List of roles
- Role name |                         Attributes                         | Member of
------------+------------------------------------------------------------+-----------
- postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- testk1    |                                                            | {}
- testk2    | Cannot login                                               | {}
-
-postgres=#
-~~~
-
-
-* Örnek
-~~~
-postgres=# CREATE ROLE testk3 WITH PASSWORD '111111' LOGIN;
-CREATE ROLE
-postgres=# \du
-                                   List of roles
- Role name |                         Attributes                         | Member of
------------+------------------------------------------------------------+-----------
- postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- testk1    |                                                            | {}
- testk2    | Cannot login                                               | {}
- testk3    |                                                            | {}
-
-postgres=#
-~~~
-
-
-* Örnek
-~~~
-postgres=# CREATE ROLE testk4 WITH PASSWORD '111111' LOGIN CREATEDB;
-CREATE ROLE
-postgres=# \du
-                                   List of roles
- Role name |                         Attributes                         | Member of
------------+------------------------------------------------------------+-----------
- postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- testk1    |                                                            | {}
- testk2    | Cannot login                                               | {}
- testk3    |                                                            | {}
- testk4    | Create DB                                                  | {}
-
-postgres=#
-~~~
-
-
-* Örnek
-~~~
-postgres=# ALTER ROLE testk2 WITH LOGIN;
-ALTER ROLE
-postgres=# \du
-                                   List of roles
- Role name |                         Attributes                         | Member of
------------+------------------------------------------------------------+-----------
- postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- testk1    |                                                            | {}
- testk2    |                                                            | {}
- testk3    |                                                            | {}
- testk4    | Create DB                                                  | {}
-
-postgres=#
-~~~
-
-
-* Örnek
-~~~
-postgres=# DROP ROLE testk2;
-DROP ROLE
-postgres=# \du
-                                   List of roles
- Role name |                         Attributes                         | Member of
------------+------------------------------------------------------------+-----------
- postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- testk1    |                                                            | {}
- testk3    |                                                            | {}
- testk4    | Create DB                                                  | {}
-
-postgres=#
 ~~~
 
 
@@ -287,6 +234,123 @@ CREATE ROLE "rol3" WITH PASSWORD 'abc' LOGIN;
 CREATE ROLE "kullanici4" WITH PASSWORD 'abc' VALID UNTIL '2020-01-01';
 ~~~
 
+
+
+### psql - Kullanıcı/Rol Oluşturma/Değiştirme İşlemleri
+
+* Örnek
+
+~~~
+postgres=# CREATE USER testk1 WITH PASSWORD '111111';
+
+CREATE ROLE
+
+postgres=#
+
+postgres=# \du
+
+                                   List of roles
+                                   
+ Role name |                         Attributes                         | Member of
+ 
+-----------+------------------------------------------------------------+-----------
+
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ 
+ testk1    |                                                            | {}
+
+postgres=#
+
+~~~
+
+* Örnek
+
+  + `CREATE USER` ifadesi, `CREATE ROLE` ifadesinin bir takma isimdir. 
+  + Aralarındaki fark `LOGIN` seçeneğidir.
+  + https://www.postgresql.org/docs/current/sql-createrole.html
+~~~
+postgres=# CREATE ROLE testk2 WITH PASSWORD '111111';
+CREATE ROLE
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ testk1    |                                                            | {}
+ testk2    | Cannot login                                               | {}
+
+postgres=#
+~~~
+
+
+* Örnek
+~~~
+postgres=# CREATE ROLE testk3 WITH PASSWORD '111111' LOGIN;
+CREATE ROLE
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ testk1    |                                                            | {}
+ testk2    | Cannot login                                               | {}
+ testk3    |                                                            | {}
+
+postgres=#
+~~~
+
+
+* Örnek
+~~~
+postgres=# CREATE ROLE testk4 WITH PASSWORD '111111' LOGIN CREATEDB;
+CREATE ROLE
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ testk1    |                                                            | {}
+ testk2    | Cannot login                                               | {}
+ testk3    |                                                            | {}
+ testk4    | Create DB                                                  | {}
+
+postgres=#
+~~~
+
+
+* Örnek
+~~~
+postgres=# ALTER ROLE testk2 WITH LOGIN;
+ALTER ROLE
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ testk1    |                                                            | {}
+ testk2    |                                                            | {}
+ testk3    |                                                            | {}
+ testk4    | Create DB                                                  | {}
+
+postgres=#
+~~~
+
+
+* Örnek
+~~~
+postgres=# DROP ROLE testk2;
+DROP ROLE
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ testk1    |                                                            | {}
+ testk3    |                                                            | {}
+ testk4    | Create DB                                                  | {}
+
+postgres=#
+~~~
 
 
 ## Kullanıcı/Rol Silme İşlemleri
