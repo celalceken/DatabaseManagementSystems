@@ -88,16 +88,6 @@ Northwind=# select "ProductID", "ProductName"  from products;
         13 | Konbu
 ~~~
 
-
-### psql Çıkış Örneği
-~~~
-postgres=# \q
-postgres=#
-VTYS_Comp:~ vtys$
-~~~
-
-
-
 ### psql - Kullanıcıları/Rolleri Listeleme
 
 ~~~
@@ -114,6 +104,12 @@ postgres=# \du
 
 ~~~
 
+### psql Çıkış Örneği
+~~~
+postgres=# \q
+postgres=#
+VTYS_Comp:~ vtys$
+~~~
 
 ## Yetki/Yetkilendirme
 
