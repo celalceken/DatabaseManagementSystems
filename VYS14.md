@@ -4,6 +4,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 ## psql Kullanımı
+psql, postgresql sunucuya bağlanıp işlemler yapmamızı sağlayan konsol uygulamasıdır.
 
 
 
@@ -14,8 +15,6 @@ psql -U postgres -h localhost
 psql -U ayse -d pagila -h localhost
 ~~~
 
-
-### psql Açma Örneği
 ~~~
 psql -U postgres
 
@@ -27,6 +26,19 @@ Type "help" for help.
 postgres=#
 ~~~
 
+
+### psql ile veritabanlarını görüntüleme
+~~~
+postgres=# \l
+                                       List of databases
+         Name         |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+----------------------+----------+----------+-------------+-------------+-----------------------
+ AlisVerisUygulamasi  | postgres | UTF8     | tr_TR.UTF-8 | tr_TR.UTF-8 | 
+ Musteri              | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ Northwind            | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ OgrenciBilgiSistemi  | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+
+~~~
 
 ### psql Çıkış Örneği
 ~~~
