@@ -1,6 +1,6 @@
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
-# İlişkisel Veritabanı Modeli
+# İlişkisel Model
 
 ## Konular
 
