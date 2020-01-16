@@ -13,7 +13,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   * Dosya Sistemi
   * Hiyerarşik Model
   * Ağ Modeli
-  * İlişkisel Veri Modeli
+  * İlişkisel Model
   * Varlık Bağıntı Modeli
   * Nesne Yönelimli Model
   * Yeni Veri Modelleri
@@ -41,8 +41,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
     + Bir müşteri çok sayıda sipariş verebilir.
     + Her müşterinin adı, soyadı, telefon numarası vs. istenir.
     + Öğrenciler bir ara sınav ve bir yarıyıl sonu sınavına girerler.
-* İş kurallarının kaynağı, uç kullanıcılar, yöneticiler, kural koyucular ve yazılı dokümanlar (standart, yönetmelik vs.) olabilir.
-* İş kurallarını oluşturmak için doğrudan uç kullanıcılarla görüşmek oldukça etkili bir çözümdür.
+* İş kurallarının kaynağı, son kullanıcılar, yöneticiler, kural koyucular ve yazılı dokümanlar (standart, yönetmelik vs.) olabilir.
+* İş kurallarını oluşturmak için doğrudan son kullanıcılarla görüşmek oldukça etkili bir çözümdür.
 * Veritabanı tasarımı açısından iş kurallarının önemi;
     + Kullanıcılar ile tasarımcılar arasındaki iletişimi sağlar.
     + Tasarımcının verinin doğasını, önemini ve kapsamını anlamasını sağlar.
@@ -55,7 +55,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Veri Modeli
 
 * **Veri modeli:** Karmaşık gerçek dünya veri yapılarının basit olarak gösterilmesi (genellikle grafiksel) için kullanılan araca veri modeli ismi verilir.
-* Veri modeli, veritabanı tasarımcıları, uygulama programcıları ve uç kullanıcılar arasındaki iletişimi kolaylaştırır.
+* Veri modeli, veritabanı tasarımcıları, uygulama programcıları ve son kullanıcılar arasındaki iletişimi kolaylaştırır.
 * Veri modelleri sayesinde veritabanı tasarımını gerçekleştirmek daha kolay olur.
 * Veri modelleme yinelemeli (iterative) bir işlemdir. Önce basit model oluşturulur. Daha sonra ayrıntılar eklenir. En sonunda veritabanı tasarımında kullanılan şablon (blueprint) elde edilir.
 
@@ -86,7 +86,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Dosya Sistemi  
 * Hiyerarşik Model  
 * Ağ Modeli 
-* İlişkisel veri modeli
+* İlişkisel model
 * Varlık Bağıntı modeli
 * Nesne Yönelimli Model 
 * Yeni Veri Modelleri
@@ -114,7 +114,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * 1970’lerde geliştirilmiştir. Veritabanı başarımını artırmak üzere daha karmaşık ilişkilere izin verilir.
 * Hiyerarşik modelden farklı olarak kayıtların birden fazla ana (parent) kayıtları olabilir.
-* Ağ veri modeliyle birlikte ortaya çıkan ve hala kullanılan bazı kavramlar aşağıdadır.
+* Ağ modeliyle birlikte ortaya çıkan ve hala kullanılan bazı kavramlar aşağıdadır.
   + **Şema:** Tüm veritabanının, veritabanı yöneticisi tarafından görünen kavramsal organizasyonu.
   + **Alt şema:** Veritabanının istenen bilgiyi üreten uygulama programı tarafından görünen kısmı.
   + **Veri işleme dili (data manipulation language, DML):** Veritabanında bulunan verilerin, sorgulama işlemleri yapılarak güncellenmesi, yeni verilerin eklenmesi ve olan verilerin silinme işlemlerinin yapılmasını sağlayan dil.
@@ -125,7 +125,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ![](Sekiller/02/AgModeli.png)
 
 
-## İlişkisel Veri Modeli
+## İlişkisel Model
 
 * 1970’de E. F. Codd tarafından ortaya atılmıştır (A Relational Model of Data for Large Shared Databanks, Communications of the ACM, June 1970, pp. 377−387).
 * İlişkisel Veritabanı Yönetim Sistemleri (Relational Database Management Systems, RDBMS) tarafından kullanılır. 
@@ -149,7 +149,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * İlişkisel model daha önceki modellere göre çok daha kullanışlı olmasına rağmen veritabanı tasarımı için ilişkisel modelin grafiksel gösterimi olan varlık bağıntı modeli (VBM) (entity relationship model, ERM) daha sık kullanılır.
 1976’da Peter Chen tarafından önerilmiştir.
-* İlişkisel veri modelinin tamamlayıcısı olduğu için kullanımı oldukça yaygınlaşmıştır.
+* İlişkisel modelinin tamamlayıcısı olduğu için kullanımı oldukça yaygınlaşmıştır.
 * i) Chen gösterimi ve ii) Crow’s Foot gösterimi sıkça kullanılan gösterim şekillerindendir.
 * Ders kapsamında Crow’s Foot gösterimi kullanılacaktır.
 
@@ -199,7 +199,7 @@ Veri modellerinin daha iyi anlaşılabilmesini sağlamak amacıyla ANSI-SPARC, 1
 
 ### Harici Model (External Model)
 
-* Veritabanının uç kullanıcılar açısından görünen kısmı. Veritabanının sadece kullanıcıyla ilgili alt bölümlerini ifade eder.
+* Veritabanının son kullanıcılar açısından görünen kısmı. Veritabanının sadece kullanıcıyla ilgili alt bölümlerini ifade eder.
 
 ![](Sekiller/02/HariciModel1.png)
 
