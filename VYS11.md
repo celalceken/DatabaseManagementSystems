@@ -73,7 +73,7 @@ SELECT * FROM inch2m(10);
 ~~~
 
 
-## Koşullu İfadeler
+## Koşul İfadeleri
 
 ~~~sql
 IF miktar > 0 THEN
