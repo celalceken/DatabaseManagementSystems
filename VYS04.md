@@ -40,7 +40,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * **İlişkisel Veritabanı (Relational Database):** İlişkiler (tablolar) kümesi. Satır ve sütunlardan meydana gelen tablolar topluluğu.
 * **İlişkisel Şema (Relational Schema):** İlişkinin (tablonun) adını ve ek olarak her bir sütunun adını ve tipini belirtir. Metin ile ifade edilebileceği gibi diyagram kullanılarak da gösterilebilir. 
-  + Örneğin Ogrenciler isminde bir ilişkinin (tablonun) ilişkisel şeması aşağıda verilmiştir.
+  + Örneğin Ogrenciler isminde bir ilişkinin (tablonun) ilişkisel şeması (metinsel olarak) aşağıda verilmiştir.
   + Ogrenciler(ogrenciNo: string, adi: string, soyadi: string, yas: integer, ortalama: real)
   
 ## Tablo
@@ -177,7 +177,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * 1 tarafının varlığının (Bina) birincil anahtarı (binaNo) diğer varlığa yabancı anahtar alan (binaNo) olarak eklenir
 
-* **İlişkisel Şema**
+* **İlişkisel Şema (Metinsel Gösterim)**
   + Derslik(**derslikNo: Integer**, binaNo: Integer, derslikAdi: String)
   + Bina(**binaNo: Integer**, binaAdi: String, adres: String)
  
@@ -189,7 +189,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ![](Sekiller/04/VarOlmaBagimliligi.png)
 
 * 1 tarafının varlığının (Apartman) birincil anahtarı (apartmanNo) diğer varlığa hem yabancı anahtar hem de birincil anahtarın parçası (apartmanNo) olarak eklenir.
-* **İlişkisel Şema**
+* **İlişkisel Şema (Metinsel Gösterim)**
   + Apartman(**apartmanNo: Integer**, apartmanAdi: String, adres: String)
   + Daire(**daireNo: Integer**, **apartmanNo: Integer**, daireAdi: String)
 
@@ -200,7 +200,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ![](Sekiller/04/CokCokBagintisi.png)
 
-* **İlişkisel Şema**
+* **İlişkisel Şema (Metinsel Gösterim)**
   + Ogrenci(**ogrenciNo: String**, bolumNo: Integer, danisman: String, ad: String, soyad: String)
   + Kayit(**aDersKodu: String**, **ogrenciNo: String**, kayitTarihi: Date, not: Float)
   + AcilanDers(**aDersKodu: String**, dersKodu: String, ogretimUyesi: String, derslikNo: Integer, sube: Char(1))
@@ -212,7 +212,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ![](Sekiller/04/TekliBaginti.png)
 
-* **İlişkisel Şema**
+* **İlişkisel Şema (Metinsel Gösterim)**
   + Personel(**sicilNo: String**, ad: String, soyad: String, takimLideri: String)
   
 ## İndeks
@@ -263,7 +263,7 @@ Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği ara�
 
 ![](Sekiller/04/AracUreticisi.png)
 
-### İlişkisel Şema
+### İlişkisel Şema (Metinsel Gösterim)
 
 * Arac(**sasiNo:char**, renk: varchar, modelKodu: char, turKodu: char, uretimTarihi: date)
 * AracMalzeme(**sasiNo: char**, **malzemeKodu: char**, miktar: int)
@@ -306,7 +306,7 @@ Bir elektronik ticaret şirketi geliştirlecek olan bir elektronik ticaret siste
 
 ![](Sekiller/04/E-TicaretTablo.png)
 
-### İlişkisel Şema
+### İlişkisel Şema (Metinsel Gösterim)
 
 * SatisTemsilcisi(**sicilNo: char**, TCKimlikNo: char, ad: varchar, soyad: varchar)
 * KargoFirması(**kod: char**, ad: varchar, adres: varchar, temsilci: varchar)
