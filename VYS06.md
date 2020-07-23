@@ -488,4 +488,8 @@ public class VeritabaniIslemleri {
 
 [.net platformu ile Postgresql işlemleri için buraya bakınız](https://github.com/celalceken/DatabaseManagementSystems/blob/master/Belgeler/.NET_Postgres_connection.pdf)
 
+### Ekleme/Silme/Değiştirme/Arama İşlemlerini İçeren Örnek Uygulama
+
+[Örnek Uygulamanın kaynak kodları ve anlatımını içeren videolara erişmek için buraya bakınız]
+https://github.com/celalceken/NesneYonelimliAnalizVeTasarimDersiUygulamalari/tree/master/Ders9
 
