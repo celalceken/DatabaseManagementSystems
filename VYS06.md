@@ -491,5 +491,5 @@ public class VeritabaniIslemleri {
 ### Ekleme/Silme/Değiştirme/Arama İşlemlerini İçeren Örnek Uygulama
 
 [Örnek Uygulamanın kaynak kodları ve anlatımını içeren videolara erişmek için buraya bakınız]
-https://github.com/celalceken/NesneYonelimliAnalizVeTasarimDersiUygulamalari/tree/master/Ders9
+(https://github.com/celalceken/NesneYonelimliAnalizVeTasarimDersiUygulamalari/tree/master/Ders9)
 
