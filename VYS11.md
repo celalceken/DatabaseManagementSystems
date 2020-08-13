@@ -454,6 +454,9 @@ $$
 BEGIN
     NEW."CompanyName" = UPPER(NEW."CompanyName"); -- büyük harfe dönüştürdükten sonra ekle
     NEW."ContactName" = LTRIM(NEW."ContactName"); -- Önceki ve sonraki boşlukları temizle
+    IF NEW."City" IS NULL THEN
+            RAISE EXCEPTION 'Sehir alanı boş olamaz';  
+    END IF;
     RETURN NEW;
 END;
 $$
@@ -462,7 +465,7 @@ LANGUAGE "plpgsql";
 
 ~~~sql
 CREATE TRIGGER "kayitKontrol"
-BEFORE INSERT ON "customers"  --before ifadesi, veriyi eklemeden önce üzerinde işlem yapılabilmesini sağlar
+BEFORE INSERT OR UPDATE ON "customers"  -- veriyi eklemeden/değiştirmeden önce üzerinde işlem yap
 FOR EACH ROW
 EXECUTE PROCEDURE "kayitEkleTR1"();
 ~~~
@@ -472,6 +475,10 @@ INSERT INTO "customers" ( "CustomerID","CompanyName", "ContactName")
 VALUES ( '45', 'Orka Ltd.', '    Ayşe Yalın     ' );
 ~~~
 
+~~~sql
+INSERT INTO "customers" ( "CustomerID","CompanyName", "ContactName","City") 
+VALUES ( '45', 'Orka Ltd.', '    Ayşe Yalın     ', 'Sakarya' );
+~~~
 
 ~~~sql
 ALTER TABLE "products"
