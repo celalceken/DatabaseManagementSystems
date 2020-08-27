@@ -138,8 +138,8 @@ VTYS_Comp:~ vtys$
 
 ## Kullanıcı/Rol Katalogları
 
-* Oturum yetkilendirmesini postgres rolü olarak ayarla.
-* Böylelikle postgres rolünün sahip olduğu tüm yetkilerle tüm işlemleri yapabileceğiz.
+* Oturum yetkilendirmesini postgres rolü olarak ayarla (Bu işlemin yapılabilmesi için superuser yetkisi gereklidir).
+* Böylelikle işlemler, postgres rolünün yetkileriyle yapılabilecektir.
 
 ~~~sql
 SET SESSION AUTHORIZATION "postgres";
@@ -201,7 +201,7 @@ ALTER ROLE "rol1" WITH NOLOGIN;
 
 
 * abc şifresine sahip "kullanici1" adında bir kullanıcı oluştur.
-* abc şifresi MD5 algoritması ile kodlanır.
+* abc şifresi MD5 algoritması ile kodlanır (Kullanılacak algoritma postgresql.conf içerisinde değiştirilebilir). 
 
 ~~~sql
 CREATE USER "kullanici1" WITH PASSWORD 'abc';
