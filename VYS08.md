@@ -201,6 +201,31 @@ ALTER TABLE "Personel"."SatisTemsilcisi"
 	ON UPDATE CASCADE;
 ~~~
 
+* Kalıtım kullanıldığında verilerin eklenmesi
+~~~sql
+INSERT INTO "Personel"."Personel"("adi","soyadi","personelTipi")
+VALUES ('Mert','Şen','D' )
+
+INSERT INTO "Personel"."Danisman"("personelNo","sirket")
+VALUES (currval('"Personel"."Personel_personelNo_seq"'),'Şen Ltd.');
+~~~
+
+~~~sql
+-- Fonksiyon tanımı içerisinde
+$$
+DECLARE personelNo integer;
+
+BEGIN
+
+INSERT INTO "Personel"."Personel"("adi","soyadi","personelTipi")
+VALUES ('Mert','Şen','D' ) RETURNING "personelNo" INTO personelNo;
+
+INSERT INTO "Personel"."Danisman"("personelNo","sirket")
+VALUES (personelNo,'Şen Ltd.');
+
+END 
+$$;
+~~~
 * Kalıtım kullanıldığında verilerin alınması
 ~~~sql
 SELECT * FROM "Personel"."Personel"
