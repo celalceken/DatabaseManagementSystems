@@ -34,6 +34,7 @@ Ders tanıtımı için aşağıdaki bağlantıları inceleyiniz.
 
 * Dosyalarda depolanan birbiriyle ilişkili veri topluluklarına veri tabanı denir .
 * Günümüz verileri; terabayt (1024 gigabayt), petabayt, ekzabayt, zetabayt, yotabayt boyutlarında.
+* Çin'in otuz futbol sahası büyüklüğündeki dev teleskobu ile saniyede 38 gigabyte veri toplanmaktadır. (2020)
 * Google, saniyede ortalama 40.000 aramayı işliyor (günlük ortalama 3,5 milyar, toplam günlük arama 5 milyar. Arama sonuçlarının hızlı bir şekilde kullanıcıya getirilmesi sağlanabiliyor. (2018)
 * Facebook kullanıcı sayısı 2 milyar. Günlük ortalama 1,5 milyar kullanıcı aktif. (2018)
 * Her dakika; 4.146.600 YouTube videosu izleniyor, 456.000 tweet atılıyor, Instagram’a 46.740 fotoğraf yükleniyor, Facebook’a 510.000 yorum ekleniyor. (2018)
