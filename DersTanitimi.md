@@ -30,7 +30,7 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 
 ## Değerlendirme
 
-* Yıl içi çalışmalar
+* Yıl içi çalışmalar 
 
   + Ödev 1 - %15
   + Ödev 2 - %15
