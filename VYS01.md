@@ -1,7 +1,7 @@
 
 BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Harun ŞAHİN
 
-## Ders Tanıtımı
+## Ders Tanıtımı 
 
 Ders tanıtımı için aşağıdaki bağlantıları inceleyiniz.
 
