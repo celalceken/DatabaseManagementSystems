@@ -29,7 +29,6 @@ Ders tanıtımı için aşağıdaki bağlantıları inceleyiniz.
 
 ![](Sekiller/01/BuyukResim.png)
 
-
 ## Niçin Veritabanı
 
 * Dosyalarda depolanan birbiriyle ilişkili veri topluluklarına veri tabanı denir .
