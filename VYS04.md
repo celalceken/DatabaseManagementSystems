@@ -108,10 +108,6 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ![](Sekiller/04/YabanciAnahtar.png)
 ![](Sekiller/04/YabanciAnahtar2.png)
 
-** Var olma Bağımlılığı, Tanımlama Bağıntısı  
-![](Sekiller/04/VarOlmaBagimliligi.jpg)
-
-
 
 ## Bütünlük Kuralları
 
@@ -135,12 +131,11 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Birincil Anahtar Özellikleri
 
 * UNIQUE (kayıtları eşsiz olarak tanımlayabilmesi) ve NOT NULL (boş olmaması) bütünlük kurallarını sağlamalı.
-* Anlamsal içeriğe (semantic meaning) sahip alanlar tercih edilmemeli.
-  + Zamanla değişme ihtimali.
+* Zamanla değişme ihtimali olan alanlar tercih edilmemeli.
 * Mümkün olduğunca tek bir alandan oluşmalı.
-  + Çok alandan oluşursa bağıntıları kurmak ve sorguları yazmak zor olur.
+  + Çok alandan oluşursa bağıntıları kurmak, sorguları yazmak karmaşıklaşır. Gecikme ve kaynak kullanımı artar. 
 * Sayısal alanlar tercih edilmeli.
-  + İşlem hızı, otomatik artma (auto increment) desteğinden ötürü önemli.
+  + İşlem hızı ve otomatik artma (auto increment) desteği sağlanabilir.
 * Güvenlik riski bulunan alanlar tercih edilmemeli.
   + Yazılımlarda yoğun olarak birincil anahtar değeri kullanılır.
 
@@ -196,6 +191,9 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * **İlişkisel Şema (Metinsel Gösterim)**
   + Apartman(**apartmanNo: Integer**, apartmanAdi: String, adres: String)
   + Daire(**daireNo: Integer**, **apartmanNo: Integer**, daireAdi: String)
+  
+** Var olma Bağımlılığı, Tanımlama Bağıntısı  
+![](Sekiller/04/VarOlmaBagimliligi.jpg)
 
 ### Çok-Çok Bağıntısı
 
