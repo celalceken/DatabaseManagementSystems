@@ -108,6 +108,10 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ![](Sekiller/04/YabanciAnahtar.png)
 ![](Sekiller/04/YabanciAnahtar2.png)
 
+** Var olma Bağımlılığı, Tanımlama Bağıntısı  
+![](Sekiller/04/VarOlmaBagimliligi.jpg)
+
+
 
 ## Bütünlük Kuralları
 
