@@ -192,7 +192,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + Apartman(**apartmanNo: Integer**, apartmanAdi: String, adres: String)
   + Daire(**daireNo: Integer**, **apartmanNo: Integer**, daireAdi: String)
   
-** Var olma Bağımlılığı, Tanımlama Bağıntısı  
+* Var olma Bağımlılığı, Tanımlama Bağıntısı  
 ![](Sekiller/04/VarOlmaBagimliligi.jpg)
 
 ### Çok-Çok Bağıntısı
