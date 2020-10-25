@@ -328,7 +328,7 @@ Bir personel bilgi sisteminde Personel ve Bagimli (Personele bagimli olan kişil
 ![](Sekiller/02/VarOlmaBagimliligi2.png)
 
 * Var olma Bağımlılığı, Tanımlama Bağıntısı  
-[comment]: <> (![](Sekiller/04/VarOlmaBagimliligi.jpg))
+[//]: # (![](Sekiller/04/VarOlmaBagimliligi.jpg))
 ![](Sekiller/02/VarolmaBagimliligiTanimlamaBagintisi.png)
 
 ### Zayıf/Güçlü Bağıntılar
