@@ -327,6 +327,9 @@ Bir personel bilgi sisteminde Personel ve Bagimli (Personele bagimli olan kişil
 
 ![](Sekiller/02/VarOlmaBagimliligi2.png)
 
+* Var olma Bağımlılığı, Tanımlama Bağıntısı  
+![](Sekiller/04/VarOlmaBagimliligi.jpg)
+
 ### Zayıf/Güçlü Bağıntılar
 
 * Bağıntı kurulan varlığın birincil anahtarı içerisinde, bağıntı kuran varlığın birincil anahtar bilgisi yer almıyorsa “iki varlık arasında zayıf bağıntı vardır” denir.
