@@ -49,7 +49,7 @@ Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği ara�
 ![](Sekiller/03/AracUreticisi.png)
 
 
-<--
+<!--
 ## Örnek Uygulama - Kitabevi Yazılımı
 
 ### Senaryo
