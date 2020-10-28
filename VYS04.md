@@ -150,7 +150,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ![](Sekiller/04/Iliski.png)
 
-* **İlişkisel Şema**
+* **İlişkisel Şema (Metinsel Gösterim)**
   + Ogrenci(**ogrenciNo: String**, bolumNo: Integer, adi: String, soyadi: String)
    
 ### Bir-Bir Bağıntısı
@@ -169,8 +169,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ### Bir-Çok Bağıntısı
 
-*	1 derslik 1 binada bulunur.
-*	1 binada çok derslik bulunur.
+*	1 derslik **en çok** 1 binada bulunur.
+*	1 binada **en çok** çok sayıda derslik bulunur.
 
 ![](Sekiller/04/BirCokBagintisi.png)
 
