@@ -155,22 +155,22 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
    
 ### Bir-Bir Bağıntısı
 
-* 1 öğretim üyesi 1 bölüm yönetebilir.
-*	1 bölüm yalnızca 1 öğretim üyesi tarafından yönetilebilir.
+* 1 öğretim üyesi **en çok** ***1*** bölüm yönetebilir.
+*	1 bölüm yalnızca **en çok** ***1*** öğretim üyesi tarafından yönetilebilir.
 
 ![](Sekiller/04/BirBirBagintisi.png)
 
 * Yalnızca 1 tarafının (en az 1 - en çok 1) varlığının (OgretimUyesi) birincil anahtarı (sicilNo) diğer varlığa yabancı anahtar alan (bolumBaskani) olarak eklenir.
 
-* **İlişkisel Şema**
+* **İlişkisel Şema (Metinsel Gösterim)**
 
   + OgretimUyesi(**sicilNo: String**, TCKimlikNo: Char(11), bolumNo: Integer, ad: String, soyad: String)
   + Bolum(**bolumNo: Integer**, fakulteNo: Integer, bolumBaskani: String, bolumAdi: String)
 
 ### Bir-Çok Bağıntısı
 
-*	1 derslik **en çok** 1 binada bulunur.
-*	1 binada **en çok** çok sayıda derslik bulunur.
+*	1 derslik **en çok** ***1*** binada bulunur.
+*	1 binada **en çok** ***çok*** sayıda derslik bulunur.
 
 ![](Sekiller/04/BirCokBagintisi.png)
 
@@ -182,12 +182,12 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
  
 ### Bir-Çok Bağıntısı / Varolma Bağımlılığı
 
-* 1 apartmanda çok sayıda daire bulunur. En az bir daire bulunmak zorundadır.
-* 1 daire yalnızca bir apartmanda (en az 1 – en çok 1) bulunmak zorundadır.
+* 1 apartmanda **en çok** ***çok*** sayıda daire bulunur. En az bir daire bulunmak zorundadır.
+* 1 daire **en çok** ***1*** apartmanda (**en az 1 – en çok 1**) bulunmak zorundadır.
 
 ![](Sekiller/04/VarOlmaBagimliligi.png)
 
-* 1 tarafının varlığının (Apartman) birincil anahtarı (apartmanNo) diğer varlığa hem yabancı anahtar hem de birincil anahtarın parçası (apartmanNo) olarak eklenir.
+* 1 tarafının (Apartman) birincil anahtarı (apartmanNo) diğer varlığa hem yabancı anahtar hem de birincil anahtarın parçası (apartmanNo) olarak eklenir.
 * **İlişkisel Şema (Metinsel Gösterim)**
   + Apartman(**apartmanNo: Integer**, apartmanAdi: String, adres: String)
   + Daire(**daireNo: Integer**, **apartmanNo: Integer**, daireAdi: String)
@@ -199,8 +199,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ### Çok-Çok Bağıntısı
 
-* 1 öğrenci çok sayıda derse kayıt yaptırabilir.
-*	1 ders çok sayıda öğrenci tarafından alınabilir.
+* 1 öğrenci **en çok** ***çok*** sayıda derse kayıt yaptırabilir.
+*	1 ders **en çok** ***çok*** sayıda öğrenci tarafından alınabilir.
 
 ![](Sekiller/04/CokCokBagintisi.png)
 
@@ -211,8 +211,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ### Tekli Bağıntı
 
-* 1 personele 1 personel liderlik yapar.
-* 1 personel çok  sayıda personele liderlik yapar.
+* 1 personele **en çok** ***1*** personel liderlik yapar.
+* 1 personel **en çok** ***çok***  sayıda personele liderlik yapar.
 
 ![](Sekiller/04/TekliBaginti.png)
 
