@@ -41,7 +41,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * **İlişkisel Veritabanı (Relational Database):** İlişkiler (tablolar) kümesi. Satır ve sütunlardan meydana gelen tablolar topluluğu.
 * **İlişkisel Şema (Relational Schema):** İlişkinin (tablonun) adını ve ek olarak her bir sütunun adını ve tipini belirtir. Metin ile ifade edilebileceği gibi diyagram kullanılarak da gösterilebilir. 
   + Örneğin Ogrenciler isminde bir ilişkinin (tablonun) ilişkisel şeması (metinsel olarak) aşağıda verilmiştir.
-  + Ogrenciler(ogrenciNo: string, adi: string, soyadi: string, yas: integer, ortalama: real)
+  + Ogrenciler(**ogrenciNo: string**, adi: string, soyadi: string, yas: integer, ortalama: real)
   
 ## Tablo
 
@@ -140,6 +140,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + Yazılımlarda yoğun olarak birincil anahtar değeri kullanılır.
 
 ## Vekil Birincil Anahtar
+* Birincil alan fonksiyonlarını yerine getirmek için eklenen alandır.
 
 ![](Sekiller/04/VekilBirincilAnahtar.png)
 
@@ -180,7 +181,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + Derslik(**derslikNo: Integer**, binaNo: Integer, derslikAdi: String)
   + Bina(**binaNo: Integer**, binaAdi: String, adres: String)
  
-### Bir-Çok Bağıntısı / Varolma Bağımlılığı
+### Bir-Çok Bağıntısı / Varolma Bağımlılığı, Tanımlama Bağıntısı
 
 * 1 apartmanda **en çok** ***çok*** sayıda daire bulunur. En az bir daire bulunmak zorundadır.
 * 1 daire **en çok** ***1*** apartmanda (**en az 1 – en çok 1**) bulunmak zorundadır.
