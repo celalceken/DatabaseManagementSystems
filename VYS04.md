@@ -67,8 +67,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Veriler, biçimine ve fonksiyonuna göre sınıflandırılmalıdır. VTYS’lerin desteklediği temel veri tipleri:
   + Nümerik (Numeric): Üzerinde anlamlı aritmetik işlemler yapılabilen veri. Örneğin not ortalamasının saklandığı bir alan nümerik tiptedir.
   + Karakter (Character): Metin verisi, karakter dizisi. Aritmetik işlemler için tanımlanmamış olan karakter ve semboller. Örneğin adı, soyadı, telefon numarası vb. bilgilerin saklandığı alanlar.
-  + Tarih (Date): Tarih verisi. Sezar tarihi (Julian date) formatında takvim tarihlerini ihtiva eden veridir. Örneğin doğum tarihi, bilgisinin saklandığı alan tarih tipindedir.
-  + Mantıksal (Logical): Doğru ya da yanlış (evet veya hayır) değerleri.
+  + Tarih, Zaman (Date, Time): Tarih, zaman verisi için kullanılır. Örneğin; doğum tarihi, sisteme son giriş zamanı vb. alanlar.
+  + Mantıksal (Logical): Doğru ya da yanlış (evet veya hayır - boolean) değerleri.
 * Bir sütun için izin verilen değerler aralığına, o sütunun değer alanı (domain) adı verilir.
   + Örneğin tablodaki öğrenci not bilgileri 0-4 aralığında sınırlandırılmış olduğundan ötürü, bu sütunun değer aralığı [0,4] olarak ifade edilir.
 * ogrenciNo alanı birincil anahtardır.
@@ -93,6 +93,9 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + ogrenciNo
   + ogrenciNo, adi
   + ogrenciNo, adi, soyadi , ...
+  + eposta
+  + kimlikNo
+  ...
 * **Aday Anahtar:** Herbir satırı eşsiz olarak tanımlayabilen ve en az sayıda alana sahip olan süper anahtara aday anahtar denir.
   + “ogrenciNo, adi” ikilisi süper anahtardır. Sadece ogrenciNo alanı kayıtları eşsiz olarak tanımlayabildiğinden dolayı bu ikili aday anahtar değildir.
 * **Birincil Anahtar (Primary Key, PK):** Herbir satırı eşsiz olarak tanımlayabilen ve aday anahtarlar içerisinden seçilen anahtar.
@@ -140,7 +143,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + Yazılımlarda yoğun olarak birincil anahtar değeri kullanılır.
 
 ## Vekil Birincil Anahtar
-* Birincil alan fonksiyonlarını yerine getirmek için eklenen alandır.
+* Birincil anahtar fonksiyonlarını yerine getirmek için eklenen alandır.
 
 ![](Sekiller/04/VekilBirincilAnahtar.png)
 
