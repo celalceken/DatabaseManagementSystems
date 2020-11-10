@@ -25,7 +25,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Temel Kavramlar
 
 * **Varlık (Entity):** Varolan ve benzerlerinden ayırt edilebilen herşey.
-* **Varlık Kümesi (Entity set):** Aynı türden benzer varlıkların oluşturduğu kümeye denir. Varlık kümelerinin ayrık kümeler olması gerekmez. Bunlar iç içe, kesişen ya da ayrık kümeler olabilir. Örnek olarak, Öğrenciler, Kız öğrenciler, Yurt öğrencileri, Açılan Dersler, Doktorlar vb.  sayabiliriz.
+* **Varlık Kümesi (Entity set):** Benzer varlıkların oluşturduğu kümeye denir. Varlık kümelerinin ayrık kümeler olması gerekmez. Bunlar iç içe, kesişen ya da ayrık kümeler olabilir. Örnek olarak, Öğrenciler, Kız öğrenciler, Yurt öğrencileri, Açılan Dersler, Doktorlar vb.  sayabiliriz.
 * **Nitelik (Attribute):** Bir varlık kümesindeki nesnelerin özelliklerini göstermek ve varlıkları birbirinden ayırt etmek için kullanılır. Tablo (table) içerisindeki “sütunlara (column)” karşılık gelir. “Alan” ismi de verilir.
 * **Değer Alanı (Domain):** Bir niteliğin alabileceği değerler uzayına ilgili niteliğin değer alanı denir.
 * **İlişki (Relation):** Satır ve sütunlardan oluşan bir tablo.
