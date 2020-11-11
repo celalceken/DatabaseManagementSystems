@@ -66,7 +66,7 @@ SELECT * FROM "customers" WHERE "Country" = 'Argentina';
 
 SELECT * FROM "customers" WHERE "Country" != 'Brazil';
 
-SELECT * FROM "customers" WHERE "Country"='Argentina' AND "City" = 'Buenos Aires';
+SELECT * FROM "customers" WHERE "Country"='Brazil' AND "Region" = 'SP';
 
 SELECT * FROM "customers" WHERE "Country" = 'Türkiye' OR "Country" = 'Japan';
 
