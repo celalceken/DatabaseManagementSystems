@@ -84,9 +84,8 @@ SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
 
 ### DISTINCT
 
-* Tabloda bazı sütunlar tekrar eden kayıtlar içerebilir. “DISTINCT” ifadesi
-sorgu sonucu gelen değerler içerisindeki tekrarlanan kayıtların tek kayıt
-olarak gösterilmesini sağlar.
+* Sorgu sonucunda yer alan tekrarlı kayıtların (satırların), tek kayıt
+olarak getirilmesini sağlar.
 
 
 ~~~sql
@@ -116,15 +115,20 @@ SELECT * FROM "customers" ORDER BY "Country", "ContactName";
 ~~~
 
 
-### LIKE 
+### LIKE / NOT LIKE
+
+* Veriler içerisindeki belirli desenin aranması için WHERE ile birlikte kullanılır
 
 ~~~sql
+SELECT * FROM "customers" WHERE "Country" LIKE 'P%';
+
+SELECT * FROM "customers" WHERE "Country" NOT LIKE 'P%'; # NULL olanlar getirilmez
+
+SELECT * FROM "customers" WHERE "Country" LIKE '%e';
+
+SELECT * FROM "customers" WHERE "Country" LIKE '_a%';
 
 SELECT * FROM "customers" WHERE "Country" LIKE '%pa%';
-
-SELECT * FROM "customers" WHERE "Country" LIKE '_razil';
-
-SELECT * FROM "customers" WHERE "City" LIKE 'Sao _aulo';
 
 SELECT * FROM "customers" WHERE "Country" LIKE '%pa_';
 ~~~
@@ -158,7 +162,7 @@ SELECT * FROM "customers" WHERE "Region" IS NULL;
 
 ### AS
 
-* AS ifadesi ile alanlara takma isim verilir.
+* AS ifadesi ile alanlara/tablolara takma isim verilir.
 
 ~~~sql
 SELECT "CompanyName" AS "musteriler" FROM "customers";
