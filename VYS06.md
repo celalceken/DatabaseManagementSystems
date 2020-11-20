@@ -44,7 +44,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
 
 
-* Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır.
+* Aşağıdaki sorgular **NorthWind** Örnek Veritabanını Kullanmaktadır.
 
 
 ### SELECT
@@ -89,13 +89,15 @@ olarak getirilmesini sağlar.
 
 
 ~~~sql
+SELECT DISTINCT "OrderID", "Discount" FROM "order_details" ORDER BY "OrderID" 
+~~~
+
+* Kaç farklı şehirden müşteri bulunmaktadır?
+
+~~~sql
 SELECT DISTINCT "City" from "customers";
 ~~~
 
-
-~~~sql
-SELECT DISTINCT "OrderID", "Discount" FROM "order_details" ORDER BY "OrderID" 
-~~~
 
 
 ### ORDER BY
@@ -203,7 +205,7 @@ INNER JOIN "customers" ON "orders"."CustomerID" = "customers"."CustomerID"
 ~~~
 
 
-* Aşağıdaki sorgu eşdeğerdir.
+* "INNER JOIN" yerine "JOIN" ifadesi de kullanılabilir.
 
 ~~~sql
 SELECT 
@@ -247,7 +249,6 @@ SELECT
   "orders"."OrderDate" AS "siparisTarihi"
 FROM "orders", "customers"
 WHERE "orders"."CustomerID" = "customers"."CustomerID"
-ORDER BY "customers"."CompanyName" DESC;
 ~~~
 
 ~~~sql
@@ -331,8 +332,6 @@ INSERT INTO "employees" ("EmployeeID","FirstName", "LastName")
   VALUES (10, 'Melih', 'Can');
 ~~~
 
-
-
 * Aşağıdaki sorgu yukarıdaki birleştirme sorgusuna eşdeğerdir.
 
 ~~~sql
@@ -346,6 +345,7 @@ RIGHT JOIN "employees" ON "orders"."EmployeeID" = "employees"."EmployeeID"
 ORDER BY "OrderID" DESC;
 ~~~
 
+### "CROSS JOIN" ve "FULL OUTER JOIN" türleri de mevcuttur.
 
 ### SELECT ... INTO
 
