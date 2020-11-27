@@ -22,7 +22,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ~~~sql
 CREATE DATABASE "AlisVerisUygulamasi"
 ENCODING='UTF-8'
-LC_COLLATE='tr_TR.UTF-8'-- Bu özellik sonradan değiştirilemez (arama, sıralama işlemleri için)
+LC_COLLATE='tr_TR.UTF-8'-- Bu özellik sonradan değiştirilemez (sıralama (karşılaştırma) işlemleri için)
 LC_CTYPE='tr_TR.UTF-8'	-- Bu özellik sonradan değiştirilemez (büyük küçük harf dönüşümü, bir veri harf mi? vb.)
 OWNER postgres
 TEMPLATE=template0;
