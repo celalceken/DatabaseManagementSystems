@@ -104,7 +104,7 @@ DROP DATABASE "AlisVerisUygulamasi";
  
 ### TRUNCATE TABLE
 
-* Bir tablonun içindeki tüm verileri silmek için kullanılır.
+* Bir tablonun içindeki tüm verileri silmek için kullanılır. Yapısal bir komuttur. Veriler gerçek anlamda silinir ve böylece işgal edilen yer sistem tarafından kullanılabilir hale gelir (Vacuum).
 
 ~~~sql
 CREATE TABLE "Urunler" (
@@ -172,6 +172,7 @@ ALTER TABLE "Urunler" ALTER COLUMN "uretimYeri" TYPE CHAR(20);
 ~~~
 
 
+### SEQUENCE Nesnesi ve Değeri Otomatik Olarak Artan Alanlar
 
 * Otomatik artım örneği - SERIAL kullanımı.
 
@@ -509,27 +510,29 @@ ALTER TABLE "Urunler1" ADD CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu")
 
 ### Yabancı Anahtar (FOREIGN KEY) 
 
+![](Sekiller/07/YabanciAnahtar.png)
+
 ~~~sql
-CREATE TABLE "UrunTipleri" (
-    "tipNo" SERIAL,
+CREATE TABLE "UrunSinifi" (
+    "sinifNo" SERIAL,
     "adi" VARCHAR(30) NOT NULL,
-	CONSTRAINT "urunTipiPK" PRIMARY KEY("tipNo")
+	CONSTRAINT "urunSinifiPK" PRIMARY KEY("sinifNo")
 );
 ~~~
 
 ~~~sql
 CREATE TABLE "Urunler" (
-	"urunNo" SERIAL,
+	"urunNo" INTEGER DEFAULT NEXTVAL('sayac'),
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"urunTipi" INTEGER NOT NULL, 
+	"sinifi" INTEGER NOT NULL, 
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT '0',
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0),
-	CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") REFERENCES "UrunTipleri"("tipNo")	
+	CONSTRAINT "urunSinifiFK1" FOREIGN KEY("sinifi") REFERENCES "UrunSinifi"("sinifNo")
 );
 ~~~
 
