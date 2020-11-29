@@ -521,6 +521,10 @@ CREATE TABLE "UrunSinifi" (
 ~~~
 
 ~~~sql
+CREATE SEQUENCE "sayac";
+~~~
+
+~~~sql
 CREATE TABLE "Urunler" (
 	"urunNo" INTEGER DEFAULT NEXTVAL('sayac'),
 	"kodu" CHAR(6) NOT NULL,
