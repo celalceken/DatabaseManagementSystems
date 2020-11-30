@@ -14,7 +14,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 ## İndeks
-
+* Ayrıntılar için https://github.com/celalceken/DatabaseManagementSystems/blob/master/VYS04.md bağlantısına bakınız.
 ~~~sql
 CREATE TABLE "Musteriler" (
 	"musteriNo" SERIAL NOT NULL,
