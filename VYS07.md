@@ -113,7 +113,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -124,12 +124,12 @@ CREATE TABLE "Urunler" (
 INSERT INTO "Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO001', 'TV', '13', '2019-10-30', 5);
+('ELO001', 'TV', 1300, '2019-10-30', 5);
 
 INSERT INTO "Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO002', 'TV', '13', '2019-10-30', 5);
+('ELO002', 'TV', 1300, '2019-10-30', 5);
 ~~~
 
 ~~~sql
@@ -148,7 +148,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -183,7 +183,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -194,7 +194,7 @@ CREATE TABLE "Urunler" (
 INSERT INTO "Urunler" 
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'TV', '13', '2019-10-30', 5);
+('ELO004', 'TV', 1300, '2019-10-30', 5);
 ~~~
 
 
@@ -207,7 +207,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -226,7 +226,7 @@ ALTER SEQUENCE "sayac" OWNED BY "Urunler"."urunNo";
 INSERT INTO "Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-(NEXTVAL('"public"."sayac"'), 'ELO004', 'TV', '13', '2019-10-30', 5);
+(NEXTVAL('"public"."sayac"'), 'ELO004', 'TV', 1300, '2019-10-30', 5);
 ~~~
 
 
@@ -257,7 +257,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -268,14 +268,14 @@ CREATE TABLE "Urunler" (
 INSERT INTO "Urunler"
 ("urunNo", "kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-(NEXTVAL('sayac'), 'ELO004', 'TV', '13', '2019-10-30', 5);
+(NEXTVAL('sayac'), 'ELO004', 'TV', 1300, '2019-10-30', 5);
 ~~~
 
 ~~~sql
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'TV', '13', '2019-10-30', 5);
+('ELO004', 'TV', 1300, '2019-10-30', 5);
 ~~~
 
 
@@ -296,7 +296,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -309,7 +309,7 @@ CREATE TABLE "Urunler" (
 INSERT INTO "Urunler"
 ("adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('TV', '13', '2019-10-30', 5);
+('TV', 1300, '2019-10-30', 5);
 ~~~
 
 ~~~sql
@@ -344,7 +344,7 @@ CREATE TABLE "Urunler" (
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "miktari")
 VALUES
-('ELO004', 'TV', '13', 5);
+('ELO004', 'TV', 1300, 5);
 ~~~
 
 ~~~sql
@@ -369,7 +369,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -394,7 +394,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu", "adi"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -413,14 +413,14 @@ ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerUnique" UNIQUE ("kodu", "adi");
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'TV', '13', '2016-10-24', 5);
+('ELO004', 'TV', 1300, '2016-10-24', 5);
 ~~~
 
 ~~~sql
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO005', 'Bilgisayar', '13', '2019-10-20', 5);
+('ELO005', 'Bilgisayar', 1500, '2019-10-20', 5);
 ~~~
 
 
@@ -437,7 +437,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0)
@@ -456,7 +456,7 @@ ALTER TABLE "Urunler" ADD CONSTRAINT "urunlerCheck" CHECK ("miktari" >= 0);
 INSERT INTO "Urunler"
 ("kodu", "adi", "birimFiyati", "uretimTarihi", "miktari")
 VALUES
-('ELO004', 'Bilgisayar', '13', '2016-04-05', -3);
+('ELO004', 'Bilgisayar', 1300, '2016-04-05', -3);
 ~~~
 
 
@@ -469,7 +469,7 @@ CREATE TABLE "Urunler" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo")
 );
 ~~~
@@ -493,7 +493,7 @@ CREATE TABLE "Urunler1" (
 	"adi" VARCHAR(40) NOT NULL,
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK1" PRIMARY KEY("urunNo", "kodu")
 );
 ~~~
@@ -532,7 +532,7 @@ CREATE TABLE "Urunler" (
 	"sinifi" INTEGER NOT NULL, 
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0),
@@ -551,7 +551,7 @@ CREATE TABLE "Urunler" (
 	"urunTipi" INTEGER NOT NULL, 
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
-	"miktari" SMALLINT DEFAULT '0',
+	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0),
