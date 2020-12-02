@@ -25,6 +25,10 @@ CREATE TABLE "Musteriler" (
 ~~~
 
 ~~~sql
+SHOW lc_collate;
+~~~
+
+~~~sql
 CREATE INDEX "musterilerAdiIndex" ON "Musteriler" ("adi");
 ~~~
 
