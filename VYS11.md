@@ -41,14 +41,16 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ### Dezavantajları
 
+* Uygulamanın iş mantığı veritabanı sunucusuna kaydırıldığı için uygulama ile veritabanı arasındaki bağımlılık artar ve veritabanından bağımsız kodlama yapmak gitgide imkansızlaşır.
+
+* Veritabanı tasarımının anlaşılabilirliğini düşürür. 
+  + Görünür veritabanı yapısının arkasında, ilişkileri kolayca anlaşılayamayan başka bir yapı oluştururlar.
+
 * Fonksiyon / saklı yordam ile program yazmak, değiştirmek (sürüm kontrolü) ve hata bulmak zordur.
 
 * Veritabanı Yönetim Sistemi, veri depolama ve listeleme işlerine ek olarak farklı işler yapmak zorunda da kalacağı için bellek kullanımı ve işlem zamanı açısından olumsuz sonuçlara neden olabilir.
 
 * Fonksiyonların / saklı yordamların yapacağı işler uygulama yazılımlarına da yaptırılabilir.
-
-* Uygulamanın iş mantığı veritabanı sunucusuna kaydırıldığı için uygulama ile veritabanı arasındaki bağımlılık artar ve veritabanından bağımsız kodlama yapmak gitgide imkansızlaşır.
-
 
 
 ## Fonksiyon Örneği 1 
@@ -317,11 +319,10 @@ SELECT * FROM inch2cm(2);
 
 
 
-
-
 ## İmleç (Cursor)
 
-* İmleç (cursor), sorgunun sonuç kümesinin toplu olarak getirilmesi yerine veritabanı sunucusundan satır satır getirilmesini sağlar. 
+* İmleç (cursor), sorgu sonucunun toplu olarak oluşturulması yerine parça parça (satır satır) oluşturulmasını sağlar.
+
 * LIMIT ve OFFSET yapılarının da benzer bir işi yaptığını hatırlayınız.
 
 * Yük dengeleme, uygulama sunucusunun, veritabanı sunucusunun ve istemci belleğinin verimli kullanımı vb. amaçlar için kullanılabilir.
@@ -379,9 +380,10 @@ SELECT * FROM filmAra(2006, 'T');
 
 * Zamanlanmış görevler için alternatif bir yoldur. 
   + Görevler beklenmeden INSERT, UPDATE ve DELETE işlemlerinden önce ya da sonra otomatik olarak yerine getirilebilir.
+  + Örneğin; kaydı silinen müşteriyi, "EskiMusteriler" tablosuna gönderme.
 
 * Tablolardaki değişikliklerin günlüğünün tutulması (logging) işlemlerinde oldukça faydalıdır.
-
+  + Örneğin; kişinin şifre değişikliğini log tablosuna gönder.
 
 
 ### Dezavantajları
