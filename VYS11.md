@@ -277,8 +277,7 @@ LANGUAGE "plpgsql"
 AS
 $$
 DECLARE
-    sonuc TEXT;
-    personel record;
+    personel RECORD;
     miktar NUMERIC;
 BEGIN
     personel := personelAra(personelNo);
