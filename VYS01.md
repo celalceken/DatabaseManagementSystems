@@ -19,7 +19,7 @@ Ders tanıtımı için aşağıdaki bağlantıları inceleyiniz.
 * Klasik Dosya Sistemlerinin Zayıflıkları
 * Veritabanı Sistemi
 * Veritabanı Sistemi Ortamı
-* Veritabanı Yönetim Sistemi Kullanmanın Yararları VTYS ile Dosya Sisteminin Karşılaştırılması
+* Veritabanı Yönetim Sistemi Kullanmanın Yararları - VTYS ile Dosya Sisteminin Karşılaştırılması
 * Örnek Bir Veritabanı
 * Veritabanı Sınıfları
 * Kaynaklar
