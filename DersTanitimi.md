@@ -28,6 +28,9 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 * Amacımız
   + Veritabanı Yönetim Sistemleri hakkında beceriler kazandırmak.
 
+
+![](Sekiller/01/BuyukResim.png)
+
 ## Değerlendirme
 
 * Yıl içi çalışmalar 
