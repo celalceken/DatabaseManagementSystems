@@ -100,7 +100,18 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 
 ## Ders Akışı
 
-Veritabanı Sistemleri, Veri Modelleri, Varlık Bağıntı Modeli, Genişletilmiş Varlık Bağıntı Modeli, İlişkisel Veritabanı Modeli,  İlişkisel Cebir, Yapısal Sorgulama Dili (SQL), İleri SQL, Normalizasyon ve Başarım İyileştirme, SQL Programlama, Veritabanı Güvenliği, Diğer Veritabanı Modelleri.
+1. Veritabanı Sistemleri, 
+2. Veri Modelleri, Varlık Bağıntı Modeli
+3. Varlık Bağıntı Modeli Uygulamaları
+4. İlişkisel Veritabanı Modeli 
+5. Genişletilmiş Varlık Bağıntı Modeli, İlişkisel Cebir, 
+6. Yapısal Sorgulama Dili (SQL), Temel SQL(DML)
+7. Temel SQL(DDL) 
+8. İleri SQL
+9. İleri SQL
+10. SQL Programlama
+11. Normalizasyon ve Başarım İyileştirme
+12. Veritabanı Güvenliği, Diğer Veritabanı Modelleri
 
 ## Sıkça Sorulan Sorular
 
