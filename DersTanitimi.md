@@ -35,9 +35,7 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 
 * Yıl içi çalışmalar 
 
-  + Ödev 1 - %10
-  + Ödev 2 - %10
-  + Proje/Tasarım - %30
+  + Proje/Tasarım - %50
   + Ara sınav (vize) - %50
 
 * Yıl sonu
