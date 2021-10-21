@@ -111,6 +111,7 @@ Geliştirilecek kitabevi yazılımı için veritabanı tasarlanması istenmekted
 ### Varlık Bağıntı Diyagramı
 
 ![](Sekiller/03/UBSVBDiyagrami.png)
+![](Sekiller/04/CokCokBagintisi.png)
 
 
 ### Örnek Tablolar
