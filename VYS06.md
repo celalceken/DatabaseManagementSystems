@@ -52,6 +52,8 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Select Komutu veritabanından veri almak (arama/listeleme) için kullanılır.
 
 ~~~sql
+SET search_path TO schema,public;
+
 SELECT * FROM "customers";
 
 SELECT "CompanyName", "ContactName" FROM "customers";
