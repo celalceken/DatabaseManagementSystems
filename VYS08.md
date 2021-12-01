@@ -317,13 +317,11 @@ LEFT OUTER JOIN "Personel" AS "Yonetici" ON "Yonetici"."personelNo" = "Calisan".
 
 * Tablo(lar)daki tüm alanlar görünüme dahil edilebileceği gibi yalnızca belli alanlar da görünüme dahil edilebilir.
 
-* Genellikle karmaşık olan seçme (SELECT) işlemlerinde tercih edilir.
+* Genellikle, karmaşık olan seçme (SELECT) işlemlerini basit hale getirmek için kullanılır.
 
 * Dinamiktir. GÖRÜNÜM (VIEW) ile oluşturulan tabloya gerçekleştirilen her erişimde kendisini oluşturan ifadeler (görünüm – view ifadeleri) yeniden çalıştırılır.
 
-* Karmaşık sorguları basit hale getirir.
-
-* Güvenlik nedeniyle de kullanılır.
+* Güvenliği sağlamak amacıyla da kullanılır.
   + Örneğin şirket personeli, müşterilerin genel bilgilerini (ad, soyad, adres v.b.) görebilsin ancak kredi kartı bilgilerine erişemesin isteniyorsa yalnızca görmesini istediğimiz bilgileri içeren bir görünüm oluşturulabilir ve ilgili personeli bu görünüme yetkilendiririz.
 
 > Aşağıdaki sorgular NorthWind Örnek Veritabanını Kullanmaktadır. 
