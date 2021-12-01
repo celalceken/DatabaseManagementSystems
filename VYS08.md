@@ -463,12 +463,11 @@ SELECT AVG("UnitPrice") FROM "products";
 
 ### GROUP BY
 
-* Sorgu sonucunu belirtilen alan(lar)a göre gruplar.
-* Seçilecek alan, gruplama yapılan alan ya da çoklu satır fonksiyonları (COUNT) olmalı.
-* Gruplama işleminden sonra koşul yazılabilmesi için HAVING ifadesinin kullanılması gereklidir.
+* Sorgu sonucunu belirtilen alan(lar)a göre gruplayarak oluşturur.
+* Gruplama işleminde seçilecek alan, gruplama yapılan alan ya da çoklu satır fonksiyonları (COUNT, SUM, AVG vb.) olmalıdır.
 
 
-* Aşağıdaki sorgu, ü̈rünleri tedarikçilerine göre gruplar ve her tedarikçinin sağladığı ürünlerin sayısını hesaplayarak tedarikçi bilgisi ile birlikte döndürür.
+* Aşağıdaki sorgu, ü̈rünleri tedarikçilerine (SupplierID) göre gruplar ve her tedarikçinin sağladığı ürünlerin sayısını (COUNT) hesaplayarak tedarikçi bilgisi ile birlikte döndürür.
 
 ~~~sql
 SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
@@ -482,6 +481,7 @@ FROM "products"
 GROUP BY "SupplierID";
 ~~~
 
+* Aşağıdaki sorgu, siparişleri müşteri firma adına (CompanyName) göre gruplar ve her müşterinin satın aldığı ürün sayısını (COUNT) ve bu ürünlerin toplam (SUM) birim fiyatını hesaplar.
 ~~~sql
 SELECT "customers"."CompanyName", COUNT("orders"."OrderID"), SUM("products"."UnitPrice")
 FROM "orders" 
@@ -495,8 +495,9 @@ ORDER BY 1;
 
 ### HAVING
 
-* Gruplandırılmış veriler üzerinde filtreleme yapmak için kullanılır.
-* HAVING ile yazılan koşullar çoklu satır fonksiyonları ile veya gruplama yapılan alan üzerinden yapılır.
+* Gruplandırılmış veriler üzerinde filtreleme yapmak için kullanılır. 
+* Gruplama işleminden sonra koşul yazılabilmesi için WHERE yerine HAVING ifadesinin kullanılması gereklidir.
+* HAVING ile yazılan koşullar içerisinde çoklu satır fonksiyonları veya gruplama yapılan alan kullanılabilir.
 
 ~~~sql
 SELECT "SupplierID", COUNT("SupplierID") AS "urunSayisi"
