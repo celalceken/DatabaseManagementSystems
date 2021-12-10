@@ -13,7 +13,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Hazır Fonksiyonlar
 
 
-> Pagila örnek veritabanını kullanmaktadır.
+> Pagila örnek veritabanını kullanmaktadır. (VB Diyagramı: https://dataedo.com/samples/html/Pagila/doc/Pagila_10/modules/Paglia_database_diagram_103/module.html)
 
 
 ## Fonksiyon (Function) / Saklı Yordam (Stored Procedure)
@@ -24,6 +24,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 
 ### Avantajları
+Web Uygulama Mimarısı.
 
 * Uygulamanın başarımını iyileştirir. 
   + Fonksiyonlar / saklı yordamlar, bir defa oluşturulduktan sonra derlenerek sistem kataloğunda saklanır. Her çağrıldıklarında SQL motoru tarafından derlenmek zorunda olan SQL ifadelerine göre çok daha hızlıdır.
