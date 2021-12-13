@@ -21,10 +21,9 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * Fonksiyonlar / saklı yordamlar, sistem kataloğunda saklanan SQL ifadeleridir. Fonksiyonlar / saklı yordamlar; uygulama yazılımları, tetikleyici ya da başka bir fonksiyon / saklı yordam tarafından çağrılabilirler.
 
-
+![](Sekiller/11/WebUygulamaMimarisi.png)
 
 ### Avantajları
-Web Uygulama Mimarısı.
 
 * Uygulamanın başarımını iyileştirir. 
   + Fonksiyonlar / saklı yordamlar, bir defa oluşturulduktan sonra derlenerek sistem kataloğunda saklanır. Her çağrıldıklarında SQL motoru tarafından derlenmek zorunda olan SQL ifadelerine göre çok daha hızlıdır. 
