@@ -373,6 +373,11 @@ INSERT INTO "customers"
 VALUES ('ZZA', 'Zafer', 'Ayşe', 'Serdivan', 'Sakarya', '54400', 'Türkiye');
 ~~~
 
+~~~sql
+INSERT INTO "public"."categories" ( "CategoryID", "CategoryName", "Description") 
+VALUES (9, 'Sağlık', 'Sağlık Ürünleri' ),
+       (10, 'Temizlik', 'Temizlik Ürünleri' );
+~~~
 
 ### INSERT INTO ... SELECT
 
