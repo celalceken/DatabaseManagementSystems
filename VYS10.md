@@ -23,7 +23,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 ### WHERE ile Alt Sorgu (Tek Değer Döndüren) Kullanımı 
 
-* WHERE ifadesinde yalnızca =, !=, <, > gibi operatörler kullanılıyor ise alt sorgular sonucunda tek alan ve tek satır dönmeli ve veri tipi uygun olmalı. Aksi halde hata verir.
+* WHERE ifadesinde yalnızca =, !=, <, >, <=, >= gibi operatörler kullanılıyor ise alt sorgular sonucunda tek alan ve tek satır dönmeli ve veri tipi uygun olmalı. Aksi halde hata verir.
 
 * Çoklu satır fonksiyonlarından geriye tek değer döndürüldüğü için alt sorgu içerisinde bu tür fonksiyonlar kullanılabilir.
 
@@ -240,7 +240,7 @@ FROM "products";
 ~~~sql
 SELECT
   "SupplierID",
-  COUNT("UnitsInStock") AS "toplam",
+  SUM("UnitsInStock") AS "toplam",
   SQRT(SUM(("UnitsInStock" - (SELECT AVG("UnitsInStock") FROM "products")) ^ 2) / COUNT("UnitsInStock"))  AS "standartSapma"
 FROM "products"
 GROUP BY "SupplierID";
