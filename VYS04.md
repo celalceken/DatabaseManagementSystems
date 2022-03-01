@@ -286,8 +286,7 @@ Bir araç üreticisi, farklı modellerde araçlar üretmektedir. Ürettiği ara�
 
 ### Senaryo
 
-Bir elektronik ticaret şirketi geliştirlecek olan bir elektronik ticaret sistemi için bir veritabanı tasarlanması isteniyor. Tasarlanan veritabanında müşteriler, ürünler, siparişler, faturalar, satış temsilcileri vb. bilgilerin saklanması beklenmektedir.
-
+Elektornik ticaret yazılımının ihtiyacı olan verilerin yönetimi için bir veritabanı geliştirilmesi isteniyor. İş kuralları verilen bu veritabanının VB diyagramını ve ilişkisel şemasını oluşturunuz.
 
 ### İş Kuralları
 
