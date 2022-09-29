@@ -124,7 +124,7 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 * Ödevimi geç teslim edebilir miyim?
   + Hayır. Ödevler muhakkak son teslim zamanından önce teslim edilmelidir. Geç teslim edilen ödevlerde mazeret kabul edilmez.
 * Ara sınava katılamadım. Ne yapmalıyım?
-  + Yıl içi çalışmalarının (ödev, ara sınav vb.) mazereti yoktur.
+  + Yönetmeliğe bakınız.
 * Final sınavına katılamadım. Ne yapmalıyım?
   + Yönetmeliğe bakınız.
 * Sınavımın yanlış değerlendirildiğini düşünüyorum. Ne yapabilirim?
