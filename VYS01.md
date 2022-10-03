@@ -93,7 +93,7 @@ Ders tanıtımı için aşağıdaki bağlantıları inceleyiniz.
   + Suncular, iş istasyonları, ağ ortamı, depolama cihazları, raid vb.
 * Yazılım
   + İşletim Sistemleri
-  + VTYS (Oracle, PostgreSQL, DB2, MSSQL, MySQL vb.)
+  + VTYS (PostgreSQL, MySQL, DB2, Oracle, MSSQL, Cassandra, MongoDB, Redis  vb.)
   + Uygulama programları ve yardımcı programlar
 * Kişiler
   + Sistem yöneticisi, veritabanı yöneticisi, veritabanı tasarımcısı, uygulama programcısı, kullanıcı
