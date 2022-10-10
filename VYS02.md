@@ -96,6 +96,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * 1960-1970 lerde çoğunlukla IBM ana çatı (mainframe) sistemlerde kullanılmıştır
 * Dosyalar arasında ilişki yoktur.
+* Veri tekrarı ve sıralı tarama gibi sorunları bulunmaktadır. 
 * Örnek bir dosya yapısı aşağıda görünmektedir.
 
 ![](Sekiller/02/DosyaYapisi.png)
