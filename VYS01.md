@@ -158,7 +158,7 @@ SELECT * FROM Ogrenciler;
 ![](Sekiller/01/VeritabaniSiniflariTablo.png)
 
 
-## Kaynaklar
+## Kaynaklar 
 
 * Carlos Coronel, Steven Morris, and Peter Rob, Database Systems: Design, Implementation, and Management, Cengage Learning.
 * http://www.digitalinformationworld.com/2015/02/fascinating- social-networking-stats-2015.html
