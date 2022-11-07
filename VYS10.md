@@ -32,7 +32,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ~~~sql
 SELECT AVG("UnitPrice") FROM "products";
 ~~~
-
+ 
 ~~~sql
 SELECT "ProductID", "UnitPrice" FROM "products"
 WHERE "UnitPrice" < (SELECT AVG("UnitPrice") FROM "products");
