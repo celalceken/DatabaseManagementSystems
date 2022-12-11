@@ -8,7 +8,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * Fonksiyon (Function) / Saklı Yordam (Stored Procedure)
 * Koşul İfadeleri, Döngü İfadeleri
-* Fonksiyon / Salı Yordam Örnekleri
+* Fonksiyon / Saklı Yordam Örnekleri
 * İmleç (Cursor)
 * Tetikleyici (Trigger)
 * Hazır Fonksiyonlar
@@ -333,10 +333,13 @@ CREATE TABLE "public"."musteriodemeleri" (
      "magazayoneticisiadi" varchar(50),
      "magazayoneticisisoyadi" varchar(50),
      "toplamodeme" double precision,
-     "tarih" timestamp);~~~
+     "tarih" timestamp);
+~~~
+
 ~~~sql
 create sequence sequence1;
 ~~~
+
 ~~~sql
 CREATE OR REPLACE PROCEDURE public.musteriodemelerinihesapla1(storeid smallint)
 -- Mağazaya göre müşteri ödemelerini hesaplayan saklı yordam
@@ -360,6 +363,7 @@ BEGIN
 END;
 $$
 ~~~
+
 ~~~sql
 call musteriodemelerinihesapla1(1::smallint);
 ~~~
