@@ -8,6 +8,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 
 * Fonksiyon (Function) / Saklı Yordam (Stored Procedure)
 * Koşul İfadeleri, Döngü İfadeleri
+* Fonksiyon / Salı Yordam Örnekleri
 * İmleç (Cursor)
 * Tetikleyici (Trigger)
 * Hazır Fonksiyonlar
@@ -316,7 +317,52 @@ LANGUAGE "plpgsql";
 SELECT * FROM inch2cm(2);
 ~~~
 
+## Saklı Yordam (Stored Procedure)
 
+* SELECT, INSERT, UPDATE, DELETE gibi DML komutlarının içerisinden çağrılamaz. 
+* return ile geriye değer döndürmezler.
+* "call" ifadesi ile çağırılırlar. 
+* "commit"/"rollback" yapılabilir (fonksiyon atomiktir- başlama ve bitiş tek işlemdir. İçerisinde "commit" işlemi yapılamaz).
+
+## Saklı Yordam Örneği 1
+~~~sql
+CREATE TABLE "public"."musteriodemeleri" (
+     "id" Bigint,
+     "musteriadi" varchar(50),
+     "musterisoyadi" varchar(50),
+     "magazayoneticisiadi" varchar(50),
+     "magazayoneticisisoyadi" varchar(50),
+     "toplamodeme" double precision,
+     "tarih" timestamp);~~~
+~~~sql
+create sequence sequence1;
+~~~
+~~~sql
+CREATE OR REPLACE PROCEDURE public.musteriodemelerinihesapla1(storeid smallint)
+-- Mağazaya göre müşteri ödemelerini hesaplayan saklı yordam
+    LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    customerrow customer%ROWTYPE;
+    yoneticiid smallint;
+    yonetici record;
+    odemetoplami double precision;
+BEGIN
+    FOR customerrow IN SELECT * FROM customer where store_id=storeid order by customer_id
+        LOOP
+            yoneticiid:= (select manager_staff_id from public.store where store_id=storeid);
+            yonetici:= personelAra(yoneticiid);
+            odemetoplami:=(SELECT SUM(amount) FROM payment WHERE customer_id = customerrow.customer_id);
+            INSERT INTO musteriodemeleri(id, musteriadi,musterisoyadi,magazayoneticisiadi,magazayoneticisisoyadi, toplamodeme, tarih)
+            VALUES (NEXTVAL('public.sequence1'), customerrow.first_name, customerrow.last_name, yonetici.adi, yonetici.soyadi,odemetoplami,current_timestamp );
+        END LOOP;
+END;
+$$
+~~~
+~~~sql
+call musteriodemelerinihesapla1(1::smallint);
+~~~
 
 ## İmleç (Cursor)
 
