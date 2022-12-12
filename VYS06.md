@@ -428,7 +428,7 @@ Uygulama programları ile veritabanı işlemleri yapılabilmesi için, programla
 
 ### Java ile PostgreSQL İşlemleri
 
-PostgreSQL jdbc sürücüsü https://jdbc.postgresql.org/download.html bağlantısından indirilebilir.
+PostgreSQL jdbc sürücüsü https://jdbc.postgresql.org bağlantısından indirilebilir.
 
 Sürücüler aşağıdaki temel fonksiyonları sağlar:
 
