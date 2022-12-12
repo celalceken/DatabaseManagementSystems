@@ -352,10 +352,10 @@ DECLARE
     yonetici record;
     odemetoplami double precision;
 BEGIN
+    yoneticiid:= (select manager_staff_id from public.store where store_id=storeid);
+    yonetici:= personelAra(yoneticiid);
     FOR customerrow IN SELECT * FROM customer where store_id=storeid order by customer_id
         LOOP
-            yoneticiid:= (select manager_staff_id from public.store where store_id=storeid);
-            yonetici:= personelAra(yoneticiid);
             odemetoplami:=(SELECT SUM(amount) FROM payment WHERE customer_id = customerrow.customer_id);
             INSERT INTO musteriodemeleri(id, musteriadi,musterisoyadi,magazayoneticisiadi,magazayoneticisisoyadi, toplamodeme, tarih)
             VALUES (NEXTVAL('public.sequence1'), customerrow.first_name, customerrow.last_name, yonetici.adi, yonetici.soyadi,odemetoplami,current_timestamp );
