@@ -504,7 +504,7 @@ AS
 $$
 BEGIN
     NEW."CompanyName" = UPPER(NEW."CompanyName"); -- büyük harfe dönüştürdükten sonra ekle
-    NEW."ContactName" = LTRIM(NEW."ContactName"); -- Önceki ve sonraki boşlukları temizle
+    NEW."ContactName" = TRIM(NEW."ContactName"); -- Önceki ve sonraki boşlukları temizle
     IF NEW."City" IS NULL THEN
             RAISE EXCEPTION 'Sehir alanı boş olamaz';  
     END IF;
@@ -523,12 +523,12 @@ EXECUTE PROCEDURE "kayitEkleTR1"();
 
 ~~~sql
 INSERT INTO "customers" ( "CustomerID","CompanyName", "ContactName") 
-VALUES ( '45', 'Orka Ltd.', '    Ayşe Yalın     ' );
+VALUES ( '45', 'Abc Ltd.', '    Ayşe Yalın     ' );
 ~~~
 
 ~~~sql
 INSERT INTO "customers" ( "CustomerID","CompanyName", "ContactName","City") 
-VALUES ( '45', 'Orka Ltd.', '    Ayşe Yalın     ', 'Sakarya' );
+VALUES ( '45', 'Abc Ltd.', '    Ayşe Yalın     ', 'Sakarya' );
 ~~~
 
 ~~~sql
