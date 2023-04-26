@@ -15,10 +15,10 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 ## Çalışma Ortamının Hazırlanması
 
 * PostgreSQL kurulumu
-  + PostgreSQL 11.x
+  + PostgreSQL
   + https://www.postgresql.org/download
 * pgAdmin kurulumu
-  + pgAdmin 4
+  + pgAdmin
   + PostgreSQL ile dağıtılıyor.
 * Valentina Studio
   + https://www.valentina-db.com/en/valentina-studio-overview
