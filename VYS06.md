@@ -90,17 +90,15 @@ SELECT * FROM "order_details" WHERE "UnitPrice" > 14;
 * Sorgu sonucunda yer alan tekrarlı kayıtların (satırların), tek kayıt
 olarak getirilmesini sağlar.
 
-
-~~~sql
-SELECT DISTINCT "OrderID", "Discount" FROM "order_details" ORDER BY "OrderID" 
-~~~
-
 * Kaç farklı şehirden müşteri bulunmaktadır?
 
 ~~~sql
 SELECT DISTINCT "City" from "customers";
 ~~~
 
+~~~sql
+SELECT DISTINCT "OrderID", "Discount" FROM "order_details" ORDER BY "OrderID" 
+~~~
 
 
 ### ORDER BY
