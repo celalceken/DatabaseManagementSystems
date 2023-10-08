@@ -93,8 +93,8 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
   + ioztel@sakarya.edu.tr - Oda No: 1160
 * Nurbanu OĞUR
   + nbogur@sakarya.edu.tr - Oda No: 1204
-* Feyza ÇEREZCİ
-  + feyzacerezci@sakarya.edu.tr - Oda No: 1206
+* Mustafa Alp Eren KILIÇ
+  + mustafakilic@sakarya.edu.tr - Oda No: 1206
 
 ## Ders Akışı
 
