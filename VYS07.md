@@ -560,7 +560,7 @@ CREATE TABLE "Urunler" (
 ~~~
 
 
-* Üç davranış şekli vardır: NO ACTION (varsayılan), RESTRICT, CASCADE
+* Oluşturulan bağlantının destekleyebileceği davranış şekilleri: NO ACTION (varsayılan), RESTRICT, CASCADE, SET NULL, SET DEFAULT
 
 ~~~sql
 ALTER TABLE "Urunler" DROP CONSTRAINT "urunSinifiFK1";
