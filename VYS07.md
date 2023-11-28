@@ -548,14 +548,14 @@ CREATE TABLE "Urunler" (
 	"urunNo" SERIAL,
 	"kodu" CHAR(6) NOT NULL,
 	"adi" VARCHAR(40) NOT NULL,
-	"urunTipi" INTEGER NOT NULL, 
+	"sinifi" INTEGER NOT NULL, 
 	"uretimTarihi" DATE DEFAULT '2019-01-01',
 	"birimFiyati" MONEY,
 	"miktari" SMALLINT DEFAULT 0,
 	CONSTRAINT "urunlerPK" PRIMARY KEY("urunNo"),
 	CONSTRAINT "urunlerUnique" UNIQUE("kodu"),
 	CONSTRAINT "urunlerCheck" CHECK("miktari" >= 0),
-	CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") REFERENCES "UrunTipleri"("tipNo") ON DELETE NO ACTION ON UPDATE NO ACTION
+	CONSTRAINT "urunSinifiFK1" FOREIGN KEY("sinifi") REFERENCES "UrunSinifi"("sinifNo") ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 ~~~
 
@@ -563,29 +563,29 @@ CREATE TABLE "Urunler" (
 * Üç davranış şekli vardır: NO ACTION (varsayılan), RESTRICT, CASCADE
 
 ~~~sql
-ALTER TABLE "Urunler" DROP CONSTRAINT "urunlerFK";
+ALTER TABLE "Urunler" DROP CONSTRAINT "urunSinifiFK1";
 ~~~
 
 ~~~sql
 ALTER TABLE "Urunler"
-ADD CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") 
-REFERENCES "UrunTipleri"("tipNo")
+ADD CONSTRAINT "urunSinifiFK1" FOREIGN KEY("sinifi")
+REFERENCES "UrunSinifi"("sinifNo")
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 ~~~
 
 ~~~sql
 ALTER TABLE "Urunler"
-ADD CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") 
-REFERENCES "UrunTipleri"("tipNo")
+ADD CONSTRAINT "urunSinifiFK1" FOREIGN KEY("sinifi")
+REFERENCES "UrunSinifi"("sinifNo")
 ON DELETE RESTRICT
 ON UPDATE RESTRICT;
 ~~~
 
 ~~~sql
 ALTER TABLE "Urunler"
-ADD CONSTRAINT "urunlerFK" FOREIGN KEY("urunTipi") 
-REFERENCES "UrunTipleri"("tipNo")
+ADD CONSTRAINT "urunSinifiFK1" FOREIGN KEY("sinifi")
+REFERENCES "UrunSinifi"("sinifNo")
 ON DELETE CASCADE
 ON UPDATE CASCADE;
 ~~~
