@@ -366,6 +366,10 @@ WHERE "Country" = 'Mexico';
 ~~~
 
 ~~~sql
+SELECT * from customers WHERE "Country" = 'Mexico';
+~~~
+
+~~~sql
 SELECT COUNT(*)
 FROM "customers"
 WHERE "Country" = 'Mexico';
