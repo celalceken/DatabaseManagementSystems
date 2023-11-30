@@ -485,7 +485,7 @@ FROM "products"
 GROUP BY "SupplierID";
 ~~~
 
-* Aşağıdaki sorgu, siparişleri müşteri firma adına (CompanyName) göre gruplar ve her müşterinin satın aldığı ürün sayısını (COUNT) ve bu ürünlerin toplam (SUM) birim fiyatını hesaplar.
+* Northwind veritabanında; sipariş veren müşterilerin şirket isimleri, her müşterinin vermiş olduğu sipariş sayısı ve sipaişlerindeki ürünlerin toplam birim fiyatını hesaplayan SQL ifadesi?
 ~~~sql
 SELECT "customers"."CompanyName", COUNT("orders"."OrderID"), SUM("products"."UnitPrice")
 FROM "orders" 
@@ -495,7 +495,7 @@ LEFT OUTER JOIN "products" ON "order_details"."ProductID" = "products"."ProductI
 GROUP BY "CompanyName"
 ORDER BY 1;
 ~~~
-
+* Yukarıdaki sorgu, siparişleri müşteri firma adına (CompanyName) göre gruplar ve her müşterinin satın aldığı ürün sayısını (COUNT) ve bu ürünlerin toplam (SUM) birim fiyatını hesaplar.
 
 ### HAVING
 
