@@ -23,7 +23,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Valentina Studio
   + https://www.valentina-db.com/en/valentina-studio-overview
 * NorthWind veritabanının içe aktarılması, dışa verilmesi
-  + <a href="https://github.com/celalceken/DatabaseManagementSystems/blob/master/NorthWind.sql.zip" download target="_blank">VS ile içe aktaracağınız veritabanını buradan indirebilirsiniz</a>
+  + <a href="https://github.com/celalceken/DatabaseManagementSystems/blob/master/OrnekVeritabanlari/NorthWind.sql.zip" download target="_blank">VS ile içe aktaracağınız veritabanını buradan indirebilirsiniz</a>
   + <a href="https://github.com/celalceken/DatabaseManagementSystems/blob/master/NorthWind.backup" download target="_blank">pgAdmin ile içe aktaracağınız veritabanını buradan indirebilirsiniz</a>
 * Pagila veritabanının içe aktarılması, dışa verilmesi
   + http://www.postgresqltutorial.com/postgresql-sample-database
