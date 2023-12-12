@@ -223,12 +223,12 @@ RETURNS TEXT
 AS
 $$
 DECLARE
-    musteriler customer%ROWTYPE; -- customer."CustomerID"%TYPE
+    musteri customer%ROWTYPE; -- customer."CustomerID"%TYPE
     sonuc TEXT;
 BEGIN
     sonuc := '';
-    FOR musteriler IN SELECT * FROM customer LOOP
-        sonuc := sonuc || musteriler."customer_id" || E'\t' || musteriler."first_name" || E'\r\n';
+    FOR musteri IN SELECT * FROM customer LOOP
+        sonuc := sonuc || musteri."customer_id" || E'\t' || musteri."first_name" || E'\r\n';
     END LOOP;
     RETURN sonuc;
 END;
