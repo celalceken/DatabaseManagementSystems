@@ -91,8 +91,6 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
   + celalceken@sakarya.edu.tr - Oda No: 1156
 * İsmail ÖZTEL
   + ioztel@sakarya.edu.tr - Oda No: 1160
-* Nurbanu OĞUR
-  + nbogur@sakarya.edu.tr - Oda No: 1204
 * Mustafa Alp Eren KILIÇ
   + mustafakilic@sakarya.edu.tr - Oda No: 1206
 
@@ -103,13 +101,14 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 3. Varlık Bağıntı Modeli Uygulamaları
 4. İlişkisel Veritabanı Modeli 
 5. Genişletilmiş Varlık Bağıntı Modeli, İlişkisel Cebir, 
-6. Yapısal Sorgulama Dili (SQL), Temel SQL(DML)
-7. Temel SQL(DDL) 
-8. İleri SQL
-9. İleri SQL
+6. Yapısal Sorgulama Dili (Structured Query Language, SQL), Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE)
+7. Temel SQL (SQL DDL Komutları; CREATE, ALTER, DROP, ADD, SET, CONSTRAINTS)
+8. Temel SQL (SQL DDL Komutları; İndeks (Index), Kalıtım, Tekli Bağıntı, SQL DML Komutları; Görünüm (View), Çoklu Satır Fonksiyonları, Gruplama)
+9. Ara sınav
 10. SQL Programlama
-11. Normalizasyon ve Başarım İyileştirme
-12. Veritabanı Güvenliği, Diğer Veritabanı Modelleri
+11. İleri SQL
+12. Normalizasyon ve Başarım İyileştirme
+13. Veritabanı Güvenliği, Diğer Veritabanı Modelleri
 
 ## Sıkça Sorulan Sorular
 
