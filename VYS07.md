@@ -28,7 +28,7 @@ OWNER postgres
 TEMPLATE=template0;
 ~~~
 
-//* Windows işletim sistemi için
+<!--* Windows işletim sistemi için
 
 ~~~sql
 CREATE DATABASE "AlisVerisUygulamasi"
@@ -38,7 +38,7 @@ LC_CTYPE='Turkish_Turkey.1254'
 OWNER postgres
 TEMPLATE=template0;
 ~~~
-
+-->
 
 
 ### CREATE SCHEMA 
