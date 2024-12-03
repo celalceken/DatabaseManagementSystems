@@ -158,11 +158,11 @@ TEMPLATE=template0;
 
 
 ~~~sql
-CREATE SCHEMA "Personel";
+CREATE SCHEMA "personel";
 ~~~
 
 ~~~sql
-CREATE TABLE "Personel"."Personel" ( 
+CREATE TABLE "personel"."Personel" ( 
 	"personelNo" SERIAL,
 	"adi" CHARACTER VARYING(40) NOT NULL,
 	"soyadi" CHARACTER VARYING(40) NOT NULL,
@@ -172,7 +172,7 @@ CREATE TABLE "Personel"."Personel" (
 ~~~
 
 ~~~sql
-CREATE TABLE "Personel"."Danisman" ( 
+CREATE TABLE "personel"."Danisman" ( 
 	"personelNo" INT,
 	"sirket" CHARACTER VARYING(40) NOT NULL,
 	CONSTRAINT "danismanPK" PRIMARY KEY ("personelNo")
@@ -180,7 +180,7 @@ CREATE TABLE "Personel"."Danisman" (
 ~~~
 
 ~~~sql
-CREATE TABLE "Personel"."SatisTemsilcisi" ( 
+CREATE TABLE "personel"."SatisTemsilcisi" ( 
 	"personelNo" INT,
 	"bolge" CHARACTER VARYING(40) NOT NULL,
 	CONSTRAINT "satisTemsilcisiPK" PRIMARY KEY ("personelNo")
@@ -190,29 +190,29 @@ CREATE TABLE "Personel"."SatisTemsilcisi" (
 
 * Temel tablo ile çocuk tablo arasında bağıntı kurulumu. "CASCADE" kullanımının en uygun olduğu yer
 ~~~sql
-ALTER TABLE "Personel"."Danisman"
+ALTER TABLE "personel"."Danisman"
 	ADD CONSTRAINT "DanismanPersonel" FOREIGN KEY ("personelNo")
-	REFERENCES "Personel"."Personel" ("personelNo")
+	REFERENCES "personel"."Personel" ("personelNo")
 	ON DELETE CASCADE
 	ON UPDATE CASCADE;
 ~~~
 
 * Temel tablo ile çocuk tablo arasında bağıntı kurulumu. "CASCADE" kullanımının en uygun olduğu yer
 ~~~sql
-ALTER TABLE "Personel"."SatisTemsilcisi"
+ALTER TABLE "personel"."SatisTemsilcisi"
 	ADD CONSTRAINT "SatisTemsilcisiPersonel" FOREIGN KEY ("personelNo")
-	REFERENCES "Personel"."Personel" ("personelNo")
+	REFERENCES "personel"."Personel" ("personelNo")
 	ON DELETE CASCADE
 	ON UPDATE CASCADE;
 ~~~
 
 * Kalıtım kullanıldığında verilerin eklenmesi
 ~~~sql
-INSERT INTO "Personel"."Personel"("adi","soyadi","personelTipi")
+INSERT INTO "personel"."Personel"("adi","soyadi","personelTipi")
 VALUES ('Mert','Şen','D' )
 
-INSERT INTO "Personel"."Danisman"("personelNo","sirket")
-VALUES (currval('"Personel"."Personel_personelNo_seq"'),'Şen Ltd.');
+INSERT INTO "personel"."Danisman"("personelNo","sirket")
+VALUES (currval('"personel"."Personel_personelNo_seq"'),'Şen Ltd.');
 ~~~
 
 ~~~sql
@@ -222,10 +222,10 @@ DECLARE personelNo integer;
 
 BEGIN
 
-INSERT INTO "Personel"."Personel"("adi","soyadi","personelTipi")
+INSERT INTO "personel"."Personel"("adi","soyadi","personelTipi")
 VALUES ('Mert','Şen','D' ) RETURNING "personelNo" INTO personelNo;
 
-INSERT INTO "Personel"."Danisman"("personelNo","sirket")
+INSERT INTO "personel"."Danisman"("personelNo","sirket")
 VALUES (personelNo,'Şen Ltd.');
 
 END 
@@ -233,31 +233,31 @@ $$;
 ~~~
 * Kalıtım kullanıldığında verilerin alınması
 ~~~sql
-SELECT * FROM "Personel"."Personel"
-INNER JOIN "Personel"."SatisTemsilcisi"
-ON "Personel"."Personel"."personelNo" = "Personel"."SatisTemsilcisi"."personelNo";
+SELECT * FROM "personel"."Personel"
+INNER JOIN "personel"."SatisTemsilcisi"
+ON "personel"."Personel"."personelNo" = "personel"."SatisTemsilcisi"."personelNo";
 ~~~
 
 ~~~sql
-SELECT * FROM "Personel"."Personel"
-INNER JOIN "Personel"."Danisman"
-ON "Personel"."Personel"."personelNo" = "Personel"."Danisman"."personelNo";
+SELECT * FROM "personel"."Personel"
+INNER JOIN "personel"."Danisman"
+ON "personel"."Personel"."personelNo" = "personel"."Danisman"."personelNo";
 ~~~
 
 * Sorguların hızlandırılması için temel tabloya eklenen alan
 ~~~sql
-SELECT "adi", "soyadi" FROM "Personel"."Personel"
+SELECT "adi", "soyadi" FROM "personel"."Personel"
 WHERE "personelTipi"='S';
 ~~~
 
 ~~~sql
-SELECT "adi", "soyadi" FROM "Personel"."Personel"
+SELECT "adi", "soyadi" FROM "personel"."Personel"
 WHERE "personelTipi"='D';
 ~~~
 
 ~~~sql
-SELECT "adi", "soyadi" FROM "Personel"."Personel"
-INNER JOIN "Personel"."Danisman"
+SELECT "adi", "soyadi" FROM "personel"."Personel"
+INNER JOIN "personel"."Danisman"
 ON "Personel"."personelNo" = "Danisman"."personelNo";
 ~~~
 
