@@ -61,7 +61,7 @@ CREATE TABLE "Kisiler" (
 );
 ~~~
 
-* Windows işletim sistemi için:
+<--!* Windows işletim sistemi için:
 
 ~~~sql
 CREATE DATABASE "TestVeritabani"
@@ -79,7 +79,7 @@ CREATE TABLE "Kisiler" (
 	CONSTRAINT "urunlerPK1" PRIMARY KEY("kisiNo")
 );
 ~~~
-
+-->
 ~~~sql
 CREATE OR REPLACE FUNCTION "veriGir"(kayitSayisi integer)
 RETURNS VOID
