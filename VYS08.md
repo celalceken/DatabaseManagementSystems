@@ -61,7 +61,8 @@ CREATE TABLE "Kisiler" (
 );
 ~~~
 
-<--!* Windows işletim sistemi için:
+<!--
+* Windows işletim sistemi için:
 
 ~~~sql
 CREATE DATABASE "TestVeritabani"
