@@ -141,7 +141,7 @@ LC_CTYPE='tr_TR.UTF-8'
 OWNER postgres
 TEMPLATE=template0;
 ~~~
-
+<!--
 * Windows işletim sistemi için:
 
 ~~~sql
@@ -152,7 +152,7 @@ LC_CTYPE='Turkish_Turkey.1254'
 OWNER postgres
 TEMPLATE=template0;
 ~~~
-
+-->
 
 ![](Sekiller/08/PersonelKalitim.png)
 
