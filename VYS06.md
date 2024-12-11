@@ -26,7 +26,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
   + <a href="https://github.com/celalceken/DatabaseManagementSystems/blob/master/OrnekVeritabanlari/NorthWind.sql.zip" download target="_blank">VS ile içe aktaracağınız veritabanını buradan indirebilirsiniz</a>
   + <a href="https://github.com/celalceken/DatabaseManagementSystems/blob/master/OrnekVeritabanlari/NorthWind.backup" download target="_blank">pgAdmin ile içe aktaracağınız veritabanını buradan indirebilirsiniz</a>
 * Pagila örnek veritabanı
-  + <a href="https://github.com/celalceken/DatabaseManagementSystems/blob/master/OrnekVeritabanlari/pagila.tar" download target="_blank">pgAdmin ile içe aktaracağınız veritabanını buradan indirebilirsiniz</a>
+  + <a href="https://github.com/celalceken/DatabaseManagementSystems/blob/master/OrnekVeritabanlari/dvdrental.zip" download target="_blank">pgAdmin ile içe aktaracağınız veritabanını buradan indirebilirsiniz</a>
 
 
 ## Yapısal Sorgulama Dili (SQL)
