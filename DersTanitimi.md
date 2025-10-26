@@ -45,9 +45,9 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 
 ## Kaynaklar
 
-* SABİS
 * GitHub Deposu
   + https://github.com/celalceken/DatabaseManagementSystems
+* İLİŞKİSEL VERİTABANI YÖNETİM SİSTEMLERİ VE UYGULAMALARI; Celal Çeken, Gözde Yolcu Öztel, İsmail Öztel, Veysel Harun Şahin; Palme Yayınları
 * Database Systems: Design, Implementation, and Management; Carlos Coronel, Steven Morris, Peter Rob; Cengage Learning
 * https://www.postgresql.org/docs/manuals/
 * https://www.draw.io
