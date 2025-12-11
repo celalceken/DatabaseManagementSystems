@@ -369,7 +369,7 @@ CREATE ROLE "rol1";
 ~~~
 
 ~~~sql
-ALTER DATABASE "NorthWind" OWNER TO "rol1";
+ALTER DATABASE "Northwind" OWNER TO "rol1";
 ~~~
 
 ~~~sql
@@ -379,7 +379,7 @@ DROP ROLE "rol1";
 ~~~
 
 ~~~sql
-ALTER DATABASE "NorthWind" OWNER TO "postgres";
+ALTER DATABASE "Northwind" OWNER TO "postgres";
 ~~~
 
 ~~~sql
@@ -395,7 +395,7 @@ CREATE ROLE "rol1";
 ~~~
 
 ~~~sql
-ALTER DATABASE "NorthWind" OWNER TO "rol1";
+ALTER DATABASE "Northwind" OWNER TO "rol1";
 ~~~
 
 ~~~sql
