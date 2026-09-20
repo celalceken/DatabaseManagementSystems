@@ -163,7 +163,7 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 * Özgür yazılım lisansı
   + GPL, BSD, Apache, PostgreSQL, MIT vb.
 
-
+<!--
 ## Bilgisayar Mühendisliği
 
 ### İlgili Meslekler
@@ -186,4 +186,4 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
 * Yerleşik yazılım (firmware) tasarımı ve gerçeklenmesi
 * İşletim sistemi tasarımı ve gerçeklenmesi
 * Sistem ve uygulama programlarının tasarımı ve gerçeklenmesi
-
+-->
