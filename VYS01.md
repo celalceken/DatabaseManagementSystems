@@ -78,8 +78,6 @@ Veritabanlarında saklanan veriler yapısal olarak üç ana grupta ele alınır:
 2. **Yarı Yapılandırılmış Veri (Semi-Structured):** Belirli bir tablosal şeması olmayan ancak etiketler/anahtarlar içeren verilerdir *(Örn: JSON, XML dosyaları)*.
 3. **Yapılandırılmamış Veri (Unstructured Data):** Belli bir kuralı veya dizilimi olmayan ham verilerdir *(Örn: Ses kayıtları, videolar, görseller, e-postalar)*.
 
-> *İlişkisel veritabanları temel olarak Yapılandırılmış Verileri yönetmek üzere tasarlanmıştır.*
----
 
 
 ## Klasik Dosya Yapısı
@@ -169,6 +167,33 @@ SELECT * FROM Ogrenciler;
   + **Veri Ambarı:** Veriler raporlama ve karar destek amaçlarıyla kullanılır. (OLAP: Online Analytical Processing)
 
 ![](Sekiller/01/VeritabaniSiniflariTablo.png)
+
+
+---
+### Veritabanı Çeşitleri ve Güncel Yaklaşımlar
+
+
+Bu dersin ana odağı İlişkisel Veritabanı Yönetim Sistemleri olmakla birlikte, günümüz bilişim sistemlerinde farklı veri yapıları ve performans ihtiyaçlarına göre geliştirilmiş çeşitli veritabanı yaklaşımları bulunmaktadır:
+
+1. **İlişkisel Veritabanları (RDBMS):** Verileri tablolar, satırlar ve sütunlar halinde tutar. Veri bütünlüğü (ACID) ön plandadır.  
+   * *(Örn: PostgreSQL, MySQL, Oracle, MS SQL Server)*
+
+2. **NoSQL Veritabanları:** Esnek, şemasız (schema-less) ve yüksek ölçeklenebilirlik gerektiren durumlar için kullanılır.  
+   * **Doküman Tabanlı (Document):** JSON/BSON biçiminde veri saklar *(Örn: MongoDB)*.  
+   * **Anahtar-Değer (Key-Value):** Hızlı önbellekleme sağlar *(Örn: Redis)*.  
+   * **Sütun Odaklı (Columnar):** Büyük veri analitiği için tasarlanmıştır *(Örn: Cassandra)*.  
+   * **Çizge Tabanlı (Graph):** Ağ ve ilişki haritalarını modeller *(Örn: Neo4j)*.
+
+3. **NewSQL (Dağıtık İlişkisel Veritabanları):** NoSQL'in yüksek ölçeklenebilirliği ile RDBMS'in SQL ve ACID veri bütünlüğü garantisini birleştirir.  
+   * *(Örn: CockroachDB, Google Cloud Spanner)*
+
+4. **Vektör Veritabanları (Vector Databases):** Yapay zekâ ve makine öğrenmesi modellerinin ürettiği matris/vektör verilerini saklar ve benzerlik aramaları (similarity search) yapar.  
+   * *(Örn: Pinecone, Milvus, Qdrant)*
+
+5. **Zaman Serisi Veritabanları (Time-Series):** IoT sensörleri, borsa verileri ve sistem logları gibi zaman damgalı (timestamp) akış verilerini hızlıca işlemek için optimize edilmiştir.  
+   * *(Örn: InfluxDB, TimescaleDB)*
+
+
 
 
 ## Kaynaklar 
