@@ -1,4 +1,4 @@
-
+ 
 # Ders Tanıtımı
 
 Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
