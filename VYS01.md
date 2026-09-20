@@ -69,6 +69,19 @@ Ders tanıtımı için aşağıdaki bağlantıları inceleyiniz.
 ![](Sekiller/01/GitVerileri.png)
 
 
+---
+### Veri Biçimleri
+
+Veritabanlarında saklanan veriler yapısal olarak üç ana grupta ele alınır:
+
+1. **Yapılandırılmış Veri (Structured Data):** Belli bir şemaya, satır ve sütun düzenine uyan verilerdir *(Örn: İlişkisel veritabanı tabloları)*.
+2. **Yarı Yapılandırılmış Veri (Semi-Structured):** Belirli bir tablosal şeması olmayan ancak etiketler/anahtarlar içeren verilerdir *(Örn: JSON, XML dosyaları)*.
+3. **Yapılandırılmamış Veri (Unstructured Data):** Belli bir kuralı veya dizilimi olmayan ham verilerdir *(Örn: Ses kayıtları, videolar, görseller, e-postalar)*.
+
+> *İlişkisel veritabanları temel olarak Yapılandırılmış Verileri yönetmek üzere tasarlanmıştır.*
+---
+
+
 ## Klasik Dosya Yapısı
 
 * Veriler, kayıtlar halinde klasik dosya yapısı kullanılarak saklanır. 
