@@ -169,7 +169,6 @@ SELECT * FROM Ogrenciler;
 ![](Sekiller/01/VeritabaniSiniflariTablo.png)
 
 
----
 ### Veritabanı Çeşitleri ve Güncel Yaklaşımlar
 
 
