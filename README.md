@@ -2,4 +2,4 @@ Bilgi çağının yaşandığı günümüzde veri yönetimi, organizasyonların 
 
 Notlar içerisinde yer alan konular; Veritabanı Sistemleri, Veri Modelleri, Varlık Bağıntı Modeli, Genişletilmiş Varlık Bağıntı Modeli, İlişkisel Veritabanı Modeli,  İlişkisel Cebir, Yapısal Sorgulama Dili (SQL), İleri SQL, Normalizasyon ve Başarım İyileştirme, SQL Programlama, Veritabanı Güvenliği, Diğer Veritabanı Modelleri.
 
-Bu depoda yer alan içerikler Veysel Harun Şahin, İsmail Öztel, Gözde Yolcu Öztel ve Celal Çeken tarafından hazırlanmıştır.
+Bu depoda yer alan içerikler Veysel Harun Şahin, İsmail Öztel, Gözde Yolcu Öztel ve Celal Çeken tarafından hazırlanmıştır. 
