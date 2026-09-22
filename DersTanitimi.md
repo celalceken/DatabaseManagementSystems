@@ -91,8 +91,8 @@ Ek bilgi için https://ebs.sabis.sakarya.edu.tr adresine bakabilirsiniz.
   + celalceken@sakarya.edu.tr - Oda No: 1156
 * İsmail ÖZTEL
   + ioztel@sakarya.edu.tr - Oda No: 1160
-* Mustafa Alp Eren KILIÇ
-  + mustafakilic@sakarya.edu.tr - Oda No: 1206
+* Furkan Ekrem İyibilgin
+  + furkaniyibilgin@sakarya.edu.tr
 
 ## Ders Akışı
 
