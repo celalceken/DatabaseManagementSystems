@@ -182,9 +182,9 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Nesne İlişkisel Model (Object/Relational Model)
     + İlişkisel modelle nesne yönelimli modelin birleştirilmesi sonucu ortaya çıkmıştır.
 * Genişletilebilir İşaretleme Dili (Extensible Markup Language, XML)
-    + Çoğunlukla, farklı platformlar arası veri değişimi için kullanılan veri tanımlama standardıdır. Yapısal olmayan verileri tanımlamak için de kullanılır.
+    + Çoğunlukla, farklı platformlar arası veri değişimi için kullanılan veri tanımlama standardıdır.
 * JavaScript Nesne Gösterimi (JavaScript Object Notation, JSON)
-    + Çoğunlukla, farklı platformlar arası veri değişimi için kullanılan veri tanımlama standardıdır. Yapısal olmayan verileri tanımlamak için de kullanılır.
+    + Çoğunlukla, farklı platformlar arası veri değişimi için kullanılan veri tanımlama standardıdır.
 * NoSQL
     + İlişkisel modelin yetersiz kaldığı büyük hacimli verilerin yönetimi için tercih edilir.
 
