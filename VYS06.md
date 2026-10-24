@@ -9,7 +9,7 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * Çalışma Ortamının Hazırlanması
 * Yapısal Sorgulama Dili (Structured Query Language, SQL)
 * Temel SQL Komutları (SQL DML Komutları; SELECT, JOIN, INSERT, UPDATE, DELETE) 
-* Uygulama Programları ile VYS İşlemleri
+<!--* Uygulama Programları ile VYS İşlemleri-->
 
 
 ## Çalışma Ortamının Hazırlanması
@@ -17,9 +17,9 @@ BSM211 Veritabanı Yönetim Sistemleri - Celal ÇEKEN, İsmail ÖZTEL, Veysel Ha
 * PostgreSQL kurulumu
   + PostgreSQL
   + https://www.postgresql.org/download
-* pgAdmin kurulumu
-  + pgAdmin
-  + PostgreSQL ile dağıtılıyor.
+<!--* pgAdmin kurulumu-->
+<!--  + pgAdmin-->
+<!--  + PostgreSQL ile dağıtılıyor.-->
 * Valentina Studio
   + https://www.valentina-db.com/en/valentina-studio-overview
 * NorthWind örnek veritabanının içe aktarılması, dışa verilmesi
