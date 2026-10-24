@@ -419,7 +419,7 @@ WHERE "CompanyName" = 'LINO-Delicateses' AND "ContactName" = 'Felipe Izquierdo';
 DELETE FROM "customers";
 ~~~
 
-
+<!--
 ## Uygulama Programları ile VYS İşlemleri
 
 Uygulama programları ile veritabanı işlemleri yapılabilmesi için, programlama dili ile kullanılan veritabanı arasında iletişimi sağlayacak sürücülere ihtiyaç vardır.
@@ -502,3 +502,4 @@ public class VeritabaniIslemleri {
 
 Örnek Uygulamanın kaynak kodları ve anlatımını içeren videolara erişmek için: https://github.com/celalceken/NesneYonelimliAnalizVeTasarimDersiUygulamalari/tree/master/Ders9
 
+-->
