@@ -211,7 +211,7 @@ ALTER TABLE "personel"."SatisTemsilcisi"
 * Kalıtım kullanıldığında verilerin eklenmesi
 ~~~sql
 INSERT INTO "personel"."Personel"("adi","soyadi","personelTipi")
-VALUES ('Mert','Şen','D' )
+VALUES ('Mert','Şen','D' );
 
 INSERT INTO "personel"."Danisman"("personelNo","sirket")
 VALUES (currval('"personel"."Personel_personelNo_seq"'),'Şen Ltd.');
